@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Swift DEMYSTIFYING THE MYSTERIOUS | Yume 練功地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文：
+HIPSTER SWIFT: DEMYSTIFYING THE MYSTERIOUS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift DEMYSTIFYING THE MYSTERIOUS">
+<meta property="og:url" content="http://yume190.github.io/2016/02/04/Swift-DEMYSTIFYING-THE-MYSTERIOUS/index.html">
+<meta property="og:site_name" content="Yume 練功地">
+<meta property="og:description" content="原文：
+HIPSTER SWIFT: DEMYSTIFYING THE MYSTERIOUS">
+<meta property="og:image" content="http://static1.squarespace.com/static/5592eb03e4b051859f0b377f/t/569c91ae40667a727eeb8ecf/1453101487649/?format=2500w">
+<meta property="og:updated_time" content="2016-02-15T03:46:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift DEMYSTIFYING THE MYSTERIOUS">
+<meta name="twitter:description" content="原文：
+HIPSTER SWIFT: DEMYSTIFYING THE MYSTERIOUS">
+<meta name="twitter:image" content="http://static1.squarespace.com/static/5592eb03e4b051859f0b377f/t/569c91ae40667a727eeb8ecf/1453101487649/?format=2500w">
+  
+    <link rel="alternate" href="/atom.xml" title="Yume 練功地" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Yume 練功地</h1>
+  
+    <p class="lead blog-description">偷偷練</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Swift-DEMYSTIFYING-THE-MYSTERIOUS" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Swift DEMYSTIFYING THE MYSTERIOUS
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/02/04/Swift-DEMYSTIFYING-THE-MYSTERIOUS/" class="article-date"><time datetime="2016-02-04T03:12:42.000Z" itemprop="datePublished">2016-02-04</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：</p>
+<p><a href="http://krakendev.io/blog/hipster-swift" target="_blank" rel="external">HIPSTER SWIFT: DEMYSTIFYING THE MYSTERIOUS</a></p>
+<a id="more"></a>
+<hr>
+<p>我知道我不是唯一一個有時看著 swift，並自己思考說這是啥鳥東西的人。</p>
+<p>Swift 有很多的功能，有很多人並沒使用到，但我知道有一天我得面對這詭異的東西並了解他。</p>
+<p>你可能無法從這篇文章中，找到你日常需要特別有用的東西，但誰在乎勒？</p>
+<p>我確定會有人喜歡他。</p>
+<p>Personally, I’ll be using this post as a quick reference to the hipster stuff you see in Swift sometimes.<br>Personally, 我將會以一個快速參考(reference)</p>
+<hr>
+<p>現在，這篇 po文 會有點長度，但很棒的地方是，你不必一篇接著一篇的看，每個小節各自有他的東西，所以盡情略過去看下一節。</p>
+<p>here is a link to each part of this post in case you’re a know-it-all and already know most of what I already wrote about:<br>為了你的方便，這裡有到各個</p>
+<p><a name="MYSTERIOUS_TOP"></a></p>
+<ul>
+<li><a href="#noescape">@noescape</a></li>
+<li><a href="#autoclosure">@autoclosure</a></li>
+<li><a href="#InlineLazy">Inline Lazy Vars</a></li>
+<li><a href="#Currying">()() AKA Currying (RIP 👻)</a></li>
+<li><a href="#Variadic">Variadic Parameters (or that weird … thing)</a></li>
+<li><a href="#dynamic">The “dynamic” keyword</a></li>
+<li><a href="#SpecialLiterals">Special Literals</a></li>
+<li><a href="#LoopLabels">Loop Labels (bet you don’t know this one)</a></li>
+</ul>
+<hr>
+<h2 id="NOESCAPE"><a href="#NOESCAPE" class="headerlink" title="@NOESCAPE"></a><a name="noescape"></a>@NOESCAPE</h2><p>這小玩意似乎從 Swift 冒出了蒸氣。</p>
+<p>在我了解他之前，每一次看到他，我的眼睛立即被閃了一下。</p>
+<p>我告訴我自己這些是 Rob大神(@rob_rix and @cocoaphony) 的工具</p>
+<p>但他到底是什麼啊？ 原來，他馬該死低有用</p>
+<p>他是個 <code>Swift attribute</code>，附在參數(這個參數是個 function)上，如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">prepareTheKrakenArmyForBattle</span><span class="params">(@noescape preparations: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="comment">//Make the preparations to consume the human race.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>他基本上告訴 compiler，丟進去的 closure 不能再 function 外使用。</p>
+<p>因為 <code>closures</code> 是 Swift 的第一公民，你能夠把 <code>closures</code> 丟進變數，並在任何 地點/時間 使用它。</p>
+<p>藉由對 <code>closure</code> 標示 <code>@noescape</code>，你告訴 compiler，等等丟進去的 closure 將被執行或 torn down within the body of that function and nowhere else.</p>
+<p>用簡單的方式理解的話，大概就是把 function 區塊看作是個監獄，且 closure 會被困在裡面無法逃脫。</p>
+<p>這邊有個大圖，展示 closure 試圖逃脫(如你所見，the Swift compiler is having none of it.)：</p>
+<p><img src="http://static1.squarespace.com/static/5592eb03e4b051859f0b377f/t/569c91ae40667a727eeb8ecf/1453101487649/?format=2500w" alt=""></p>
+<p>用 @noescape 還有一個很棒加分的地方是，</p>
+<p>compiler 會進一步優化妳的 non-escaping code</p>
+<p>另一個很棒加分的地方是，在 non escaping closure 裡，你不必顯式捕捉 <code>self</code>(weak 或 其他)。<br>Since the non-escaping closure will be executed or torn down by the end of the function that its a parameter of,<br>there is no need to mess with capture semantics for that closure.<br>This allows for awesome code that looks like this:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Kraken</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KrakenGeneral</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> soldiers = [<span class="type">Kraken</span>]()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">startTheWar</span><span class="params">()</span></span> &#123;</span><br><span class="line">        prepareTheKrakenArmyForBattle(punishments: &#123;</span><br><span class="line">            soldiers.removeFirst() <span class="comment">//notice that we don't need self here.</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">prepareTheKrakenArmyForBattle</span><span class="params">(@noescape punishments punishments: <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> someoneReportedMisbehavior &#123;</span><br><span class="line">            <span class="comment">//Someone was misbehaving. Helping out the humans. We can't have that now.</span></span><br><span class="line">            punishments()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="AUTOCLOSURE"><a href="#AUTOCLOSURE" class="headerlink" title="@AUTOCLOSURE"></a><a name="autoclosure"></a>@AUTOCLOSURE</h2><p>@autoclosure 是另一個你可能看過卻無法理解的 <code>Swift attribute</code></p>
+<p>他蠻類似於 <code>@noescape attribute</code>.</p>
+<p>首先，他只能用在 <code>closure parameters</code>，且他會自動附上 @noescape。</p>
+<p><code>@autoclosure attribute</code> 會延遲那些已激活的 <code>function parameter</code> 的執行</p>
+<p>基本上，在參數裡呼叫函數將會把這段 function call 包進 closure，for later use in the function body.</p>
+<p>舉例說，你會看到很多像這樣的 code ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">krakenGeneral.punishSoldier(soldiers.removeFirst())</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">punishSoldier</span><span class="params">(soldier: Kraken)</span></span> &#123;</span><br><span class="line">    throwSoldierInTheBrig(soldier)</span><br><span class="line">    sendSoldierHomeToMommy(soldier)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這邊，當 krakenGeneral 呼叫 <code>punishSoldier()</code>，removeFirst() 會被執行。</p>
+<p>這立即從 soldiers 移除第一個士兵，且回傳剛剛那個士兵，並當作參數再傳入。</p>
+<p>接著，你會對違規的 kraken soldier 做些事。</p>
+<p>But what if you dont want the first soldier to be removed until later?<br>但如果你不想馬上移除第一個士兵呢？</p>
+<p>如果你是個有同情心的 Kraken Officer?</p>
+<p>如果你想要對那位可憐的傢伙再送他回去見他媽之前，再給他一次機會？</p>
+<hr>
+<p>回到 @autoclosure 主題。</p>
+<p>因為 @autoclosure 會把丟進去的參數包進 closure，我們能延後移除士兵直到我們認為最好 punishSoldier() 如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//The removeFirst() function won't get called here.</span></span><br><span class="line">punishSoldier(soldiers.removeFirst())</span><br><span class="line"></span><br><span class="line"><span class="comment">//@autoclosure can only be used on closure types. Let's match our parameter to the removeFirst() function type.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">punishSoldier</span><span class="params">(@autoclosure soldierPunishment: <span class="params">()</span></span></span> -&gt; <span class="type">Kraken</span>) &#123;</span><br><span class="line">    <span class="comment">//Now we can decide when to remove our soldier.</span></span><br><span class="line">    <span class="keyword">if</span> someoneReportedMisbehavior &#123;</span><br><span class="line">        <span class="comment">//This will remove the soldier and send that soldier home.</span></span><br><span class="line">        sendSoldierHomeToMommy(soldierPunishment())</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        apologizeToSoldierAndFeedHimAHuman()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>At a high level, 上述的 code 與下面的 code 等價：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">punishSoldier &#123;</span><br><span class="line">    soldiers.removeFirst()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">punishSoldier</span><span class="params">(@noescape soldierPunishment: <span class="params">()</span></span></span> -&gt; <span class="type">Kraken</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> someoneReportedMisbehavior &#123;</span><br><span class="line">        <span class="comment">//This will remove the soldier and send that soldier home.</span></span><br><span class="line">        sendSoldierHomeToMommy(soldierPunishment())</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        apologizeToSoldierAndFeedHimAHuman()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The main difference in syntax is at the call site.</p>
+<p><code>@autoclosure attribute</code> 不常使用，因為它會讓你的 code 可讀性降低。</p>
+<p>在第一個範例，如果我們不知道 <code>punishSoldier()</code> 的內容，我們仍然假設第一個士兵被移除掉。</p>
+<p>因為 @autoclosure 把它隱藏了 closure parameter 的實作。</p>
+<p>隱藏實作通常絕不是好東西。</p>
+<p>個人來說, 我會建議反對使用它，除非他可以說的通他在幹麻。</p>
+<p>先前，我提到 @autoclosure 會自動把 closure 變成 non-escaping closure。</p>
+<p>如果你在什麼理由下，真的想要 escape closure，你可以附上額外的屬性給 @autoclosure 如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storageForAClosure: (() -&gt; <span class="type">Bool</span>)?</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">executeFunctionWithEscapableClosure</span><span class="params">(@autoclosure<span class="params">(escaping)</span></span></span> houdiniClosure: () -&gt; <span class="type">Bool</span>) &#123;</span><br><span class="line">    storageForAClosure = houdiniClosure</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">executeFunctionWithEscapableClosure(<span class="string">"kraken"</span>.hasPrefix(<span class="string">"k"</span>))</span><br><span class="line">storageForAClosure?() <span class="comment">//hasPrefix doesn't execute until this line of code</span></span><br></pre></td></tr></table></figure>
+<p>By putting the keyword escaping inside of parentheses to the right of the @autoclosure attribute, you are telling the compiler that the closure parameter is an escaping closure.</p>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="INLINE-LAZY-VARS"><a href="#INLINE-LAZY-VARS" class="headerlink" title="INLINE LAZY VARS"></a><a name="InlineLazy"></a>INLINE LAZY VARS</h2><p>This may not be new to you guys but either way,<br>I feel this deserves a spot on the Hipster Swift board.<br>我覺得這值得 spot on the Hipster Swift board.</p>
+<p>我確信我們都知道什麼是 lazy variable。</p>
+<p>假使你不知道的話, 他基本上是個 instance variable 他只會被初始化一次，並且在你每次存取他時回傳給你 one-time-initialization value。</p>
+<p>這對計算敏感的值或物件建立後才能知曉的屬性值是相當有用低。</p>
+<p>大多我們可建立像這樣的 lazy variables：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KrakenFoodGenerator</span> </span>&#123;</span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> lazyHuman: <span class="type">Human</span> = &#123;</span><br><span class="line">        <span class="comment">//We want a lazy human. Kraken's get annoyed</span></span><br><span class="line">        <span class="comment">//when they have to chase their food.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.generateWithOptions(.<span class="type">Lazy</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Swift 讓 lazy initialization 變得非常簡單，但是當我用 lazy variable 他佔據相當多的空間讓我有點煩惱</p>
+<p>Awesomely enough, the good Humans over on the Swift team thought of this for us.</p>
+<p>我們可以建立 行內(inline) lazy vars 且減少上述的 code：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KrakenFoodGenerator</span> </span>&#123;</span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> lazyHuman: <span class="type">Human</span> = <span class="keyword">self</span>.generateWithOptions(.<span class="type">Lazy</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但… 等等… 有點怪怪的… 我們在變數用了 <code>self</code> 宣告！</p>
+<p>他是哪種 <code>self</code>? 他會造成 retain cycle 嗎？</p>
+<p>Lazy vars 畢竟只是 closures。</p>
+<p>為什麼我不能在附上 lazy keyword 使用 <code>self</code>?!</p>
+<p>Well, I can’t really tell you how that’s possible.<br>嗯，我不能確實告訴你他會發生什麼事。</p>
+<p>然而，在寫完 autoclosure 小節後，我能大膽的猜測。</p>
+<p>It seems as though anything after the equals sign of a lazy variable is automatically wrapped in a closure for us.<br>對我們來說 lazy variable 好像在等號後面的所有東西會自動包進 closure。</p>
+<p>As for the use of self, it seems as though it comes out unowned automatically for you.<br>至於使用 <code>self</code>，就好像自動用了 <code>unowned</code></p>
+<p>這邊有在 playground 的一個小測試，告訴你他並不會造成 retain cycle：</p>
+<p><img src="" alt=""></p>
+<p>Cool, huh? Now you can go and shorten some code. Lord knows that’s exactly what I’m about to do.</p>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="AKA-CURRYING"><a href="#AKA-CURRYING" class="headerlink" title="()() - AKA CURRYING"></a><a name="Currying"></a>()() - AKA CURRYING</h2><p>👻 RIP</p>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="THAT-WEIRD-ELLIPSE-THING-VARIADIC-PARAMETERS"><a href="#THAT-WEIRD-ELLIPSE-THING-VARIADIC-PARAMETERS" class="headerlink" title="THAT WEIRD ELLIPSE THING (VARIADIC PARAMETERS)"></a><a name="Variadic"></a>THAT WEIRD ELLIPSE THING (VARIADIC PARAMETERS)</h2><p>…</p>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="DYNAMIC"><a href="#DYNAMIC" class="headerlink" title="DYNAMIC"></a><a name="dynamic"></a>DYNAMIC</h2><p><code>dynamic</code> 是宣告用修飾子(declaration modifier)，你附在 function 或 變數 的宣告上。</p>
+<p>You may see this when using libraries like NewRelic or something similar for app analytics.<br>當使用像 NewRelic Lib 或類似 app analytics 你可能會看見他們的身影。</p>
+<p>What dynamic does is tells the runtime to use dynamic dispatch over static dispatch for the function or variables modified.<br>dynamic 就是告訴 runtime 對 function 或 變數 使用 動態派送(dynamic dispatch) 而不是 靜態派送(static dispatch)</p>
+<p>It also implicitly adds the @objc attribute to the variable or function declaration.<br>他也顯式的加入 <code>@objc attribute</code> 給變數或函數宣告。</p>
+<p>作為一個重要的注意事項，所有使用 <code>dynamic</code> 會以 <code>Objective-C runtime</code> 而不是以 <code>Swift runtime</code> 派送 messages。</p>
+<p>現在，我們愛靜態派送。</p>
+<p>然而，app 分析並不怎麼喜歡他。</p>
+<p>It’s hard to generate and insert analytics code dynamically when functions are mostly static by default.<br>在預設情況函數大多是靜態，他很難動態產生跟插入分析代碼。</p>
+<p>Dynamic is useful for these situations but sacrifices optimizations we get from static dispatch.</p>
+<p>dynamic 使用方法如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Kraken</span> </span>&#123;</span><br><span class="line">    <span class="keyword">dynamic</span> <span class="keyword">var</span> imADynamicallyDispatchedString: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">dynamic</span> <span class="function"><span class="keyword">func</span> <span class="title">imADynamicallyDispatchedFunction</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//Hooray for dynamic dispatch!</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The other thing you get by using dynamic dispatch is better interoperability with things that use magic in the Objective-C runtime like Core Data that rely on KVC/KVO (think data bindings) at runtime. By using dynamic, you can take advantage of things we have long taken for granted in the Objective-C runtime. You know, just in case Swift wasn’t cool enough for your needs. 😎</p>
+<p>Basically, if you know that a certain function or property will be interfered/replaced/swizzled by someone at runtime, then it’s a good idea to mark it dynamic. If you don’t, you could get a crash from the compiler devirtualizing access/inlining implementations (this is an optimization you get for free) to your functions even though other code is trying to use runtime magic that doesn’t play well with those optimizations.</p>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="SPECIAL-LITERALS-FILE-LINE-COLUMN-amp-FUNCTION"><a href="#SPECIAL-LITERALS-FILE-LINE-COLUMN-amp-FUNCTION" class="headerlink" title="SPECIAL LITERALS: FILE, LINE, COLUMN, &amp; FUNCTION"></a><a name="SpecialLiterals"></a>SPECIAL LITERALS: FILE, LINE, COLUMN, &amp; FUNCTION</h2><p>AKA Messrs <strong>FILE</strong>, <strong>LINE</strong>, <strong>COLUMN</strong>, &amp; <strong>FUNCTION</strong>. I think I may be blinded by the underscores.</p>
+<p>Joking aside, these are actually pretty cool and when memorized, can save you a lot of time. They are called special literal expressions. Fairly self-explanatory if you ask me; however, I will try to shed some light on it anyways.</p>
+<p>Much like numbers (and anything contained in quotes) are number and string literals, respectively, <strong>FILE</strong>, <strong>LINE</strong>, <strong>COLUMN</strong>, &amp; <strong>FUNCTION</strong> are also literals; as a result, they can be used like any normal literal. As for their return values, here’s a nifty table:</p>
+<p><img src="" alt=""></p>
+<p>Personally, my favorite one to use is the <strong>FUNCTION</strong> literal. It’s pretty useful for debugging purposes. For example, how many times have you asked yourself, “Self? Can you tell me where the hell this function is getting called from? It’s not supposed to, you know. That’s gotta be the bug I’m seeing”.</p>
+<p>Well, worry no more! When placed as the default value of a parameter, the <strong>FUNCTION</strong> literal will print the name of the function that called through to the function it’s a part of like so:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">wreakHavocOnHumanity</span><span class="params">(krakenArmy: [Kraken], callingFunction: String = <span class="keyword">__FUNCTION__</span>)</span></span> &#123;</span><br><span class="line">    <span class="comment">//There's a bug! There's too much havoc being wreaked!</span></span><br><span class="line">    <span class="comment">//Let's figure out who all is calling this function so we can</span></span><br><span class="line">    <span class="comment">//fix the bug! We absolutely need to make sure that the</span></span><br><span class="line">    <span class="comment">//appropriate amount of havoc be wreaked.</span></span><br><span class="line">    <span class="built_in">print</span>(callingFunction, <span class="string">"called \(__FUNCTION__)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">startTheWar</span><span class="params">()</span></span> &#123;</span><br><span class="line">    wreakHavocOnHumanity(krakenArmy)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">startEatingDinner</span><span class="params">(platter: Human)</span></span> &#123;</span><br><span class="line">    wreakHavocOnHumanity(krakenArmy)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startTheWar() <span class="comment">//prints "startTheWar called wreakHavocOnHumanity"</span></span><br><span class="line">startEatingDinner(human) <span class="comment">//prints "startEatingDinner called wreakHavocOnHumanity"</span></span><br></pre></td></tr></table></figure>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+<hr>
+<h2 id="LOOP-LABELS-EXTENDING-BREAK-AND-CONTINUE"><a href="#LOOP-LABELS-EXTENDING-BREAK-AND-CONTINUE" class="headerlink" title="LOOP LABELS (EXTENDING BREAK AND CONTINUE)"></a><a name="LoopLabels"></a>LOOP LABELS (EXTENDING BREAK AND CONTINUE)</h2><p>Don’t knock this one quite yet. At first look, you may be like, “Dammit Hector. I know what breaks and continues are. Stop wasting my time.”</p>
+<p>Rudeness aside, Swift takes the break and continue keywords a step further and gives you the ability to label them. Sometimes, you may find that you have nested loop logic that kind of looks like this:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> section <span class="keyword">in</span> sections &#123;</span><br><span class="line">    <span class="keyword">var</span> foundTheMagicalRow = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> rows &#123;</span><br><span class="line">        <span class="keyword">if</span> row.isMagical &#123;</span><br><span class="line">            foundTheMagicalRow = <span class="literal">true</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> foundTheMagicalRow &#123;</span><br><span class="line">        <span class="comment">//We found the magical row!</span></span><br><span class="line">        <span class="comment">//No need to continue looping through our sections now.</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Using labels for your loops, you can shorten this code quite a bit. By using a label, you can indicate a specific loop to break or continue. Now here is some pretty code for you which is the exact same as the code above:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sectionLoop: <span class="keyword">for</span> section <span class="keyword">in</span> sections &#123;</span><br><span class="line">    rowLoop: <span class="keyword">for</span> row <span class="keyword">in</span> rows &#123;</span><br><span class="line">        <span class="keyword">if</span> row.isMagical &#123;</span><br><span class="line">            <span class="keyword">break</span> sectionLoop</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="#MYSTERIOUS_TOP">TOP</a></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yume190.github.io/2016/02/04/Swift-DEMYSTIFYING-THE-MYSTERIOUS/" data-id="ciomjcq4k0024futjc7ian5t8" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/02/02/Swift-Flag-Build/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Swift Flag &amp; Build</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2016/02/16/Pragmatic-Core-Data/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Pragmatic Core Data</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/">Android</a><span class="sidebar-module-list-count">12</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/adb/">adb</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/">CI</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/GAE/">GAE</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Git/">Git</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Go/">Go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/">Gradle</a><span class="sidebar-module-list-count">9</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/Android/">Android</a><span class="sidebar-module-list-count">9</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/">IOS</a><span class="sidebar-module-list-count">19</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/UI/">UI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Reference/">Reference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Test/">Test</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Tools/">Tools</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/">WWDC</a><span class="sidebar-module-list-count">4</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2014/">Y2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2015/">Y2015</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Work/">Work</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Android/">Android</a><span class="sidebar-module-list-count">27</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Anroid-Studio/">Anroid Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apk-sign/">Apk_sign</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Autolayout/">Autolayout</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/CI/">CI</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Delegate/">Delegate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Distributed-Systems-Tracing/">Distributed Systems Tracing</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Fabric/">Fabric</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Git/">Git</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Github/">Github</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go/">Go</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go-Concurrent/">Go Concurrent</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Gradle/">Gradle</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOS/">IOS</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JUnit/">JUnit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KIOSK/">KIOSK</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Markdown/">Markdown</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mockito/">Mockito</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Notification/">Notification</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c/">Objective-c</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Octopress/">Octopress</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Online-Simulator/">Online Simulator</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Open-Source/">Open Source</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Others/">Others</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/RS232/">RS232</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Radxa/">Radxa</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Reboot/">Reboot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Remote-Debugging/">Remote-Debugging</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Service/">Service</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Shared-Preference/">Shared Preference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Slide/">Slide</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/State-Machine/">State Machine</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Struct/">Struct</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Swift/">Swift</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Thread/">Thread</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Time-Series-DB/">Time Series DB</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Toast/">Toast</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UILabel/">UILabel</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2014/">WWDC_2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2015/">WWDC_2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/XCode-Snippet/">XCode Snippet</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Zipkin/">Zipkin</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/adb/">adb</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-8/">java 8</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rake/">rake</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rrdtool/">rrdtool</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/submodule/">submodule</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/subtree/">subtree</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/未完/">未完</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/版本控制/">版本控制</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Anroid-Studio/" style="font-size: 10px;">Anroid Studio</a> <a href="/tags/Apk-sign/" style="font-size: 10px;">Apk_sign</a> <a href="/tags/Apple-Doc/" style="font-size: 10px;">Apple_Doc</a> <a href="/tags/Auto-Restart/" style="font-size: 10px;">Auto-Restart</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Custom-Permission/" style="font-size: 10px;">Custom_Permission</a> <a href="/tags/Custom-View/" style="font-size: 12.5px;">Custom_View</a> <a href="/tags/Delegate/" style="font-size: 10px;">Delegate</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Design-Pattern/" style="font-size: 11.25px;">Design Pattern</a> <a href="/tags/Distributed-Systems-Tracing/" style="font-size: 10px;">Distributed Systems Tracing</a> <a href="/tags/Drone/" style="font-size: 11.25px;">Drone</a> <a href="/tags/Extension/" style="font-size: 10px;">Extension</a> <a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/GAE/" style="font-size: 12.5px;">GAE</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Go/" style="font-size: 16.25px;">Go</a> <a href="/tags/Go-Concurrent/" style="font-size: 13.75px;">Go Concurrent</a> <a href="/tags/Google-API/" style="font-size: 10px;">Google API</a> <a href="/tags/Gradle/" style="font-size: 17.5px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IOS/" style="font-size: 18.75px;">IOS</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/KIOSK/" style="font-size: 10px;">KIOSK</a> <a href="/tags/KVC/" style="font-size: 15px;">KVC</a> <a href="/tags/Localize/" style="font-size: 10px;">Localize</a> <a href="/tags/MRC/" style="font-size: 10px;">MRC</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mockito/" style="font-size: 10px;">Mockito</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Objective-c/" style="font-size: 10px;">Objective-c</a> <a href="/tags/Objective-c-Swift/" style="font-size: 10px;">Objective-c & Swift</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Online-Simulator/" style="font-size: 10px;">Online Simulator</a> <a href="/tags/Open-Source/" style="font-size: 10px;">Open Source</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/Radxa/" style="font-size: 10px;">Radxa</a> <a href="/tags/Reboot/" style="font-size: 10px;">Reboot</a> <a href="/tags/Remote-Debugging/" style="font-size: 10px;">Remote-Debugging</a> <a href="/tags/Robolectric/" style="font-size: 15px;">Robolectric</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Shared-Preference/" style="font-size: 10px;">Shared Preference</a> <a href="/tags/Silent-Install/" style="font-size: 10px;">Silent_Install</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/Slide/" style="font-size: 10px;">Slide</a> <a href="/tags/State-Machine/" style="font-size: 10px;">State Machine</a> <a href="/tags/Strider/" style="font-size: 11.25px;">Strider</a> <a href="/tags/Struct/" style="font-size: 10px;">Struct</a> <a href="/tags/Swift/" style="font-size: 12.5px;">Swift</a> <a href="/tags/Testing/" style="font-size: 11.25px;">Testing</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Time-Series-DB/" style="font-size: 10px;">Time Series DB</a> <a href="/tags/Toast/" style="font-size: 10px;">Toast</a> <a href="/tags/Trouble-Shooting/" style="font-size: 11.25px;">Trouble_Shooting</a> <a href="/tags/Tutorial/" style="font-size: 11.25px;">Tutorial</a> <a href="/tags/UILabel/" style="font-size: 10px;">UILabel</a> <a href="/tags/Vendor/" style="font-size: 10px;">Vendor</a> <a href="/tags/WWDC-2014/" style="font-size: 10px;">WWDC_2014</a> <a href="/tags/WWDC-2015/" style="font-size: 12.5px;">WWDC_2015</a> <a href="/tags/XCode-Snippet/" style="font-size: 10px;">XCode Snippet</a> <a href="/tags/Zipkin/" style="font-size: 10px;">Zipkin</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/java-8/" style="font-size: 10px;">java 8</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/rake/" style="font-size: 10px;">rake</a> <a href="/tags/rrdtool/" style="font-size: 10px;">rrdtool</a> <a href="/tags/submodule/" style="font-size: 10px;">submodule</a> <a href="/tags/subtree/" style="font-size: 10px;">subtree</a> <a href="/tags/未完/" style="font-size: 12.5px;">未完</a> <a href="/tags/版本控制/" style="font-size: 11.25px;">版本控制</a> <a href="/tags/結構/" style="font-size: 10px;">結構</a> <a href="/tags/限制裝置條件/" style="font-size: 10px;">限制裝置條件</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/05/">May 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">December 2015</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/06/">June 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">15</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/10/">October 2014</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/08/">August 2014</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/05/24/kbuild/">kbuild</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/13/kernel/">kernel</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/10/Swift-log/">Swift log</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/04/Yesod/">Yesod</a>
+        </li>
+      
+        <li>
+          <a href="/2016/04/18/Haskell/">Haskell</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yume<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

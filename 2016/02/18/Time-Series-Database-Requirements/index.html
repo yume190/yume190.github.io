@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Time-Series Database Requirements | Yume 練功地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Time-Series Database Requirements">
+<meta property="og:url" content="http://yume190.github.io/2016/02/18/Time-Series-Database-Requirements/index.html">
+<meta property="og:site_name" content="Yume 練功地">
+<meta property="og:description" content="原文">
+<meta property="og:updated_time" content="2016-02-18T03:48:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Time-Series Database Requirements">
+<meta name="twitter:description" content="原文">
+  
+    <link rel="alternate" href="/atom.xml" title="Yume 練功地" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Yume 練功地</h1>
+  
+    <p class="lead blog-description">偷偷練</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Time-Series-Database-Requirements" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Time-Series Database Requirements
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/02/18/Time-Series-Database-Requirements/" class="article-date"><time datetime="2016-02-18T02:23:03.000Z" itemprop="datePublished">2016-02-18</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/" target="_blank" rel="external">原文</a></p>
+<a id="more"></a>
+<h2 id="Definition-of-Data-Type"><a href="#Definition-of-Data-Type" class="headerlink" title="Definition of Data Type"></a>Definition of Data Type</h2><p>For my purposes, time-series can be defined as follows:</p>
+<p>series 會有個標示 source name/ID(如 hostID) 跟 metric name/ID</p>
+<p>series 由 {timestamp, value} 組成，measurements 依照 timestamp 排序，並且 timestamp 是個高精確度的 Unix timestamp 且是 float</p>
+<h2 id="Workload-Characteristics"><a href="#Workload-Characteristics" class="headerlink" title="Workload Characteristics"></a>Workload Characteristics</h2><p>時序資料不是作為一般用途且在他的工作負載上一定的模式在。</p>
+<p>time-series database 應該優化以下事項：</p>
+<h4 id="For-writes"><a href="#For-writes" class="headerlink" title="For writes:"></a>For writes:</h4><p>基本上幾乎都在寫;約95% ~ 99%以上都在寫</p>
+<p>寫入幾乎都是 sequential appends;資料也幾乎是按照時間順序進來。<font color="#cc7a00">caveat</font></p>
+<p>寫入舊資料非常稀有。大多測量值被觀察到後最糟會在約幾秒或幾分會被寫入。</p>
+<p>更改資料很稀有</p>
+<p>刪除大量資料會在相鄰區塊。很少刪除個別資料或隨機位置資料。有效刪除大量資料很重要;要接近 0 成本。非大量資料刪除可不必最佳化</p>
+<p>基於上面，不可變 storage format 可能是可好東西。As a further consequence of immutable storage, a predefined or fixed schema may be a problem long-term.</p>
+<h4 id="For-reads-the-following-usually-holds"><a href="#For-reads-the-following-usually-holds" class="headerlink" title="For reads, the following usually holds:"></a>For reads, the following usually holds:</h4><p>資料比 memory 大且很少讀，cache 基本上沒什麼作用; 系統幾乎在處理 IO (systems are often IO-bound).</p>
+<p>對於每個序列讀取相當於一般低邏輯順序，<br>Reads are typically logically sequential per-series, ascending or descending.</p>
+<p>併發讀取和一次讀取多個序列是很常見的事。<br>Concurrent reads and reads of multiple series at once are reasonably common.</p>
+<p>寫入是依照 {timestamp, series_id} 順序，讀取想以 {series_id, timestamp} 順序。就 tradeoff 寫快/讀快<br>The caveat to “writes arrive in sequential order” is that measurements typically arrive ordered by {timestamp, series_id}, but reads are typically done in {series_id, timestamp} order. Reads need to be fast, even though they are rare. There are generally two approaches to dealing with this. The first is to write efficiently, so the data isn’t read-optimized per-series on disk, and deploy massive amounts of compute power in parallel for reads, scanning through all the data linearly. The second is to pay a penalty on writes, so the data is tightly packed by series and optimized for sequential reads of a series.</p>
+<h2 id="Performance-and-Scaling-Characteristics"><a href="#Performance-and-Scaling-Characteristics" class="headerlink" title="Performance and Scaling Characteristics"></a>Performance and Scaling Characteristics</h2><p>A time-series database should be:</p>
+<p>Distributed by design — no bolt-on clustering or sharding. Automatic data distribution, automatic query distribution. Fault-tolerant and highly available, with built-in replication and automatic failover. I think by this point we should all understand what it means for a database to be natively distributed. There are several good examples of databases that do it sensibly, and little of this should need to be novel.<br>Send the query to the data, don’t bring the data to the query. This is a restatement of “automatic query distribution.” Queries may touch many gigabytes or terabytes of data, so moving it across the network is not scalable.<br>Efficient per-node so it is capable of running at large scale without requiring thousands of servers.<br>Able to take advantage of powerful hardware: PCIe flash storage, lots of RAM, many CPU cores. This rules out single-writer systems.<br>Fast and consistent. No spikes or stalls; no checkpoint freezes; no compaction lock-ups.<br>Operational Requirements<br>I do not specifically need ACID, but I need the database to quickly recover to a consistent state after events like a power failure. For my purposes, time-series data is not subject to the same durability constraints as financial data.<br>Non-blocking backups are a must. Incremental backups are a very good thing.<br>It needs to be possible to scale the cluster up or down without downtime or locking.<br>Compressed storage. Time-series data is big, but highly compressible.<br>The database should be well instrumented.<br>Language and/or API Design<br>I’ve spoken to many people who have built large-scale time-series databases for big companies. Most of them have told me that the lack of a high-level way to access and query the database was the long-term millstone around their neck.</p>
+<p>I would be happy with something that looks like SQL, as InfluxDB’s query language does. Crucially, it needs to avoid a few of the legacy limitations of SQL. The way I think about it is that SQL tables are fixed-width and grow downwards by adding rows. A natural outcome of that is that each column in SQL statements is known in advance and explicitly named, and expressions naturally work within a single row or in aggregates over groups of rows, but cannot span rows otherwise without doing a JOIN.</p>
+<p>However, in time-series databases, rows are series identified by the “primary key.” Rows grow sideways as new measurements are added, tables grow downwards as new series are added, and columns are timestamps. Thus, tables are sparse matrices. Expressions must operate in aggregates over rectangular sections of the sparse matrix, not just rows or columns, and the language must permit a GROUP BY functionality in both directions. You could say that both rows and columns must be addressable by keys instead of by literal identifiers, and ideally by pattern matching in addition to strict equality and ranges.</p>
+<p>Ideally, the language and database should support server-side processing of at least the following, and probably much more:</p>
+<p>Expressions such as arithmetic and string operations.<br>Aggregate functions.<br>Resampling into time resolutions different from the storage resolution.<br>Expressions and operators that refer to different series, e.g. to sum series, or divide one by another, and to combine such expressions, e.g. to sum up all series whose identifiers match a pattern, then divide the result by the sum of another group of series.<br>Ordering, ranking, and limiting.<br>Another way to say the above is that the language and database should be designed for analytics, not just for drawing strip charts. Many open-source time-series databases such as RRDTool are far too tightly coupled with their expected use case, and this is a serious limitation.</p>
+<p>There should be an efficient binary protocol that supports bulk inserts.</p>
+<p>Non-Requirements<br>I’d like a database that does one thing well. I do not think I need any of the following, and I regard them as neutral, or in some cases even as drawbacks:</p>
+<p>Access control — authentication and authorization.<br>Ability to visualize data, draw graphs, etc.<br>Support for multiple measurements at the same timestamp. The measurement’s primary key is series,timestamp and it does not make sense to allow multiple values with the same timestamp.<br>Multi-dimensionality. Multiple dimensions for a series can be stored as multiple series, and multiple series can be combined in expressions with the query language I specified, so the atom of “series” already provides for the use case of multi-dimensionality.<br>“Tagging” measurements or series with additional ad-hoc key-value pairs. (Update: I now see the use case for tagging.<br>Joins from time-series data to relational data.<br>Bonus and Additional Features<br>The preceding sections describe a good general-purpose time-series database, from my point of view. Nice-to-have features might include:</p>
+<p>Support for retention policies.<br>Support for storing data in multiple resolutions (materialized views) and selecting the appropriate resolution to access for a given request.<br>Support for maintaining downsampled data in coarser resolutions, automatically building these materialized views as high-resolution data arrives (automatic rollup).<br>Support for query priorities or admission control to prevent starvation and DOS from large queries.<br>For my particular uses, I also need support for:</p>
+<p>Many series per server in my cluster, far more than practical limits on the number of files in a directory for example.<br>Although some series are long-lived, many are not. Many are sparse, with measurements only once in a long while. Series are dynamic and are not predefined; new series may appear at any moment. Due to this requirement, I need efficient support for discovering which series exist during any given time range.<br>Multi-tenancy at the physical level. This is partially by demand; some customers want to know that their data is separate from other customers’ data. It is partially pragmatic, to support features such as separate retention policies per customer.<br>Conclusion<br>The future of “big data” is mostly time-series. Someone who creates a good time-series database for such use cases will probably do quite well. I’m sure my requirements aren’t the most general-purpose or complete, but I hope it’s useful to share anyway.</p>
+<p>Updates and related reading:</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yume190.github.io/2016/02/18/Time-Series-Database-Requirements/" data-id="ciomjcq580029futji2v4veym" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/02/17/MetalKit-Part-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">MetalKit Part.4</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2016/03/08/Core-Data-文章/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Core Data 文章</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/">Android</a><span class="sidebar-module-list-count">12</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/adb/">adb</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/">CI</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/GAE/">GAE</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Git/">Git</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Go/">Go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/">Gradle</a><span class="sidebar-module-list-count">9</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/Android/">Android</a><span class="sidebar-module-list-count">9</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/">IOS</a><span class="sidebar-module-list-count">19</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/UI/">UI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Reference/">Reference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Test/">Test</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Tools/">Tools</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/">WWDC</a><span class="sidebar-module-list-count">4</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2014/">Y2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2015/">Y2015</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Work/">Work</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Android/">Android</a><span class="sidebar-module-list-count">27</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Anroid-Studio/">Anroid Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apk-sign/">Apk_sign</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Autolayout/">Autolayout</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/CI/">CI</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Delegate/">Delegate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Distributed-Systems-Tracing/">Distributed Systems Tracing</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Fabric/">Fabric</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Git/">Git</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Github/">Github</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go/">Go</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go-Concurrent/">Go Concurrent</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Gradle/">Gradle</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOS/">IOS</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JUnit/">JUnit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KIOSK/">KIOSK</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Markdown/">Markdown</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mockito/">Mockito</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Notification/">Notification</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c/">Objective-c</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Octopress/">Octopress</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Online-Simulator/">Online Simulator</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Open-Source/">Open Source</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Others/">Others</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/RS232/">RS232</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Radxa/">Radxa</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Reboot/">Reboot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Remote-Debugging/">Remote-Debugging</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Service/">Service</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Shared-Preference/">Shared Preference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Slide/">Slide</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/State-Machine/">State Machine</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Struct/">Struct</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Swift/">Swift</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Thread/">Thread</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Time-Series-DB/">Time Series DB</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Toast/">Toast</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UILabel/">UILabel</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2014/">WWDC_2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2015/">WWDC_2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/XCode-Snippet/">XCode Snippet</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Zipkin/">Zipkin</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/adb/">adb</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-8/">java 8</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rake/">rake</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rrdtool/">rrdtool</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/submodule/">submodule</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/subtree/">subtree</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/未完/">未完</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/版本控制/">版本控制</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Anroid-Studio/" style="font-size: 10px;">Anroid Studio</a> <a href="/tags/Apk-sign/" style="font-size: 10px;">Apk_sign</a> <a href="/tags/Apple-Doc/" style="font-size: 10px;">Apple_Doc</a> <a href="/tags/Auto-Restart/" style="font-size: 10px;">Auto-Restart</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Custom-Permission/" style="font-size: 10px;">Custom_Permission</a> <a href="/tags/Custom-View/" style="font-size: 12.5px;">Custom_View</a> <a href="/tags/Delegate/" style="font-size: 10px;">Delegate</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Design-Pattern/" style="font-size: 11.25px;">Design Pattern</a> <a href="/tags/Distributed-Systems-Tracing/" style="font-size: 10px;">Distributed Systems Tracing</a> <a href="/tags/Drone/" style="font-size: 11.25px;">Drone</a> <a href="/tags/Extension/" style="font-size: 10px;">Extension</a> <a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/GAE/" style="font-size: 12.5px;">GAE</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Go/" style="font-size: 16.25px;">Go</a> <a href="/tags/Go-Concurrent/" style="font-size: 13.75px;">Go Concurrent</a> <a href="/tags/Google-API/" style="font-size: 10px;">Google API</a> <a href="/tags/Gradle/" style="font-size: 17.5px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IOS/" style="font-size: 18.75px;">IOS</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/KIOSK/" style="font-size: 10px;">KIOSK</a> <a href="/tags/KVC/" style="font-size: 15px;">KVC</a> <a href="/tags/Localize/" style="font-size: 10px;">Localize</a> <a href="/tags/MRC/" style="font-size: 10px;">MRC</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mockito/" style="font-size: 10px;">Mockito</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Objective-c/" style="font-size: 10px;">Objective-c</a> <a href="/tags/Objective-c-Swift/" style="font-size: 10px;">Objective-c & Swift</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Online-Simulator/" style="font-size: 10px;">Online Simulator</a> <a href="/tags/Open-Source/" style="font-size: 10px;">Open Source</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/Radxa/" style="font-size: 10px;">Radxa</a> <a href="/tags/Reboot/" style="font-size: 10px;">Reboot</a> <a href="/tags/Remote-Debugging/" style="font-size: 10px;">Remote-Debugging</a> <a href="/tags/Robolectric/" style="font-size: 15px;">Robolectric</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Shared-Preference/" style="font-size: 10px;">Shared Preference</a> <a href="/tags/Silent-Install/" style="font-size: 10px;">Silent_Install</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/Slide/" style="font-size: 10px;">Slide</a> <a href="/tags/State-Machine/" style="font-size: 10px;">State Machine</a> <a href="/tags/Strider/" style="font-size: 11.25px;">Strider</a> <a href="/tags/Struct/" style="font-size: 10px;">Struct</a> <a href="/tags/Swift/" style="font-size: 12.5px;">Swift</a> <a href="/tags/Testing/" style="font-size: 11.25px;">Testing</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Time-Series-DB/" style="font-size: 10px;">Time Series DB</a> <a href="/tags/Toast/" style="font-size: 10px;">Toast</a> <a href="/tags/Trouble-Shooting/" style="font-size: 11.25px;">Trouble_Shooting</a> <a href="/tags/Tutorial/" style="font-size: 11.25px;">Tutorial</a> <a href="/tags/UILabel/" style="font-size: 10px;">UILabel</a> <a href="/tags/Vendor/" style="font-size: 10px;">Vendor</a> <a href="/tags/WWDC-2014/" style="font-size: 10px;">WWDC_2014</a> <a href="/tags/WWDC-2015/" style="font-size: 12.5px;">WWDC_2015</a> <a href="/tags/XCode-Snippet/" style="font-size: 10px;">XCode Snippet</a> <a href="/tags/Zipkin/" style="font-size: 10px;">Zipkin</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/java-8/" style="font-size: 10px;">java 8</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/rake/" style="font-size: 10px;">rake</a> <a href="/tags/rrdtool/" style="font-size: 10px;">rrdtool</a> <a href="/tags/submodule/" style="font-size: 10px;">submodule</a> <a href="/tags/subtree/" style="font-size: 10px;">subtree</a> <a href="/tags/未完/" style="font-size: 12.5px;">未完</a> <a href="/tags/版本控制/" style="font-size: 11.25px;">版本控制</a> <a href="/tags/結構/" style="font-size: 10px;">結構</a> <a href="/tags/限制裝置條件/" style="font-size: 10px;">限制裝置條件</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/05/">May 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">December 2015</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/06/">June 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">15</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/10/">October 2014</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/08/">August 2014</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/05/24/kbuild/">kbuild</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/13/kernel/">kernel</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/10/Swift-log/">Swift log</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/04/Yesod/">Yesod</a>
+        </li>
+      
+        <li>
+          <a href="/2016/04/18/Haskell/">Haskell</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yume<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
