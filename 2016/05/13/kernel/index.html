@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yume190.github.io/2016/05/13/kernel/index.html">
 <meta property="og:site_name" content="Yume 練功地">
 <meta property="og:description" content="Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
-<meta property="og:updated_time" content="2016-05-25T07:26:14.000Z">
+<meta property="og:updated_time" content="2016-05-25T09:03:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kernel">
 <meta name="twitter:description" content="Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
@@ -179,7 +179,8 @@
 <li>character devices</li>
 <li>block devices (block devices have a buffer for requests)<br><a href="">/usr/src/linux/Documentation/devices.txt.</a></li>
 </ul>
-<h3 id="skip-ch-4"><a href="#skip-ch-4" class="headerlink" title="skip ch 4"></a>skip ch 4</h3>
+<h3 id="ch-4"><a href="#ch-4" class="headerlink" title="ch 4"></a>ch 4</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> file_operations fops = &#123;</span><br><span class="line">    read: device_read,</span><br><span class="line">    write: device_write,</span><br><span class="line">    open: device_open,</span><br><span class="line">    release: device_release</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>C99 syntax</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> file_operations fops = &#123;</span><br><span class="line">    .read = device_read, <span class="comment">// pointer to function</span></span><br><span class="line">    .write = device_write,</span><br><span class="line">    .open = device_open,</span><br><span class="line">    .release = device_release</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -189,7 +190,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://yume190.github.io/2016/05/13/kernel/" data-id="ciomkk7va002qrgtjazndai0m" class="article-share-link">
+      <a data-url="http://yume190.github.io/2016/05/13/kernel/" data-id="cioo32j2q0030l8tj5ylsm9gb" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -212,8 +213,8 @@
   
   
   <li role="presentation">
-    <a href="/2016/05/17/firefly/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">firefly</span>
+    <a href="/2016/05/24/kbuild/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">kbuild</span>
       <i class="fa fa-chevron-right pull-right"></i>
     </a>
   </li>
@@ -276,15 +277,15 @@
     <ul class="sidebar-module-list">
       
         <li>
+          <a href="/2016/05/26/rasp-for-work/">rasp for work</a>
+        </li>
+      
+        <li>
           <a href="/2016/05/25/Raspberry-Pi-Cross-Compile/">Raspberry Pi Cross Compile</a>
         </li>
       
         <li>
           <a href="/2016/05/24/kbuild/">kbuild</a>
-        </li>
-      
-        <li>
-          <a href="/2016/05/17/firefly/">firefly</a>
         </li>
       
         <li>

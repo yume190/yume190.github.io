@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yume190.github.io/2016/05/25/Raspberry-Pi-Cross-Compile/index.html">
 <meta property="og:site_name" content="Yume 練功地">
 <meta property="og:description" content="從 Linux 取出 .config file導出 rpi config file12sudo modprobe configszcat /proc/config.gz &amp;gt; .config">
-<meta property="og:updated_time" content="2016-05-25T07:48:28.000Z">
+<meta property="og:updated_time" content="2016-05-25T08:03:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi Cross Compile">
 <meta name="twitter:description" content="從 Linux 取出 .config file導出 rpi config file12sudo modprobe configszcat /proc/config.gz &amp;gt; .config">
@@ -111,12 +111,17 @@
 <figure class="highlight sh"><figcaption><span>下載 libs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install bc</span><br><span class="line">sudo apt-get install git-core</span><br><span class="line">sudo apt-get install libncurses5-dev</span><br></pre></td></tr></table></figure>
 <h3 id="設置-Cross-Compile-Tool"><a href="#設置-Cross-Compile-Tool" class="headerlink" title="設置 Cross Compile Tool"></a>設置 Cross Compile Tool</h3><p>將 <code>/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin</code> 設定到 <code>PATH</code>。</p>
 <p>如果 Host 是 64 位元，則用這個 <code>/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin</code></p>
-<h3 id="Build-Time"><a href="#Build-Time" class="headerlink" title="Build Time"></a>Build Time</h3><h5 id="生出預設-config"><a href="#生出預設-config" class="headerlink" title="生出預設 .config"></a>生出預設 <code>.config</code></h5><p>這邊我們要使用的 <code>.config</code>，是從 raspberry pi 拿回低。</p>
+<h3 id="config"><a href="#config" class="headerlink" title=".config"></a><code>.config</code></h3><p>這邊我們要使用的 <code>.config</code>，是從 raspberry pi 拿回低。</p>
 <font color"red"="">所以 <code>make</code> 那段可以略過</font>
 
 <figure class="highlight sh"><figcaption><span>Pi 1 or Compute Module</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux</span><br><span class="line">KERNEL=kernel</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcmrpi_defconfig</span><br></pre></td></tr></table></figure>
 <figure class="highlight sh"><figcaption><span>For Pi 2/3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux</span><br><span class="line">KERNEL=kernel7</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2709_defconfig</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># j4 使用 4 核 build</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 zImage modules dtbs</span><br><span class="line"></span><br><span class="line">mkdir mnt/fat32</span><br><span class="line">mkdir mnt/ext4</span><br><span class="line">sudo mount /dev/sdb1 mnt/fat32</span><br><span class="line">sudo mount /dev/sdb2 mnt/ext4</span><br><span class="line">sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=mnt/ext4 modules_install</span><br><span class="line">sudo cp mnt/fat32/$KERNEL.img mnt/fat32/$KERNEL-backup.img</span><br><span class="line">sudo scripts/mkknlimg arch/arm/boot/zImage mnt/fat32/$KERNEL.img</span><br><span class="line">sudo cp arch/arm/boot/dts/*.dtb mnt/fat32/</span><br><span class="line">sudo cp arch/arm/boot/dts/overlays/*.dtb* mnt/fat32/overlays/</span><br><span class="line">sudo cp arch/arm/boot/dts/overlays/README mnt/fat32/overlays/</span><br><span class="line">sudo umount mnt/fat32</span><br><span class="line">sudo umount mnt/ext4</span><br></pre></td></tr></table></figure>
+<h3 id="Build-Time"><a href="#Build-Time" class="headerlink" title="Build Time"></a>Build Time</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># j4 使用 4 核 build</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 zImage modules dtbs</span><br><span class="line"></span><br><span class="line">mkdir mnt/fat32</span><br><span class="line">mkdir mnt/ext4</span><br><span class="line">sudo mount /dev/sdb1 mnt/fat32</span><br><span class="line">sudo mount /dev/sdb2 mnt/ext4</span><br><span class="line">sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=mnt/ext4 modules_install</span><br><span class="line">sudo cp mnt/fat32/$KERNEL.img mnt/fat32/$KERNEL-backup.img</span><br><span class="line">sudo scripts/mkknlimg arch/arm/boot/zImage mnt/fat32/$KERNEL.img</span><br><span class="line">sudo cp arch/arm/boot/dts/*.dtb mnt/fat32/</span><br><span class="line">sudo cp arch/arm/boot/dts/overlays/*.dtb* mnt/fat32/overlays/</span><br><span class="line">sudo cp arch/arm/boot/dts/overlays/README mnt/fat32/overlays/</span><br><span class="line">sudo umount mnt/fat32</span><br><span class="line">sudo umount mnt/ext4</span><br></pre></td></tr></table></figure>
+<h3 id="Cross-Compile-KO"><a href="#Cross-Compile-KO" class="headerlink" title="Cross Compile KO"></a>Cross Compile KO</h3><figure class="highlight sh"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">obj-m += hello-1.o</span><br><span class="line"><span class="comment"># 如果不是 Cross Compile，KDIR 會是下面那個</span></span><br><span class="line"><span class="comment"># KDIR ?= /lib/modules/`uname -r`/build</span></span><br><span class="line">KDIR ?= /home/yume/rasp/linux/mnt/ext4/lib/modules/4.4.10-v7+/build</span><br><span class="line"></span><br><span class="line">all:</span><br><span class="line">    make -C $(KDIR) M=$(PWD) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    make -C $(KDIR) M=$(PWD) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- clean</span><br></pre></td></tr></table></figure>
+<h3 id="自訂選擇-kernel-image"><a href="#自訂選擇-kernel-image" class="headerlink" title="自訂選擇 kernel image"></a>自訂選擇 kernel image</h3><figure class="highlight sh"><figcaption><span>/boot/config.txt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kernel=kernel-new.img</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://www.raspberrypi.org/documentation/linux/kernel/building.md" target="_blank" rel="external">KERNEL BUILDING</a><br><a href="http://elinux.org/Raspberry_Pi_Kernel_Compilation" target="_blank" rel="external">Raspberry Pi Kernel Compilation</a><br><a href="https://www.raspberrypi.com.tw/528/compiling-kernel-for-raspberry-pi/" target="_blank" rel="external">[進階] 編譯 Raspberry Pi 的核心</a><br><a href="https://blog.gtwang.org/iot/raspberry-pi-compile-linux-kernel/" target="_blank" rel="external">樹莓派 Raspberry Pi 編譯 Linux 核心（Kernel）步驟教學</a></p>
+
       
     </div>
 
@@ -126,7 +131,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://yume190.github.io/2016/05/25/Raspberry-Pi-Cross-Compile/" data-id="ciomkk7vi002trgtj6j518pyz" class="article-share-link">
+      <a data-url="http://yume190.github.io/2016/05/25/Raspberry-Pi-Cross-Compile/" data-id="cioo32iz8002ll8tjukk3vh0f" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -147,6 +152,13 @@
     </a>
   </li>
   
+  
+  <li role="presentation">
+    <a href="/2016/05/26/rasp-for-work/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">rasp for work</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
   
 </ul>
 
@@ -206,15 +218,15 @@
     <ul class="sidebar-module-list">
       
         <li>
+          <a href="/2016/05/26/rasp-for-work/">rasp for work</a>
+        </li>
+      
+        <li>
           <a href="/2016/05/25/Raspberry-Pi-Cross-Compile/">Raspberry Pi Cross Compile</a>
         </li>
       
         <li>
           <a href="/2016/05/24/kbuild/">kbuild</a>
-        </li>
-      
-        <li>
-          <a href="/2016/05/17/firefly/">firefly</a>
         </li>
       
         <li>
