@@ -5,16 +5,19 @@
   
   <title>kernel | Yume 練功地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
+  <meta name="description" content="Kbuild: the Linux Kernel Build System
+Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kernel">
 <meta property="og:url" content="http://yume190.github.io/2016/05/13/kernel/index.html">
 <meta property="og:site_name" content="Yume 練功地">
-<meta property="og:description" content="Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
-<meta property="og:updated_time" content="2016-05-25T09:03:04.000Z">
+<meta property="og:description" content="Kbuild: the Linux Kernel Build System
+Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
+<meta property="og:updated_time" content="2016-06-04T06:28:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kernel">
-<meta name="twitter:description" content="Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
+<meta name="twitter:description" content="Kbuild: the Linux Kernel Build System
+Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
   
     <link rel="alternate" href="/atom.xml" title="Yume 練功地" type="application/atom+xml">
   
@@ -105,7 +108,8 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Build-kernel-相關套件"><a href="#Build-kernel-相關套件" class="headerlink" title="Build kernel 相關套件"></a>Build kernel 相關套件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br><span class="line">sudo apt-get install libncurses5-dev</span><br></pre></td></tr></table></figure>
+        <p><a href="http://www.linuxjournal.com/content/kbuild-linux-kernel-build-system" target="_blank" rel="external">Kbuild: the Linux Kernel Build System</a></p>
+<h3 id="Build-kernel-相關套件"><a href="#Build-kernel-相關套件" class="headerlink" title="Build kernel 相關套件"></a>Build kernel 相關套件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br><span class="line">sudo apt-get install libncurses5-dev</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="查看-Linux-kernel"><a href="#查看-Linux-kernel" class="headerlink" title="查看 Linux kernel"></a>查看 Linux kernel</h3><p>可以在 <code>/lib/modules</code> 查看到目前有哪些 kernel。</p>
 <p>且可以在 <code>/boot</code> 找到對應版本</p>
@@ -179,6 +183,7 @@
 <li>character devices</li>
 <li>block devices (block devices have a buffer for requests)<br><a href="">/usr/src/linux/Documentation/devices.txt.</a></li>
 </ul>
+<p><a href="http://www.haifux.org/lectures/86-sil/kernel-modules-drivers/node10.html" target="_blank" rel="external">character device &amp; block device 解釋</a></p>
 <h3 id="ch-4"><a href="#ch-4" class="headerlink" title="ch 4"></a>ch 4</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> file_operations fops = &#123;</span><br><span class="line">    read: device_read,</span><br><span class="line">    write: device_write,</span><br><span class="line">    open: device_open,</span><br><span class="line">    release: device_release</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><figcaption><span>C99 syntax</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> file_operations fops = &#123;</span><br><span class="line">    .read = device_read, <span class="comment">// pointer to function</span></span><br><span class="line">    .write = device_write,</span><br><span class="line">    .open = device_open,</span><br><span class="line">    .release = device_release</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
@@ -190,7 +195,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="http://yume190.github.io/2016/05/13/kernel/" data-id="cioo32j2q0030l8tj5ylsm9gb" class="article-share-link">
+      <a data-url="http://yume190.github.io/2016/05/13/kernel/" data-id="ciq7g2xol002r9dtju7k88f1e" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -266,7 +271,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/05/">May 2016</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">December 2015</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/06/">June 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">15</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/10/">October 2014</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/08/">August 2014</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">7</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/07/">July 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/06/">June 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/05/">May 2016</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">December 2015</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/06/">June 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">15</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/10/">October 2014</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/08/">August 2014</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">7</span></li></ul>
   </div>
 
 
@@ -275,6 +280,14 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/07/04/系統軟體課程-先修筆記/">系統軟體課程 先修筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2016/06/14/Linux-Driver-Book-筆記/">Linux Driver Book 筆記</a>
+        </li>
       
         <li>
           <a href="/2016/05/26/rasp-for-work/">rasp for work</a>
@@ -286,14 +299,6 @@
       
         <li>
           <a href="/2016/05/24/kbuild/">kbuild</a>
-        </li>
-      
-        <li>
-          <a href="/2016/05/13/kernel/">kernel</a>
-        </li>
-      
-        <li>
-          <a href="/2016/05/13/Raspi-3/">Raspi 3</a>
         </li>
       
     </ul>

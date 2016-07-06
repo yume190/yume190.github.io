@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>系統軟體課程 先修筆記 | Yume 練功地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系統軟體課程 先修筆記">
+<meta property="og:url" content="http://yume190.github.io/2016/07/04/系統軟體課程-先修筆記/index.html">
+<meta property="og:site_name" content="Yume 練功地">
+<meta property="og:description" content="筆記">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/xcode.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/linuxRun.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/fullFlow.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/gcc.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/ast.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/GenericTree.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/GimpleIR.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/TreeSSAForm.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/RTLIR.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/linker1.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/linker2.png">
+<meta property="og:image" content="http://yume190.github.io/image/jserv/pointerAlias.png">
+<meta property="og:updated_time" content="2016-07-06T08:39:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系統軟體課程 先修筆記">
+<meta name="twitter:description" content="筆記">
+<meta name="twitter:image" content="http://yume190.github.io/image/jserv/xcode.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Yume 練功地" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Yume 練功地</h1>
+  
+    <p class="lead blog-description">偷偷練</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-系統軟體課程-先修筆記" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      系統軟體課程 先修筆記
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/07/04/系統軟體課程-先修筆記/" class="article-date"><time datetime="2016-07-04T03:06:03.000Z" itemprop="datePublished">2016-07-04</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>筆記</p>
+<a id="more"></a>
+<h2 id="Deep-C"><a href="#Deep-C" class="headerlink" title="Deep C"></a><a href="http://www.slideshare.net/olvemaudal/deep-c/" target="_blank" rel="external">Deep C</a></h2><p>從一開始的 <code>printf</code> 就讓人轉不過來，大致上，閱讀到中間(C 部分結束)時，幾乎答案都跟候選人一相同。</p>
+<p>那~~~會不會碰到這些問題，我想大概機率很低吧！個人會選擇些 walk around 的方式，一定有 初始值 &amp; 回傳值等等。</p>
+<p>PS: <code>a + a++</code> 應該躲不掉。</p>
+<p>至於問我懂不懂 C 的話，我想我應該會肯定的回答 <code>我懂我目前應該知道的部分</code> 這樣的回答吧！</p>
+<figure class="highlight c"><figcaption><span>printf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">42</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C2 回答：</p>
+<ul>
+<li>回傳值通常會從 register 回傳，所以會回傳 printf 的結果 3</li>
+<li><code>int main(void)</code> 才是不收參數的寫法</li>
+<li>最後要多空一行(好像很常看到，有些 IDE 也會幫忙補)</li>
+</ul>
+<figure class="highlight c"><figcaption><span>變數</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> d;</span><br><span class="line">    c++;</span><br><span class="line">    <span class="built_in">printf</span>(%d ,c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C2 回答：</p>
+<ul>
+<li><code>a = 0</code>，linker visibility</li>
+<li><code>b = 0</code>，local to this compilation unit not visible to linker</li>
+<li><code>c = 0</code>，理論上是 garbage，但沒最佳化的話通常會拿到同一塊記憶體，所以有可能印出 <code>1 2 3</code></li>
+<li><code>d = 0</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">42</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    bar();</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C2 回答：</p>
+<ul>
+<li>foo 視為 inline function</li>
+<li>execution stack</li>
+<li>activation frame</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">41</span>;</span><br><span class="line">    a = a++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C2 回答：</p>
+<ul>
+<li>can be 42 41 43 0 1099(why?)</li>
+<li>sequence point</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="keyword">sizeof</span> <span class="keyword">char</span> * d;</span><br></pre></td></tr></table></figure>
+<p>C2 回答：</p>
+<ul>
+<li>size_t 應用 %zu</li>
+<li>in 64-bit machine 32-bit compatibility <code>char * d</code> 佔 8</li>
+</ul>
+<p><a href="http://www.slideshare.net/olvemaudal/deep-c/242" target="_blank" rel="external">Memory Model</a><br><figure class="highlight c"><figcaption><span>static storage</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">immortal</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> storage = <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> &amp;storage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c"><figcaption><span>automatic storage</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">zombie</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> <span class="keyword">int</span> storage = <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> &amp;storage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>allocated storage</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">finite</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> * ptr = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span> *ptr);</span><br><span class="line">    *ptr = <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> ptr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Introduction-to-ARM-Architecture"><a href="#Introduction-to-ARM-Architecture" class="headerlink" title="Introduction to ARM Architecture"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p28" target="_blank" rel="external">Introduction to ARM Architecture</a></h2><h4 id="Register"><a href="#Register" class="headerlink" title="Register"></a>Register</h4><p>37 個 Register</p>
+<p>30 個 通用 Register</p>
+<p>1 PC Program Counter</p>
+<p>1 CPSR (Current Program Status Register)</p>
+<p>5 SPSR (Saved Program Status Register)</p>
+<p>SP Stack Point</p>
+<p>LR Link Register</p>
+<h4 id="U-Boot-Process"><a href="#U-Boot-Process" class="headerlink" title="U-Boot Process"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p43" target="_blank" rel="external">U-Boot Process</a></h4><h4 id="CPSR-flags"><a href="#CPSR-flags" class="headerlink" title="CPSR flags"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p60" target="_blank" rel="external">CPSR flags</a></h4><p>objdump<br>-g debug symbol<br>-d dissassembling</p>
+<h4 id="Arm-Thumb-Proedure-Call-in-action"><a href="#Arm-Thumb-Proedure-Call-in-action" class="headerlink" title="Arm-Thumb Proedure Call in action"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p151" target="_blank" rel="external">Arm-Thumb Proedure Call in action</a></h4><p>P101~P108 解釋了 caller(r0~r3) &amp; callee(r4~r11) save &amp; restore register 的過程</p>
+<p>以及 call function 時，也會 save LR，以便 return 時讓 PC 跳回來</p>
+<h4 id="CPSR-Mode"><a href="#CPSR-Mode" class="headerlink" title="CPSR Mode"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p160" target="_blank" rel="external">CPSR Mode</a></h4><h4 id="中斷處理"><a href="#中斷處理" class="headerlink" title="中斷處理"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p196" target="_blank" rel="external">中斷處理</a></h4><p>p142 ~ P143</p>
+<h4 id="ELF-Format"><a href="#ELF-Format" class="headerlink" title="ELF Format"></a><a href="https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p206" target="_blank" rel="external">ELF Format</a></h4><p>149~151</p>
+<h4 id="Code-optimization"><a href="#Code-optimization" class="headerlink" title="Code optimization"></a>Code optimization</h4><p>GCC</p>
+<ul>
+<li>commom sub-expression elimination</li>
+<li>dead code removal</li>
+<li>induction variables &amp; Strength reduction</li>
+<li>loop unrolling</li>
+<li>funciton inlining <code>__inline</code></li>
+</ul>
+<p>ARM</p>
+<ul>
+<li>barrel shifter <code>5*x</code> -&gt; <code>(x&lt;&lt;2) + x</code></li>
+<li>count down loop</li>
+<li>盡可能用 32 bit data type</li>
+<li>如果沒有 side effect，可宣告成 pure func 以便最佳化 <code>__pure</code></li>
+</ul>
+<hr>
+<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><p>GDB 對我來其實還不會太陌生，在 iOS debug 的時候通常會配合 IDE + LLDB 使用，</p>
+<p>畢 LLDB 是 GDB like，有些指令還是不太一樣，所以還是自己弄個環境來完一下。</p>
+<p>最後弄了 docker <a href="https://quay.io/repository/yume190/gdb_practice" target="_blank" rel="external">gdb_practice</a>，練習 <a href="http://blog.jobbole.com/87482/" target="_blank" rel="external">通过 GDB 学习 C 语言</a> &amp; <a href="http://www.slideshare.net/owenhsu/introduction-to-gdb-3790833" target="_blank" rel="external">Introduction to gdb</a></p>
+<p>也玩了下遠端debug <a href="http://kezeodsnx.pixnet.net/blog/post/31901130-gdbserver-remote-debug-%E6%B8%AC%E8%A9%A6" target="_blank" rel="external">gdb server</a>，用 B container link A container 的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker run -it \</span><br><span class="line">    --security-opt seccomp=unconfined \</span><br><span class="line">    --rm \</span><br><span class="line">    -v /path/to/build:/build \</span><br><span class="line">    -p 2222:2222 \</span><br><span class="line">    --name gdb_server \</span><br><span class="line">    quay.io/yume190/gdb_practice</span><br><span class="line"></span><br><span class="line">docker run -it \</span><br><span class="line">    --security-opt seccomp=unconfined\</span><br><span class="line">    --rm \</span><br><span class="line">    -v /path/to/build:/build \</span><br><span class="line">    --link gdb_server:gdb_server \</span><br><span class="line">    --name gdb_client \</span><br><span class="line">    quay.io/yume190/gdb_practice</span><br></pre></td></tr></table></figure>
+<p>透過 <a href="http://www.slideshare.net/chenkaie/gdb-rocks-16951548" target="_blank" rel="external">GDB Rocks!</a> 了解 gdb 的特殊技</p>
+<ul>
+<li>attach process</li>
+<li>Jump PC</li>
+<li>Core dump(查了資料但還沒實際玩過)</li>
+</ul>
+<p>插曲：</p>
+<p>在 Mac 上用 gcc compile 過後 gdb run 不起來</p>
+<p>以及在 container run gdbserver，並用 Mac 當 gdb client 嘗試 remote debug 也不太順利</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">gdb binary.o</span><br><span class="line"></span><br><span class="line">r       # run</span><br><span class="line"></span><br><span class="line">b       # breakpoint</span><br><span class="line">next</span><br><span class="line">step</span><br><span class="line">stepi</span><br><span class="line"></span><br><span class="line">disas</span><br><span class="line"></span><br><span class="line">info breakpoints</span><br><span class="line">info frame</span><br><span class="line">info stack</span><br><span class="line">info locals</span><br><span class="line"></span><br><span class="line">display/&#123;format&#125;</span><br><span class="line">x examine</span><br><span class="line">p print</span><br><span class="line">wa watch</span><br><span class="line">ptype</span><br><span class="line"></span><br><span class="line"># format = &#123;數量&#125;&#123;format&#125;&#123;size&#125;</span><br><span class="line"></span><br><span class="line"># format</span><br><span class="line">x hexadecimal</span><br><span class="line">o octal</span><br><span class="line">d decimal</span><br><span class="line">u unsigned decimal</span><br><span class="line">t binary</span><br><span class="line">f float</span><br><span class="line">a address</span><br><span class="line">i instruction</span><br><span class="line">c char</span><br><span class="line">s string</span><br><span class="line"></span><br><span class="line"># size</span><br><span class="line">b byte</span><br><span class="line">h halfword</span><br><span class="line">w word</span><br><span class="line">g giant 8 bytes</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="系統程式"><a href="#系統程式" class="headerlink" title="系統程式"></a>系統程式</h2><p>感覺讀的順序應該是：</p>
+<ol>
+<li><a href="http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works" target="_blank" rel="external">from Source to Binary: How GNU Toolchain Works</a></li>
+<li><a href="http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain" target="_blank" rel="external">How A Compiler Works: GNU Toolchain</a></li>
+<li><a href="http://www.slideshare.net/jserv/helloworld-internals" target="_blank" rel="external">The Internals of “Hello World” Program</a></li>
+</ol>
+<p><a href="http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works" target="_blank" rel="external">from Source to Binary: How GNU Toolchain Works</a> 可以看到整個 toolchain 大致在做什麼</p>
+<p><a href="http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain" target="_blank" rel="external">How A Compiler Works: GNU Toolchain</a> 看到 compiler 在不同階段可以最佳化的介紹</p>
+<p>但內容部分有不少跟 <a href="http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works" target="_blank" rel="external">from Source to Binary: How GNU Toolchain Works</a> 有些重複</p>
+<p>比較閃到我眼睛的應該是：</p>
+<ul>
+<li>IPO(Inter-Procedural Optimization) -&gt; WPO(Whole-Program Optimization)<br>聽起來好像跟 XCode 設定 (Whole Module Optimization) 很像<br><img src="/image/jserv/xcode.png" alt="optimization"></li>
+<li>LLVM 一直排在待看列表中</li>
+</ul>
+<p><a href="http://www.slideshare.net/jserv/helloworld-internals" target="_blank" rel="external">The Internals of “Hello World” Program</a></p>
+<p>跟著實際操作後，可以了解從 .o 到可執行檔，<code>ld</code> 進行 <code>彙整</code> <code>Relocation</code> <code>Symbol Resolve</code> 的結果</p>
+<p>並且了解 ELF 有各個區塊，並且能過既有工具檢視它(<code>nm</code> <code>readelf</code> <code>objdump</code>)</p>
+<hr>
+<h3 id="from-Source-to-Binary-How-GNU-Toolchain-Works"><a href="#from-Source-to-Binary-How-GNU-Toolchain-Works" class="headerlink" title="from Source to Binary: How GNU Toolchain Works"></a><a href="http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works" target="_blank" rel="external">from Source to Binary: How GNU Toolchain Works</a></h3><p><a href="http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain" target="_blank" rel="external">P3~P7</a><br><img src="/image/jserv/linuxRun.png" alt="執行流程"></p>
+<ul>
+<li>fork</li>
+<li>execve</li>
+<li>exit</li>
+</ul>
+<p><img src="/image/jserv/fullFlow.png" alt="編譯流程"><br>hello.c -&gt; preprocesser(cpp) -&gt; hello.i -&gt; compile(cc) -&gt; hello.s -&gt; assembler(as) -&gt; hello.o -&gt; linker(ld) -&gt; hello</p>
+<h4 id="理解優化五大階段"><a href="#理解優化五大階段" class="headerlink" title="理解優化五大階段"></a>理解優化五大階段</h4><p>編譯階段</p>
+<ul>
+<li><font color="blue">知道原始碼結構</font></li>
+<li><font color="red">不知道變數位置</font>
+
+</li>
+</ul>
+<p>連結階段</p>
+<ul>
+<li><font color="red">不知道原始碼結構</font></li>
+<li><font color="blue">知道變數位置</font>
+
+</li>
+</ul>
+<p>載入階段</p>
+<ul>
+<li><font color="red">不知道原始碼結構</font></li>
+<li><font color="red">不知道變數位置</font></li>
+<li><font color="blue">知道處理器能力</font><br><font color="blue"></font>
+
+</li>
+</ul>
+<h4 id="三大法寶"><a href="#三大法寶" class="headerlink" title="三大法寶"></a>三大法寶</h4><ul>
+<li>GCC(Compiler)</li>
+<li>Binutils(Assembler, Linker)</li>
+<li>libc(C Libary, eglibc/bionic)</li>
+</ul>
+<hr>
+<h2 id="Compile"><a href="#Compile" class="headerlink" title="Compile"></a>Compile</h2><p>原始碼 -&gt; 字彙分析 (正規語言) -&gt; 語法分析 (Context-Free Grammar) -&gt; 語法樹 -&gt; 語意分析 (Type Checking ..etc) -&gt; 中間語言 -&gt; 優化 -&gt; 目標語言</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">語言相關</th>
+<th style="text-align:center">編譯器相關</th>
+<th style="text-align:center">平台相關</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Generic -&gt; Gimplify -&gt;</td>
+<td style="text-align:center">Gimple -&gt; Tree SSA Optimizer -&gt;</td>
+<td style="text-align:center">RTL -&gt; RTL Optimizer/Code Generator -&gt; target</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/image/jserv/gcc.png" alt="gcc"><br><img src="/image/jserv/ast.png" alt="ast"><br><img src="/image/jserv/GenericTree.png" alt="Generic Tree"><br><img src="/image/jserv/GimpleIR.png" alt="Gimple IR"><br><img src="/image/jserv/TreeSSAForm.png" alt="Tree SSA Form"><br><img src="/image/jserv/RTLIR.png" alt="RTL IR"></p>
+<h3 id="Intermediate-Representation-IR"><a href="#Intermediate-Representation-IR" class="headerlink" title="Intermediate Representation (IR)"></a>Intermediate Representation (IR)</h3><h4 id="GCC-IR"><a href="#GCC-IR" class="headerlink" title="GCC IR:"></a>GCC IR:</h4><ul>
+<li>High Level: Generic(Syntax Tree Style IR)</li>
+<li>Middle Level: Gimple(Tree Style IR, SSA Form)</li>
+<li>Low Level: RTL(List Style IR, Register Based)</li>
+</ul>
+<h4 id="Static-Single-Assignment"><a href="#Static-Single-Assignment" class="headerlink" title="Static Single Assignment"></a>Static Single Assignment</h4><p>每個變數只會被 assign 一次</p>
+<ul>
+<li>每 assign 一次 Version Number 增加</li>
+<li>使用 Φ function</li>
+</ul>
+<h4 id="Register-Transfer-Language"><a href="#Register-Transfer-Language" class="headerlink" title="Register Transfer Language"></a>Register Transfer Language</h4><ul>
+<li>Use Virtual Register(無限 Register)</li>
+<li>Intruction scheduling</li>
+<li>peephole optimization</li>
+</ul>
+<hr>
+<h2 id="組譯"><a href="#組譯" class="headerlink" title="組譯"></a>組譯</h2><ul>
+<li>位置處理</li>
+<li>Relocation Type</li>
+</ul>
+<hr>
+<h2 id="連結"><a href="#連結" class="headerlink" title="連結"></a>連結</h2><ul>
+<li>把所有目的檔彙整成執行檔</li>
+<li>Symbol Resolve</li>
+<li>處理 Relocation Type</li>
+</ul>
+<p><img src="/image/jserv/linker1.png" alt="彙整1"><br><img src="/image/jserv/linker2.png" alt="彙整2"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc hello.c -o hello.o</span><br><span class="line">gcc hello.c -S -o hello.s</span><br><span class="line">gcc hello.s -o hello.o</span><br><span class="line">gcc hello.c -o hello.o -v --save-temps # 動作解析</span><br></pre></td></tr></table></figure>
+<hr>
+<p><a href="http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain" target="_blank" rel="external">How A Compiler Works: GNU Toolchain</a></p>
+<ul>
+<li>code motion(程式碼搬移)<ul>
+<li>loop invariant : 迴圈內有些計算，不管幾次都是一樣結果</li>
+<li>data flow analysis : 分析指令有無相依，無相依有機會調換位置</li>
+<li>code motion &amp; Pointer Aliasing</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/jserv/pointerAlias.png" alt="Pointer Aliasing"></p>
+<p><a href="http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain" target="_blank" rel="external">變成 0 的魔法 : P42~54</a></p>
+<p><a href="http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain" target="_blank" rel="external">深入淺出 Compilation Unit P69</a></p>
+<font color="red">PS:如果確定沒別的檔案會使用這個 func or var，請宣告成 <code>static</code></font><br><font color="red"></font>
+
+<hr>
+<h2 id="The-Internals-of-“Hello-World”-Program"><a href="#The-Internals-of-“Hello-World”-Program" class="headerlink" title="The Internals of “Hello World” Program"></a><a href="http://www.slideshare.net/jserv/helloworld-internals" target="_blank" rel="external">The Internals of “Hello World” Program</a></h2><figure class="highlight c"><figcaption><span>foo.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"bar.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> foo = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    foo = <span class="number">8</span>;</span><br><span class="line">    bar(&amp;foo);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>bar.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">(<span class="keyword">int</span> *val)</span> </span>&#123;</span><br><span class="line">    *val = <span class="number">11</span>;</span><br><span class="line">    val = <span class="literal">NULL</span>;</span><br><span class="line">    *val = <span class="number">17</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c foo.c bar.c</span><br><span class="line">ld foo.o bar.o <span class="_">-e</span> main foobar</span><br></pre></td></tr></table></figure>
+<h3 id="linker-彙整"><a href="#linker-彙整" class="headerlink" title="linker 彙整"></a>linker 彙整</h3><ul>
+<li>foo text 1f</li>
+<li>bar text 26</li>
+<li>foobar text 1f + 26 = 45</li>
+</ul>
+<figure class="highlight sh"><figcaption><span>objdump -h foo.o</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">foo.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Sections:</span><br><span class="line">Idx Name          Size      VMA               LMA               File off  Algn</span><br><span class="line">  0 .text         0000001f  0000000000000000  0000000000000000  00000040  2**0</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE</span><br><span class="line">  1 .data         00000004  0000000000000000  0000000000000000  00000060  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line">  2 .bss          00000000  0000000000000000  0000000000000000  00000064  2**0</span><br><span class="line">                  ALLOC</span><br><span class="line">  3 .comment      0000001e  0000000000000000  0000000000000000  00000064  2**0</span><br><span class="line">                  CONTENTS, READONLY</span><br><span class="line">  4 .note.GNU-stack 00000000  0000000000000000  0000000000000000  00000082  2**0</span><br><span class="line">                  CONTENTS, READONLY</span><br><span class="line">  5 .eh_frame     00000038  0000000000000000  0000000000000000  00000088  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>objdump -h bar.o</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">bar.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Sections:</span><br><span class="line">Idx Name          Size      VMA               LMA               File off  Algn</span><br><span class="line">  0 .text         00000026  0000000000000000  0000000000000000  00000040  2**0</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line">  1 .data         00000000  0000000000000000  0000000000000000  00000066  2**0</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line">  2 .bss          00000000  0000000000000000  0000000000000000  00000066  2**0</span><br><span class="line">                  ALLOC</span><br><span class="line">  3 .comment      0000001e  0000000000000000  0000000000000000  00000066  2**0</span><br><span class="line">                  CONTENTS, READONLY</span><br><span class="line">  4 .note.GNU-stack 00000000  0000000000000000  0000000000000000  00000084  2**0</span><br><span class="line">                  CONTENTS, READONLY</span><br><span class="line">  5 .eh_frame     00000038  0000000000000000  0000000000000000  00000088  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>objdump -h foobar</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">foobar:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Sections:</span><br><span class="line">Idx Name          Size      VMA               LMA               File off  Algn</span><br><span class="line">  0 .text         00000045  00000000004000e8  00000000004000e8  000000e8  2**0</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, CODE</span><br><span class="line">  1 .eh_frame     00000058  0000000000400130  0000000000400130  00000130  2**3</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, READONLY, DATA</span><br><span class="line">  2 .data         00000004  0000000000600188  0000000000600188  00000188  2**2</span><br><span class="line">                  CONTENTS, ALLOC, LOAD, DATA</span><br><span class="line">  3 .comment      0000001d  0000000000000000  0000000000000000  0000018c  2**0</span><br><span class="line">                  CONTENTS, READONLY</span><br></pre></td></tr></table></figure>
+<h3 id="Relocation"><a href="#Relocation" class="headerlink" title="Relocation"></a>Relocation</h3><figure class="highlight sh"><figcaption><span>foo</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13:   e8 00 00 00 00          callq  18 &lt;main+0x18&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>foobar</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4000fb:   e8 07 00 00 00          callq  400107 &lt;bar&gt;</span><br><span class="line">0000000000400107 &lt;bar&gt;:</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>foo.rela.text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">000000000014  000a00000002 R_X86_64_PC32     0000000000000000 bar - 4</span><br></pre></td></tr></table></figure>
+<p>可以從 <code>foo.rela.text</code> 看到 foo 位置 0x14 會被 Relocation，</p>
+<p>也就是 e8 <font color="blue">00 00 00 00</font></p>
+<p>被 Relocation 為 e8 <font color="blue">07 00 00 00</font></p>
+<p>也就是 linker 彙整完畢後， function 所在地 0x400107</p>
+<figure class="highlight sh"><figcaption><span>Relocation</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">objdump <span class="_">-d</span> foo.o</span><br><span class="line"></span><br><span class="line">foo.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;main&gt;:</span><br><span class="line">   0:   55                      push   %rbp</span><br><span class="line">   1:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line">   4:   c7 05 00 00 00 00 08    movl   <span class="variable">$0x8</span>,0x0(%rip)        <span class="comment"># e &lt;main+0xe&gt;</span></span><br><span class="line">   b:   00 00 00</span><br><span class="line">   e:   bf 00 00 00 00          mov    <span class="variable">$0x0</span>,%edi</span><br><span class="line">  13:   e8 00 00 00 00          callq  18 &lt;main+0x18&gt;</span><br><span class="line">  18:   b8 00 00 00 00          mov    <span class="variable">$0x0</span>,%eax</span><br><span class="line">  1d:   5d                      pop    %rbp</span><br><span class="line">  1e:   c3                      retq</span><br><span class="line"></span><br><span class="line">objdump <span class="_">-d</span> foobar</span><br><span class="line"></span><br><span class="line">foobar:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">00000000004000e8 &lt;main&gt;:</span><br><span class="line">  4000e8:   55                      push   %rbp</span><br><span class="line">  4000e9:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line">  4000ec:   c7 05 92 00 20 00 08    movl   <span class="variable">$0x8</span>,0x200092(%rip)        <span class="comment"># 600188 &lt;foo&gt;</span></span><br><span class="line">  4000f3:   00 00 00</span><br><span class="line">  4000f6:   bf 88 01 60 00          mov    <span class="variable">$0x600188</span>,%edi</span><br><span class="line">  4000fb:   e8 07 00 00 00          callq  400107 &lt;bar&gt;</span><br><span class="line">  400100:   b8 00 00 00 00          mov    <span class="variable">$0x0</span>,%eax</span><br><span class="line">  400105:   5d                      pop    %rbp</span><br><span class="line">  400106:   c3                      retq</span><br><span class="line"></span><br><span class="line">0000000000400107 &lt;bar&gt;:</span><br><span class="line"></span><br><span class="line">readelf -r foo.o</span><br><span class="line"></span><br><span class="line">Relocation section <span class="string">'.rela.text'</span> at offset 0x240 contains 3 entries:</span><br><span class="line">  Offset          Info           Type           Sym. Value    Sym. Name + Addend</span><br><span class="line">000000000006  000800000002 R_X86_64_PC32     0000000000000000 foo - 8</span><br><span class="line">00000000000f  00080000000a R_X86_64_32       0000000000000000 foo + 0</span><br><span class="line">000000000014  000a00000002 R_X86_64_PC32     0000000000000000 bar - 4</span><br><span class="line"></span><br><span class="line">Relocation section <span class="string">'.rela.eh_frame'</span> at offset 0x288 contains 1 entries:</span><br><span class="line">  Offset          Info           Type           Sym. Value    Sym. Name + Addend</span><br><span class="line">000000000020  000200000002 R_X86_64_PC32     0000000000000000 .text + 0</span><br></pre></td></tr></table></figure>
+<h3 id="Symbol-Resolution"><a href="#Symbol-Resolution" class="headerlink" title="Symbol Resolution"></a>Symbol Resolution</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">readelf -s foo.o</span><br><span class="line"></span><br><span class="line">Symbol table &apos;.symtab&apos; contains 11 entries:</span><br><span class="line">   Num:    Value          Size Type    Bind   Vis      Ndx Name</span><br><span class="line">    10: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND bar</span><br><span class="line"></span><br><span class="line">ld foo.o -e main -o foobar</span><br><span class="line">foo.o: In function `main&apos;:</span><br><span class="line">foo.c:(.text+0x14): undefined reference to `bar&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Segment"><a href="#Segment" class="headerlink" title="Segment"></a>Segment</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">readelf -l foobar</span><br><span class="line"></span><br><span class="line">Elf file type is EXEC (Executable file)</span><br><span class="line">Entry point 0x4000e8</span><br><span class="line">There are 3 program headers, starting at offset 64</span><br><span class="line"></span><br><span class="line">Program Headers:</span><br><span class="line">  Type           Offset             VirtAddr           PhysAddr</span><br><span class="line">                 FileSiz            MemSiz              Flags  Align</span><br><span class="line">  LOAD           0x0000000000000000 0x0000000000400000 0x0000000000400000</span><br><span class="line">                 0x0000000000000188 0x0000000000000188  R E    200000</span><br><span class="line">  LOAD           0x0000000000000188 0x0000000000600188 0x0000000000600188</span><br><span class="line">                 0x0000000000000004 0x0000000000000004  RW     200000</span><br><span class="line">  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000</span><br><span class="line">                 0x0000000000000000 0x0000000000000000  RW     10</span><br><span class="line"></span><br><span class="line"> Section to Segment mapping:</span><br><span class="line">  Segment Sections...</span><br><span class="line">   00     .text .eh_frame</span><br><span class="line">   01     .data</span><br><span class="line">   02</span><br></pre></td></tr></table></figure>
+<h4 id="Dynamic-Link"><a href="#Dynamic-Link" class="headerlink" title="Dynamic Link"></a>Dynamic Link</h4><h4 id="Load-Time-Relocation"><a href="#Load-Time-Relocation" class="headerlink" title="Load Time Relocation"></a>Load Time Relocation</h4><p><code>-shared</code></p>
+<h4 id="Position-Indepent-Code-PIC"><a href="#Position-Indepent-Code-PIC" class="headerlink" title="Position-Indepent Code(PIC)"></a>Position-Indepent Code(PIC)</h4><p><code>-fPIC</code></p>
+<h4 id="Inter-module-funciton-call-gt-PLT-gt-GOT"><a href="#Inter-module-funciton-call-gt-PLT-gt-GOT" class="headerlink" title="Inter-module funciton call -&gt; PLT -&gt; GOT"></a>Inter-module funciton call -&gt; PLT -&gt; GOT</h4><p>GOT(Global Offset Table)<br>PLT(Procedure Linkage Table)</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yume190.github.io/2016/07/04/系統軟體課程-先修筆記/" data-id="ciq7g2xop002u9dtje93c7nk9" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/06/14/Linux-Driver-Book-筆記/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Linux Driver Book 筆記</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/">Android</a><span class="sidebar-module-list-count">12</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/adb/">adb</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/">CI</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/GAE/">GAE</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Git/">Git</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Go/">Go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/">Gradle</a><span class="sidebar-module-list-count">9</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/Android/">Android</a><span class="sidebar-module-list-count">9</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/">IOS</a><span class="sidebar-module-list-count">19</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/UI/">UI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Reference/">Reference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Test/">Test</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Tools/">Tools</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/">WWDC</a><span class="sidebar-module-list-count">4</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2014/">Y2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2015/">Y2015</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Work/">Work</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Android/">Android</a><span class="sidebar-module-list-count">27</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Anroid-Studio/">Anroid Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apk-sign/">Apk_sign</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Autolayout/">Autolayout</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/CI/">CI</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Delegate/">Delegate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Distributed-Systems-Tracing/">Distributed Systems Tracing</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Fabric/">Fabric</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Git/">Git</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Github/">Github</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go/">Go</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go-Concurrent/">Go Concurrent</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Gradle/">Gradle</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOS/">IOS</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JUnit/">JUnit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KIOSK/">KIOSK</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Markdown/">Markdown</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mockito/">Mockito</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Notification/">Notification</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c/">Objective-c</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Octopress/">Octopress</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Online-Simulator/">Online Simulator</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Open-Source/">Open Source</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Others/">Others</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/RS232/">RS232</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Radxa/">Radxa</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Reboot/">Reboot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Remote-Debugging/">Remote-Debugging</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Service/">Service</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Shared-Preference/">Shared Preference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Slide/">Slide</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/State-Machine/">State Machine</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Struct/">Struct</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Swift/">Swift</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Thread/">Thread</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Time-Series-DB/">Time Series DB</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Toast/">Toast</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UILabel/">UILabel</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2014/">WWDC_2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2015/">WWDC_2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/XCode-Snippet/">XCode Snippet</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Zipkin/">Zipkin</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/adb/">adb</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/cross-compile/">cross compile</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-8/">java 8</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/kernel/">kernel</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rake/">rake</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/raspberry/">raspberry</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rrdtool/">rrdtool</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/submodule/">submodule</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/subtree/">subtree</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/未完/">未完</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/版本控制/">版本控制</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Anroid-Studio/" style="font-size: 10px;">Anroid Studio</a> <a href="/tags/Apk-sign/" style="font-size: 10px;">Apk_sign</a> <a href="/tags/Apple-Doc/" style="font-size: 10px;">Apple_Doc</a> <a href="/tags/Auto-Restart/" style="font-size: 10px;">Auto-Restart</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Custom-Permission/" style="font-size: 10px;">Custom_Permission</a> <a href="/tags/Custom-View/" style="font-size: 12.5px;">Custom_View</a> <a href="/tags/Delegate/" style="font-size: 10px;">Delegate</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Design-Pattern/" style="font-size: 11.25px;">Design Pattern</a> <a href="/tags/Distributed-Systems-Tracing/" style="font-size: 10px;">Distributed Systems Tracing</a> <a href="/tags/Drone/" style="font-size: 11.25px;">Drone</a> <a href="/tags/Extension/" style="font-size: 10px;">Extension</a> <a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/GAE/" style="font-size: 12.5px;">GAE</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Go/" style="font-size: 16.25px;">Go</a> <a href="/tags/Go-Concurrent/" style="font-size: 13.75px;">Go Concurrent</a> <a href="/tags/Google-API/" style="font-size: 10px;">Google API</a> <a href="/tags/Gradle/" style="font-size: 17.5px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IOS/" style="font-size: 18.75px;">IOS</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/KIOSK/" style="font-size: 10px;">KIOSK</a> <a href="/tags/KVC/" style="font-size: 15px;">KVC</a> <a href="/tags/Localize/" style="font-size: 10px;">Localize</a> <a href="/tags/MRC/" style="font-size: 10px;">MRC</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mockito/" style="font-size: 10px;">Mockito</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Objective-c/" style="font-size: 10px;">Objective-c</a> <a href="/tags/Objective-c-Swift/" style="font-size: 10px;">Objective-c & Swift</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Online-Simulator/" style="font-size: 10px;">Online Simulator</a> <a href="/tags/Open-Source/" style="font-size: 10px;">Open Source</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/Radxa/" style="font-size: 10px;">Radxa</a> <a href="/tags/Reboot/" style="font-size: 10px;">Reboot</a> <a href="/tags/Remote-Debugging/" style="font-size: 10px;">Remote-Debugging</a> <a href="/tags/Robolectric/" style="font-size: 15px;">Robolectric</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Shared-Preference/" style="font-size: 10px;">Shared Preference</a> <a href="/tags/Silent-Install/" style="font-size: 10px;">Silent_Install</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/Slide/" style="font-size: 10px;">Slide</a> <a href="/tags/State-Machine/" style="font-size: 10px;">State Machine</a> <a href="/tags/Strider/" style="font-size: 11.25px;">Strider</a> <a href="/tags/Struct/" style="font-size: 10px;">Struct</a> <a href="/tags/Swift/" style="font-size: 12.5px;">Swift</a> <a href="/tags/Testing/" style="font-size: 11.25px;">Testing</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Time-Series-DB/" style="font-size: 10px;">Time Series DB</a> <a href="/tags/Toast/" style="font-size: 10px;">Toast</a> <a href="/tags/Trouble-Shooting/" style="font-size: 11.25px;">Trouble_Shooting</a> <a href="/tags/Tutorial/" style="font-size: 11.25px;">Tutorial</a> <a href="/tags/UILabel/" style="font-size: 10px;">UILabel</a> <a href="/tags/Vendor/" style="font-size: 10px;">Vendor</a> <a href="/tags/WWDC-2014/" style="font-size: 10px;">WWDC_2014</a> <a href="/tags/WWDC-2015/" style="font-size: 12.5px;">WWDC_2015</a> <a href="/tags/XCode-Snippet/" style="font-size: 10px;">XCode Snippet</a> <a href="/tags/Zipkin/" style="font-size: 10px;">Zipkin</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/cross-compile/" style="font-size: 10px;">cross compile</a> <a href="/tags/java-8/" style="font-size: 10px;">java 8</a> <a href="/tags/kernel/" style="font-size: 11.25px;">kernel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/rake/" style="font-size: 10px;">rake</a> <a href="/tags/raspberry/" style="font-size: 10px;">raspberry</a> <a href="/tags/rrdtool/" style="font-size: 10px;">rrdtool</a> <a href="/tags/submodule/" style="font-size: 10px;">submodule</a> <a href="/tags/subtree/" style="font-size: 10px;">subtree</a> <a href="/tags/未完/" style="font-size: 12.5px;">未完</a> <a href="/tags/版本控制/" style="font-size: 11.25px;">版本控制</a> <a href="/tags/結構/" style="font-size: 10px;">結構</a> <a href="/tags/限制裝置條件/" style="font-size: 10px;">限制裝置條件</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/07/">July 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/06/">June 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/05/">May 2016</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">December 2015</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/06/">June 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">15</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/10/">October 2014</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/08/">August 2014</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/07/04/系統軟體課程-先修筆記/">系統軟體課程 先修筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2016/06/14/Linux-Driver-Book-筆記/">Linux Driver Book 筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/26/rasp-for-work/">rasp for work</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/25/Raspberry-Pi-Cross-Compile/">Raspberry Pi Cross Compile</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/24/kbuild/">kbuild</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yume<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

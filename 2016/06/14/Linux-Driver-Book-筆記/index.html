@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux Driver Book 筆記 | Yume 練功地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux Driver Book 筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Driver Book 筆記">
+<meta property="og:url" content="http://yume190.github.io/2016/06/14/Linux-Driver-Book-筆記/index.html">
+<meta property="og:site_name" content="Yume 練功地">
+<meta property="og:description" content="Linux Driver Book 筆記">
+<meta property="og:updated_time" content="2016-06-15T03:37:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Driver Book 筆記">
+<meta name="twitter:description" content="Linux Driver Book 筆記">
+  
+    <link rel="alternate" href="/atom.xml" title="Yume 練功地" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Yume 練功地</h1>
+  
+    <p class="lead blog-description">偷偷練</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-Linux-Driver-Book-筆記" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Linux Driver Book 筆記
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/06/14/Linux-Driver-Book-筆記/" class="article-date"><time datetime="2016-06-14T09:03:16.000Z" itemprop="datePublished">2016-06-14</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Linux Driver Book 筆記</p>
+<a id="more"></a>
+<h2 id="Ch-2-Module"><a href="#Ch-2-Module" class="headerlink" title="Ch 2 Module"></a>Ch 2 Module</h2><h4 id="modprobe-只會-search-已安裝於-lib-modules"><a href="#modprobe-只會-search-已安裝於-lib-modules" class="headerlink" title="modprobe : 只會 search 已安裝於 /lib/modules"></a><code>modprobe</code> : 只會 search 已安裝於 /lib/modules</h4><h4 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h4><p><code>EXPORT_SYMBOL(name)</code> &amp; <code>EXPORT_SYMBOL_GPL(name)</code></p>
+<h4 id="當時行程"><a href="#當時行程" class="headerlink" title="當時行程"></a>當時行程</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;linux/sched.h&gt;</span></span><br><span class="line"><span class="keyword">struct</span> task_struct&#123;&#125;;</span><br><span class="line"><span class="comment">// &lt;asm/current.h&gt;</span></span><br><span class="line"><span class="keyword">struct</span> task_struct *current;</span><br><span class="line">current-&gt;comm <span class="comment">// 執行檔 Base Name (abc.o -&gt; abc)</span></span><br><span class="line">current-&gt;pid</span><br></pre></td></tr></table></figure>
+<h2 id="module-參數"><a href="#module-參數" class="headerlink" title="module 參數"></a>module 參數</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">char</span>* whom = <span class="string">"world"</span>;</span><br><span class="line">module_param(whom, charp, S_IRUGO);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;linux/stat.h&gt;</span></span><br><span class="line"><span class="comment">// S_IRUGO</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Kernel Type</th>
+<th style="text-align:center">C Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">int</td>
+</tr>
+<tr>
+<td style="text-align:center">invboll</td>
+<td style="text-align:center">相反邏輯</td>
+</tr>
+<tr>
+<td style="text-align:center">charp</td>
+<td style="text-align:center">cahr *</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">int</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">long</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">short</td>
+</tr>
+<tr>
+<td style="text-align:center">uint</td>
+<td style="text-align:center">uint</td>
+</tr>
+<tr>
+<td style="text-align:center">ulong</td>
+<td style="text-align:center">ulong</td>
+</tr>
+<tr>
+<td style="text-align:center">ushort</td>
+<td style="text-align:center">ushort</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insmod x.ko whom=&quot;mom&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="User-Space-VS-Kernel-Space-Driver"><a href="#User-Space-VS-Kernel-Space-Driver" class="headerlink" title="User-Space VS Kernel-Space Driver"></a>User-Space VS Kernel-Space Driver</h4><p>See P38</p>
+<h4 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;linux/init.h&gt;</span><br><span class="line">module_init(init_function);</span><br><span class="line">module_exit(cleanup_function);</span><br><span class="line"></span><br><span class="line">// 初始用，初始化完畢後會被回收(存放在特殊的 ELF section)</span><br><span class="line">__init</span><br><span class="line">__initdata</span><br><span class="line"></span><br><span class="line">__exit</span><br><span class="line">__exitdata</span><br><span class="line"></span><br><span class="line">// hotplug，若 kernel 設定為不支援 hotplug 的話，同 __init</span><br><span class="line">__devinit</span><br><span class="line">__devinitdata</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="CH-3-Character-Device"><a href="#CH-3-Character-Device" class="headerlink" title="CH 3 Character Device"></a>CH 3 Character Device</h2><h4 id="Major-amp-Minor-Number"><a href="#Major-amp-Minor-Number" class="headerlink" title="Major &amp; Minor Number"></a>Major &amp; Minor Number</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l /dev</span><br><span class="line">crw-rw-rw-  1 root  wheel           18,   3  6 10 18:44 cu.Yume-WirelessiAP-1</span><br><span class="line">brw-r-----  1 root  operator         1,   0  6 10 18:44 disk0</span><br></pre></td></tr></table></figure>
+<p>cu.Yume-WirelessiAP-1</p>
+<ul>
+<li>Major: 18</li>
+<li>Minor: 3</li>
+<li>Character device</li>
+</ul>
+<p>disk0</p>
+<ul>
+<li>Major: 1</li>
+<li>Minor: 0</li>
+<li>Block device</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//&lt;linux/types.h&gt;</span><br><span class="line">// 32 bit</span><br><span class="line">// 前 12 bit Major</span><br><span class="line">// 後 20 bit Minor</span><br><span class="line">dev_t</span><br><span class="line"></span><br><span class="line">int MAJOR(dev_t dev);</span><br><span class="line">int MINOR(dev_t dev);</span><br><span class="line">dev_t MKDEV(int majotr, int minor);</span><br></pre></td></tr></table></figure>
+<h4 id="裝置編號的配置與釋放"><a href="#裝置編號的配置與釋放" class="headerlink" title="裝置編號的配置與釋放"></a>裝置編號的配置與釋放</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//&lt;linux/fs.h&gt;</span><br><span class="line">int register_chrdev_region(dev_t first, unsigned int count, char *name);</span><br><span class="line">void unregister_chrdev_region(dev_t first, unsigned int count);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>可以觀看各個驅動程式的 Major</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/devices</span><br><span class="line"></span><br><span class="line">Character Devices:</span><br><span class="line">1 mem</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>rc.local</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">module=<span class="string">"scull"</span></span><br><span class="line">device=<span class="string">"scull"</span></span><br><span class="line">mode=<span class="string">"644"</span></span><br><span class="line"></span><br><span class="line">/sbin/insmod ./<span class="variable">$module</span>.ko $* || <span class="built_in">exit</span> 1</span><br><span class="line"></span><br><span class="line">rm <span class="_">-f</span> /dev/<span class="variable">$&#123;device&#125;</span>[0-3]</span><br><span class="line"></span><br><span class="line">major=$(awk <span class="string">"\$2 = = \$module\" &#123;print \$1&#125;"</span> /proc/devices)</span><br><span class="line"></span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>0 c <span class="variable">$major</span> 0</span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>1 c <span class="variable">$major</span> 1</span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>2 c <span class="variable">$major</span> 2</span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>3 c <span class="variable">$major</span> 3</span><br><span class="line"></span><br><span class="line">group=<span class="string">"staff"</span></span><br><span class="line">grep -q <span class="string">'^staff:'</span> /etc/group || group=<span class="string">"wheel"</span></span><br><span class="line">chgrp <span class="variable">$group</span> /dev/<span class="variable">$&#123;device&#125;</span>[0-3]</span><br><span class="line">chmod <span class="variable">$mod</span> /dev/<span class="variable">$&#123;device&#125;</span>[0-3]</span><br></pre></td></tr></table></figure>
+<h4 id="重要資料結構"><a href="#重要資料結構" class="headerlink" title="重要資料結構"></a>重要資料結構</h4><p><code>&lt;linux/fs.h&gt;</code></p>
+<p><code>struct file_operations</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Kernel</th>
+<th style="text-align:center">System Call</th>
+<th style="text-align:center">When <code>NULL</code></th>
+<th style="text-align:center">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>struct module *owner;</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">通常是 <code>THIS_MODULE</code></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);</code></td>
+<td style="text-align:center"><code>read()</code></td>
+<td style="text-align:center"><code>-EINVAL</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);</code></td>
+<td style="text-align:center"><code>write()</code></td>
+<td style="text-align:center"><code>-EINVAL</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int (*open) (struct inode *, struct file *);</code></td>
+<td style="text-align:center"><code>open()</code></td>
+<td style="text-align:center">可 NULL</td>
+<td style="text-align:center">kernel 不會發現檔案被打開</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int (*release) (struct inode *, struct file *);</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">可 NULL</td>
+<td style="text-align:center">kernel 不會發現檔案被 release</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>loff_t (*llseek) (struct file *, loff_t, int);</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int (*mmap) (struct file *, struct vm_area_struct *);</code></td>
+<td style="text-align:center"><code>mmap()</code></td>
+<td style="text-align:center"><code>-ENODEV</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>unsigned int (*poll) (struct file *, struct poll_table_struct *);</code></td>
+<td style="text-align:center"><code>poll() epoll() select()</code></td>
+<td style="text-align:center">可 NULL</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">struct file &#123;</span><br><span class="line">    // 讀寫權限</span><br><span class="line">    fmode_t         f_mode;</span><br><span class="line">    // loff_t -&gt; long long 64bit</span><br><span class="line">    // 目前讀取位置</span><br><span class="line">    loff_t          f_pos;</span><br><span class="line">    // 特性： 如 O_NONBLOCK (nonblocking operation)</span><br><span class="line">    // &lt;linux/fcntl.h&gt;</span><br><span class="line">    unsigned int        f_flags;</span><br><span class="line">    const struct file_operations    *f_op;</span><br><span class="line">    void            *private_data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct inode &#123;</span><br><span class="line">    // Major &amp; Minort</span><br><span class="line">    dev_t           i_rdev;</span><br><span class="line">    union &#123;</span><br><span class="line">        struct pipe_inode_info  *i_pipe;</span><br><span class="line">        struct block_device *i_bdev;</span><br><span class="line"></span><br><span class="line">        struct cdev     *i_cdev;</span><br><span class="line">        char            *i_link;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="註冊字元裝置"><a href="#註冊字元裝置" class="headerlink" title="註冊字元裝置"></a>註冊字元裝置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//&lt;linux/cdev.h&gt;</span><br><span class="line">struct cdev &#123;</span><br><span class="line">    struct kobject kobj;</span><br><span class="line">    struct module *owner;</span><br><span class="line">    const struct file_operations *ops;</span><br><span class="line">    struct list_head list;</span><br><span class="line">    dev_t dev;</span><br><span class="line">    unsigned int count;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct cdev *my_cdev = cdev_alloc();</span><br><span class="line">mycdev-&gt;ops = &amp;my_fops;</span><br><span class="line"></span><br><span class="line">// 初始化 cdev</span><br><span class="line">struct cdev *cdev_alloc(void);</span><br><span class="line">// 將 cdev 嵌入到自訂 struct</span><br><span class="line">void cdev_init(struct cdev *, const struct file_operations *);</span><br><span class="line">// cdev 加入核心</span><br><span class="line">int cdev_add(struct cdev *, dev_t, unsigned);</span><br><span class="line">// 註銷 cdev</span><br><span class="line">void cdev_del(struct cdev *);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">struct scull_dev &#123;</span><br><span class="line">    struct scull_qset *data;</span><br><span class="line">    int quantum;</span><br><span class="line">    int qset;</span><br><span class="line">    unsigned long size;</span><br><span class="line">    unsigned int access_key;</span><br><span class="line">    struct semaphore sem;</span><br><span class="line">    struct cdev cdev;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void scull_setup_cdev(struct scull_dev *dev, int index) &#123;</span><br><span class="line">    int err, devno = MKDEV(scull_major, scull_minor + index);</span><br><span class="line"></span><br><span class="line">    cdev_init(&amp;dev-&gt;cdev, &amp;scull_fops);</span><br><span class="line">    dev-&gt;cdev.owner = THIS_MODULE;</span><br><span class="line">    dev-&gt;cdev.ops = &amp;scull_fops;</span><br><span class="line">    err = cdev_add(&amp;dev-&gt;cdev, devno, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// &lt;linux/kernel.h&gt;</span><br><span class="line"></span><br><span class="line">container_of(pointer, container_type, container_field);</span><br><span class="line"></span><br><span class="line">#define container_of(ptr, type, member) (&#123;          \</span><br><span class="line">    const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr);    \</span><br><span class="line">    (type *)( (char *)__mptr - offsetof(type,member) );&#125;)</span><br><span class="line"></span><br><span class="line">int scull_open(struct inode *inode, struct file *filp) &#123;</span><br><span class="line">    struct scull_dev *dev;</span><br><span class="line"></span><br><span class="line">    dev = container_of(inode-&gt;i_cdev, struct scull_dev, cdev);</span><br><span class="line">    filp-&gt;private_data = dev; // 奇淫技巧：將找到 scull_dev 放到 file 私有資料區</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yume190.github.io/2016/06/14/Linux-Driver-Book-筆記/" data-id="ciq7g2xos002v9dtjkoyhodck" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/05/26/rasp-for-work/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">rasp for work</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2016/07/04/系統軟體課程-先修筆記/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">系統軟體課程 先修筆記</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/">Android</a><span class="sidebar-module-list-count">12</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Android/adb/">adb</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/">CI</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/CI/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Design-Pattern/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/GAE/">GAE</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Git/">Git</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Go/">Go</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/">Gradle</a><span class="sidebar-module-list-count">9</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Gradle/Android/">Android</a><span class="sidebar-module-list-count">9</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/">IOS</a><span class="sidebar-module-list-count">19</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/UI/">UI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/IOS/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Reference/">Reference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Setup/">Setup</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Robolectric/Test/">Test</a><span class="sidebar-module-list-count">2</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Tools/">Tools</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/">WWDC</a><span class="sidebar-module-list-count">4</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2014/">Y2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/WWDC/Y2015/">Y2015</a><span class="sidebar-module-list-count">3</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Work/">Work</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Android/">Android</a><span class="sidebar-module-list-count">27</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Anroid-Studio/">Anroid Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apk-sign/">Apk_sign</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Apple-Doc/">Apple_Doc</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Auto-Restart/">Auto-Restart</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Autolayout/">Autolayout</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Blog/">Blog</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/CI/">CI</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-Permission/">Custom_Permission</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Custom-View/">Custom_View</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Delegate/">Delegate</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Dependency-Injection/">Dependency Injection</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Design-Pattern/">Design Pattern</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Distributed-Systems-Tracing/">Distributed Systems Tracing</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Drone/">Drone</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Extension/">Extension</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Fabric/">Fabric</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Git/">Git</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Github/">Github</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go/">Go</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Go-Concurrent/">Go Concurrent</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Google-API/">Google API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Gradle/">Gradle</a><span class="sidebar-module-list-count">10</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/IOS/">IOS</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JUnit/">JUnit</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KIOSK/">KIOSK</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/KVC/">KVC</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Localize/">Localize</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MRC/">MRC</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Markdown/">Markdown</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mockito/">Mockito</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Notification/">Notification</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c/">Objective-c</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Objective-c-Swift/">Objective-c & Swift</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Octopress/">Octopress</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Online-Simulator/">Online Simulator</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Open-Source/">Open Source</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Others/">Others</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/RS232/">RS232</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Radxa/">Radxa</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Reboot/">Reboot</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Remote-Debugging/">Remote-Debugging</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Robolectric/">Robolectric</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Service/">Service</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Shared-Preference/">Shared Preference</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Silent-Install/">Silent_Install</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Singleton/">Singleton</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Slide/">Slide</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/State-Machine/">State Machine</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Strider/">Strider</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Struct/">Struct</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Swift/">Swift</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Testing/">Testing</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Thread/">Thread</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Time-Series-DB/">Time Series DB</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Toast/">Toast</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Trouble-Shooting/">Trouble_Shooting</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Tutorial/">Tutorial</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UILabel/">UILabel</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Vendor/">Vendor</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2014/">WWDC_2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/WWDC-2015/">WWDC_2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/XCode-Snippet/">XCode Snippet</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Zipkin/">Zipkin</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/adb/">adb</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/cross-compile/">cross compile</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-8/">java 8</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/kernel/">kernel</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/linux/">linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/python/">python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rake/">rake</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/raspberry/">raspberry</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/rrdtool/">rrdtool</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/submodule/">submodule</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/subtree/">subtree</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/未完/">未完</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/版本控制/">版本控制</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/結構/">結構</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/限制裝置條件/">限制裝置條件</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Anroid-Studio/" style="font-size: 10px;">Anroid Studio</a> <a href="/tags/Apk-sign/" style="font-size: 10px;">Apk_sign</a> <a href="/tags/Apple-Doc/" style="font-size: 10px;">Apple_Doc</a> <a href="/tags/Auto-Restart/" style="font-size: 10px;">Auto-Restart</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/Blog/" style="font-size: 11.25px;">Blog</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Custom-Permission/" style="font-size: 10px;">Custom_Permission</a> <a href="/tags/Custom-View/" style="font-size: 12.5px;">Custom_View</a> <a href="/tags/Delegate/" style="font-size: 10px;">Delegate</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Design-Pattern/" style="font-size: 11.25px;">Design Pattern</a> <a href="/tags/Distributed-Systems-Tracing/" style="font-size: 10px;">Distributed Systems Tracing</a> <a href="/tags/Drone/" style="font-size: 11.25px;">Drone</a> <a href="/tags/Extension/" style="font-size: 10px;">Extension</a> <a href="/tags/Fabric/" style="font-size: 10px;">Fabric</a> <a href="/tags/GAE/" style="font-size: 12.5px;">GAE</a> <a href="/tags/Git/" style="font-size: 13.75px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Go/" style="font-size: 16.25px;">Go</a> <a href="/tags/Go-Concurrent/" style="font-size: 13.75px;">Go Concurrent</a> <a href="/tags/Google-API/" style="font-size: 10px;">Google API</a> <a href="/tags/Gradle/" style="font-size: 17.5px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IOS/" style="font-size: 18.75px;">IOS</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/KIOSK/" style="font-size: 10px;">KIOSK</a> <a href="/tags/KVC/" style="font-size: 15px;">KVC</a> <a href="/tags/Localize/" style="font-size: 10px;">Localize</a> <a href="/tags/MRC/" style="font-size: 10px;">MRC</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Mockito/" style="font-size: 10px;">Mockito</a> <a href="/tags/Notification/" style="font-size: 10px;">Notification</a> <a href="/tags/Objective-c/" style="font-size: 10px;">Objective-c</a> <a href="/tags/Objective-c-Swift/" style="font-size: 10px;">Objective-c & Swift</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Online-Simulator/" style="font-size: 10px;">Online Simulator</a> <a href="/tags/Open-Source/" style="font-size: 10px;">Open Source</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/Radxa/" style="font-size: 10px;">Radxa</a> <a href="/tags/Reboot/" style="font-size: 10px;">Reboot</a> <a href="/tags/Remote-Debugging/" style="font-size: 10px;">Remote-Debugging</a> <a href="/tags/Robolectric/" style="font-size: 15px;">Robolectric</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Shared-Preference/" style="font-size: 10px;">Shared Preference</a> <a href="/tags/Silent-Install/" style="font-size: 10px;">Silent_Install</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/Slide/" style="font-size: 10px;">Slide</a> <a href="/tags/State-Machine/" style="font-size: 10px;">State Machine</a> <a href="/tags/Strider/" style="font-size: 11.25px;">Strider</a> <a href="/tags/Struct/" style="font-size: 10px;">Struct</a> <a href="/tags/Swift/" style="font-size: 12.5px;">Swift</a> <a href="/tags/Testing/" style="font-size: 11.25px;">Testing</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Time-Series-DB/" style="font-size: 10px;">Time Series DB</a> <a href="/tags/Toast/" style="font-size: 10px;">Toast</a> <a href="/tags/Trouble-Shooting/" style="font-size: 11.25px;">Trouble_Shooting</a> <a href="/tags/Tutorial/" style="font-size: 11.25px;">Tutorial</a> <a href="/tags/UILabel/" style="font-size: 10px;">UILabel</a> <a href="/tags/Vendor/" style="font-size: 10px;">Vendor</a> <a href="/tags/WWDC-2014/" style="font-size: 10px;">WWDC_2014</a> <a href="/tags/WWDC-2015/" style="font-size: 12.5px;">WWDC_2015</a> <a href="/tags/XCode-Snippet/" style="font-size: 10px;">XCode Snippet</a> <a href="/tags/Zipkin/" style="font-size: 10px;">Zipkin</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/cross-compile/" style="font-size: 10px;">cross compile</a> <a href="/tags/java-8/" style="font-size: 10px;">java 8</a> <a href="/tags/kernel/" style="font-size: 11.25px;">kernel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/rake/" style="font-size: 10px;">rake</a> <a href="/tags/raspberry/" style="font-size: 10px;">raspberry</a> <a href="/tags/rrdtool/" style="font-size: 10px;">rrdtool</a> <a href="/tags/submodule/" style="font-size: 10px;">submodule</a> <a href="/tags/subtree/" style="font-size: 10px;">subtree</a> <a href="/tags/未完/" style="font-size: 12.5px;">未完</a> <a href="/tags/版本控制/" style="font-size: 11.25px;">版本控制</a> <a href="/tags/結構/" style="font-size: 10px;">結構</a> <a href="/tags/限制裝置條件/" style="font-size: 10px;">限制裝置條件</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/07/">July 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/06/">June 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/05/">May 2016</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">December 2015</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/06/">June 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">15</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/10/">October 2014</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">23</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/08/">August 2014</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/07/04/系統軟體課程-先修筆記/">系統軟體課程 先修筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2016/06/14/Linux-Driver-Book-筆記/">Linux Driver Book 筆記</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/26/rasp-for-work/">rasp for work</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/25/Raspberry-Pi-Cross-Compile/">Raspberry Pi Cross Compile</a>
+        </li>
+      
+        <li>
+          <a href="/2016/05/24/kbuild/">kbuild</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Yume<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
