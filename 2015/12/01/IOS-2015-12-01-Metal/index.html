@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="尚未讀完～～">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Metal"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Metal - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/12/01/IOS-2015-12-01-Metal/">
+                Metal
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-01</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>尚未讀完～～</p>
+<a id="more"></a>
+<h1 id="2014-603-Overview"><a href="#2014-603-Overview" class="headerlink" title="2014 603 Overview"></a>2014 603 Overview</h1><ul>
+<li>Dramatically reduced overhead</li>
+<li>Unified graphics and compute</li>
+<li>Precompiled shaders</li>
+<li>Efficient multithreading</li>
+<li>Designed for A7</li>
+</ul>
+<p>10x more draw call</p>
+<h2 id="Draw-Call"><a href="#Draw-Call" class="headerlink" title="Draw Call"></a>Draw Call</h2><p>每個 Draw Call 需要他們的<code>向量狀態(state vector)</code></p>
+<ul>
+<li>shader</li>
+<li>state</li>
+<li>textures</li>
+<li>render target…</li>
+</ul>
+<p>對於 CPU 來說，改變<code>向量狀態</code>是非常昂貴低。(要翻譯成硬體指令)</p>
+<h2 id="Metal-Design"><a href="#Metal-Design" class="headerlink" title="Metal Design"></a>Metal Design</h2><ul>
+<li>Thinnest possible API</li>
+<li>Modern GPU features</li>
+<li>Do expensive tasks less often</li>
+<li>Predicatable performance</li>
+<li>Explicit command submission</li>
+<li>Optimized for CPU behavior</li>
+<li>Thinnest possible API</li>
+<li>Modern GPU features</li>
+</ul>
+<h2 id="為什麼-GPU-Programming-成本昂貴"><a href="#為什麼-GPU-Programming-成本昂貴" class="headerlink" title="為什麼 GPU Programming 成本昂貴"></a>為什麼 GPU Programming 成本昂貴</h2><h4 id="狀態驗證"><a href="#狀態驗證" class="headerlink" title="狀態驗證"></a>狀態驗證</h4><ul>
+<li>確認 API 是有效</li>
+<li>編碼 API State 到 hardware state</li>
+</ul>
+<h4 id="Shader-compilation"><a href="#Shader-compilation" class="headerlink" title="Shader compilation"></a>Shader compilation</h4><ul>
+<li>運行時產生 shader 機械碼</li>
+<li>Interactions between state and shaders (互動於狀態跟著色器)</li>
+</ul>
+<h4 id="送任務給-GPU"><a href="#送任務給-GPU" class="headerlink" title="送任務給 GPU"></a>送任務給 GPU</h4><ul>
+<li>管理資源 residency</li>
+<li>批次命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">When</th>
+<th style="text-align:center">Frequency</th>
+<th style="text-align:center">Before Metal</th>
+<th style="text-align:center">After Metal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Application build</td>
+<td style="text-align:center">“Never”</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">Shader compilation</td>
+</tr>
+<tr>
+<td style="text-align:center">Content loading</td>
+<td style="text-align:center">Rare</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">State validation</td>
+</tr>
+<tr>
+<td style="text-align:center">Draw time</td>
+<td style="text-align:center">1000s of times per frame</td>
+<td style="text-align:center">Shader compilation<br> State validation <br>Start work on GPU</td>
+<td style="text-align:center">Start work on GPU</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Objects</th>
+<th style="text-align:center">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Device</td>
+<td style="text-align:center">The GPU</td>
+</tr>
+<tr>
+<td style="text-align:center">Command Queue</td>
+<td style="text-align:center">Serial sequence of command buffers</td>
+</tr>
+<tr>
+<td style="text-align:center">Command Buffer</td>
+<td style="text-align:center">Contains GPU hardware commands</td>
+</tr>
+<tr>
+<td style="text-align:center">Command Encoder</td>
+<td style="text-align:center">Translates API commands to GPU hardware commands</td>
+</tr>
+<tr>
+<td style="text-align:center">State</td>
+<td style="text-align:center">Framebuffer configuration, blend, depth, samplers, etc.</td>
+</tr>
+<tr>
+<td style="text-align:center">Code</td>
+<td style="text-align:center">Shaders</td>
+</tr>
+<tr>
+<td style="text-align:center">Resources</td>
+<td style="text-align:center">Textures and Data Buffers (vertices, constants, etc.)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="指令提交模型"><a href="#指令提交模型" class="headerlink" title="指令提交模型"></a>指令提交模型</h2><p>指令編碼器把 API 指令轉換成機器指令</p>
+<p>機器指令存放於指令緩衝器</p>
+<p>三種類型的指令編碼器：</p>
+<ul>
+<li>Render(Graphics rendering), Compute(Data parallel computations), Blit(GPU-accelerated resource copy operations)</li>
+<li>Can interleave different types into single command buffer</li>
+<li>Avoids implicit expensive state save and restore operations</li>
+</ul>
+<p>Explicit command buffer construction and submission<br>App creates many lightweight command buffers<br>App controls command buffer submission<br>Metal signals app when command buffers finish execution</p>
+<p>Command encoders generate commands immediately<br>No deferred state validation Direct call to driver</p>
+<p>Multithreaded command encoding<br>Multiple command buffers can be encoded in parallel<br>App decides execution order<br>Very efficient implementation to ensure scalable performance</p>
+<p>P94~End</p>
+<hr>
+<h1 id="2014-604-Fundamental"><a href="#2014-604-Fundamental" class="headerlink" title="2014 604 Fundamental"></a>2014 604 Fundamental</h1><ol>
+<li>Get the Device</li>
+<li>Create a CommandQueue</li>
+<li>Create Resources (Buffers and Textures)</li>
+<li>Create RenderPipelines</li>
+<li>Create a View</li>
+</ol>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/未完/">#未完</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

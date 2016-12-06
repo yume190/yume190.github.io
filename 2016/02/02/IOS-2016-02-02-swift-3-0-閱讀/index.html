@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Swift 3.0 閱讀準備swift-evolution
+2016-02-16">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="swift 3.0 閱讀"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>swift 3.0 閱讀 - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/02/02/IOS-2016-02-02-swift-3-0-閱讀/">
+                swift 3.0 閱讀
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-02</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Swift 3.0 閱讀準備<br><a href="https://github.com/apple/swift-evolution" target="_blank" rel="external">swift-evolution</a></p>
+<p>2016-02-16</p>
+<a id="more"></a>
+<h2 id="Proposals-Swift-2-2-已實現"><a href="#Proposals-Swift-2-2-已實現" class="headerlink" title="Proposals (Swift 2.2 已實現)"></a>Proposals (Swift 2.2 已實現)</h2><p> 1 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0001-keywords-as-argument-labels.md" target="_blank" rel="external">Allow (most) keywords as argument labels</a></p>
+<pre><code>主要訴求：在參數中可使用 `關鍵字(keywords)`
+</code></pre><figure class="highlight swift"><figcaption><span>訴求</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">indexOf(value, <span class="keyword">in</span>: collection)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>實作方式</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">indexOf(value, `<span class="keyword">in</span>`: collection)</span><br></pre></td></tr></table></figure>
+<p> 11 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0014-constrained-AnySequence.md" target="_blank" rel="external">Replace <code>typealias</code> keyword with <code>associatedtype</code> for associated type declarations</a><br> 14 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0014-constrained-AnySequence.md" target="_blank" rel="external">Constraining <code>AnySequence.init</code></a><br> 15 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0015-tuple-comparison-operators.md" target="_blank" rel="external">Tuple comparison operators</a></p>
+<pre><code>主要訴求：節省 tuple comparison implement code 的麻煩事。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@warn_unused_result</span><br><span class="line">public func == &lt;A: Equatable, B: Equatable, C: Equatable&gt;(lhs: (A,B,C), rhs: (A,B,C)) -&gt; Bool &#123;</span><br><span class="line">  return lhs.0 == rhs.0 &amp;&amp; lhs.1 == rhs.1 &amp;&amp; lhs.2 == rhs.2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@warn_unused_result</span><br><span class="line">public func &lt; &lt;A: Comparable, B: Comparable, C: Comparable&gt;(lhs: (A,B,C), rhs: (A,B,C)) -&gt; Bool &#123;</span><br><span class="line">  if lhs.0 != rhs.0 &#123; return lhs.0 &lt; rhs.0 &#125;</span><br><span class="line">  if lhs.1 != rhs.1 &#123; return lhs.1 &lt; rhs.1 &#125;</span><br><span class="line">  return lhs.2 &lt; rhs.2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 20 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0020-if-swift-version.md" target="_blank" rel="external">Swift Language Version Build Configuration</a><br> 21 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0021-generalized-naming.md" target="_blank" rel="external">Naming Functions with Argument Labels</a><br> 22 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0022-objc-selectors.md?utm_campaign=This+Week+in+Swift&amp;utm_medium=email&amp;utm_source=This_Week_in_Swift_72" target="_blank" rel="external">Referencing the Objective-C selector of a method</a></p>
+<pre><code>主要訴求：Selector 去 String 化。
+</code></pre><figure class="highlight swift"><figcaption><span>Selector 去 String 化。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Instead of this:</span></span><br><span class="line"><span class="type">Selector</span>(<span class="string">"insertSubview:atIndex:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// You'll use this:</span></span><br><span class="line"><span class="keyword">let</span> sel = #selector(((<span class="type">UIView</span>.insertSubview(<span class="number">_</span>:at:)) <span class="keyword">as</span> (<span class="type">UIView</span>) -&gt; (<span class="type">UIView</span>, <span class="type">Int</span>) -&gt; <span class="type">Void</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Proposals-Swift-2-2-已採用"><a href="#Proposals-Swift-2-2-已採用" class="headerlink" title="Proposals (Swift 2.2 已採用)"></a>Proposals (Swift 2.2 已採用)</h2><p> 8 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0008-lazy-flatmap-for-optionals.md" target="_blank" rel="external">Add a Lazy flatMap for Sequences of Optionals</a></p>
+<hr>
+<h2 id="Proposals-Swift-3-已實現"><a href="#Proposals-Swift-3-已實現" class="headerlink" title="Proposals (Swift 3 已實現)"></a>Proposals (Swift 3 已實現)</h2><p> 3 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0003-remove-var-parameters.md" target="_blank" rel="external">Removing <code>var</code> from Function Parameters</a><br> 5 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0005-objective-c-name-translation.md" target="_blank" rel="external">Better Translation of Objective-C APIs Into Swift</a><br> 6 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0006-apply-api-guidelines-to-the-standard-library.md" target="_blank" rel="external">Apply API Guidelines to the Standard Library</a><br>19 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0019-package-manager-testing.md" target="_blank" rel="external">Swift Testing</a><br>23 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0006-apply-api-guidelines-to-the-standard-library.md" target="_blank" rel="external">同6 API Design Guidelines</a><br>28 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0028-modernizing-debug-identifiers.md" target="_blank" rel="external">Modernizing Swift’s Debugging Identifiers</a><br>31 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0031-adjusting-inout-declarations.md" target="_blank" rel="external">Adjusting <code>inout</code> Declarations for Type Decoration</a><br>34 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0034-disambiguating-line.md" target="_blank" rel="external">Disambiguating Line Control Statements from Debugging Identifiers</a><br>37 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0037-clarify-comments-and-operators.md" target="_blank" rel="external">Clarify interaction between comments &amp; operators</a><br>40 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0040-attributecolons.md" target="_blank" rel="external">Replacing Equal Signs with Colons For Attribute Arguments</a><br>43 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0043-declare-variables-in-case-labels-with-multiple-patterns.md" target="_blank" rel="external">Declare variables in ‘case’ labels with multiple patterns</a><br>53 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0053-remove-let-from-function-parameters.md" target="_blank" rel="external">Remove explicit use of let from Function Parameters</a></p>
+<h2 id="Proposals-Swift-3-已採用"><a href="#Proposals-Swift-3-已採用" class="headerlink" title="Proposals (Swift 3 已採用)"></a>Proposals (Swift 3 已採用)</h2><p> 2 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0002-remove-currying.md" target="_blank" rel="external">Removing currying <code>func</code> declaration syntax</a><br> 4 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0004-remove-pre-post-inc-decrement.md" target="_blank" rel="external">Remove the <code>++</code> and <code>--</code> operators</a><br> 7 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0007-remove-c-style-for-loops.md" target="_blank" rel="external">Remove C-style for-loops with conditions and incrementers</a><br> 16 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0016-initializers-for-converting-unsafe-pointers-to-ints.md" target="_blank" rel="external">Add initializers to Int and UInt to convert from UnsafePointer and UnsafeMutablePointer</a><br> 29 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0029-remove-implicit-tuple-splat.md" target="_blank" rel="external">Remove implicit tuple splat behavior from function applications</a><br> 33 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0033-import-objc-constants.md" target="_blank" rel="external">Import Objective-C Constants as Swift Types</a><br> 35 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0035-limit-inout-capture.md" target="_blank" rel="external">Limiting <code>inout</code> capture to <code>@noescape</code> contexts</a><br> 38 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0038-swiftpm-c-language-targets.md" target="_blank" rel="external">Package Manager C Language Target Support</a><br> 39 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0039-playgroundliterals.md" target="_blank" rel="external">Modernizing Playground Literals</a><br> 42 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0042-flatten-method-types.md" target="_blank" rel="external">Flattening the function type of unapplied method references</a><br> 44 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0044-import-as-member.md" target="_blank" rel="external">Import as member</a><br> 46 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0046-first-label.md" target="_blank" rel="external">Establish consistent label behavior across all parameters including first labels</a><br> 47 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0047-nonvoid-warn.md" target="_blank" rel="external">Defaulting non-Void functions so they warn on unused results</a><br> 54 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0054-abolish-iuo.md" target="_blank" rel="external">Abolish ImplicitlyUnwrappedOptional type</a><br> 55 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0055-optional-unsafe-pointers.md" target="_blank" rel="external">Make unsafe pointer nullability explicit using Optional</a></p>
+<h2 id="Swift-org"><a href="#Swift-org" class="headerlink" title="Swift org"></a>Swift org</h2><ul>
+<li><a href="https://swift.org/blog/swift-api-transformation/?utm_campaign=This+Week+in+Swift&amp;utm_medium=email&amp;utm_source=This_Week_in_Swift_72" target="_blank" rel="external">Its Coming: the Great Swift API Transformation</a><br>Class 去除 <code>NS</code><br>方法 去除 <code>withXX</code></li>
+</ul>
+<figure class="highlight objc"><figcaption><span>before</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class <span class="built_in">UIBezierPath</span> : <span class="built_in">NSObject</span>, <span class="built_in">NSCopying</span>, <span class="built_in">NSCoding</span> &#123; ... &#125;</span><br><span class="line"><span class="comment">///...</span></span><br><span class="line">path.addLineToPoint(<span class="built_in">CGPoint</span>(x: <span class="number">100</span>, y: <span class="number">0</span>))</span><br><span class="line">path.fillWithBlendMode(kCGBlendModeMultiply, alpha: <span class="number">0.7</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><figcaption><span>after</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class <span class="built_in">UIBezierPath</span> : Object, Copying, Coding &#123; ... &#125;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">path.addLineTo(<span class="built_in">CGPoint</span>(x: <span class="number">100</span>, y: <span class="number">0</span>))</span><br><span class="line">path.fillWith(kCGBlendModeMultiply, alpha: <span class="number">0.7</span>)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

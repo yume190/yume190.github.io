@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Dapper，大规模分布式系统的跟踪系统">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Zipkin"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Zipkin - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/01/04/monitor-2016-01-04-Zipkin/">
+                Zipkin
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-01-04</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="http://bigbully.github.io/Dapper-translation/" target="_blank" rel="external">Dapper，大规模分布式系统的跟踪系统</a></p>
+<a id="more"></a>
+<p><img src="/image/Zipkin/p14.png" alt="動機"><br><img src="/image/Zipkin/p15.png" alt="解決方式"><br><img src="/image/Zipkin/p17.png" alt="Dapper 2010"><br><img src="/image/Zipkin/p16.png" alt=""></p>
+<h2 id="Quickstart"><a href="#Quickstart" class="headerlink" title="Quickstart"></a>Quickstart</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/openzipkin/docker-zipkin</span><br><span class="line"><span class="built_in">cd</span> docker-zipkin</span><br><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+<p>zipkin web: <code>host:8080</code><br>zipkin collector: <code>host:8086</code></p>
+<p>詳細請看<a href="https://github.com/openzipkin/docker-zipkin/blob/master/docker-compose.yml" target="_blank" rel="external">docker compose</a></p>
+<h2 id="架構"><a href="#架構" class="headerlink" title="架構"></a>架構</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/image/Zipkin/a0.png" alt=""></h2><p><img src="/image/Zipkin/a1.png" alt=""></p>
+<hr>
+<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><h4 id="Annotation-關於-時間-timestamp-服務-service-host-的字串資料"><a href="#Annotation-關於-時間-timestamp-服務-service-host-的字串資料" class="headerlink" title="Annotation: 關於 時間(timestamp) 服務(service) host 的字串資料"></a>Annotation: 關於 <code>時間(timestamp)</code> <code>服務(service)</code> <code>host</code> 的字串資料</h4><ul>
+<li>Annotation<ul>
+<li>cs - Client Start.</li>
+<li>sr - Server Receive.</li>
+<li>ss - Server Send.</li>
+<li>cr - Client Recieve.</li>
+</ul>
+</li>
+<li>BinaryAnnotation : 沒有時間元素，他們代表額外的 <code>RPC</code> 資訊</li>
+</ul>
+<p><img src="/image/Zipkin/p4.png" alt="Annotation"></p>
+<h4 id="Span-代表一個特定的方法呼叫，由一組-set-annotation-組成，並且有-名稱-及-ID"><a href="#Span-代表一個特定的方法呼叫，由一組-set-annotation-組成，並且有-名稱-及-ID" class="headerlink" title="Span: 代表一個特定的方法呼叫，由一組(set) annotation 組成，並且有 名稱 及 ID"></a>Span: 代表一個特定的方法呼叫，由一組(set) annotation 組成，並且有 名稱 及 ID</h4><p><img src="/image/Zipkin/p5.png" alt="Span"></p>
+<h4 id="Trace-紀錄同一個-Request-的一組-span"><a href="#Trace-紀錄同一個-Request-的一組-span" class="headerlink" title="Trace: 紀錄同一個 Request 的一組 span"></a>Trace: 紀錄同一個 Request 的一組 span</h4><p><img src="/image/Zipkin/p6.png" alt="Trace"></p>
+<hr>
+<h2 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h2><p><img src="/image/Zipkin/p7.png" alt="示意"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">rootSpan := zipkin.NewSpan(<span class="string">"192.168.99.100:9410"</span>, <span class="string">"AService"</span>, <span class="string">"Endpoint a1"</span>, newID(), newID(), newID())</span><br><span class="line">rootCallerSpan := zipkin.NewSpan(<span class="string">"192.168.99.100:9410"</span>, <span class="string">"AService"</span>, <span class="string">"Endpoint a1"</span>, rootSpan.TraceID(), newID(), rootSpan.SpanID())</span><br><span class="line">calleeSpan := zipkin.NewSpan(<span class="string">"192.168.99.100:9411"</span>, <span class="string">"BService"</span>, <span class="string">"Endpoint b2"</span>, rootCallerSpan.TraceID(), rootCallerSpan.SpanID(), rootCallerSpan.ParentSpanID())</span><br><span class="line"></span><br><span class="line">rootSpan.Annotate(<span class="string">"sr"</span>)</span><br><span class="line">time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">rootCallerSpan.Annotate(<span class="string">"cs"</span>)</span><br><span class="line">calleeSpan.Annotate(<span class="string">"sr"</span>)</span><br><span class="line">time.Sleep(<span class="number">2</span> * time.Second)</span><br><span class="line">calleeSpan.Annotate(<span class="string">"ss"</span>)</span><br><span class="line">rootCallerSpan.Annotate(<span class="string">"cr"</span>)</span><br><span class="line">time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">rootSpan.Annotate(<span class="string">"ss"</span>)</span><br><span class="line"></span><br><span class="line">collector.Collect(rootSpan)</span><br><span class="line">collector.Collect(rootCallerSpan)</span><br><span class="line">collector.Collect(calleeSpan)</span><br></pre></td></tr></table></figure>
+<p><img src="/image/Zipkin/p8.png" alt="查詢頁"><br><img src="/image/Zipkin/p9.png" alt=""><br><img src="/image/Zipkin/p10.png" alt="Root Span"><br><img src="/image/Zipkin/p11.png" alt="Sub Span"></p>
+<hr>
+<h2 id="官方-DEMO"><a href="#官方-DEMO" class="headerlink" title="官方 DEMO"></a>官方 DEMO</h2><p><img src="/image/Zipkin/p12.png" alt=""><br><img src="/image/Zipkin/p13.png" alt=""></p>
+<h1 id="相關"><a href="#相關" class="headerlink" title="相關"></a>相關</h1><p> <a href="http://bigbully.github.io/Dapper-translation/" target="_blank" rel="external">Dapper，大规模分布式系统的跟踪系统</a><br> <a href="https://www.youtube.com/watch?v=EP4prWJIWvc" target="_blank" rel="external">Video</a><br> <a href="http://www.slideshare.net/johanoskarsson/zipkin-strangeloop" target="_blank" rel="external">slide</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Zipkin/">#Zipkin</a> <a href="/tags/Distributed-Systems-Tracing/">#Distributed Systems Tracing</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

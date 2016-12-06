@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="uhttp lua">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="uhttp lua"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>uhttp lua - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">
+                uhttp lua
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-12-05</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/openwrt/">openwrt</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>uhttp lua</p>
+<a id="more"></a>
+<h2 id="uhttp-mod-lua"><a href="#uhttp-mod-lua" class="headerlink" title="uhttp-mod-lua"></a><a href="https://wiki.openwrt.org/doc/uci/uhttpd" target="_blank" rel="external">uhttp-mod-lua</a></h2><ul>
+<li>安裝 <code>uhttpd-mod-lua</code></li>
+<li>透過 <code>uci</code> 設定</li>
+<li>重啟 <code>uhttpd</code></li>
+</ul>
+<figure class="highlight sh"><figcaption><span>安裝 uhttpd-mod-lua</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">opkg install uhttpd-mod-lua</span><br><span class="line">uci <span class="built_in">set</span> uhttpd.main.lua_prefix=/lua</span><br><span class="line">uci <span class="built_in">set</span> uhttpd.main.lua_handler=/root/test.lua</span><br><span class="line">uci commit uhttpd</span><br><span class="line">/etc/init.d/uhttpd restart</span><br></pre></td></tr></table></figure>
+<p>這份 <code>lua</code> file，比較要注意的地方是 </p>
+<ul>
+<li>回呼函數名稱一定要是 <code>handle_request</code></li>
+<li>未定義但是可以用的變數 <code>uhttpd</code></li>
+</ul>
+<figure class="highlight lua"><figcaption><span>test.lua</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle_request</span><span class="params">(env)</span></span></span><br><span class="line">    uhttpd.send(<span class="string">"Status: 200 OK\r\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"Content-Type: text/plain\r\n\r\n"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">--[[</span><br><span class="line">    env 底下的 key，以及對應型態</span><br><span class="line">    REQUEST_METHOD (String)</span><br><span class="line">    REQUEST_URI (String)</span><br><span class="line">    SCRIPT_NAME (String)</span><br><span class="line">    QUERY_STRING (String)</span><br><span class="line">    PATH_INFO (String)</span><br><span class="line">    HTTP_VERSION (Number)</span><br><span class="line">    SERVER_PROTOCOL (String)</span><br><span class="line">    REMOTE_ADDR (String)</span><br><span class="line">    REMOTE_PORT (Int)</span><br><span class="line">    SERVER_ADDR (String)</span><br><span class="line">    SERVER_PORT (Int)</span><br><span class="line">    CONTENT_LENGTH (Number)</span><br><span class="line">    CONTENT_TYPE (String)</span><br><span class="line">    headers (Table)</span><br><span class="line">--]]</span></span><br><span class="line"></span><br><span class="line">    uhttpd.send(<span class="string">"REQUEST_METHOD"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.REQUEST_METHOD)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"REQUEST_URI"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.REQUEST_URI)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"SCRIPT_NAME"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.SCRIPT_NAME)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"QUERY_STRING"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.QUERY_STRING)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"PATH_INFO"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.PATH_INFO)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"SERVER_PROTOCOL"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.SERVER_PROTOCOL)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"REMOTE_ADDR"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.REMOTE_ADDR)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"SERVER_ADDR"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.SERVER_ADDR)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"CONTENT_TYPE"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.CONTENT_TYPE)..<span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">    uhttpd.send(<span class="string">"HTTP_VERSION"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.HTTP_VERSION)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"REMOTE_PORT"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.REMOTE_PORT)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"SERVER_PORT"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.SERVER_PORT)..<span class="string">"\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"CONTENT_LENGTH"</span>..<span class="string">" "</span>..<span class="built_in">tostring</span>(env.CONTENT_LENGTH)..<span class="string">"\n"</span>)</span><br><span class="line"></span><br><span class="line">    uhttpd.send(<span class="string">"Headers start\n"</span>)</span><br><span class="line">    uhttpd.send(<span class="string">"-------------\n"</span>)</span><br><span class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(env.headers) <span class="keyword">do</span></span><br><span class="line">        uhttpd.send(k..<span class="string">" "</span>..v..<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">end</span> </span><br><span class="line">    uhttpd.send(<span class="string">"-------------\n"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> len,data = uhttpd.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="keyword">if</span> len &gt; <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">        uhttpd.send(<span class="string">"length:"</span>..<span class="built_in">tostring</span>(len)..<span class="string">"\n"</span>)</span><br><span class="line">        uhttpd.send(<span class="string">"data:"</span>..data..<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    uhttpd.send(<span class="string">"Hello world.\n"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="uhttpd-lua-h"><a href="#uhttpd-lua-h" class="headerlink" title="uhttpd-lua.h"></a>uhttpd-lua.h</h2><p>再回來看 <code>uhttpd-lua.h</code>， 提供給 lua 當回乎函數 <code>handle_request</code> 似乎有點著落 </p>
+<figure class="highlight c"><figcaption><span>uhttpd-lua.h</span><a href="https://dev.openwrt.org/browser/trunk/package/uhttpd/src/uhttpd-lua.h?rev=29152#L28" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UH_LUA_CALLBACK         <span class="string">"handle_request"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">lua_State * <span class="title">uh_lua_init</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uh_lua_request</span><span class="params">(</span><br><span class="line">        <span class="keyword">struct</span> client *cl, <span class="keyword">struct</span> http_request *req, lua_State *L</span><br><span class="line">)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">uh_lua_close</span><span class="params">(lua_State *L)</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="uhttpd-lua-c"><a href="#uhttpd-lua-c" class="headerlink" title="uhttpd-lua.c"></a>uhttpd-lua.c</h2><p>從這邊可以看到 <code>lua_setfield(L, LUA_GLOBALSINDEX, &quot;uhttpd&quot;);</code>，提供 lua 全域變數 <code>uhttpd (table)</code>，並提供以下欄位</p>
+<ul>
+<li><code>recv</code> (<code>Int -&gt; (Int,String)</code>) </li>
+<li><code>send</code> (<code>String -&gt; Int</code>)</li>
+<li><code>sendc</code> (<code>String -&gt; Int</code>)</li>
+<li><code>urldecode</code> (<code>String -&gt; String</code>)</li>
+</ul>
+<p><code>c</code> 的動作 ：</p>
+<ul>
+<li><code>luaL_loadfile(L, handler)</code> 把 handler 當成 function 載入，並把 function 放入堆疊 (<code>handler=/root/test.lua</code>)</li>
+<li><code>lua_pcall(L, 0, 0, 0)</code> 執行堆疊上第一個，<code>0,0,0</code> 分別是 <code>輸入參數個數,return 個數,錯誤處理 function</code></li>
+<li><code>lua_getglobal(L, UH_LUA_CALLBACK)</code>，將 <code>handle_request</code> 放入堆疊</li>
+<li><code>lua_isfunction(L, -1)</code>，確認堆疊最上層是 function</li>
+</ul>
+<figure class="highlight lua"><figcaption><span>c 調用 lua function</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- lua_pcall(L, 2, 3, 0)</span></span><br><span class="line"><span class="comment">-- |      y      | 3</span></span><br><span class="line"><span class="comment">-- |      x      | 2</span></span><br><span class="line"><span class="comment">-- | function xy | 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">xy</span> <span class="params">(x,y)</span></span></span><br><span class="line">    <span class="keyword">return</span> x,y,x+y</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>uhttpd-lua.c</span><a href="https://dev.openwrt.org/browser/trunk/package/uhttpd/src/uhttpd-lua.c?rev=29152#L125" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">lua_State * <span class="title">uh_lua_init</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *handler)</span> </span>&#123;</span><br><span class="line">    lua_State *L = lua_open();</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *err_str = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Load standard libaries */</span></span><br><span class="line">    luaL_openlibs(L);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* build uhttpd api table */</span></span><br><span class="line">    lua_newtable(L);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* register global send and receive functions */</span></span><br><span class="line">    lua_pushcfunction(L, uh_lua_recv);</span><br><span class="line">    lua_setfield(L, <span class="number">-2</span>, <span class="string">"recv"</span>);</span><br><span class="line"></span><br><span class="line">    lua_pushcfunction(L, uh_lua_send);</span><br><span class="line">    lua_setfield(L, <span class="number">-2</span>, <span class="string">"send"</span>);</span><br><span class="line"></span><br><span class="line">    lua_pushcfunction(L, uh_lua_sendc);</span><br><span class="line">    lua_setfield(L, <span class="number">-2</span>, <span class="string">"sendc"</span>);</span><br><span class="line"></span><br><span class="line">    lua_pushcfunction(L, uh_lua_urldecode);</span><br><span class="line">    lua_setfield(L, <span class="number">-2</span>, <span class="string">"urldecode"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* _G.uhttpd = &#123; ... &#125; */</span></span><br><span class="line">    lua_setfield(L, LUA_GLOBALSINDEX, <span class="string">"uhttpd"</span>);</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">switch</span>( luaL_loadfile(L, handler) ) &#123;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">/* compile Lua handler */</span></span><br><span class="line">        <span class="keyword">switch</span>( lua_pcall(L, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>) ) &#123;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="comment">/* test handler function */</span></span><br><span class="line">            lua_getglobal(L, UH_LUA_CALLBACK);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>( ! lua_isfunction(L, <span class="number">-1</span>) )&#123;</span><br><span class="line">                    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,</span><br><span class="line">                            <span class="string">"Lua handler provides no "</span> UH_LUA_CALLBACK <span class="string">"(), unable to continue\n"</span>);</span><br><span class="line">                    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            lua_pop(L, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="uhttpd-c"><a href="#uhttpd-c" class="headerlink" title="uhttpd.c"></a>uhttpd.c</h2><ul>
+<li>解析 arg</li>
+<li>透過 <code>-c</code> 讀取 <code>config</code> 檔案(或預設位置 <code>/etc/httpd.conf</code>)</li>
+<li>讀取 so 檔案，(<code>dlopen(&quot;uhttpd_lua.so&quot;, RTLD_LAZY | RTLD_GLOBAL)</code>)</li>
+<li>執行 <code>uhttpd-lua.c 的 lua_init</code></li>
+</ul>
+<figure class="highlight c"><figcaption><span>uhttpd.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">uh_config_parse</span><span class="params">(<span class="keyword">struct</span> config *conf)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *path = conf-&gt;file ? conf-&gt;file : <span class="string">"/etc/httpd.conf"</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">    <span class="comment">/* init Lua runtime if handler is specified */</span></span><br><span class="line">    <span class="keyword">if</span>( conf.lua_handler )</span><br><span class="line">    &#123;</span><br><span class="line">            <span class="comment">/* default lua prefix */</span></span><br><span class="line">            <span class="keyword">if</span>( ! conf.lua_prefix )</span><br><span class="line">                    conf.lua_prefix = <span class="string">"/lua"</span>;</span><br><span class="line"></span><br><span class="line">            conf.lua_state = conf.lua_init(conf.lua_handler);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="uhttpd"><a href="#uhttpd" class="headerlink" title="uhttpd"></a>uhttpd</h2><figure class="highlight sh"><figcaption><span>/etc/init.d/uhttpd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lrwxrwxrwx    1 root     root            16 Nov 20  2015 S50uhttpd -&gt; ../init.d/uhttpd</span></span><br><span class="line"><span class="function"><span class="title">start_service</span></span>() &#123;</span><br><span class="line">	config_load uhttpd</span><br><span class="line">	config_foreach start_instance uhttpd</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">start_instance</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> cfg=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">    append_arg <span class="string">"<span class="variable">$cfg</span>"</span> config <span class="string">"-c"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">append_arg</span></span>() &#123;</span><br><span class="line">	<span class="built_in">local</span> cfg=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">	<span class="built_in">local</span> var=<span class="string">"<span class="variable">$2</span>"</span></span><br><span class="line">	<span class="built_in">local</span> opt=<span class="string">"<span class="variable">$3</span>"</span></span><br><span class="line">	<span class="built_in">local</span> def=<span class="string">"<span class="variable">$4</span>"</span></span><br><span class="line">	<span class="built_in">local</span> val</span><br><span class="line"></span><br><span class="line">	config_get val <span class="string">"<span class="variable">$cfg</span>"</span> <span class="string">"<span class="variable">$var</span>"</span></span><br><span class="line">	[ -n <span class="string">"<span class="variable">$val</span>"</span> -o -n <span class="string">"<span class="variable">$def</span>"</span> ] &amp;&amp; procd_append_param <span class="built_in">command</span> <span class="string">"<span class="variable">$opt</span>"</span> <span class="string">"<span class="variable">$&#123;val:-$def&#125;</span>"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="開機流程"><a href="#開機流程" class="headerlink" title="開機流程"></a>開機流程</h2><ul>
+<li><a href="https://wefollownews.appspot.com/cittopnews201408_58/15958.html" target="_blank" rel="external">openwrt啟動腳本分析</a></li>
+<li><a href="http://www.eehello.com/m/?post=107" target="_blank" rel="external">OpenWrt启动过程分析+添加自启动脚本[转]</a></li>
+<li><a href="http://lirobo.blogspot.tw/2014/07/openwrt-boot.html" target="_blank" rel="external">OpenWrt boot</a></li>
+</ul>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

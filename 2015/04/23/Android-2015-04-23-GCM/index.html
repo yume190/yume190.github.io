@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="最近又出現一些新的狀況，主要是因為 Android 的 Shared Preferences 不太可靠的關係。
+而且我們主要目標對象是公車站牌(Android 板子)，希望有遠端更新，遠端操作…。
+並期望放出就能自主活得好好滴。
+但是存放在 Shared Preferences 的站牌ID，就隨著多次操作後就跟著 Shared Preferences 一同消失了！
+可以參考下面這篇：
+
+User settings saved in SharedPreferences removed or lost between reloads of app
+
+在他們的例子，會有將近 0.2% ~ 0.3% 使用者的 Shared Preferences 會遺失掉。
+推薦的解決方式是使用 DB。
+於是我們也就緊急發佈出 DB 版本。
+但是已經消失的該怎麼辦哩？？">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="GCM!!"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>GCM!! - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/04/23/Android-2015-04-23-GCM/">
+                GCM!!
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-04-23</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>最近又出現一些新的狀況，主要是因為 Android 的 Shared Preferences 不太可靠的關係。</p>
+<p>而且我們主要目標對象是公車站牌(Android 板子)，希望有遠端更新，遠端操作…。</p>
+<p>並期望放出就能自主活得好好滴。</p>
+<p>但是存放在 Shared Preferences 的站牌ID，就隨著多次操作後就跟著 Shared Preferences 一同消失了！</p>
+<p>可以參考下面這篇：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/5955799/user-settings-saved-in-sharedpreferences-removed-or-lost-between-reloads-of-app" target="_blank" rel="external">User settings saved in SharedPreferences removed or lost between reloads of app</a></li>
+</ul>
+<p>在他們的例子，會有將近 0.2% ~ 0.3% 使用者的 Shared Preferences 會遺失掉。</p>
+<p>推薦的解決方式是使用 DB。</p>
+<p>於是我們也就緊急發佈出 DB 版本。</p>
+<p>但是已經消失的該怎麼辦哩？？</p>
+<a id="more"></a>
+<hr>
+<p>於是將矛頭轉到 GCM，但是聽說要使用 GCM 的必須登入 Google Account。</p>
+<p>此時心想不太對，因為外面站牌都未登入 Google，雖然「再」大痛一次，就可以玩更多花樣，也預期能比較好維護。</p>
+<p>所以還先看一下使用限制會比較保險：</p>
+<ul>
+<li><p>最低要求，GCM 需要執行在Android版本 2.2 以上且同時安裝<code>Google Play Store APP</code>，</p>
+</li>
+<li><p>如果你想要透過<code>Google Play Services</code>使用GCM的新功能，Device 需要執行在Android版本 2.3 以上</p>
+</li>
+<li><p>在pre-3.0 需要設定 Google Account，但是 4.0.4 以後可以不用設定 Google Account</p>
+</li>
+</ul>
+<p>看完不用 Google Account 終於鬆了一口氣。</p>
+<p>在實驗的過程中，發現 GCM 需要 Google Play Services，然後得去 Google Store 設定帳號下載。</p>
+<font color="red">PS :不過可以事先把 <code>Google Play Services</code> APP dump 出來，然後直接安裝也算。</font>
+
+<p>接著主要參考下面兩篇，實作ＧＣＭ：</p>
+<ul>
+<li><p><a href="http://developer.android.com/reference/com/google/android/gms/gcm/GoogleCloudMessaging.html" target="_blank" rel="external">GoogleCloudMessaging</a></p>
+</li>
+<li><p><a href="http://magiclen.org/android-push-notification/" target="_blank" rel="external">Android Push Notification - 推播通知訊息給Android客戶端</a></p>
+</li>
+</ul>
+<figure class="highlight gradle"><figcaption><span>build.gradle</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">  <span class="keyword">compile</span> <span class="string">"com.google.android.gms:play-services:7.0.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>Android SDK(GCM)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id: 126 or &quot;extra-android-m2repository&quot;</span><br><span class="line">     Type: Extra</span><br><span class="line">     Desc: Android Support Repository, revision 13</span><br><span class="line">id: 127 or &quot;extra-android-support&quot;</span><br><span class="line">     Type: Extra</span><br><span class="line">     Desc: Android Support Library, revision 22.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"com.google.android.c2dm.permission.RECEIVE"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">application</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".MyReceiver"</span></span><br><span class="line">              <span class="attr">android:exported</span>=<span class="string">"true"</span></span><br><span class="line">              <span class="attr">android:permission</span>=<span class="string">"com.google.android.c2dm.permission.SEND"</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.google.android.c2dm.intent.RECEIVE"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"YOUR_PACKAGE_NAME"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>當 GCM 傳送訊息給你的 app 時， BroadcastReceiver 會收到訊息(intent)，你的可以在 BroadcastReceiver 處理這條 intent，或者交給 Service 處理(通常是IntentService)。</p>
+<p>如果你用 Service 的話，你的 BroadcastReceiver 需繼承自 WakefulBroadcastReceiver， to hold a wake lock while the service is doing its work</p>
+<figure class="highlight java"><figcaption><span>GcmBroadcastReceiver.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.content.BroadcastReceiver;</span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.android.gms.gcm.GoogleCloudMessaging;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GcmBroadcastReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"GCM"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        Log.i(TAG, <span class="string">"GcmBroadcastReceiver"</span>);</span><br><span class="line"></span><br><span class="line">        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(context);</span><br><span class="line">        String messageType = gcm.getMessageType(intent);</span><br><span class="line">        Log.i(TAG, <span class="string">"GcmBroadcastReceiver messageType:"</span>+messageType);</span><br><span class="line"></span><br><span class="line">        Bundle extras = intent.getExtras();</span><br><span class="line">        <span class="keyword">if</span> (!extras.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) &#123;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (GoogleCloudMessaging.MESSAGE_TYPE_DELETED.equals(messageType)) &#123;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) &#123;</span><br><span class="line">                Log.i(TAG,<span class="string">"Message GET"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            Log.i(TAG, <span class="string">"GcmBroadcastReceiver Received: "</span> + extras.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Server 端則先用 python。<a href="https://github.com/geeknam/python-gcm" target="_blank" rel="external">python-gcm</a></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

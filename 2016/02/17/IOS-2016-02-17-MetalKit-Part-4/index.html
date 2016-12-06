@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="原文">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="MetalKit Part.4"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>MetalKit Part.4 - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/02/17/IOS-2016-02-17-MetalKit-Part-4/">
+                MetalKit Part.4
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-17</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="http://mhorga.org/2016/02/01/using-metalkit-part-4.html" target="_blank" rel="external">原文</a></p>
+<a id="more"></a>
+<p>上一次我們看了一些基礎 <code>Metal Shading Language</code>。</p>
+<p>在我們進入更進階的主題前，我只是覺得現在是重新審視我們迄今學到的好時機，我承認特別是對 graphics pipeline 這點，<br>I might have gone too fast on that topic<br>(thank you, anonymous reader, for your suggestion and valuable feedback!)</p>
+<hr>
+<p>讓我們更詳細看一下 graphics pipeline，且這邊我會以一段故事開始。</p>
+<p>所有事大概在十年前左右發生(It all started about a decade ago)，當著色器被引入給開發者 能夠影響固定的 pipeline 就存在在那之前<br>when shaders were introduced as a way for programmers to be able to influence the fixed pipeline that existed until then.</p>
+<p>在同時, GPUs 推出支援浮點數，加速了 GPGPU (general-purpose computing on graphics processing units) 的誕生.</p>
+<p>最後導致，一個新的可編程 pipeline 顯著的改變了：</p>
+<p><img src="/image/metal/p1.png" alt=""></p>
+<p>如你所見，現在新的 pipeline 有兩個 shader 階段，且那就是我們可以寫客製 code 給 GPU 執行。</p>
+<p>The first part of a graphics program always runs on the CPU and is often called host code.</p>
+<p>這邊是大多的資源分配發生的地方，as well as staging the data transfer to and from the GPU.</p>
+<p>對編程的最重要的部分, 然而, 他執行在 GPU.</p>
+<p>兩個 shaders 分離到 <code>x.metal file</code>(在其他 GPGPU 架構，如 OpenCL，叫 kernel code)。</p>
+<hr>
+<p>pipeline 從 cpu 階段開始，輸入 vertices 型式給 GPU。</p>
+<p>They undergo transformation and per-vertex lighting.</p>
+<p>在這個點 vertex shader 可用於預先把 vertices 光柵化(rasterization)處理<br>At this point the vertex shader can be used to manipulate the vertices prior to rasterization.</p>
+<p>After that, vertices undergo clipping and rasterization resulting in fragments.</p>
+<p>fragment shader can then be run on each fragment before the pixel values are output to the framebuffer for display.</p>
+<hr>
+<p>Now let’s look at Metal’s own pipeline. We will refer back to the part 2 source code and we’ll mention line numbers to exemplify the concepts we touch. Building a Metal application is done in two stages. The first one is the Initialization stage:</p>
+<p><img src="" alt=""></p>
+<p>The very first step is getting the device (line 19 in MetalView.swift). A device is the direct connection to the GPU driver and hardware; it’s the source we need to create all the other objects in Metal. The second initialization step is creating a command queue (line 40) which is our channel to submit work to the GPU. The third initialization step is creating the buffers, textures and other resources (lines 20-27). The newBufferWithBytes function will allocate a new block of shared memory, copy the provided pointer into it, and return a handle to that buffer. The fourth initialization step is creating the render pipeline (lines 28-37) which is a chain of steps that start with taking vertex data from one end and producing a rasterized image on the other end. The pipeline consists of two elements: the descriptor which holds the shader information and the pixel format, and the state which is built from the descriptor and contains the compiled shaders. The fifth (last) initialization step is creating a view. For us it was easier to inherit from MTKView (line 11) rather than creating a new CAMetalLayer and adding it as a subview.</p>
+<p>Next, let’s look at the second stage of building a Metal application, the Drawing stage:</p>
+<p><img src="" alt=""></p>
+<p>The very first step is getting the command buffer (line 40). All of the work that goes to the GPU will be enqueued into this buffer. We need the command queue from the previous stage to have a command buffer created. The second step is setting up a render pass (lines 38-39). A render pass descriptor tells Metal what actions to take while an image is being rendered. Configuring it requires that we specify what color textures are we rendering to (the currentDrawable texture). We need to also choose which color the screen will be cleared to before we draw any geometry. The third step is the actually drawing (lines 43-44). We specify the buffer where the vertices are stored and then the primitives we need drawn. The fourth and final step is to commit the command buffer (lines 46-47) to the GPU. When calling commit, the command buffer gets encoded, sent to the end of the command queue, and executed on the GPU when its time comes.</p>
+<p>I hope this part of the tutorial brought more clarity to understanding general topics such as the graphics pipeline and the Metal pipeline. I look forward to returning back to more coding in the next part of this tutorial.</p>
+<p>Until next time!</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

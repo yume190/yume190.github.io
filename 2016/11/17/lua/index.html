@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="lua 筆記">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="lua"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>lua - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/11/17/lua/">
+                lua
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-11-17</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/lua/">lua</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>lua 筆記</p>
+<a id="more"></a>
+<figure class="highlight sh"><figcaption><span>lua 安裝</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -R -O http://www.lua.org/ftp/lua-5.3.3.tar.gz</span><br><span class="line">tar zxf lua-5.3.3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> lua-5.3.3</span><br><span class="line"><span class="comment"># aix bsd c89 freebsd generic linux macosx mingw posix solaris </span></span><br><span class="line">make macosx install</span><br></pre></td></tr></table></figure>
+<h2 id="Load-Lib"><a href="#Load-Lib" class="headerlink" title="Load Lib"></a>Load Lib</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">yume = <span class="built_in">require</span>(<span class="string">'yume'</span>)                <span class="comment">-- load lib then cache &amp; run</span></span><br><span class="line">yume = <span class="built_in">dofile</span>(<span class="string">"lib1.lua"</span>)             <span class="comment">-- reload lib &amp; run</span></span><br><span class="line">yumeFunction = <span class="built_in">loadfile</span>(<span class="string">'yume.lua'</span>)   <span class="comment">-- load lib as function</span></span><br><span class="line">yume = yumeFunction()</span><br><span class="line"></span><br><span class="line"><span class="comment">--[[</span><br><span class="line">require 'luasocket'</span><br><span class="line">no field package.preload['luasocket']</span><br><span class="line">	no file './luasocket.lua'</span><br><span class="line">	no file '/usr/local/share/lua/5.1/luasocket.lua'</span><br><span class="line">	no file '/usr/local/share/lua/5.1/luasocket/init.lua'</span><br><span class="line">	no file '/usr/local/lib/lua/5.1/luasocket.lua'</span><br><span class="line">	no file '/usr/local/lib/lua/5.1/luasocket/init.lua'</span><br><span class="line">	no file './luasocket.so'</span><br><span class="line">	no file '/usr/local/lib/lua/5.1/luasocket.so'</span><br><span class="line">	no file '/usr/local/lib/lua/5.1/loadall.so</span><br><span class="line">]]</span><span class="comment">--</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x)</span></span> <span class="keyword">return</span> x * x <span class="keyword">end</span></span><br><span class="line">f = <span class="function"><span class="keyword">function</span> <span class="params">(x)</span></span> <span class="keyword">return</span> x * x <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title="?:"></a>?:</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- a ? b : c</span></span><br><span class="line">a <span class="keyword">and</span> b <span class="keyword">or</span> c</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 解釋 </span></span><br><span class="line">a <span class="keyword">and</span> b  <span class="comment">-- b</span></span><br><span class="line"><span class="keyword">nil</span> <span class="keyword">or</span> c <span class="comment">-- c</span></span><br></pre></td></tr></table></figure>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><figure class="highlight lua"><figcaption><span>index</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = startIndex, endIndex, step <span class="keyword">do</span> doX() <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><figcaption><span>table as dict</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pairs</span> <span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">next</span>, t, <span class="keyword">nil</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">next</span>, t <span class="keyword">do</span></span><br><span class="line">    doX()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> <span class="built_in">pairs</span>(u) <span class="keyword">do</span> doX() <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><figcaption><span>table as array</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">ipairs</span>(a) <span class="keyword">do</span> doX() <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><figcaption><span>Iterator</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">list_iter</span> <span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">local</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">local</span> n = <span class="built_in">table</span>.getn(t)</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="params">()</span></span></span><br><span class="line">            i = i + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> i &lt;= n <span class="keyword">then</span> <span class="keyword">return</span> t[i] <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> element <span class="keyword">in</span> list_iter(t) <span class="keyword">do</span> doX() <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- for var_1, ..., var_n in explist do block end</span></span><br><span class="line"><span class="keyword">for</span> v1,v2,v3,vn <span class="keyword">in</span> interatorFunction,firstArgumentInitialResult,secondArgumentStartIndex <span class="keyword">do</span> func() <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">yume_next</span> <span class="params">(array,index)</span></span></span><br><span class="line">    <span class="keyword">local</span> _index = index <span class="keyword">and</span> index + <span class="number">1</span> <span class="keyword">or</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">local</span> _value = array[_index]</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> _value <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">end</span>	</span><br><span class="line">    <span class="keyword">return</span> _index,_value</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i,v <span class="keyword">in</span> yume_next, &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;, <span class="number">1</span> <span class="keyword">do</span> func() <span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> i,v <span class="keyword">in</span> yume_next, &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;, <span class="keyword">nil</span> <span class="keyword">do</span> func() <span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> i,v <span class="keyword">in</span> yume_next, &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; <span class="keyword">do</span> func() <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="特殊呼叫方式"><a href="#特殊呼叫方式" class="headerlink" title="特殊呼叫方式"></a>特殊呼叫方式</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 單一 String 參數</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">'hello'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 單一 Table 參數</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">h</span><span class="params">(x)</span></span> <span class="built_in">print</span>(x.key1) <span class="keyword">end</span></span><br><span class="line">h&#123;key1 = <span class="string">'Sonmi~451'</span>&#125;  <span class="comment">-- Prints 'Sonmi~451'.</span></span><br></pre></td></tr></table></figure>
+<h2 id="全域變數"><a href="#全域變數" class="headerlink" title="全域變數"></a>全域變數</h2><p>不需事先宣告，清空方式只需丟入 <code>nil</code> 即可。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(b)  <span class="comment">--&gt; nil</span></span><br><span class="line">b = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(b)  <span class="comment">--&gt; 10</span></span><br><span class="line">b = <span class="keyword">nil</span></span><br><span class="line"><span class="built_in">print</span>(b)  <span class="comment">--&gt; nil</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 統管所有全域變數的特殊 Table</span></span><br><span class="line"><span class="built_in">_G</span> == <span class="built_in">_G</span>.<span class="built_in">_G</span></span><br><span class="line">yume = <span class="number">123</span></span><br><span class="line">yume == <span class="built_in">_G</span>.yume</span><br></pre></td></tr></table></figure>
+<h2 id="註解"><a href="#註解" class="headerlink" title="註解"></a>註解</h2><figure class="highlight lua"><figcaption><span>comments</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--[[</span><br><span class="line">print(10)         --&gt; 10</span><br><span class="line">--]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多加上一個 '-' 即可取消多行註解</span></span><br><span class="line"><span class="comment">---[[</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">10</span>)         <span class="comment">--&gt; 10</span></span><br><span class="line"><span class="comment">--]]</span></span><br></pre></td></tr></table></figure>
+<h2 id="自製-lib-需要用-local-區分全域變數-以免污染全域變數"><a href="#自製-lib-需要用-local-區分全域變數-以免污染全域變數" class="headerlink" title="自製 lib (需要用 local 區分全域變數,以免污染全域變數)"></a>自製 lib (需要用 local 區分全域變數,以免污染全域變數)</h2><figure class="highlight lua"><figcaption><span>VeryNginx</span><a href="https://github.com/alexazhou/VeryNginx/blob/deafaf91f1bcf422c97b84e6032e3d67f1385831/verynginx/lua_script/module/util.lua" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> yume = &#123;&#125;</span><br><span class="line"></span><br><span class="line">dream = <span class="string">'dream'</span> <span class="comment">-- 會跟著被 require 進入到全域變數內</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">yume.dream</span> <span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">'dream'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> yume</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><figcaption><span>codec</span><a href="https://github.com/luvit/luvit/blob/master/deps/codec.lua" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">abc</span> <span class="title">do</span> <span class="title">print</span>'<span class="title">x</span>' <span class="title">end</span></span><br><span class="line"><span class="title">return</span> &#123;</span><br><span class="line">    <span class="title">abc</span> = <span class="title">abc</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h3><p>Before it starts running arguments, lua looks for an environment variable called LUA_INIT. If there is such a variable and its content is @filename, then lua loads the given file. If LUA_INIT is defined but does not start with `@´, then lua assumes that it contains Lua code and runs it. This variable gives you great power when configuring the stand-alone interpreter, because you have the full power of Lua in the configuration. You can pre-load packages, change the prompt and the path, define your own functions, rename or delete functions, and so on.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">prompt&gt; lua <span class="_">-e</span> <span class="string">"print(math.sin(12))"</span>   --&gt; -0.53657291800043</span><br><span class="line"><span class="comment"># prompt&gt; lua -i -l a.lua -e "x = 10"</span></span><br><span class="line">prompt&gt; lua -i <span class="_">-e</span> <span class="string">"_PROMPT=' lua&gt; '"</span></span><br><span class="line"><span class="comment"># prompt&gt; lua script a b c</span></span><br><span class="line"><span class="comment"># prompt&gt; lua -e "sin=math.sin" script a b</span></span><br></pre></td></tr></table></figure>
+<h2 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h2><p>lua 基本類型 ： </p>
+<ul>
+<li>nil (<code>if 判斷時，只有 nil 以及 false 會被斷定為否，其他都為真{1, &#39;&#39;, true ...}</code>)</li>
+<li>boolean true | false</li>
+<li>number double(0.3e12, 5e+20)</li>
+<li>string (‘a’,”b”,[[c]]), (字串串接 <code>..</code>)</li>
+<li>userdata</li>
+<li>function</li>
+<li>thread</li>
+<li>table   <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#125;</span><br><span class="line">a[<span class="string">"yume"</span>] = <span class="string">"dream"</span></span><br><span class="line">a[<span class="string">"yume"</span>] == a.yume</span><br><span class="line"></span><br><span class="line">days = &#123;<span class="string">"Sunday"</span>, <span class="string">"Monday"</span>, <span class="string">"Tuesday"</span>, <span class="string">"Wednesday"</span>,</span><br><span class="line">       <span class="string">"Thursday"</span>, <span class="string">"Friday"</span>, <span class="string">"Saturday"</span>&#125;</span><br><span class="line">days[<span class="number">1</span>] == <span class="string">"Sunday"</span> <span class="comment">-- 陣列從 1 開始</span></span><br><span class="line">w = &#123;x=<span class="number">0</span>, y=<span class="number">0</span>, label=<span class="string">"console"</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="string">"Hello world"</span>))  <span class="comment">--&gt; string</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="number">10.4</span>*<span class="number">3</span>))         <span class="comment">--&gt; number</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))   <span class="comment">--&gt; nil   (`a' is not initialized)</span></span><br><span class="line">a = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))   <span class="comment">--&gt; number</span></span><br><span class="line">a = <span class="string">"a string!!"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))   <span class="comment">--&gt; string</span></span><br><span class="line">a = <span class="built_in">print</span>        <span class="comment">-- yes, this is valid!</span></span><br><span class="line">a(<span class="built_in">type</span>(a))       <span class="comment">--&gt; function</span></span><br></pre></td></tr></table></figure>
+<h2 id="Metatable-amp-Metafunction"><a href="#Metatable-amp-Metafunction" class="headerlink" title="Metatable &amp; Metafunction"></a>Metatable &amp; Metafunction</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">defaultFavs = &#123;animal = <span class="string">'gru'</span>, food = <span class="string">'donuts'</span>&#125;</span><br><span class="line">myFavs = &#123;food = <span class="string">'pizza'</span>&#125;</span><br><span class="line"><span class="built_in">setmetatable</span>(myFavs, &#123;__index = defaultFavs&#125;)</span><br><span class="line">eatenBy = myFavs.animal</span><br><span class="line"><span class="comment">-- __add(a, b)                     for a + b</span></span><br><span class="line"><span class="comment">-- __sub(a, b)                     for a - b</span></span><br><span class="line"><span class="comment">-- __mul(a, b)                     for a * b</span></span><br><span class="line"><span class="comment">-- __div(a, b)                     for a / b</span></span><br><span class="line"><span class="comment">-- __mod(a, b)                     for a % b</span></span><br><span class="line"><span class="comment">-- __pow(a, b)                     for a ^ b</span></span><br><span class="line"><span class="comment">-- __unm(a)                        for -a</span></span><br><span class="line"><span class="comment">-- __concat(a, b)                  for a .. b</span></span><br><span class="line"><span class="comment">-- __len(a)                        for #a</span></span><br><span class="line"><span class="comment">-- __eq(a, b)                      for a == b</span></span><br><span class="line"><span class="comment">-- __lt(a, b)                      for a &lt; b</span></span><br><span class="line"><span class="comment">-- __le(a, b)                      for a &lt;= b</span></span><br><span class="line"><span class="comment">-- __index(a, b)  &lt;fn or a table&gt;  for a.b</span></span><br><span class="line"><span class="comment">-- __newindex(a, b, c)             for a.b = c</span></span><br><span class="line"><span class="comment">-- __call(a, ...)                  for a(...)</span></span><br></pre></td></tr></table></figure>
+<h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><figure class="highlight lua"><figcaption><span>定義 class</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Dog = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog:new</span><span class="params">()</span></span></span><br><span class="line">    newObj = &#123;sound = <span class="string">'woof'</span>&#125;</span><br><span class="line">    self.__index = self</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">setmetatable</span>(newObj, self)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog:makeSound</span><span class="params">()</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'I say '</span> .. self.sound)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">mrDog = Dog:new()</span><br><span class="line">mrDog:makeSound()</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><figcaption><span>class 繼承</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LoudDog = Dog:new()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LoudDog:makeSound</span><span class="params">()</span></span></span><br><span class="line">    s = self.sound .. <span class="string">' '</span></span><br><span class="line">    <span class="built_in">print</span>(s .. s .. s)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">seymour = LoudDog:new()</span><br><span class="line">seymour:makeSound()</span><br></pre></td></tr></table></figure>
+<h2 id="-1"><a href="#-1" class="headerlink" title="???"></a>???</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://www.lua.org/pil/1.1.html</span></span><br><span class="line">lua -la -lb</span><br></pre></td></tr></table></figure>
+<p>local P = {}   – package<br>    if _REQUIREDNAME == nil then<br>      complex = P<br>    else<br>      _G[_REQUIREDNAME] = P<br>    end<br>    setfenv(1, P)</p>
+<h4 id="教學"><a href="#教學" class="headerlink" title="教學"></a>教學</h4><ul>
+<li><a href="http://tylerneylon.com/a/learn-lua/" target="_blank" rel="external">Learn Lua in 15 Minutes</a></li>
+<li><a href="https://www.tutorialspoint.com/lua/index.htm" target="_blank" rel="external">Lua Tutorial</a></li>
+<li><a href="https://www.lua.org/pil/contents.html" target="_blank" rel="external">Programming in Lua (first edition)</a></li>
+<li><a href="http://lua-users.org/wiki/GeneralizedPairsAndIpairs" target="_blank" rel="external">lua-user wiki</a></li>
+<li><a href="http://lua-users.org/files/wiki_insecure/users/thomasl/luarefv51.pdf" target="_blank" rel="external">lua 5.1 cheat sheet</a></li>
+</ul>
+<h4 id="Lua-package-manager"><a href="#Lua-package-manager" class="headerlink" title="Lua package manager"></a>Lua package manager</h4><figure class="highlight sh"><figcaption><span>install luasocket</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget http://luarocks.github.io/luarocks/releases/luarocks-2.4.1.tar.gz</span><br><span class="line">tar zxvf luarocks-2.4.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> luarocks-2.4.1</span><br><span class="line">./configure</span><br><span class="line">make build</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">luarocks install luasocket</span><br><span class="line">lua </span><br><span class="line">&gt; socket = require(<span class="string">'socket'</span>)</span><br><span class="line"></span><br><span class="line">luarocks remove --force luasocket</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://luarocks.org/" target="_blank" rel="external">luarocks</a></li>
+<li><a href="https://luarocks.org/modules/luarocks/luasocket" target="_blank" rel="external">luarocks modules 查看</a></li>
+</ul>
+<h2 id="lua-amp-c"><a href="#lua-amp-c" class="headerlink" title="lua &amp; c"></a>lua &amp; c</h2><figure class="highlight c"><figcaption><span>yume2.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;lua.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;lauxlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;lualib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hello_c</span> <span class="params">(lua_State *L)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> * from_lua = lua_tostring(L,<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Lua: %s\n"</span>,from_lua);    </span><br><span class="line">	lua_pushstring(L,<span class="string">"Hi Lua, nice to meet you"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">struct</span> luaL_Reg mylualib [] = &#123;</span><br><span class="line">	&#123;<span class="string">"hello_c"</span>, hello_c&#125;,</span><br><span class="line">	&#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>&#125; <span class="comment">/* sentinel */</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">luaopen_yume2</span> <span class="params">(lua_State *L)</span> </span>&#123;</span><br><span class="line">	luaL_openlib(L, <span class="string">"yume2"</span>, mylualib, <span class="number">0</span>);</span><br><span class="line">	lua_pushvalue(L, <span class="number">-1</span>);</span><br><span class="line">	lua_setglobal(L, <span class="string">"yume2"</span>); <span class="comment">/* the module name */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>debian</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -c <span class="_">-f</span>PIC -I /usr/include/lua5.1/yume2.c </span><br><span class="line">gcc yume2.o -shared -o yume2.so</span><br><span class="line"><span class="comment"># gcc -shared -o libhello.so -fPIC hello.c</span></span><br><span class="line"><span class="comment"># http://stackoverflow.com/questions/14884126/build-so-file-from-c-file-using-gcc-command-line</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>mac</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -v</span><br><span class="line"><span class="comment"># InstalledDir: /Applications/Xcode8_1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin</span></span><br><span class="line">gcc -c yume2.c ; gcc -O2 -bundle -undefined dynamic_lookup -o yume2.so yume2.o</span><br></pre></td></tr></table></figure>
+<figure class="highlight lua"><figcaption><span>lua call c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="built_in">require</span> <span class="string">'yume2'</span></span><br><span class="line">y.hello_c(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.chinaunix.net/uid-16175292-id-3473543.html" target="_blank" rel="external">和我一起写lua － Mac OS X环境编译C模块</a></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

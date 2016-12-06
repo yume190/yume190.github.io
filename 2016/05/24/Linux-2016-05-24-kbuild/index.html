@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="MakefileMakefile 語法簡介Makefile 語法筆記
+KBuildmoduleskbuild 參數 list
+Pre require
+prebuilt kernel
+kernel 設定可載入 module
+可能是 CONFIG_PROC_KCORE and CONFIG_DEBUG_INFO">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="kbuild"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>kbuild - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/24/Linux-2016-05-24-kbuild/">
+                kbuild
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-24</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/linux/">linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h3 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h3><p><a href="http://tetralet.luna.com.tw/?op=ViewArticle&amp;articleId=185" target="_blank" rel="external">Makefile 語法簡介</a><br><a href="http://wandachiang.blogspot.tw/2012/12/makefile.html" target="_blank" rel="external">Makefile 語法筆記</a></p>
+<h3 id="KBuild"><a href="#KBuild" class="headerlink" title="KBuild"></a>KBuild</h3><p><a href="https://www.kernel.org/doc/Documentation/kbuild/modules.txt" target="_blank" rel="external">modules</a><br><a href="https://www.kernel.org/doc/Documentation/kbuild/kbuild.txt" target="_blank" rel="external">kbuild 參數 list</a></p>
+<h3 id="Pre-require"><a href="#Pre-require" class="headerlink" title="Pre require"></a>Pre require</h3><ul>
+<li>prebuilt kernel</li>
+<li>kernel 設定可載入 module</li>
+<li>可能是 <code>CONFIG_PROC_KCORE</code> and <code>CONFIG_DEBUG_INFO</code></li>
+</ul>
+<a id="more"></a>
+<h3 id="2-語法"><a href="#2-語法" class="headerlink" title="2 語法"></a>2 語法</h3><figure class="highlight sh"><figcaption><span>基本語法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C &lt;path_to_kernel_src&gt; M=<span class="variable">$PWD</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>使用運行中的 kernel</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C /lib/modules/`uname -r`/build M=<span class="variable">$PWD</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>通用使用法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -C <span class="variable">$KDIR</span> M=<span class="variable">$PWD</span> [target]</span><br></pre></td></tr></table></figure>
+<h5 id="target"><a href="#target" class="headerlink" title="target"></a>target</h5><ul>
+<li>modules<br>預設 target(不輸入時)，產出物會在本目錄下</li>
+<li>modules_install<br>安裝到 <code>/lib/modules/&lt;kernel_release&gt;/extra/</code><br>INSTALL_MOD_PATH</li>
+<li>clean<br>移除本目錄下的產出物</li>
+<li>help</li>
+</ul>
+<h3 id="3-Creating-a-Kbuild-File-for-an-External-Module"><a href="#3-Creating-a-Kbuild-File-for-an-External-Module" class="headerlink" title="3 Creating a Kbuild File for an External Module"></a>3 Creating a Kbuild File for an External Module</h3><p>新版 kernel 會先去掃過一遍 <code>Kbuild</code></p>
+<p>include object file as blob，需要將檔案命名成 <code>&lt;filename&gt;_shipped</code>，如 8123_bin.o_shipped</p>
+<p>分離 Kbuild Makefile，且向前相容</p>
+<figure class="highlight sh"><figcaption><span>include to module</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">8123_if.c</span><br><span class="line">8123_if.h</span><br><span class="line">8123_pci.c</span><br><span class="line">8123_bin.o_shipped  &lt;= Binary blob</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>Kbuild</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj-m  := 8123.o</span><br><span class="line">8123-y := 8123_if.o 8123_pci.o 8123_bin.o</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ifneq ($(KERNELRELEASE),)</span><br><span class="line"><span class="comment"># kbuild part of makefile</span></span><br><span class="line">include Kbuild</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="comment"># normal makefile</span></span><br><span class="line">KDIR ?= /lib/modules/`uname -r`/build</span><br><span class="line"></span><br><span class="line">default:</span><br><span class="line">    $(MAKE) -C $(KDIR) M=$<span class="variable">$PWD</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Module specific targets</span></span><br><span class="line">genbin:</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"X"</span> &gt; 8123_bin.o_shipped</span><br><span class="line"></span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>Building Multiple Modules</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj-m := foo.o bar.o</span><br><span class="line">foo-y := &lt;foo_srcs&gt; <span class="comment"># foo.ko</span></span><br><span class="line">bar-y := &lt;bar_srcs&gt; <span class="comment"># bar.ko</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-Header-file"><a href="#4-Header-file" class="headerlink" title="4 Header file"></a>4 Header file</h3><p><code>include/linux/</code><br><code>arch/$(ARCH)/include/</code></p>
+<figure class="highlight sh"><figcaption><span>Kbuildz</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .</span></span><br><span class="line"><span class="comment"># |__ src</span></span><br><span class="line"><span class="comment"># |   |__ complex_main.c</span></span><br><span class="line"><span class="comment"># |   |__ hal</span></span><br><span class="line"><span class="comment"># |   |__ hardwareif.c</span></span><br><span class="line"><span class="comment"># |   |__ include</span></span><br><span class="line"><span class="comment"># |       |__ hardwareif.h</span></span><br><span class="line"><span class="comment"># |__ include</span></span><br><span class="line"><span class="comment">#     |__ complex.h</span></span><br><span class="line">obj-m := complex.o</span><br><span class="line">complex-y := src/complex_main.o</span><br><span class="line">complex-y += src/hal/hardwareif.o</span><br><span class="line"></span><br><span class="line">ccflags-y := -I$(src)/include</span><br><span class="line">ccflags-y += -I$(src)/src/hal/include</span><br></pre></td></tr></table></figure>
+<h3 id="5-skip"><a href="#5-skip" class="headerlink" title="5 skip"></a>5 skip</h3><h3 id="6-Symbol"><a href="#6-Symbol" class="headerlink" title="6 Symbol"></a>6 Symbol</h3><p>build 過程中，會產生 <code>Module.symvers</code>，它包含所有 compiled module 的全部 exported symbols。</p>
+<figure class="highlight sh"><figcaption><span>Module.symvers</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;CRC&gt;       &lt;Symbol&gt;           &lt;module&gt;</span><br><span class="line"></span><br><span class="line">0x2d036834  scsi_remove_host   drivers/scsi/scsi_mod</span><br></pre></td></tr></table></figure>
+<p>For a kernel build without CONFIG_MODVERSIONS enabled, the CRC would read 0x00000000.</p>
+<p>Module.symvers serves two purposes:</p>
+<p> 1) It lists all exported symbols from vmlinux and all modules.<br> 2) It lists the CRC if CONFIG_MODVERSIONS is enabled.</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/linux/">#linux</a> <a href="/tags/kernel/">#kernel</a> <a href="/tags/kbuild/">#kbuild</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

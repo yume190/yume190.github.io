@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Go Concurrency Patterns: Pipelines and cancellation
+首先，這篇主要以 pipeline 方式，將工作拆分成 N 個階段。
+在第K個階段中使用 fan out pattern 產生多個 worker 運作
+並且在接下來的階段中使用 fan in pattern 將資訊收集起來處理
+
+但是在實際狀況，stage 不會每次都把所有資料接收完。
+可能上個階段發生 error 提早結束，又或者下個階段不需要那麼多資料
+問題1：如果 下游 stage 沒有成功消費完所有資料的話，會導致 上游 goroutine block， Resource Leak
+解法：上游 outbound channel 使用 channel buffer。
+
+問題2：上游 channel buffer 數量取決於下游狀況，所以當上個階段多送，或下個階段少接，還是會造成 block
+解法：使用 Explicit cancellation(Done channel)
+
+於是使用 Done Channel 告知個階段拋棄資料。(發送一次 Done 訊號 處理一個 潛在 Block)
+問題3：下游接收者得要知道上游的潛在 Block 數量
+解法：將 Done Channel defer close，用 closed channel 拿出來的 zero value 處理 N 個 潛在 Block">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Go Concurrent Part.2 Pipeline"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Go Concurrent Part.2 Pipeline - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Pipeline/">
+                Go Concurrent Part.2 Pipeline
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-24</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="http://blog.golang.org/pipelines" target="_blank" rel="external">Go Concurrency Patterns: Pipelines and cancellation</a></p>
+<p>首先，這篇主要以 pipeline 方式，將工作拆分成 N 個階段。</p>
+<p>在第K個階段中使用 <code>fan out pattern</code> 產生多個 worker 運作</p>
+<p>並且在接下來的階段中使用 <code>fan in pattern</code> 將資訊收集起來處理</p>
+<hr>
+<p>但是在實際狀況，stage 不會每次都把所有資料接收完。</p>
+<p>可能上個階段發生 error 提早結束，又或者下個階段不需要那麼多資料</p>
+<p>問題1：如果 <code>下游 stage</code> 沒有成功消費完所有資料的話，會導致 <code>上游 goroutine block， Resource Leak</code></p>
+<p>解法：上游 outbound channel 使用 channel buffer。</p>
+<hr>
+<p>問題2：上游 <code>channel buffer 數量</code>取決於下游狀況，所以當上個階段多送，或下個階段少接，還是會造成 block</p>
+<p>解法：使用 <code>Explicit cancellation</code>(Done channel)</p>
+<hr>
+<p>於是使用 Done Channel 告知個階段拋棄資料。(發送一次 <code>Done 訊號</code> 處理一個 <code>潛在 Block</code>)</p>
+<p>問題3：下游接收者得要知道上游的潛在 Block 數量</p>
+<p>解法：將 Done Channel defer close，用 closed channel 拿出來的 zero value 處理 N 個 <code>潛在 Block</code></p>
+<a id="more"></a>
+<h4 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pipeline</span><span class="params">(inQueue &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>,out <span class="keyword">chan</span>&lt;- <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> in := <span class="keyword">range</span> inQueue &#123;</span><br><span class="line">        out &lt;- in + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><figcaption><span>平方 Pipelines</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">gen</span><span class="params">(nums ...<span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">            out &lt;- n</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sq</span><span class="params">(in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> in &#123;</span><br><span class="line">            out &lt;- n * n</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(out)</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// Set up the pipeline.</span></span><br><span class="line">    c := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">    out := sq(c)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the output.</span></span><br><span class="line">    fmt.Println(&lt;-out) <span class="comment">// 4</span></span><br><span class="line">    fmt.Println(&lt;-out) <span class="comment">// 9</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n := <span class="keyword">range</span> sq(sq(gen(<span class="number">2</span>, <span class="number">3</span>))) &#123;</span><br><span class="line">        fmt.Println(n) <span class="comment">// 16 then 81</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Fan-out-fan-in"><a href="#Fan-out-fan-in" class="headerlink" title="Fan-out, fan-in"></a>Fan-out, fan-in</h4><h6 id="Fan-out"><a href="#Fan-out" class="headerlink" title="Fan-out"></a>Fan-out</h6><p>多個 func 可以從同個 channel 讀取資料，直到 channel 被關閉</p>
+<p>是一種分派工作的方式</p>
+<h6 id="Fan-in"><a href="#Fan-in" class="headerlink" title="Fan-in"></a>Fan-in</h6><p>一個 func 可以讀取多個 input 並且處理，直到 <code>多工 channel</code> 被關閉</p>
+<p><code>多工 channel</code> : N to 1 channel，指所有 channel 被關閉才會關閉 多工 channel</p>
+<h4 id="Stopping-short"><a href="#Stopping-short" class="headerlink" title="Stopping short"></a>Stopping short</h4><p>問題： blocked goroutines<br>解法： outbound channel buffer</p>
+<p>我們的 pipeline 有下面這些模式:</p>
+<ul>
+<li>當 stage 所有的傳送活動結束時，會將 輸出 channel 關閉</li>
+<li>stage 會不停地接收 channel 的資料，直到 channel 被關閉</li>
+</ul>
+<p>這個模式允許每個接收階段能夠被寫成 <code>range loop</code> 並且確保所有的 <code>goroutines</code> 在結束前足夠把所有東西送給下個階段。</p>
+<hr>
+<p>但是實際狀況，stage 不會每次都把所有資料接收完。</p>
+<p>Sometimes this is by design: the receiver may only need a subset of values to make progress.</p>
+<p>更多的可能是，stage 提早結束，因為在前個 stage 發出了 error</p>
+<p>另一種可能是 接收方不應該等待剩餘的資料到來，且我們希望前個 stage 不要丟不必要的資料給下個階段。</p>
+<hr>
+<p>在我們範例中，如 stage 沒有成功消費完所有資料的話，會導致 goroutine <font color="red">block，Resource Leak</font></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">&lt;-merge(sq(in), sq(in))</span><br></pre></td></tr></table></figure>
+<hr>
+<p>我們需要整理 <code>upstream stages</code>，讓 pipeline 結束，即使 downstream stages 沒有接收完所有資料</p>
+<p>一種方式就是讓 outbound channels 有 buffer。</p>
+<p>這個修正了 blocked goroutine，但這是 bad code。</p>
+<p>buffer size 取決於我們知道下個階段的狀況。</p>
+<p>這是脆弱的設計。如果我們多丟幾資料，或者 downstream stage 讀少一點資料，我們會再度 block again。</p>
+<p>Instead, we need to provide a way for downstream stages to indicate to the senders that they will stop accepting input.</p>
+<h4 id="Explicit-cancellation"><a href="#Explicit-cancellation" class="headerlink" title="Explicit cancellation"></a>Explicit cancellation</h4><p>當主程式決定離開並且不接收所有資料，他必須告訴 upstream stages 的 goroutine 拋棄它們要送的資料。</p>
+<p>他丟了兩次訊號，因為那邊有兩次潛在 block。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    in := gen(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(in)</span><br><span class="line">    c2 := sq(in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the first value from output.</span></span><br><span class="line">    done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">2</span>)</span><br><span class="line">    out := merge(done, c1, c2)</span><br><span class="line">    fmt.Println(&lt;-out) <span class="comment">// 4 or 9</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Tell the remaining senders we're leaving.</span></span><br><span class="line">    done &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">    done &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The sending goroutines replace their send operation with a select statement that proceeds either when the send on out happens or when they receive a value from done.</p>
+<p>The value type of done is the empty struct because the value doesn’t matter: it is the receive event that indicates the send on out should be abandoned.</p>
+<p>The output goroutines continue looping on their inbound channel, c, so the upstream stages are not blocked.</p>
+<p>(We’ll discuss in a moment how to allow this loop to return early.)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(done &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, cs ...&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">    <span class="comment">// copies values from c to out until c is closed or it receives a value</span></span><br><span class="line">    <span class="comment">// from done, then output calls wg.Done.</span></span><br><span class="line">    output := <span class="function"><span class="keyword">func</span><span class="params">(c &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> c &#123;</span><br><span class="line">            <span class="keyword">select</span> &#123;</span><br><span class="line">            <span class="keyword">case</span> out &lt;- n:</span><br><span class="line">            <span class="keyword">case</span> &lt;-done:</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        wg.Done()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ... the rest is unchanged ...</span></span><br></pre></td></tr></table></figure>
+<p>這個改進還是有些問題：每一個下游接收者需要知道上游的潛在 block 量，且要安排提醒上游要 early return。</p>
+<p>持續追蹤這個值是<font color="red">乏味且容易出錯</font></p>
+<hr>
+<p>我們需要一個方式告訴 goroutines 停止送資料給他們的下游。</p>
+<p>在 Go，我們可以把 channel 關閉，因為從關閉的 channel 讀資料不會 block 且會 yielding zero value。</p>
+<hr>
+<p>這代表主程式可以 unblock 所有 senders，藉由簡單低關閉 <code>done channel</code>。</p>
+<p>這個關閉是很有效率低廣播訊號給 senders。</p>
+<p>我們把所有的 pipeline func 套用上這個模式，接收 <code>done 參數</code> 且透過 defer 安排一個 <code>close channel</code>，因此，所有從主程式的 return paths 將會發結束訊息給 pipeline。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// Set up a done channel that's shared by the whole pipeline,</span></span><br><span class="line">    <span class="comment">// and close that channel when this pipeline exits, as a signal</span></span><br><span class="line">    <span class="comment">// for all the goroutines we started to exit.</span></span><br><span class="line">    done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;)                             <span class="comment">// Marked</span></span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(done)                                       <span class="comment">// Marked</span></span><br><span class="line"></span><br><span class="line">    in := gen(done, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Distribute the sq work across two goroutines that both read from in.</span></span><br><span class="line">    c1 := sq(done, in)</span><br><span class="line">    c2 := sq(done, in)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Consume the first value from output.</span></span><br><span class="line">    out := merge(done, c1, c2)</span><br><span class="line">    fmt.Println(&lt;-out) <span class="comment">// 4 or 9</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// done will be closed by the deferred call.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(done &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, cs ...&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start an output goroutine for each input channel in cs.  output</span></span><br><span class="line">    <span class="comment">// copies values from c to out until c or done is closed, then calls</span></span><br><span class="line">    <span class="comment">// wg.Done.</span></span><br><span class="line">    output := <span class="function"><span class="keyword">func</span><span class="params">(c &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">defer</span> wg.Done()                                     <span class="comment">// Marked</span></span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> c &#123;</span><br><span class="line">            <span class="keyword">select</span> &#123;</span><br><span class="line">            <span class="keyword">case</span> out &lt;- n:</span><br><span class="line">            <span class="keyword">case</span> &lt;-done:</span><br><span class="line">                <span class="keyword">return</span>                                      <span class="comment">// Marked</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ... the rest is unchanged ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sq</span><span class="params">(done &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">defer</span> <span class="built_in">close</span>(out)                                    <span class="comment">// Marked</span></span><br><span class="line">        <span class="keyword">for</span> n := <span class="keyword">range</span> in &#123;</span><br><span class="line">            <span class="keyword">select</span> &#123;</span><br><span class="line">            <span class="keyword">case</span> out &lt;- n * n:</span><br><span class="line">            <span class="keyword">case</span> &lt;-done:</span><br><span class="line">                <span class="keyword">return</span>                                      <span class="comment">// Marked</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Here are the guidelines for pipeline construction:</p>
+<ul>
+<li>stages 關閉他們的輸出，當所有的傳送活動結束。</li>
+<li>stages 持續接收資料，直到 channel 被關閉 或者 the senders are unblocked.</li>
+</ul>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Go/">#Go</a> <a href="/tags/Go-Concurrent/">#Go Concurrent</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

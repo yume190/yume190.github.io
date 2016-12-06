@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="原文">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Time-Series Database Requirements"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Time-Series Database Requirements - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/02/18/monitor-2016-02-18-Time-Series-Database-Requirements/">
+                Time-Series Database Requirements
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-18</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/" target="_blank" rel="external">原文</a></p>
+<a id="more"></a>
+<h2 id="Definition-of-Data-Type"><a href="#Definition-of-Data-Type" class="headerlink" title="Definition of Data Type"></a>Definition of Data Type</h2><p>For my purposes, time-series can be defined as follows:</p>
+<p>series 會有個標示 source name/ID(如 hostID) 跟 metric name/ID</p>
+<p>series 由 {timestamp, value} 組成，measurements 依照 timestamp 排序，並且 timestamp 是個高精確度的 Unix timestamp 且是 float</p>
+<h2 id="Workload-Characteristics"><a href="#Workload-Characteristics" class="headerlink" title="Workload Characteristics"></a>Workload Characteristics</h2><p>時序資料不是作為一般用途且在他的工作負載上一定的模式在。</p>
+<p>time-series database 應該優化以下事項：</p>
+<h4 id="For-writes"><a href="#For-writes" class="headerlink" title="For writes:"></a>For writes:</h4><p>基本上幾乎都在寫;約95% ~ 99%以上都在寫</p>
+<p>寫入幾乎都是 sequential appends;資料也幾乎是按照時間順序進來。<font color="#cc7a00">caveat</font></p>
+<p>寫入舊資料非常稀有。大多測量值被觀察到後最糟會在約幾秒或幾分會被寫入。</p>
+<p>更改資料很稀有</p>
+<p>刪除大量資料會在相鄰區塊。很少刪除個別資料或隨機位置資料。有效刪除大量資料很重要;要接近 0 成本。非大量資料刪除可不必最佳化</p>
+<p>基於上面，不可變 storage format 可能是可好東西。As a further consequence of immutable storage, a predefined or fixed schema may be a problem long-term.</p>
+<h4 id="For-reads-the-following-usually-holds"><a href="#For-reads-the-following-usually-holds" class="headerlink" title="For reads, the following usually holds:"></a>For reads, the following usually holds:</h4><p>資料比 memory 大且很少讀，cache 基本上沒什麼作用; 系統幾乎在處理 IO (systems are often IO-bound).</p>
+<p>對於每個序列讀取相當於一般低邏輯順序，<br>Reads are typically logically sequential per-series, ascending or descending.</p>
+<p>併發讀取和一次讀取多個序列是很常見的事。<br>Concurrent reads and reads of multiple series at once are reasonably common.</p>
+<p>寫入是依照 {timestamp, series_id} 順序，讀取想以 {series_id, timestamp} 順序。就 tradeoff 寫快/讀快<br>The caveat to “writes arrive in sequential order” is that measurements typically arrive ordered by {timestamp, series_id}, but reads are typically done in {series_id, timestamp} order. Reads need to be fast, even though they are rare. There are generally two approaches to dealing with this. The first is to write efficiently, so the data isn’t read-optimized per-series on disk, and deploy massive amounts of compute power in parallel for reads, scanning through all the data linearly. The second is to pay a penalty on writes, so the data is tightly packed by series and optimized for sequential reads of a series.</p>
+<h2 id="Performance-and-Scaling-Characteristics"><a href="#Performance-and-Scaling-Characteristics" class="headerlink" title="Performance and Scaling Characteristics"></a>Performance and Scaling Characteristics</h2><p>A time-series database should be:</p>
+<p>Distributed by design — no bolt-on clustering or sharding. Automatic data distribution, automatic query distribution. Fault-tolerant and highly available, with built-in replication and automatic failover. I think by this point we should all understand what it means for a database to be natively distributed. There are several good examples of databases that do it sensibly, and little of this should need to be novel.<br>Send the query to the data, don’t bring the data to the query. This is a restatement of “automatic query distribution.” Queries may touch many gigabytes or terabytes of data, so moving it across the network is not scalable.<br>Efficient per-node so it is capable of running at large scale without requiring thousands of servers.<br>Able to take advantage of powerful hardware: PCIe flash storage, lots of RAM, many CPU cores. This rules out single-writer systems.<br>Fast and consistent. No spikes or stalls; no checkpoint freezes; no compaction lock-ups.<br>Operational Requirements<br>I do not specifically need ACID, but I need the database to quickly recover to a consistent state after events like a power failure. For my purposes, time-series data is not subject to the same durability constraints as financial data.<br>Non-blocking backups are a must. Incremental backups are a very good thing.<br>It needs to be possible to scale the cluster up or down without downtime or locking.<br>Compressed storage. Time-series data is big, but highly compressible.<br>The database should be well instrumented.<br>Language and/or API Design<br>I’ve spoken to many people who have built large-scale time-series databases for big companies. Most of them have told me that the lack of a high-level way to access and query the database was the long-term millstone around their neck.</p>
+<p>I would be happy with something that looks like SQL, as InfluxDB’s query language does. Crucially, it needs to avoid a few of the legacy limitations of SQL. The way I think about it is that SQL tables are fixed-width and grow downwards by adding rows. A natural outcome of that is that each column in SQL statements is known in advance and explicitly named, and expressions naturally work within a single row or in aggregates over groups of rows, but cannot span rows otherwise without doing a JOIN.</p>
+<p>However, in time-series databases, rows are series identified by the “primary key.” Rows grow sideways as new measurements are added, tables grow downwards as new series are added, and columns are timestamps. Thus, tables are sparse matrices. Expressions must operate in aggregates over rectangular sections of the sparse matrix, not just rows or columns, and the language must permit a GROUP BY functionality in both directions. You could say that both rows and columns must be addressable by keys instead of by literal identifiers, and ideally by pattern matching in addition to strict equality and ranges.</p>
+<p>Ideally, the language and database should support server-side processing of at least the following, and probably much more:</p>
+<p>Expressions such as arithmetic and string operations.<br>Aggregate functions.<br>Resampling into time resolutions different from the storage resolution.<br>Expressions and operators that refer to different series, e.g. to sum series, or divide one by another, and to combine such expressions, e.g. to sum up all series whose identifiers match a pattern, then divide the result by the sum of another group of series.<br>Ordering, ranking, and limiting.<br>Another way to say the above is that the language and database should be designed for analytics, not just for drawing strip charts. Many open-source time-series databases such as RRDTool are far too tightly coupled with their expected use case, and this is a serious limitation.</p>
+<p>There should be an efficient binary protocol that supports bulk inserts.</p>
+<p>Non-Requirements<br>I’d like a database that does one thing well. I do not think I need any of the following, and I regard them as neutral, or in some cases even as drawbacks:</p>
+<p>Access control — authentication and authorization.<br>Ability to visualize data, draw graphs, etc.<br>Support for multiple measurements at the same timestamp. The measurement’s primary key is series,timestamp and it does not make sense to allow multiple values with the same timestamp.<br>Multi-dimensionality. Multiple dimensions for a series can be stored as multiple series, and multiple series can be combined in expressions with the query language I specified, so the atom of “series” already provides for the use case of multi-dimensionality.<br>“Tagging” measurements or series with additional ad-hoc key-value pairs. (Update: I now see the use case for tagging.<br>Joins from time-series data to relational data.<br>Bonus and Additional Features<br>The preceding sections describe a good general-purpose time-series database, from my point of view. Nice-to-have features might include:</p>
+<p>Support for retention policies.<br>Support for storing data in multiple resolutions (materialized views) and selecting the appropriate resolution to access for a given request.<br>Support for maintaining downsampled data in coarser resolutions, automatically building these materialized views as high-resolution data arrives (automatic rollup).<br>Support for query priorities or admission control to prevent starvation and DOS from large queries.<br>For my particular uses, I also need support for:</p>
+<p>Many series per server in my cluster, far more than practical limits on the number of files in a directory for example.<br>Although some series are long-lived, many are not. Many are sparse, with measurements only once in a long while. Series are dynamic and are not predefined; new series may appear at any moment. Due to this requirement, I need efficient support for discovering which series exist during any given time range.<br>Multi-tenancy at the physical level. This is partially by demand; some customers want to know that their data is separate from other customers’ data. It is partially pragmatic, to support features such as separate retention policies per customer.<br>Conclusion<br>The future of “big data” is mostly time-series. Someone who creates a good time-series database for such use cases will probably do quite well. I’m sure my requirements aren’t the most general-purpose or complete, but I hope it’s useful to share anyway.</p>
+<p>Updates and related reading:</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

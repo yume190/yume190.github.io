@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Open WRT 筆記">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="OpenWRT Begin"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>OpenWRT Begin - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/11/15/OpenWRT-2016-11-15-OpenWRT-Begin/">
+                OpenWRT Begin
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-11-15</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/openwrt/">openwrt</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Open WRT 筆記</p>
+<a id="more"></a>
+<hr>
+<h2 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h2><h4 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h4><ul>
+<li><code>echo $SED</code> 必須為空，或者<code>unset SED</code></li>
+<li><code>echo $GREP_OPTIONS</code> 不可含有 <code>--initial-tab</code></li>
+<li>添加 <code>PATH</code> 至  ~/.bashrc<ul>
+<li><code>/staging_dir/host/bin</code></li>
+<li><code>/staging_dir/toolchain-&lt;platform&gt;-&lt;gcc_ver&gt;-&lt;libc_ver&gt;/bin</code></li>
+</ul>
+</li>
+<li><a href="https://wiki.openwrt.org/toh/start" target="_blank" rel="external">支援硬體表</a></li>
+<li>不能使用 Root User 進行 Compile</li>
+</ul>
+<figure class="highlight sh"><figcaption><span>安裝相依套件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get update -y</span><br><span class="line"><span class="comment"># apt-get install -y make git g++ libncurses5-dev subversion libssl-dev gawk libxml-parser-perl unzip bzip2 wget python file &amp;&amp; \</span></span><br><span class="line">apt-get install -y python python2.7 perl imagemagick subversion git gcc g++ binutils autoconf automake libtool-bin make bzip2 libncurses5-dev libreadline-dev zlib1g-dev flex bison patch texinfo tofrodos gettext pkg-config realpath libstring-crc32-perl gawk libusb-dev unzip intltool libacl1-dev libcap-dev libc6-dev libglib2.0-dev unzip wget curl zip libssl-dev libxml-parser-perl file nano cmake &amp;&amp; \</span><br><span class="line">apt-get clean -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>下載原始碼(開發版 或 穩定版)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://wiki.openwrt.org/doc/howto/buildroot.exigence</span></span><br><span class="line"><span class="comment"># trunk (main development tree)</span></span><br><span class="line">git <span class="built_in">clone</span> git://github.com/openwrt/openwrt.git</span><br><span class="line"><span class="comment"># 15.05 branch (Chaos Calmer)</span></span><br><span class="line">git <span class="built_in">clone</span> -b chaos_calmer git://github.com/openwrt/openwrt.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>(optional) Download and install all available "feeds"</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp feeds.conf.default feeds.conf</span><br><span class="line"><span class="comment"># echo src-git linkit https://github.com/MediaTek-Labs/linkit-smart-7688-feed.git &gt;&gt; feeds.conf</span></span><br><span class="line">./scripts/feeds update <span class="_">-a</span></span><br><span class="line">./scripts/feeds install <span class="_">-a</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>調整 config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">make prereq</span><br><span class="line">make menuconfig</span><br><span class="line"><span class="comment"># y -&gt; &lt;*&gt; -&gt; built in</span></span><br><span class="line"><span class="comment"># m -&gt; &lt;M&gt; -&gt; package (opkg to install)</span></span><br><span class="line"><span class="comment"># n -&gt; &lt; &gt; -&gt; 不處理</span></span><br><span class="line"><span class="comment"># 存檔後會產生 /.config</span></span><br></pre></td></tr></table></figure>
+<h4 id="Image-位置"><a href="#Image-位置" class="headerlink" title="Image 位置"></a>Image 位置</h4><p>E.g. if your <buildroot_dir> is ~/openwrt/trunk, the binaries are in ~/openwrt/trunk/bin/ar71xx.</buildroot_dir></p>
+<p>make dirclean ; make defconfig ; make V=s -j1</p>
+<h2 id="問題處理"><a href="#問題處理" class="headerlink" title="問題處理"></a>問題處理</h2><h4 id="‘world’-failed"><a href="#‘world’-failed" class="headerlink" title="‘world’ failed"></a>‘world’ failed</h4><figure class="highlight sh"><figcaption><span>target 'world' failed</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://forum.openwrt.org/viewtopic.php?id=65311</span></span><br><span class="line"><span class="comment"># [solved]complie problem:recipe for target 'world' failed</span></span><br><span class="line">FORCE_UNSAFE_CONFIGURE=1</span><br></pre></td></tr></table></figure>
+<h4 id="尋找檔案"><a href="#尋找檔案" class="headerlink" title="尋找檔案"></a>尋找檔案</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./ -name <span class="string">"ffmeg*ipk"</span> -print</span><br></pre></td></tr></table></figure>
+<h4 id="開機時自動啟動"><a href="#開機時自動啟動" class="headerlink" title="開機時自動啟動"></a>開機時自動啟動</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 /etc/rc.local</span></span><br><span class="line">chown 777 /etc/rc.local</span><br></pre></td></tr></table></figure>
+<h4 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h4><p>.config - OpenWrt Configuration<br>编译单个软件，进入编译选项选择要编译的软件后，如果没有make需执行以下：<br>make tools/install<br>make toolchain/install<br>然后编译指定的软件：<br>make package/name/compile</p>
+<p>mount -o remount,rw /</p>
+<h2 id="opkg-update-失敗"><a href="#opkg-update-失敗" class="headerlink" title="opkg update 失敗"></a>opkg update 失敗</h2><h4 id="Signature-check-failed"><a href="#Signature-check-failed" class="headerlink" title="Signature check failed"></a>Signature check failed</h4><p>修改<code>/etc/opkg.conf</code><br>註解 option check_signature 1<br><a href="http://www.openwrtdl.com/wordpress/signature-check-failed%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E9%99%84opkg-conf" target="_blank" rel="external">Signature check failed问题解决(附opkg.conf)</a></p>
+<h4 id="wget-return-8"><a href="#wget-return-8" class="headerlink" title="wget return 8"></a>wget return 8</h4><p>修改<br>/etc/opkg.conf<br>/etc/opkg/distfeeds.conf</p>
+<figure class="highlight sh"><figcaption><span>Pi 3 的情況是指向空目錄</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://downloads.openwrt.org/snapshots/trunk/brcm2708/bcm2710/</span><br><span class="line"><span class="comment"># 改成</span></span><br><span class="line">https://downloads.openwrt.org/snapshots/trunk/brcm2708/generic/</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><p><a href="https://www.youtube.com/watch?v=ywM_bPE7GDk" target="_blank" rel="external">Youtube:開場及OpenWrt介紹 LinkIt Smart 7688 與 Embedded Linux 快速上手 #01 MT7688與WioLink技術沙龍 mokoversity 201512</a><br><a href="https://github.com/jollen/7688-embedded-linux" target="_blank" rel="external">講稿</a><br><a href="http://www.slideshare.net/antonywcl/open-wrt" target="_blank" rel="external">簡報:OpenWRT guide and memo</a><br><a href="https://www.haiyun.me/archives/ubuntu-compile-openwrt.html" target="_blank" rel="external">Blog:Ubuntu/CentOS下编译OpenWRT固件</a><br><a href="https://wiki.openwrt.org/doc/guide-developer" target="_blank" rel="external">官網</a><br><a href="https://computers.tutsplus.com/articles/installing-openwrt-on-a-raspberry-pi-as-a-new-home-firewall--mac-55984" target="_blank" rel="external">國外教學：Installing OpenWRT on a Raspberry Pi as a New Home Firewall</a></p>
+<h2 id="設定網路"><a href="#設定網路" class="headerlink" title="設定網路"></a>設定網路</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mount -o remount,rw /</span><br><span class="line"><span class="built_in">cd</span> /etc/config</span><br><span class="line">touch network</span><br><span class="line">vi network</span><br><span class="line"><span class="comment"># uci set network.lan.proto=dhcp</span></span><br><span class="line"><span class="comment"># uci commit</span></span><br><span class="line">/etc/init.d/network restart</span><br><span class="line"></span><br><span class="line">uci show network</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>/etc/config/network</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config interface loopback</span><br><span class="line">    option ifname   lo</span><br><span class="line">    option proto    static</span><br><span class="line">    option ipaddr   127.0.0.1</span><br><span class="line">    option netmask  255.0.0.0</span><br><span class="line"></span><br><span class="line">config interface lan</span><br><span class="line">    option ifname   eth0</span><br><span class="line">    option type     bridge</span><br><span class="line">    option proto    static</span><br><span class="line">    option ipaddr   192.168.1.1</span><br><span class="line">    option netmask  255.255.255.0</span><br></pre></td></tr></table></figure>
+<h2 id="Luci-module"><a href="#Luci-module" class="headerlink" title="Luci module"></a>Luci module</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># controller</span><br><span class="line">/usr/lib/lua/luci/controller/</span><br><span class="line"># model</span><br><span class="line">/usr/lib/lua/luci/model/cbi/</span><br></pre></td></tr></table></figure>
+<p><a href="https://wiki.openwrt.org/doc/devel/luci" target="_blank" rel="external">Adding new elements to LuCI</a><br><a href="http://htmlpreview.github.io/?http://raw.githubusercontent.com/openwrt/luci/master/documentation/api/index.html" target="_blank" rel="external">luci ducument</a><br><a href="http://coopermaa2nd.blogspot.tw/2013/08/luci.html" target="_blank" rel="external">寫個 LuCI 模組</a><br><a href="http://www.cnblogs.com/mayswind/p/3468124.html" target="_blank" rel="external">开发OpenWrt路由器上LuCI的模块</a><br><a href="http://luci.subsignal.org/trac/wiki/Documentation/ModulesHowTo" target="_blank" rel="external">HowTo: Write Modules</a><br><a href="https://datahunter.org/openwrt" target="_blank" rel="external">openwrt - 入門( opkg, uci, luci )</a></p>
+<h2 id="LinkIt-Smart-7688"><a href="#LinkIt-Smart-7688" class="headerlink" title="LinkIt Smart 7688"></a>LinkIt Smart 7688</h2><p>透過 wifi 連入後，網頁進入 <code>mylinkit.local</code> 設定 root 密碼</p>
+<p>設定成 station mode 後，可透過 <code>ssh root@mylinkit.local</code> 連入</p>
+<p><a href="https://iamblue.gitbooks.io/linkit-smart-nodejs/content/zh-TW/basic/mraa.html" target="_blank" rel="external">使用 mraa 套件來操控 GPIO</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/openwrt/">#openwrt</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

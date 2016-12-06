@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="一個架構不錯的 Go Lib">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Go Go-Kit"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Go Go-Kit - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/12/24/Go-2015-12-24-Go-Go-Kit/">
+                Go Go-Kit
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-24</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>一個架構不錯的 Go Lib</p>
+<a id="more"></a>
+<h1 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h1><h2 id="Goal-make-Go-a-first-class-citizen-at-the-application-layer"><a href="#Goal-make-Go-a-first-class-citizen-at-the-application-layer" class="headerlink" title="Goal: make Go a first-class citizen at the application layer"></a>Goal: make Go a first-class citizen at the application layer</h2><ul>
+<li>Border - HAProxy, nginx…</li>
+<li>Appliecation - here</li>
+<li>Data - Cassandra, PostgreSQL, Redis, Elasticsearch…</li>
+</ul>
+<h2 id="Goal-micro-service-architecture"><a href="#Goal-micro-service-architecture" class="headerlink" title="Goal: (micro) service architecture"></a>Goal: (micro) service architecture</h2><h2 id="Goal-RPC-messaging-pattern"><a href="#Goal-RPC-messaging-pattern" class="headerlink" title="Goal: RPC messaging pattern"></a>Goal: RPC messaging pattern</h2><h2 id="Goal-operate-in-a-mixed-environment"><a href="#Goal-operate-in-a-mixed-environment" class="headerlink" title="Goal: operate in a mixed environment"></a>Goal: operate in a mixed environment</h2><h2 id="Goal-pluggable-transports"><a href="#Goal-pluggable-transports" class="headerlink" title="Goal: pluggable transports"></a>Goal: pluggable transports</h2><ul>
+<li>HTTP/JSON</li>
+<li>Thrift</li>
+<li>Protobuf</li>
+<li>net/rpc</li>
+<li>gRPC</li>
+</ul>
+<h2 id="Goal-strongly-encourage-best-practices"><a href="#Goal-strongly-encourage-best-practices" class="headerlink" title="Goal: strongly encourage best practices"></a>Goal: strongly encourage best practices</h2><p>Go kit 貢獻者具有 large-scale infrastructures 的經驗</p>
+<p>所以沒有必要再犯同樣的錯誤</p>
+<h1 id="Non-goal"><a href="#Non-goal" class="headerlink" title="Non-goal:"></a>Non-goal:</h1><h2 id="Non-goal-require-any-specific-infrastructure"><a href="#Non-goal-require-any-specific-infrastructure" class="headerlink" title="Non-goal: require any specific infrastructure"></a>Non-goal: require any specific infrastructure</h2><p>Go kit 並無其他 相依基礎設施</p>
+<p>我們可以在任何擴充的環境中運作良好</p>
+<h2 id="Non-goal-opinions-about-orchestration"><a href="#Non-goal-opinions-about-orchestration" class="headerlink" title="Non-goal: opinions about orchestration"></a>Non-goal: opinions about orchestration</h2><h2 id="Non-goal-opinions-about-configuration"><a href="#Non-goal-opinions-about-configuration" class="headerlink" title="Non-goal: opinions about configuration"></a>Non-goal: opinions about configuration</h2><h1 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h1><p>Service :</p>
+<ul>
+<li>rate limit 在  入口 &amp; 出口<br>circuit break<br>service discovering</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Transport<br>Service metric<br>Service safety<br>Service connectivity</td>
+<td style="text-align:center">Go kit’s domain</td>
+</tr>
+<tr>
+<td style="text-align:center">Biz analytics<br>Biz metrics<br>Biz logic</td>
+<td style="text-align:center">Your domain</td>
+</tr>
+</tbody>
+</table>
+<p>難得的經驗(hard-won lesson): 有結構的 log 是強制的</p>
+<p>提供一些 circuit breaker 的實作</p>
+<p>load balancer:</p>
+<ul>
+<li>round robin</li>
+<li>random</li>
+<li>weighted</li>
+<li>health checked</li>
+</ul>
+<p>publisher 支援 DNS SRV，Consul etcd 計畫中</p>
+<p>package tracing: zipkin</p>
+<h2 id="Blog"><a href="#Blog" class="headerlink" title="Blog"></a>Blog</h2><p><a href="http://peter.bourgon.org/go-kit/" target="_blank" rel="external">Go kit: Go in the modern enterprise</a></p>
+<h2 id="Vedio"><a href="#Vedio" class="headerlink" title="Vedio"></a>Vedio</h2><p><a href="https://www.youtube.com/watch?v=iFR_7AKkJFU" target="_blank" rel="external">Go and the Modern Enterprise - Peter Bourgon - London Go Gathering 2015<br>The Go Programming Language</a><br><a href="https://www.youtube.com/watch?v=aL6sd4d4hxk" target="_blank" rel="external">Golang UK Conference 2015 - Peter Bourgon - Go Kit A Toolkit for Microservices<br>Golang UK Conference</a><br><a href="https://www.youtube.com/watch?v=1AjaZi4QuGo" target="_blank" rel="external">GopherCon 2015: Peter Bourgon - Go Kit: A Standard Library for Distributed Programming</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Go/">#Go</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

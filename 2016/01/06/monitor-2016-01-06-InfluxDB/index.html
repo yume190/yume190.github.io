@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="時序性資料庫。拿來監看 Metric 還不錯！">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="InfluxDB"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>InfluxDB - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/01/06/monitor-2016-01-06-InfluxDB/">
+                InfluxDB
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-01-06</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>時序性資料庫。拿來監看 Metric 還不錯！</p>
+<a id="more"></a>
+<h2 id="Time-Series-Data"><a href="#Time-Series-Data" class="headerlink" title="Time Series Data"></a>Time Series Data</h2><p>資料量非常大 (1000 nodes 每 10s 回傳 10 個 measurement)</p>
+<p>定時資料/不定時資料(事件觸發)</p>
+<p>例：股市, Metrics, Events, Sensor Data</p>
+<h2 id="Time-Series-Database"><a href="#Time-Series-Database" class="headerlink" title="Time Series Database"></a>Time Series Database</h2><p>寫快(隨時有大量資料寫入)</p>
+<p>讀快(通常用於 觀察/分析/預測 新資料)</p>
+<p>壓縮(資料量很可觀)</p>
+<p>很少刪除個別資料(同 serie)</p>
+<p>大量刪除很快(同 serie)</p>
+<h2 id="Time-Series-Database-Influxdb"><a href="#Time-Series-Database-Influxdb" class="headerlink" title="Time Series Database(Influxdb)"></a>Time Series Database(Influxdb)</h2><p>寫快: WAL (Write Ahead Log)</p>
+<p>讀快: 以 {series_id, timestamp} 方式讀取</p>
+<p>壓縮: 針對不同資料格式進行壓縮(snappy, double delta…)</p>
+<p>RollUp and aggregate</p>
+<p>Retention Policy(資料保留時間)</p>
+<p>Continuous Query(定期 aggregate 資料)</p>
+<p>SQL style query language</p>
+<h2 id="Influxdb-Schema"><a href="#Influxdb-Schema" class="headerlink" title="Influxdb Schema"></a>Influxdb Schema</h2><ul>
+<li>Measurement (CPU, 溫度…)</li>
+<li>Tags (region=uswest host=serverA sensor=23)， Indexed</li>
+<li>Fields (溫度=20 濕度=30)</li>
+<li>TimeStamp nanosecond</li>
+</ul>
+<h4 id="Measurement-Sensor-Data"><a href="#Measurement-Sensor-Data" class="headerlink" title="Measurement:Sensor Data"></a>Measurement:Sensor Data</h4><table>
+<thead>
+<tr>
+<th style="text-align:right">\</th>
+<th style="text-align:center"><font color="#980000">Tag:region</font></th>
+<th style="text-align:center"><font color="#980000">Tag:sensor</font></th>
+<th style="text-align:center"><font color="#C0C0C0">series_id</font></th>
+<th style="text-align:center"><font color="#C0C0C0">timestamp</font></th>
+<th style="text-align:center"><font color="#33FFFF">Field:溫度</font></th>
+<th style="text-align:center"><font color="#33FFFF">Field:濕度</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">point 1</td>
+<td style="text-align:center">美西</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 2</td>
+<td style="text-align:center">美西</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 3</td>
+<td style="text-align:center">美西</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 4</td>
+<td style="text-align:center">美西</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 5</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 6</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 7</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 8</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 9</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 10</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 11</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 12</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+<tr>
+<td style="text-align:right">point 13</td>
+<td style="text-align:center">美東</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">34</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Story"><a href="#Story" class="headerlink" title="Story"></a><a href="https://docs.influxdata.com/influxdb/v0.10/concepts/storage_engine/" target="_blank" rel="external">Story</a></h2><p>目標：</p>
+<ul>
+<li>Billions of individual data points</li>
+<li>High write throughput</li>
+<li>High read throughput</li>
+<li>Large deletes to free up disk space</li>
+<li>Mostly an insert/append workload, very few updates</li>
+</ul>
+<p>LSM Tree -&gt; B+ Tree -&gt; TSM Tree</p>
+<p>LevelDB and Log Structured Merge Trees : 太多分散小檔案</p>
+<p>BoltDB and mmap B+Trees : 單一檔案達幾 GB 產生 spiking IOPS</p>
+<p>Time Structured Merge Tree : 類 LSM Tree</p>
+<hr>
+<h4 id="Data-File"><a href="#Data-File" class="headerlink" title="Data File"></a>Data File</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">Magic Number</th>
+<th style="text-align:center">Data Block 1</th>
+<th style="text-align:center">Data Block N</th>
+<th style="text-align:center">Index Block</th>
+<th style="text-align:center">min time</th>
+<th style="text-align:center">max time</th>
+<th style="text-align:center">series count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">4B</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">8B</td>
+<td style="text-align:center">8B</td>
+<td style="text-align:center">4B</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Data-Block"><a href="#Data-Block" class="headerlink" title="Data Block"></a>Data Block</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">Series ID</th>
+<th style="text-align:center">Length</th>
+<th style="text-align:center">minimum timestamp</th>
+<th style="text-align:center">Compress block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">8B uint64</td>
+<td style="text-align:center">4B uint32</td>
+<td style="text-align:center">8B</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Index-Block"><a href="#Index-Block" class="headerlink" title="Index Block"></a>Index Block</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">Series ID Nth</th>
+<th style="text-align:center">starting position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">8B</td>
+<td style="text-align:center">4B</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Libs"><a href="#Libs" class="headerlink" title="Libs"></a><a href="https://docs.influxdata.com/influxdb/v0.10/clients/api/" target="_blank" rel="external">Libs</a></h2><ul>
+<li>Go</li>
+<li>Haskell</li>
+<li>Java</li>
+<li>JS/Node</li>
+<li>Lisp</li>
+<li>…</li>
+</ul>
+<h2 id="TICK"><a href="#TICK" class="headerlink" title="TICK"></a>TICK</h2><ul>
+<li>T Telegraf</li>
+<li>I InfluxDB</li>
+<li>C Chronograf</li>
+<li>K Kapacitor</li>
+</ul>
+<h2 id="安裝-InfluxDB"><a href="#安裝-InfluxDB" class="headerlink" title="安裝 InfluxDB"></a>安裝 InfluxDB</h2><p><a href="https://hub.docker.com/r/tutum/influxdb/" target="_blank" rel="external">docker tutum/influxdb</a></p>
+<h2 id="Pic"><a href="#Pic" class="headerlink" title="Pic"></a>Pic</h2><p><img src="/image/Influxdb/p1.png" alt="DB 使用者登入"><br><img src="/image/Influxdb/p2.png" alt="DB 操作介面"></p>
+<hr>
+<h2 id="安裝-chronograf"><a href="#安裝-chronograf" class="headerlink" title="安裝 chronograf"></a>安裝 chronograf</h2><p><a href="https://hub.docker.com/r/jbye/chronograf/" target="_blank" rel="external">docker jbye/chronograf</a></p>
+<h2 id="chronograf-設定"><a href="#chronograf-設定" class="headerlink" title="chronograf 設定"></a>chronograf 設定</h2><p><img src="/image/Influxdb/p3.png" alt="新增 InfluxDB Server"><br><img src="/image/Influxdb/p4.png" alt="新增 Server 完成"><br><img src="/image/Influxdb/p5.png" alt=""><br><img src="/image/Influxdb/p6.png" alt="選擇 Query DB"><br><img src="/image/Influxdb/p7.png" alt="Group by 條件"><br><img src="/image/Influxdb/p8.png" alt="完整圖"><br><img src="/image/Influxdb/p9.png" alt=""></p>
+<hr>
+<h2 id="RP-amp-CQ"><a href="#RP-amp-CQ" class="headerlink" title="RP &amp; CQ"></a>RP &amp; CQ</h2><figure class="highlight sh"><figcaption><span>RP(Retention Policy)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SHOW RETENTION POLICIES ON <span class="string">"telegraf"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 db:telegraf 產生一個 RP:rp_1h 有效期間 1h， replica 1份，並設定成這個 measurement 的預設 RP</span></span><br><span class="line">create retention policy rp_1h on telegraf duration 1h replication 1 DEFAULT</span><br><span class="line">create retention policy rp_1d on telegraf duration 1d replication 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>CONTINUOUS QUERIES</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SHOW CONTINUOUS QUERIES</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 db:telegraf 建立一個 CQ:cq_cpu_mean_sys_user3</span></span><br><span class="line"><span class="comment"># 從 db:telegraf 的 RP:default 的 measurement:yume_cpu</span></span><br><span class="line"><span class="comment"># aggregate 到 db:telegraf 的 RP:rp_1h 的 measurement:cpu_mean_sys_user</span></span><br><span class="line">CREATE CONTINUOUS QUERY cq_cpu_mean_sys_user ON telegraf BEGIN</span><br><span class="line">  SELECT mean(usage_system) AS mean_system, mean(usage_user) AS mean_user</span><br><span class="line">  INTO telegraf.rp_1h.cpu_mean_sys_user</span><br><span class="line">  FROM telegraf.<span class="string">"default"</span>.yume_cpu</span><br><span class="line">  GROUP BY time(1m),cpu,host</span><br><span class="line">END</span><br><span class="line"></span><br><span class="line">DROP CONTINUOUS QUERY cq_cpu_mean_sys_user4 ON telegraf</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="其他注意事項"><a href="#其他注意事項" class="headerlink" title="其他注意事項"></a>其他注意事項</h2><p>Ram 數量：依照 series 基數，基數約1000萬左右會有 OOM failures(加 RAM 無解)<br>series 基數：DB 內所有 series 量。(2 Tags，每個 Tag 1000 可能，基數為 1M)</p>
+<p>storeage 是設計 for SSD</p>
+<p>hh &amp; wal &amp; data 目錄要放在不同儲存設備#當系統有很重的寫入工作時會有顯著的優化</p>
+<hr>
+<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><p>Point:相當於資料庫一筆 Record。由 Name, Tags, Fields組成</p>
+<p>Name(Measurement):有點像 Table Name 的角色，想成說不能用 join，你的某組資料都只會寫到這個 table，所以也只能從這個 table query 出來。</p>
+<p>Tags:相當於 DB 搜尋條件。以 go 來看的型態是 <code>map[string]string</code>。且具有 index 特性。</p>
+<p>Fields:相當於要 Query 出來的數值。以 go 來看的型態是 <code>map[string]interface{}</code>。是主要要觀察的東西。</p>
+<hr>
+<p><a href="http://blogger.gtwang.org/2015/01/ubuntu-linux-install-influxdb.html" target="_blank" rel="external">其他教學</a><br><a href="https://docs.influxdata.com/influxdb/v0.10/concepts/insights_tradeoffs/" target="_blank" rel="external">Design Insights and Tradeoffs in InfluxDB</a><br><a href="https://influxdata.com/blog/influxdb-clustering-design-neither-strictly-cp-or-ap/" target="_blank" rel="external">InfluxDB Clustering Design – neither strictly CP or AP</a><br><a href="https://docs.influxdata.com/influxdb/v0.10/query_language/continuous_queries/#further-reading" target="_blank" rel="external">Continuous Queries</a><br><a href="https://docs.influxdata.com/influxdb/v0.10/administration/authentication_and_authorization/#user-types-and-their-privileges" target="_blank" rel="external">Authentication and Authorization</a><br><a href="https://docs.influxdata.com/influxdb/v0.10/query_language/data_exploration/#downsample-data" target="_blank" rel="external">Data Exploration</a><br><a href="https://docs.influxdata.com/influxdb/v0.10/guides/downsampling_and_retention/" target="_blank" rel="external">Downsampling and Data Retention</a><br><a href="https://docs.influxdata.com/influxdb/v0.10/query_language/database_management/#modify-retention-policies-with-alter-retention-policy" target="_blank" rel="external">Database Management</a></p>
+<h2 id="Time-Series"><a href="#Time-Series" class="headerlink" title="Time Series"></a>Time Series</h2><p><a href="https://speakerdeck.com/preetamjinka/time-series-storage" target="_blank" rel="external">Time Series Storage</a><br><a href="http://misfra.me/state-of-the-state-part-iii/" target="_blank" rel="external">State of the State Part III</a></p>
+<h2 id="Slide"><a href="#Slide" class="headerlink" title="Slide"></a>Slide</h2><p><a href="http://www.slideshare.net/firstmarkcap/paul-dix-influxdb-opensource-time-series-database" target="_blank" rel="external">Paul Dix, InfluxDB // Open-Source Time Series Database</a><br><a href="http://www.slideshare.net/NicolasMuller/devoxx-france-2015-influxdb" target="_blank" rel="external">Devoxx france 2015 influxdb</a></p>
+<h2 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h2><p><a href="https://influxdata.com/videos/" target="_blank" rel="external">InfluxDB Videos</a><br><a href="https://www.youtube.com/watch?v=VHvF-_IT1QQ" target="_blank" rel="external">The Distributed Database Internals of InfluxDB- Paul Dix</a><br><a href="https://www.youtube.com/watch?v=xBkegcd2bFE" target="_blank" rel="external">Paul Dix: Time Series Data with InfluxDB</a><br><a href="https://www.youtube.com/watch?v=87cCPJ4OK7E" target="_blank" rel="external">GothamGo 2015: Go Highlights from the New InfluxDB Storage Engine by Paul Dix</a></p>
+<h2 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h2><p><a href="http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D" target="_blank" rel="external">Raft介绍</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Time-Series-DB/">#Time Series DB</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Kbuild: the Linux Kernel Build System
+Build kernel 相關套件12sudo apt-get install git-coresudo apt-get install libncurses5-dev">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="kernel"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>kernel - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/13/Linux-2016-05-13-kernel/">
+                kernel
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-13</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/linux/">linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="http://www.linuxjournal.com/content/kbuild-linux-kernel-build-system" target="_blank" rel="external">Kbuild: the Linux Kernel Build System</a></p>
+<h3 id="Build-kernel-相關套件"><a href="#Build-kernel-相關套件" class="headerlink" title="Build kernel 相關套件"></a>Build kernel 相關套件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br><span class="line">sudo apt-get install libncurses5-dev</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看-Linux-kernel"><a href="#查看-Linux-kernel" class="headerlink" title="查看 Linux kernel"></a>查看 Linux kernel</h3><p>可以在 <code>/lib/modules</code> 查看到目前有哪些 kernel。</p>
+<p>且可以在 <code>/boot</code> 找到對應版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls /lib/modules</span><br><span class="line"><span class="comment"># 3.5.0-23-generic</span></span><br><span class="line"></span><br><span class="line">ls /boot</span><br><span class="line"><span class="comment"># vmlinuz-3.5.0-23-generic</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/boot/grub</span><br><span class="line"></span><br><span class="line">uname -a</span><br><span class="line"></span><br><span class="line">tar xf linux-3.12.2.tar.xz</span><br><span class="line"></span><br><span class="line">lsmod</span><br><span class="line"></span><br><span class="line">make menuconfig</span><br><span class="line">make all</span><br><span class="line">make modules_install</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h5 id="Linux-kernel"><a href="#Linux-kernel" class="headerlink" title="Linux kernel"></a>Linux kernel</h5><p><a href="https://www.kernel.org/" target="_blank" rel="external">Kernel</a><br><a href="https://blog.wu-boy.com/2010/07/linux-kernel-%E6%92%B0%E5%AF%AB-hello-world-module-the-__init-and-__exit-macros-part-2/" target="_blank" rel="external">[Linux Kernel] 撰寫 Hello, World module: The <strong>init and </strong>exit Macros (part 2).</a></p>
+<h5 id="Lesson"><a href="#Lesson" class="headerlink" title="Lesson"></a>Lesson</h5><p><a href="http://www.crashcourse.ca/introduction-linux-kernel-programming/lesson-1-building-and-running-new-linux-kernel" target="_blank" rel="external">Lesson 1: Building and running a new Linux kernel</a></p>
+<h5 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h5><p><a href="https://www.youtube.com/watch?v=ZtVpz5VWjAs" target="_blank" rel="external">Linux Boot Process</a><br><a href="https://www.youtube.com/watch?v=rTcnTOXf_jM" target="_blank" rel="external">Kernel Basics</a></p>
+<h5 id="PDF"><a href="#PDF" class="headerlink" title="PDF"></a>PDF</h5><p><a href="http://www.tldp.org/LDP/lkmpg/2.6/lkmpg.pdf" target="_blank" rel="external">The Linux Kernel Module Programming Guide</a><br><a href="https://www.kernel.org/pub/linux/kernel/people/mochel/doc/papers/ols-2005/mochel.pdf" target="_blank" rel="external">The sysfs Filesystem</a></p>
+<h5 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h5><p><a href="http://frankchang0125.blogspot.tw/2012/10/linux-kernel-buildbugonzero.html" target="_blank" rel="external">Linux Kernel: BUILD_BUG_ON_ZERO() / BUILD_BUG_ON_NULL()</a></p>
+<hr>
+<h3 id="Kernel-Module"><a href="#Kernel-Module" class="headerlink" title="Kernel Module"></a>Kernel Module</h3><p>零散的 code，當需要的時候可以 載入(load)/卸載(unload) 至 kernel。</p>
+<p>擴展 kernel 的功能，且不必 reboot kernel</p>
+<h3 id="Module-如何進入到-kernel"><a href="#Module-如何進入到-kernel" class="headerlink" title="Module 如何進入到 kernel"></a>Module 如何進入到 kernel</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod <span class="comment"># 列出 /proc/modules 的 modules</span></span><br></pre></td></tr></table></figure>
+<p>當需要的功能不在 kernel 時(not resident in the kernel)，</p>
+<p>kernel module daemon(<code>kmod</code>)，會執行 modprobe 將 module 載入</p>
+<p>modprobe is passed a string in one of two forms:</p>
+<ul>
+<li>module 名稱，如 <code>softdog</code> or <code>ppp</code>.</li>
+<li>A more generic identifier like char−major−10−30.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># kmod -h</span><br><span class="line">kmod - Manage kernel modules: list, load, unload, etc</span><br><span class="line">Usage:</span><br><span class="line">    kmod [options] command [command_options]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">    -V, --version     show version</span><br><span class="line">    -h, --help        show this help</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  help         Show help message</span><br><span class="line">  list         list currently loaded modules</span><br><span class="line">  static-nodes outputs the static-node information installed with the currently running kernel</span><br><span class="line"></span><br><span class="line">kmod also handles gracefully if called from following symlinks:</span><br><span class="line">  lsmod        compat lsmod command</span><br><span class="line">  rmmod        compat rmmod command</span><br><span class="line">  insmod       compat insmod command</span><br><span class="line">  modinfo      compat modinfo command</span><br><span class="line">  modprobe     compat modprobe command</span><br><span class="line">  depmod       compat depmod command</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># /etc/modprobe.conf</span><br><span class="line">alias char−major−10−30 softdog</span><br><span class="line"># generic identifier refers to the module softdog.ko</span><br></pre></td></tr></table></figure>
+<p>接著， <code>modprobe</code> 會瀏覽 <code>/lib/modules/version/modules.dep</code>，</p>
+<p>觀察這個模組載入前還需要載入哪些模組。</p>
+<p><code>/lib/modules/version/modules.dep</code> 藉由 <code>depmod -a</code> 產生且它包含相依模組。</p>
+<p>例如： <code>msdos.ko</code> 須要 <code>fat.ko</code> 事先被載入</p>
+<p>requested module 有相依於其他模組 如果有定義 symbols(vars of funcs)</p>
+<p>最後，<code>modprobe</code> 用 <code>insmod</code> 第一次組入任何 prerequisite 模組至 kernel，然後是 requested module。</p>
+<p><code>modprobe</code> 把 <code>insmod</code> 導至 <code>/lib/modules/version</code> 模組的標準目錄下</p>
+<figure class="highlight sh"><figcaption><span>確保模組依序載入</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">insmod /lib/modules/2.6.11/kernel/fs/fat/fat.ko</span><br><span class="line">insmod /lib/modules/2.6.11/kernel/fs/msdos/msdos.ko</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">modprobe msdos</span><br><span class="line"><span class="comment"># by parsing /lib/modules/version/modules.dep</span></span><br></pre></td></tr></table></figure>
+<p>There’s a bit more to the story if you want to write your own modules which depend on other modules (we calling this `stacking modules’).</p>
+<h1 id="Modversioning"><a href="#Modversioning" class="headerlink" title="Modversioning"></a>Modversioning</h1><p><code>CONFIG_MODVERSIONS</code></p>
+<p>模組不能用 <code>printf</code> 但可以 log <code>information</code> and <code>warnings</code></p>
+<figure class="highlight c"><figcaption><span>hello−1.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init_module</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">"Hello world 1.\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cleanup_module</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">"Goodbye world 1.\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj−m += hello−1.o</span><br><span class="line"><span class="section">all:</span></span><br><span class="line">        make −C /lib/modules/$(shell uname −r)/build M=$(PWD) modules</span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">        make −C /lib/modules/$(shell uname −r)/build M=$(PWD) clean</span><br></pre></td></tr></table></figure>
+<h3 id="printk"><a href="#printk" class="headerlink" title="printk"></a>printk</h3><p>建議使用 <code>&lt;1&gt; and KERN_ALERT</code>，在實作真的模組時，可以讓訊息不止只寫在 log 還能顯示給使用者</p>
+<p>要小於 <code>console_loglevel</code> 才會顯示到終端機上。</p>
+<h3 id="Compiling-Kernel-Modules"><a href="#Compiling-Kernel-Modules" class="headerlink" title="Compiling Kernel Modules"></a>Compiling Kernel Modules</h3><p><a href="https://www.kernel.org/doc/Documentation/kbuild/modules.txt" target="_blank" rel="external">建議用 kbuild</a></p>
+<p>在 kernel 2.6 之後多了一些命名限制，輸出副檔名為 <code>ko</code>，此外還包含有額外的 modinfo 區塊。</p>
+<h3 id="load-module-amp-unload-module-amp-kernel-log"><a href="#load-module-amp-unload-module-amp-kernel-log" class="headerlink" title="load module &amp; unload module &amp; kernel log"></a>load module &amp; unload module &amp; kernel log</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">insmod ./hello−1.ko</span><br><span class="line">rmmod hello−1</span><br><span class="line"></span><br><span class="line"># cat /var/log/messages</span><br><span class="line">cat /var/log/kern.log # on ubuntu 1604</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modinfo hello−1.ko</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rmmod hello−1 # unload hello-1</span><br><span class="line">cat /var/log/messages # 觀看 kernel log</span><br><span class="line"></span><br><span class="line">dmesg | tail</span><br></pre></td></tr></table></figure>
+<h3 id="hello-2-c"><a href="#hello-2-c" class="headerlink" title="hello-2.c"></a>hello-2.c</h3><p><code>init_module()</code> and <code>cleanup_module()</code> 寫法過時了。請愛用 linux/init 寫法。</p>
+<figure class="highlight c"><figcaption><span>hello-2.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> *  hello−2.c − Demonstrating the module_init() and module_exit() macros.</span><br><span class="line"> *  This is preferred over using init_module() and cleanup_module().</span><br><span class="line"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="comment">/* Needed by all modules */</span></span><br><span class="line"><span class="comment">/* Needed for KERN_INFO */</span></span><br><span class="line"><span class="comment">/* Needed for the macros */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> __<span class="function">init <span class="title">hello_2_init</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">"Hello, world 2\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __<span class="function"><span class="built_in">exit</span> <span class="title">hello_2_exit</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">"Goodbye, world 2\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line">module_init(hello_2_init);</span><br><span class="line">module_exit(hello_2_exit);</span><br></pre></td></tr></table></figure>
+<p><a href="http://lxr.free-electrons.com/source/drivers/char/Makefile" target="_blank" rel="external">linux/drivers/char/Makefile</a></p>
+<p>在這份文件你可以看到 <code>obj−y</code>，但 <code>obj−m</code> 跑去哪了？</p>
+<p>你可以看到 <code>obj−$(CONFIG_FOO)</code> 這種東東，而這些變數都存放在 <code>linux/.config</code></p>
+<p>#####</p>
+<figure class="highlight c"><figcaption><span>hello−3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> hello3_data __initdata = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>hello-4</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MODULE_LICENSE(<span class="string">"GPL"</span>);</span><br><span class="line">MODULE_AUTHOR(DRIVER_AUTHOR);</span><br><span class="line">MODULE_DESCRIPTION(DRIVER_DESC);        <span class="comment">/* What does this module do */</span></span><br><span class="line">MODULE_SUPPORTED_DEVICE(<span class="string">"testdevice"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 接參數，`linux/moduleparam.h`</span><br><span class="line">./insmod mymodule.ko myvariable=5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>start.c stop.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">startstop−objs := start.o stop.o</span><br><span class="line">all:</span><br><span class="line">        make −C /lib/modules/$(shell uname −r)/build M=$(PWD) modules</span><br><span class="line">clean:</span><br><span class="line">        make −C /lib/modules/$(shell uname −r)/build M=$(PWD) clean</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">version magics</span><br><span class="line">init/vermagic.o</span><br><span class="line"></span><br><span class="line">linux/Makefile 開頭四行</span><br><span class="line">VERSION = 2</span><br><span class="line">PATCHLEVEL = 6</span><br><span class="line">SUBLEVEL = 5</span><br><span class="line">EXTRAVERSION = −1.358custom</span><br></pre></td></tr></table></figure>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>module init 告訴 kernel，你的 module 能提供什麼功能。並設置好，提供給 kernel 去 call</p>
+<p> gcc −Wall −o hello hello.c. Run the exectable with strace ./hello.</p>
+<p>man 2 write<br><code>man 2</code> for system call<br><code>man 3</code> for lib</p>
+<h3 id="3-14-name-space"><a href="#3-14-name-space" class="headerlink" title="3.14 name space"></a>3.14 name space</h3><ul>
+<li>By convention, all kernel prefixes are lowercase.(static variable)</li>
+<li>declare a symbol table and register it with a kernel.<ul>
+<li><code>/proc/kallsyms</code> 掌管所有 symbol</li>
+</ul>
+</li>
+</ul>
+<h3 id="Device-file"><a href="#Device-file" class="headerlink" title="Device file"></a>Device file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls −l /dev/hda[1−3]</span><br><span class="line">brw−rw−−−−  1 root  disk  3, 1 Jul  5  2000 /dev/hda1</span><br><span class="line">brw−rw−−−−  1 root  disk  3, 2 Jul  5  2000 /dev/hda2</span><br><span class="line">brw−rw−−−−  1 root  disk  3, 3 Jul  5  2000 /dev/hda3</span><br></pre></td></tr></table></figure>
+<p><code>brw−rw−−−−  1 root  disk  3, 1 Jul  5  2000 /dev/hda1</code></p>
+<p> major number: 1<br> 每個driver 會對應到一個獨特的 major number</p>
+<p> minor number: 1<br> type: b block device</p>
+<p>device type</p>
+<ul>
+<li>character devices</li>
+<li>block devices (block devices have a buffer for requests)<br><a href="">/usr/src/linux/Documentation/devices.txt.</a></li>
+</ul>
+<p><a href="http://www.haifux.org/lectures/86-sil/kernel-modules-drivers/node10.html" target="_blank" rel="external">character device &amp; block device 解釋</a></p>
+<h3 id="ch-4"><a href="#ch-4" class="headerlink" title="ch 4"></a>ch 4</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> file_operations fops = &#123;</span><br><span class="line">    read: device_read,</span><br><span class="line">    write: device_write,</span><br><span class="line">    open: device_open,</span><br><span class="line">    release: device_release</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>C99 syntax</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> file_operations fops = &#123;</span><br><span class="line">    .read = device_read, <span class="comment">// pointer to function</span></span><br><span class="line">    .write = device_write,</span><br><span class="line">    .open = device_open,</span><br><span class="line">    .release = device_release</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/linux/">#linux</a> <a href="/tags/kernel/">#kernel</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

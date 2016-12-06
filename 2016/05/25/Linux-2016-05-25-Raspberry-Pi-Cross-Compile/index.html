@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="從 Linux 取出 .config file導出 rpi config file12sudo modprobe configszcat /proc/config.gz &amp;gt; .config">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Raspberry Pi Cross Compile"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Raspberry Pi Cross Compile - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/25/Linux-2016-05-25-Raspberry-Pi-Cross-Compile/">
+                Raspberry Pi Cross Compile
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-25</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/kernel/">kernel</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h3 id="從-Linux-取出-config-file"><a href="#從-Linux-取出-config-file" class="headerlink" title="從 Linux 取出 .config file"></a>從 Linux 取出 <code>.config</code> file</h3><figure class="highlight sh"><figcaption><span>導出 rpi config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe configs</span><br><span class="line">zcat /proc/config.gz &gt; .config</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="下載-kernel-build-工具"><a href="#下載-kernel-build-工具" class="headerlink" title="下載 kernel build 工具"></a>下載 kernel build 工具</h3><figure class="highlight sh"><figcaption><span>下載相關套件</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://github.com/raspberrypi/linux</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/raspberrypi/tools</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>下載 libs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install bc</span><br><span class="line">sudo apt-get install git-core</span><br><span class="line">sudo apt-get install libncurses5-dev</span><br></pre></td></tr></table></figure>
+<h3 id="設置-Cross-Compile-Tool"><a href="#設置-Cross-Compile-Tool" class="headerlink" title="設置 Cross Compile Tool"></a>設置 Cross Compile Tool</h3><p>將 <code>/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin</code> 設定到 <code>PATH</code>。</p>
+<p>如果 Host 是 64 位元，則用這個 <code>/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin</code></p>
+<h3 id="config"><a href="#config" class="headerlink" title=".config"></a><code>.config</code></h3><p>這邊我們要使用的 <code>.config</code>，是從 raspberry pi 拿回低。</p>
+<font color"red"="">所以 <code>make</code> 那段可以略過</font>
+
+<figure class="highlight sh"><figcaption><span>Pi 1 or Compute Module</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux</span><br><span class="line">KERNEL=kernel</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcmrpi_defconfig</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>For Pi 2/3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux</span><br><span class="line">KERNEL=kernel7</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2709_defconfig</span><br></pre></td></tr></table></figure>
+<h3 id="Build-Time"><a href="#Build-Time" class="headerlink" title="Build Time"></a>Build Time</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># j4 使用 4 核 build</span><br><span class="line">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 zImage modules dtbs</span><br><span class="line"></span><br><span class="line">mkdir mnt/fat32</span><br><span class="line">mkdir mnt/ext4</span><br><span class="line">sudo mount /dev/sdb1 mnt/fat32</span><br><span class="line">sudo mount /dev/sdb2 mnt/ext4</span><br><span class="line">sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=mnt/ext4 modules_install</span><br><span class="line">sudo cp mnt/fat32/$KERNEL.img mnt/fat32/$KERNEL-backup.img</span><br><span class="line">sudo scripts/mkknlimg arch/arm/boot/zImage mnt/fat32/$KERNEL.img</span><br><span class="line">sudo cp arch/arm/boot/dts/*.dtb mnt/fat32/</span><br><span class="line">sudo cp arch/arm/boot/dts/overlays/*.dtb* mnt/fat32/overlays/</span><br><span class="line">sudo cp arch/arm/boot/dts/overlays/README mnt/fat32/overlays/</span><br><span class="line">sudo umount mnt/fat32</span><br><span class="line">sudo umount mnt/ext4</span><br></pre></td></tr></table></figure>
+<h3 id="Cross-Compile-KO"><a href="#Cross-Compile-KO" class="headerlink" title="Cross Compile KO"></a>Cross Compile KO</h3><figure class="highlight sh"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">obj-m += hello-1.o</span><br><span class="line"><span class="comment"># 如果不是 Cross Compile，KDIR 會是下面那個</span></span><br><span class="line"><span class="comment"># KDIR ?= /lib/modules/`uname -r`/build</span></span><br><span class="line">KDIR ?= /home/yume/rasp/linux/mnt/ext4/lib/modules/4.4.10-v7+/build</span><br><span class="line"></span><br><span class="line">all:</span><br><span class="line">    make -C $(KDIR) M=$(PWD) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    make -C $(KDIR) M=$(PWD) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- clean</span><br></pre></td></tr></table></figure>
+<h3 id="自訂選擇-kernel-image"><a href="#自訂選擇-kernel-image" class="headerlink" title="自訂選擇 kernel image"></a>自訂選擇 kernel image</h3><figure class="highlight sh"><figcaption><span>/boot/config.txt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kernel=kernel-new.img</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://www.raspberrypi.org/documentation/linux/kernel/building.md" target="_blank" rel="external">KERNEL BUILDING</a><br><a href="http://elinux.org/Raspberry_Pi_Kernel_Compilation" target="_blank" rel="external">Raspberry Pi Kernel Compilation</a><br><a href="https://www.raspberrypi.com.tw/528/compiling-kernel-for-raspberry-pi/" target="_blank" rel="external">[進階] 編譯 Raspberry Pi 的核心</a><br><a href="https://blog.gtwang.org/iot/raspberry-pi-compile-linux-kernel/" target="_blank" rel="external">樹莓派 Raspberry Pi 編譯 Linux 核心（Kernel）步驟教學</a></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/kernel/">#kernel</a> <a href="/tags/raspberry/">#raspberry</a> <a href="/tags/cross-compile/">#cross compile</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

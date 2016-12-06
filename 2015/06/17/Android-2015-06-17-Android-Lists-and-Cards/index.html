@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Source">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android Lists and Cards"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Android Lists and Cards - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/06/17/Android-2015-06-17-Android-Lists-and-Cards/">
+                Android Lists and Cards
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-06-17</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="https://developer.android.com/training/material/lists-cards.html" target="_blank" rel="external">Source</a></p>
+<a id="more"></a>
+<h2 id="Create-Lists"><a href="#Create-Lists" class="headerlink" title="Create Lists"></a>Create Lists</h2><p>RecyclerView 是比 ListView 更進階和彈性的版本。</p>
+<p>它是為了呈現 large data sets 的容器(container)，且藉由維護有限數量的 views 讓滾動更有效率。</p>
+<p>Use the RecyclerView widget when you have data collections whose elements change at runtime based on user action or network events.</p>
+<p>RecyclerView 提供了：</p>
+<ul>
+<li>layout manager(定位item)</li>
+<li>預設 animation，(如 add / remove item)</li>
+</ul>
+<p><img src="/image/android/material/Lists_and_Cards/RecyclerView.png" alt="Swift 2.0"></p>
+<h4 id="Adapter"><a href="#Adapter" class="headerlink" title="Adapter"></a>Adapter</h4><p>要使用 RecyclerView 的話，你必須指令 adapter(繼承 RecyclerView.Adapter) 和 layout manager。</p>
+<h4 id="Layout-Manager"><a href="#Layout-Manager" class="headerlink" title="Layout Manager"></a>Layout Manager</h4><p>layout manager 會把 view 定位在 RecyclerView 裡，且決定何時 reuse / recycle views</p>
+<p>a layout manager may ask the adapter to replace the contents of the view with a different element from the dataset.</p>
+<p>Recycling views in this manner improves performance by avoiding the creation of unnecessary views or performing expensive findViewById() lookups.</p>
+<p>內建的 layout manager：</p>
+<ul>
+<li>LinearLayoutManager</li>
+<li>GridLayoutManager</li>
+<li>StaggeredGridLayoutManager</li>
+<li>custom(extends RecyclerView.LayoutManager)</li>
+</ul>
+<h4 id="Animations"><a href="#Animations" class="headerlink" title="Animations"></a>Animations</h4><p>extends RecyclerView.ItemAnimator</p>
+<p>RecyclerView.setItemAnimator() method.</p>
+<hr>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight xml"><figcaption><span>RecyclerView layout</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- A RecyclerView with some commonly used attributes --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span><br><span class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/my_recycler_view"</span></span><br><span class="line">    <span class="attr">android:scrollbars</span>=<span class="string">"vertical"</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><figcaption><span>RecyclerView Code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> RecyclerView mRecyclerView;</span><br><span class="line">    <span class="keyword">private</span> RecyclerView.Adapter mAdapter;</span><br><span class="line">    <span class="keyword">private</span> RecyclerView.LayoutManager mLayoutManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.my_activity);</span><br><span class="line">        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// use this setting to improve performance if you know that changes</span></span><br><span class="line">        <span class="comment">// in content do not change the layout size of the RecyclerView</span></span><br><span class="line">        mRecyclerView.setHasFixedSize(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// use a linear layout manager</span></span><br><span class="line">        mLayoutManager = <span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>);</span><br><span class="line">        mRecyclerView.setLayoutManager(mLayoutManager);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// specify an adapter (see also next example)</span></span><br><span class="line">        mAdapter = <span class="keyword">new</span> MyAdapter(myDataset);</span><br><span class="line">        mRecyclerView.setAdapter(mAdapter);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><figcaption><span>Adapter Code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">MyAdapter</span>.<span class="title">ViewHolder</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String[] mDataset;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Provide a reference to the views for each data item</span></span><br><span class="line">    <span class="comment">// Complex data items may need more than one view per item, and</span></span><br><span class="line">    <span class="comment">// you provide access to all the views for a data item in a view holder</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">        <span class="comment">// each data item is just a string in this case</span></span><br><span class="line">        <span class="keyword">public</span> TextView mTextView;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(TextView v)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(v);</span><br><span class="line">            mTextView = v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Provide a suitable constructor (depends on the kind of dataset)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyAdapter</span><span class="params">(String[] myDataset)</span> </span>&#123;</span><br><span class="line">        mDataset = myDataset;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create new views (invoked by the layout manager)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> MyAdapter.<span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// create a new view</span></span><br><span class="line">        View v = LayoutInflater.from(parent.getContext())</span><br><span class="line">                               .inflate(R.layout.my_text_view, parent, <span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">// set the view's size, margins, paddings and layout parameters</span></span><br><span class="line">        ...</span><br><span class="line">        ViewHolder vh = <span class="keyword">new</span> ViewHolder(v);</span><br><span class="line">        <span class="keyword">return</span> vh;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Replace the contents of a view (invoked by the layout manager)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// - get element from your dataset at this position</span></span><br><span class="line">        <span class="comment">// - replace the contents of the view with that element</span></span><br><span class="line">        holder.mTextView.setText(mDataset[position]);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Return the size of your dataset (invoked by the layout manager)</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mDataset.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><figcaption><span>Dependency</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support:recyclerview-v7:21.0.+'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Card"><a href="#Card" class="headerlink" title="Card"></a>Card</h1><p>待補</p>
+<h1 id="Defining-Shadows-and-Clipping-Views"><a href="#Defining-Shadows-and-Clipping-Views" class="headerlink" title="Defining Shadows and Clipping Views"></a>Defining Shadows and Clipping Views</h1><h2 id="Assign-Elevation-to-Your-Views"><a href="#Assign-Elevation-to-Your-Views" class="headerlink" title="Assign Elevation to Your Views"></a>Assign Elevation to Your Views</h2><p>The Z value for a view has two components:</p>
+<p>Elevation: The static component.<br>Translation: The dynamic component used for animations.<br>Z = elevation + translationZ</p>
+<h2 id="Customize-View-Shadows-and-Outlines"><a href="#Customize-View-Shadows-and-Outlines" class="headerlink" title="Customize View Shadows and Outlines"></a>Customize View Shadows and Outlines</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:id=&quot;@+id/myview&quot;</span><br><span class="line">    ...</span><br><span class="line">    android:elevation=&quot;2dp&quot;</span><br><span class="line">    android:background=&quot;@drawable/myrect&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- res/drawable/myrect.xml --&gt;</span><br><span class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">       android:shape=&quot;rectangle&quot;&gt;</span><br><span class="line">    &lt;solid android:color=&quot;#42000000&quot; /&gt;</span><br><span class="line">    &lt;corners android:radius=&quot;5dp&quot; /&gt;</span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="自訂-outline"><a href="#自訂-outline" class="headerlink" title="自訂 outline"></a>自訂 outline</h3><p> 1.Extend the ViewOutlineProvider class.<br> 2.Override the getOutline() method.<br> 3.Assign the new outline provider to your view with the View.setOutlineProvider() method.</p>
+<h2 id="Clip-Views"><a href="#Clip-Views" class="headerlink" title="Clip Views"></a>Clip Views</h2><p>Clipping views 能讓你簡單地改變 view 的形狀。</p>
+<p>views for consistency with other design elements or to change the shape of a view in response to user input.</p>
+<p>You can clip a view to its outline area using the View.setClipToOutline() method or the android:clipToOutline attribute.</p>
+<p>Only rectangle, circle, and round rectangle outlines support clipping, as determined by the Outline.canClip() method.</p>
+<p>To clip a view to the shape of a drawable, set the drawable as the background of the view (as shown above) and call the View.setClipToOutline() method.</p>
+<p>Clipping views is an expensive operation, so don’t animate the shape you use to clip a view. To achieve this effect, use the Reveal Effect animation.</p>
+<h2 id="Styles"><a href="#Styles" class="headerlink" title="Styles"></a>Styles</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span><br><span class="line">    <span class="attr">android:textColor</span>=<span class="string">"#00FF00"</span></span><br><span class="line">    <span class="attr">android:typeface</span>=<span class="string">"monospace"</span></span><br><span class="line">    <span class="attr">android:text</span>=<span class="string">"@string/hello"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span><br><span class="line">    <span class="attr">style</span>=<span class="string">"@style/CodeFont"</span></span><br><span class="line">    <span class="attr">android:text</span>=<span class="string">"@string/hello"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"CodeFont"</span> <span class="attr">parent</span>=<span class="string">"@android:style/TextAppearance.Medium"</span>&gt;</span><span class="xml"></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:layout_width"</span>&gt;</span>fill_parent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:layout_height"</span>&gt;</span>wrap_content<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textColor"</span>&gt;</span>#00FF00<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:typeface"</span>&gt;</span>monospace<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="design-Lib"><a href="#design-Lib" class="headerlink" title="design Lib"></a>design Lib</h2><h4 id="TabLayout"><a href="#TabLayout" class="headerlink" title="TabLayout"></a>TabLayout</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.TabLayout</span><br><span class="line">    android:id=&quot;@+id/sliding_tabs&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    app:tabMode=&quot;fixed&quot;</span><br><span class="line">    app:tabGravity=&quot;fill&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>tabMode : fixed | scrollable<br>tabGravity : fill | centre<br>setText()<br>setIcon()</p>
+<h4 id="App-Bar"><a href="#App-Bar" class="headerlink" title="App Bar"></a>App Bar</h4><p>app:layout_scrollFlags : enterAlways | enterAlwaysCollapsed | exitUntilCollapsed</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.CoordinatorLayout</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v7.widget.RecyclerView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        app:layout_behavior=</span><br><span class="line">        &quot;@string/appbar_scrolling_view_behavior&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.design.widget.AppBarLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;android.support.v7.widget.Toolbar</span><br><span class="line">            ...</span><br><span class="line">            app:layout_scrollFlags=&quot;scroll|enterAlways&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;android.support.design.widget.TabLayout</span><br><span class="line">            ...</span><br><span class="line">            /&gt;</span><br><span class="line">    &lt;/android.support.design.widget.AppBarLayout&gt;</span><br><span class="line">&lt;/android.support.design.widget.CoordinatorLayout&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="ToolBars"><a href="#ToolBars" class="headerlink" title="ToolBars"></a>ToolBars</h4><p>app:layout_collapseMode : Pin | Parallax</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

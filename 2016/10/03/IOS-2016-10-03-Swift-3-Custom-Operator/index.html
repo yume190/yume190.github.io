@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Swift 3 出來之後，之前參考別人寫 autolayout + custom operator 部分也跟著不能運作。
+當然光靠內建 convert 是行不通的，最好的方式還是去看改版到底改了什麼。
+於是就翻了 Xcode Release Notes …">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Swift 3 Custom Operator"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Swift 3 Custom Operator - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/10/03/IOS-2016-10-03-Swift-3-Custom-Operator/">
+                Swift 3 Custom Operator
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-10-03</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Swift 3 出來之後，之前參考別人寫 <code>autolayout + custom operator</code> 部分也跟著不能運作。</p>
+<p>當然光靠內建 convert 是行不通的，最好的方式還是去看改版到底改了什麼。</p>
+<p>於是就翻了 <a href="https://developer.apple.com/library/content/releasenotes/DeveloperTools/RN-Xcode/Introduction.html" target="_blank" rel="external">Xcode Release Notes</a> …</p>
+<a id="more"></a>
+<blockquote>
+<p>The syntax for adding new operators has changed significantly. The new language model uses a more semantic model based on named precedence groups rather than magic numbers. This only affects declaring new operators such as &gt;&gt;&gt; and not adding new overloads of existing operators such as ==. (<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0077-operator-precedence.md" target="_blank" rel="external">SE-0077</a>)</p>
+</blockquote>
+<p>custom operator 語法有顯著的改變。</p>
+<p>新語言模組是使用更有語義的模組，並基於 <code>precedence groups</code> 而非 <code>magic numbers</code></p>
+<p>這只會影響到 custom operator，而不會影響既有的 operator(overloads)</p>
+<p>詳細請看 proposal : <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0077-operator-precedence.md" target="_blank" rel="external">SE-0077</a></p>
+<hr>
+<p>首先先回顧一下 Swift 2 之前 custom operator 定義跟使用方式，以及剛剛提到的 <code>magic numbers</code></p>
+<p>可參考 <a href="http://nshipster.com/swift-operators/" target="_blank" rel="external">NSHIPSTER:swift-operators</a></p>
+<p>定義部分：</p>
+<ul>
+<li>決定：前(<code>prefix</code>) 中(<code>infix</code>) 後置(<code>postfix</code>)<br>範例：<code>infix</code></li>
+<li>符號<br>範例：<code>&lt;~</code></li>
+<li>結合律：左至右 右至左<br>範例：<code>left</code></li>
+<li>優先度：越大越先做<br>範例：<code>125</code><figure class="highlight swift"><figcaption><span>Swift 2</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定義 custom operator</span></span><br><span class="line"><span class="comment">// 中置, 結合律：左至右,優先度 125</span></span><br><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> &lt;~ &#123;</span><br><span class="line">    <span class="keyword">associativity</span> <span class="keyword">left</span></span><br><span class="line">    <span class="keyword">precedence</span> <span class="number">125</span> <span class="comment">// magic numbers 150</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定義 custom operator 功能</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> &lt;~ (left: NSLayoutConstraint, right: UILayoutPriority) -&gt; <span class="title">NSLayoutConstraint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">left</span>.priority = <span class="keyword">right</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">left</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>回過來看 Swift 3 該怎麼改，首先先回顧原本的 <code>magic numbers</code> 125</p>
+<p>對照優先度： 120 &lt; 125 &lt; 130</p>
+<p>再對照符號： <code>&amp;&amp;</code> &lt; <code>&lt;~</code> &lt; <code>==</code></p>
+<p>再對照 Swift 2： Conjunctive &lt; target &lt; Comparative</p>
+<p>最後是 Swift 3： LogicalConjunctionPrecedence &lt; target &lt; ComparisonPrecedence</p>
+<p>於是我們知道目標是處於 <code>LogicalConjunctionPrecedence &lt; target &lt; ComparisonPrecedence</code> 之間</p>
+<p>這時才來看他所謂的更有語義的模組 <code>precedence groups</code></p>
+<p>首先需要先定義 custom precedencegroup 並給上名稱 <code>precedencegroup YumeComparisonAssignmentPrecedence</code></p>
+<p>因為目標是 <code>infix</code>，所以一樣要定義結合律 <code>associativity: left</code></p>
+<p>接著是有語義的比大小</p>
+<ul>
+<li><code>lowerThan: ComparisonPrecedence</code></li>
+<li><code>higherThan: LogicalConjunctionPrecedence</code></li>
+</ul>
+<figure class="highlight swift"><figcaption><span>Swift 3 定義 custom precedencegroup</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">precedencegroup <span class="type">YumeComparisonAssignmentPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    lowerThan: <span class="type">ComparisonPrecedence</span></span><br><span class="line">    higherThan: <span class="type">LogicalConjunctionPrecedence</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然後定義你的 <code>custom operator</code> 要使用哪一種 <code>Precedence</code></p>
+<figure class="highlight swift"><figcaption><span>Swift 3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> &lt;~ : <span class="type">YumeComparisonAssignmentPrecedence</span></span><br></pre></td></tr></table></figure>
+<p>最後是實現功能</p>
+<figure class="highlight swift"><figcaption><span>Swift 3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">NSLayoutConstraint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> &lt;~ (left: NSLayoutConstraint, right: UILayoutPriority) -&gt; <span class="title">NSLayoutConstraint</span> </span>&#123;</span><br><span class="line">        <span class="keyword">left</span>.priority = <span class="keyword">right</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">left</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>小抱怨：<code>預設 Precedence</code> 必須到 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0077-operator-precedence.md#standard-library-changes" target="_blank" rel="external">Standard library changes</a> 查找，有點麻煩。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">precedencegroup <span class="type">BitwiseShiftPrecedence</span> &#123;</span><br><span class="line">    higherThan: <span class="type">MultiplicationPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">FunctionArrowPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">MultiplicationPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    higherThan: <span class="type">AdditionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">TernaryPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">    higherThan: <span class="type">AssignmentPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">DefaultPrecedence</span> &#123;</span><br><span class="line">    higherThan: <span class="type">TernaryPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">LogicalDisjunctionPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    higherThan: <span class="type">TernaryPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">LogicalConjunctionPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    higherThan: <span class="type">LogicalDisjunctionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">ComparisonPrecedence</span> &#123;</span><br><span class="line">    higherThan: <span class="type">LogicalConjunctionPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">NilCoalescingPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">    higherThan: <span class="type">ComparisonPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">AdditionPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">left</span></span><br><span class="line">    higherThan: <span class="type">RangeFormationPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">CastingPrecedence</span> &#123;</span><br><span class="line">    higherThan: <span class="type">NilCoalescingPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">AssignmentPrecedence</span> &#123;</span><br><span class="line">    <span class="keyword">associativity</span>: <span class="keyword">right</span></span><br><span class="line">    assignment: <span class="literal">true</span></span><br><span class="line">    higherThan: <span class="type">FunctionArrowPrecedence</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">precedencegroup <span class="type">RangeFormationPrecedence</span> &#123;</span><br><span class="line">    higherThan: <span class="type">CastingPrecedence</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Raspberry Pi 3 工作研究用">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="rasp for work"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>rasp for work - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/05/26/Linux-2016-05-26-rasp-for-work/">
+                rasp for work
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-26</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/raspberry/">raspberry</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Raspberry Pi 3 工作研究用</p>
+<a id="more"></a>
+<h3 id="Install-chromium-browser"><a href="#Install-chromium-browser" class="headerlink" title="Install chromium browser"></a>Install chromium browser</h3><p><a href="http://www.techrepublic.com/article/five-tips-for-getting-the-most-out-of-a-raspberry-pi-3-as-a-pc/" target="_blank" rel="external">http://www.techrepublic.com/article/five-tips-for-getting-the-most-out-of-a-raspberry-pi-3-as-a-pc/</a></p>
+<figure class="highlight sh"><figcaption><span>installChromiumBrowser.sh</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http://ports.ubuntu.com/pool/universe/c/chromium-browser/chromium-browser<span class="_">-l</span>10n_48.0.2564.82-0ubuntu0.15.04.1.1193_all.deb</span><br><span class="line">wget http://ports.ubuntu.com/pool/universe/c/chromium-browser/chromium-browser_48.0.2564.82-0ubuntu0.15.04.1.1193_armhf.deb</span><br><span class="line">wget http://ports.ubuntu.com/pool/universe/c/chromium-browser/chromium-codecs-ffmpeg-extra_48.0.2564.82-0ubuntu0.15.04.1.1193_armhf.deb</span><br><span class="line">sudo dpkg -i chromium-codecs-ffmpeg-extra_48.0.2564.82-0ubuntu0.15.04.1.1193_armhf.deb</span><br><span class="line">sudo dpkg -i chromium-browser<span class="_">-l</span>10n_48.0.2564.82-0ubuntu0.15.04.1.1193_all.deb chromium-browser_48.0.2564.82-0ubuntu0.15.04.1.1193_armhf.deb</span><br><span class="line">sudo apt-get install chromium-browser</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Turn-On-Off-Screen"><a href="#Turn-On-Off-Screen" class="headerlink" title="Turn On / Off Screen"></a>Turn On / Off Screen</h3><figure class="highlight sh"><figcaption><span>Ver 1</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">tvservice --off &gt; /dev/null</span><br><span class="line"></span><br><span class="line">screen_on.sh:</span><br><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">export</span> DISPLAY=:0</span><br><span class="line">tvservice -p</span><br><span class="line">fbset -depth 8; fbset -depth 16; xrefresh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Then, in the console type:</span></span><br><span class="line">crontab <span class="_">-e</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># in the file, add the following 2 lines (line 1 turns on the screen every morning at 8am Mon-Fri; line 2 shuts it off every evening at 8pm Mon-Fri)</span></span><br><span class="line"><span class="comment"># 00 08 * * 1-5 /bin/bash /home/pi/screen_on.sh</span></span><br><span class="line"><span class="comment"># 00 20 * * 1-5 /bin/bash /home/pi/screen_off.sh</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>Ver 2</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apt-get install cec-util</span><br><span class="line"></span><br><span class="line"><span class="comment"># Screen on, change to the active input of the Pi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"on 0"</span> | cec-client <span class="_">-s</span> &gt; /dev/null</span><br><span class="line">sleep 5</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"as"</span> | cec-client <span class="_">-s</span> &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment">#Screen off</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"standby 0"</span> | cec-client <span class="_">-s</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="KIOSK-chromium-browser"><a href="#KIOSK-chromium-browser" class="headerlink" title="KIOSK chromium-browser"></a>KIOSK chromium-browser</h3><p><a href="https://www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/" target="_blank" rel="external">Raspberry Pi Kiosk Screen Tutorial</a><br><a href="http://www.raspberry-projects.com/pi/pi-operating-systems/raspbian/screensaver" target="_blank" rel="external">關閉 Screensaver</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install chromium-browser x11-xserver-utils unclutter</span><br></pre></td></tr></table></figure>
+<p>修改 :</p>
+<ul>
+<li><code>sudo nano /etc/xdg/lxsession/LXDE/autostart</code></li>
+<li><code>sudo nano /etc/xdg/lxsession/LXDE-pi/autostart</code></li>
+<li><code>/home/pi/.config/lxsession/LXDE-pi/autostart</code> 目前使用的</li>
+<li><code>/root/.config/lxsession/LXDE-pi/autostart</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@xscreensaver -no-splash</span></span><br><span class="line"></span><br><span class="line">@xset s off</span><br><span class="line">@xset -dpms</span><br><span class="line">@xset s noblank</span><br><span class="line"></span><br><span class="line"><span class="comment">#@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium/Default/Preferences</span></span><br><span class="line"></span><br><span class="line">@chromium-browser --noerrdialogs --disable-translate --kiosk --app=http://www.page-to.display</span><br></pre></td></tr></table></figure>
+<p>關閉 chromium-browser <code>ctrl + alt + F4</code></p>
+<h3 id="KIOSK-epiphany"><a href="#KIOSK-epiphany" class="headerlink" title="KIOSK epiphany"></a><a href="https://github.com/elalemanyo/raspberry-pi-kiosk-screen#epiphany-browser" target="_blank" rel="external">KIOSK epiphany</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install epiphany-browser x11-xserver-utils xautomation unclutter</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>fullscreen.sh</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -u pi epiphany-browser <span class="_">-a</span> -i --profile ~/.config [URL] --display=:0 &amp;</span><br><span class="line">sleep 15s;</span><br><span class="line">xte <span class="string">"key F11"</span> -x:0</span><br></pre></td></tr></table></figure>
+<h3 id="cec-client"><a href="#cec-client" class="headerlink" title="cec-client"></a>cec-client</h3><p>需要螢幕以及機器都支援 <code>cec</code>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 觀看有哪些指令</span></span><br><span class="line"><span class="built_in">echo</span> h | cec-client <span class="_">-s</span> <span class="_">-d</span> 1</span><br><span class="line"><span class="comment"># 掃描裝置，觀察是 device 幾</span></span><br><span class="line"><span class="built_in">echo</span> scan | cec-client <span class="_">-s</span> <span class="_">-d</span> 1</span><br><span class="line"><span class="comment"># 開</span></span><br><span class="line"><span class="built_in">echo</span> on 0 | cec-client <span class="_">-s</span> <span class="_">-d</span> 1</span><br><span class="line"><span class="comment"># 關</span></span><br><span class="line"><span class="built_in">echo</span> standby 0 | cec-client <span class="_">-s</span> <span class="_">-d</span> 1</span><br></pre></td></tr></table></figure>
+<h3 id="chromium-browser"><a href="#chromium-browser" class="headerlink" title="chromium-browser"></a>chromium-browser</h3><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="external">args</a></p>
+<h3 id="相關-Lib"><a href="#相關-Lib" class="headerlink" title="相關 Lib"></a>相關 Lib</h3><p><a href="https://github.com/Pulse-Eight/libcec" target="_blank" rel="external">libcec</a><br><a href="https://github.com/trainman419/python-cec" target="_blank" rel="external">python-cec</a></p>
+<h3 id="Load-ko"><a href="#Load-ko" class="headerlink" title="Load ko"></a>Load ko</h3><p><a href="http://bchavez.bitarmory.com/archive/2013/01/16/compiling-kernel-modules-for-raspberry-pi.aspx" target="_blank" rel="external">Compiling Kernel Modules for Raspberry Pi</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Copy your .ko module to /lib/modules/3.2.27+</span><br><span class="line">Edit /etc/modules and append your module to the end of the list.</span><br><span class="line">Mine looks like:</span><br><span class="line"># /etc/modules: kernel modules to load at boot time.</span><br><span class="line">#</span><br><span class="line"># This file contains the names of kernel modules that should be loaded</span><br><span class="line"># at boot time, one per line. Lines beginning with &quot;#&quot; are ignored.</span><br><span class="line"># Parameters can be specified after the module name.</span><br><span class="line"></span><br><span class="line">snd-bcm2835</span><br><span class="line">spi-bcm2708</span><br><span class="line">i2c-bcm2708</span><br><span class="line">i2c-dev</span><br><span class="line">rpi-pwm</span><br><span class="line"></span><br><span class="line">Next, run: depmod -a</span><br><span class="line">Next, run: modprobe &lt;yourmodulename&gt;</span><br></pre></td></tr></table></figure>
+<p><a href="http://edoceo.com/howto/kernel-modules" target="_blank" rel="external">Linux Kernel Modules - Load, Unload, Configure</a><br><a href="https://wiki.archlinux.org/index.php/kernel_modules" target="_blank" rel="external">Kernel modules</a></p>
+<h3 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h3><p><a href="https://petewarden.com/2014/08/07/how-to-optimize-raspberry-pi-code-using-its-gpu/" target="_blank" rel="external">How to optimize Raspberry Pi code using its GPU</a><br><a href="https://www.youtube.com/watch?v=eZd0IYJ7J40" target="_blank" rel="external">Hacking the Raspberry Pi’s VideoCore IV GPU - Louis Howe</a></p>
+<h3 id="安裝中文字"><a href="#安裝中文字" class="headerlink" title="安裝中文字"></a>安裝中文字</h3><p><a href="http://studyraspberrypi.blogspot.tw/2015/12/install-chinese-fonts.html" target="_blank" rel="external">在樹莓派上安裝中文字型 Install Chinese Fonts with Raspberry Pi</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 文泉驛正黑</span><br><span class="line">sudo apt-get install ttf-wqy-zenhei</span><br><span class="line"># 教育部標準楷書</span><br><span class="line">sudo apt-get install fonts-moe-standard-kai</span><br></pre></td></tr></table></figure>
+<p><a href="http://mycomputerhelp.net/2015/11/08/minimal-kiosk-browser-kweb-web-browser-fast-reliable-web-browser-for-raspberry-pi-pc/" target="_blank" rel="external">kweb</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://steinerdatenbank.de/software/kweb-1.6.9.tar.gz</span><br><span class="line">tar -xzf kweb-1.6.9.tar.gz</span><br><span class="line">cd kweb-1.6.9</span><br><span class="line">./debinstall</span><br></pre></td></tr></table></figure>
+<p><code>sudo apt-get install uget tint2 vlc xterm</code></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/raspberry/">#raspberry</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

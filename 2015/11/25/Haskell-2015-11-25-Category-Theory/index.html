@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="抽空看了 Category Theory 有一種我到底看了什麼感覺
+有點蛋疼 有點懂 有點不懂 有點有趣 有點WTF
+反正整個五味雜成就是哩！">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Category Theory"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Category Theory - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/11/25/Haskell-2015-11-25-Category-Theory/">
+                Category Theory
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-25</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>抽空看了 <code>Category Theory</code> 有一種我到底看了什麼感覺</p>
+<p>有點蛋疼 有點懂 有點不懂 有點有趣 有點WTF</p>
+<p>反正整個五味雜成就是哩！</p>
+<a id="more"></a>
+<hr>
+<h1 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h1><p>首先，先提到 Category，以及事前準備(術語)</p>
+<h3 id="Category-到底有什麼東東"><a href="#Category-到底有什麼東東" class="headerlink" title="Category 到底有什麼東東"></a>Category 到底有什麼東東</h3><p>Category 會包含以下四個東東：</p>
+<ol>
+<li>Objects</li>
+<li>Morphisms 或稱 Arrows</li>
+<li>Associative Law</li>
+<li>Identity Law</li>
+</ol>
+<font color="blue">PS: <code>Law</code> 屬於數學用語，所以Category Theory 必須符合Associative Law &amp; Identity Law</font>
+
+<p>在不同的面向來看這四個東東會對應到不同的東西。</p>
+<p>已程式設計來說，可能會是下面的對應</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Math</th>
+<th style="text-align:center">程式設計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Objects</td>
+<td style="text-align:center">sets(types)</td>
+</tr>
+<tr>
+<td style="text-align:center">Arrows</td>
+<td style="text-align:center">functions</td>
+</tr>
+<tr>
+<td style="text-align:center">Associative Law</td>
+<td style="text-align:center">function composition</td>
+</tr>
+<tr>
+<td style="text-align:center">Identity Law</td>
+<td style="text-align:center">identity function</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight swift"><figcaption><span>function composition</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(a:Int)</span></span> -&gt; <span class="type">Double</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Double</span>(a + <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">g</span><span class="params">(b:Double)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">String</span>(b) + <span class="string">"2"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// function composition</span></span><br><span class="line">g(f(<span class="number">1</span>)) == (g ∘ f)(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>identity function</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">identity</span>&lt;T&gt;<span class="params">(a:T)</span></span> -&gt; <span class="type">T</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>Compose function ∘</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> ∘ &lt;A,B,C&gt; <span class="params">(f:<span class="params">(B -&gt; C)</span></span></span>, g:(<span class="type">A</span> -&gt; <span class="type">B</span>)) -&gt; (<span class="type">A</span> -&gt; <span class="type">C</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">gof</span><span class="params">(a:A)</span></span> -&gt; <span class="type">C</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f(g(a))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> gof</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Category-的-Laws"><a href="#Category-的-Laws" class="headerlink" title="Category 的 Laws"></a>Category 的 Laws</h3><p>Category 必須遵循兩條 Lasw：</p>
+<ul>
+<li>Associative Law : <code>(f ∘ g) ∘ h = f ∘ (g ∘ h)</code></li>
+<li>Identity Law : <code>f ∘ identity = f = identity ∘ f</code></li>
+</ul>
+<p>某 function <code>f</code> <code>g</code> <code>h</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f : A -&gt; B</span><br><span class="line">g : B -&gt; C</span><br><span class="line">h : C -&gt; D</span><br></pre></td></tr></table></figure></p>
+<h3 id="圖解定義"><a href="#圖解定義" class="headerlink" title="圖解定義"></a>圖解定義</h3><h4 id="g-f-a-g-∘-f-a"><a href="#g-f-a-g-∘-f-a" class="headerlink" title="g(f(a)) = (g ∘ f)(a)"></a>g(f(a)) = (g ∘ f)(a)</h4><p><img src="/image/CategoryTheory/p1.png" alt="g(f) = g∘f &lt;br /&gt;A -&gt; C"></p>
+<h4 id="Associative-Law"><a href="#Associative-Law" class="headerlink" title="Associative Law"></a>Associative Law</h4><p><img src="/image/CategoryTheory/p2.png" alt="Associative Law"></p>
+<h4 id="Identity-Law"><a href="#Identity-Law" class="headerlink" title="Identity Law"></a>Identity Law</h4><p><img src="/image/CategoryTheory/p3.png" alt="Identity Law"></p>
+<hr>
+<h1 id="Functor"><a href="#Functor" class="headerlink" title="Functor"></a>Functor</h1><p>其實還是不懂，只好祭出 Haskell 定義</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">Functor</span> f <span class="keyword">where</span></span></span><br><span class="line">    fmap :: (a -&gt; b) -&gt; f a -&gt; f b</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Monoid"><a href="#Monoid" class="headerlink" title="Monoid"></a>Monoid</h1><p>不是很懂。但他有一條 tip 提到，具有 0 to many 特性幾乎就是Monoid。</p>
+<p>一樣先提 Monoid 的事前準備(術語)</p>
+<p>Compose function <code>•</code>:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">• : <span class="type">M</span> × <span class="type">M</span> -&gt; <span class="type">M</span></span><br></pre></td></tr></table></figure>
+<p>Identity function <code>id</code>:</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">id</span> : <span class="type">M</span></span><br></pre></td></tr></table></figure>
+<p>同樣 Monoid 也必須遵循兩條規則：</p>
+<ul>
+<li>Associative Law : <code>(f • g) • h = f • (g • h)</code></li>
+<li>Identity Law : <code>f • id = f = id • f</code></li>
+</ul>
+<h2 id="以下是個人理解"><a href="#以下是個人理解" class="headerlink" title="以下是個人理解"></a>以下是個人理解</h2><p>例如 Int 可以找到 compose function(加法) 以及 id (0)<br>0 + x = x = x + 0</p>
+<p>Int 可以找到 compose function(乘法) 以及 id (1)<br>1 <em> x = x = x </em> 1</p>
+<p>String 可以找到 compose function(字串串接) 以及 id (“”)<br>“” + “a” = “a” = “a” + “”</p>
+<p>椅子的話就不符合這個條件，椅子＋椅子 不等於 椅子</p>
+<p>椅子堆反而可以<br>空椅子堆 ＋ 椅子堆 ＝ 椅子堆 ＝ 椅子堆 ＋ 空椅子堆</p>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://yogsototh.github.io/Category-Theory-Presentation/" target="_blank" rel="external">Category Theory &amp; Programming</a><br><a href="http://www.slideshare.net/kenbot/category-theory-for-beginners" target="_blank" rel="external">Category theory for beginners</a></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="等待許久，終於等到 Swift Open Source">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Open Swift"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Open Swift - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/12/09/IOS-2015-12-09-Open-Swift/">
+                Open Swift
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-09</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>等待許久，終於等到 <a href="https://swift.org/" target="_blank" rel="external">Swift Open Source</a></p>
+<a id="more"></a>
+<h2 id="Linux-Version"><a href="#Linux-Version" class="headerlink" title="Linux Version"></a><a href="https://github.com/swiftdocker/docker-swift" target="_blank" rel="external">Linux Version</a></h2><p>可以先用上面的 <code>dockerfile</code> 快速建立一個有 swift 的 client。</p>
+<h2 id="Swift-安裝-OSX-Swift-Download"><a href="#Swift-安裝-OSX-Swift-Download" class="headerlink" title="Swift 安裝 (OSX) Swift Download"></a>Swift 安裝 (OSX) <a href="https://swift.org/download/#latest-development-snapshots" target="_blank" rel="external">Swift Download</a></h2><p>安裝 pkg 後，他會將 toolchain 安裝在 <code>/Library/Developer/Toolchains/</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls /Library/Developer/Toolchains/</span><br><span class="line">swift-2.2-SNAPSHOT-2015-12-01-a.xctoolchain</span><br><span class="line">swift-latest.xctoolchain</span><br></pre></td></tr></table></figure>
+<p>然後關閉 XCode，執行 <code>xcrun launch-with-toolchain /Library/Developer/Toolchains/swift-latest.xctoolchain</code></p>
+<p>他會以 toolchain 的 swift 版本，開啟 XCode</p>
+<p>最後，記得把 toolchain 加入到 <code>PATH</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:<span class="string">"<span class="variable">$&#123;PATH&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<h2 id="測試安裝是否成功"><a href="#測試安裝是否成功" class="headerlink" title="測試安裝是否成功"></a>測試安裝是否成功</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swift build --help</span><br></pre></td></tr></table></figure>
+<p>如果沒有安裝成功的話會出現類似下面的字眼(要選 Development Snapshots，不是 Release Snapshots)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;unknown&gt;:0: error: no such file or directory: &apos;build&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="開始寫第一份-Package"><a href="#開始寫第一份-Package" class="headerlink" title="開始寫第一份 Package"></a>開始寫第一份 Package</h2><p>專案結構如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tree</span><br><span class="line">.</span><br><span class="line">├── Package.swift</span><br><span class="line">└── Sources</span><br><span class="line">    └── main.swift</span><br></pre></td></tr></table></figure>
+<p>大致上，package 內需要一個 <code>Package.swift</code></p>
+<p>Source Code 要放在 <code>Sources 目錄</code>，如果這個 <code>Package</code> 是執行的話，需要加入 <code>main.swift</code>(entry point)。</p>
+<p>或者只是把它當成 Lib 的話，只要把你想要公開的功能設定成 public 就可以了(名稱就不用是 <code>main.swift</code>)。</p>
+<p>寫下第一個 Hello Word!!</p>
+<figure class="highlight swift"><figcaption><span>main.swift</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello Yume"</span>)</span><br></pre></td></tr></table></figure>
+<p><code>Build</code> then <code>Run</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yume:Swift22 yume$ pwd</span><br><span class="line">/Users/yume/Desktop/Swift22</span><br><span class="line">yume:Swift22 yume$ swift build</span><br><span class="line">yume:Swift22 yume$ ls -a</span><br><span class="line">.       ..      .build      Package.swift   Sources</span><br><span class="line">yume:Swift22 yume$ .build/debug/Swift22</span><br><span class="line">Hello Yume</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Swift-Packagae-Manager"><a href="#Swift-Packagae-Manager" class="headerlink" title="Swift Packagae Manager"></a>Swift Packagae Manager</h1><p><a href="https://github.com/nixzhu/dev-blog/blob/master/2015-12-04-swift-package-manager.md" target="_blank" rel="external">對岸翻譯</a></p>
+<h3 id="Source-Layouts"><a href="#Source-Layouts" class="headerlink" title="Source Layouts"></a><a href="https://github.com/apple/swift-package-manager/blob/master/Documentation/SourceLayouts.md" target="_blank" rel="external">Source Layouts</a></h3><p>swift package manager 的一些使用約束。</p>
+<p>swift package manager 會因為你的 src layout。</p>
+<p>進行 <code>swift build</code> 後，會有不同的輸出結果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">example/</span><br><span class="line">example/Sources/bar.swift</span><br><span class="line">example/Sources/baz.swift</span><br></pre></td></tr></table></figure>
+<p>輸出：</p>
+<p><code>example/.build/debug/example.a</code></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">example/Sources/foo/foo.swift</span><br><span class="line">example/Sources/bar/bar.swift</span><br></pre></td></tr></table></figure>
+<p>輸出：</p>
+<p><code>example/.build/debug/foo.a</code><br><code>example/.build/debug/bar.a</code></p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">example/Sources/foo/main.swift</span><br><span class="line">example/Sources/bar/bar.swift</span><br></pre></td></tr></table></figure>
+<p>輸出：</p>
+<p><code>example/.build/debug/foo</code><br><code>example/.build/debug/bar.a</code></p>
+<hr>
+<p>其他規則：</p>
+<ul>
+<li><code>Tests</code> 目錄會被忽略</li>
+<li><code>Sources</code>, <code>Source</code>, <code>srcs</code>, <code>src</code> 目錄下會變成模組(Module)</li>
+<li>可以接受沒有 <code>Sources 目錄</code>，此時它會將 <code>根目錄(root directory)</code> 視為單一模組(可以將code 放在根目錄或者其子目錄，simple 專案的寫法)。</li>
+</ul>
+<h2 id="Package-swift"><a href="#Package-swift" class="headerlink" title="Package.swift"></a>Package.swift</h2><figure class="highlight swift"><figcaption><span>Package.swift</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PackageDescription</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</span><br><span class="line">    name: <span class="string">"DeckOfPlayingCards"</span>,</span><br><span class="line">    dependencies: [</span><br><span class="line">        .<span class="type">Package</span>(url: <span class="string">"https://github.com/apple/example-package-fisheryates.git"</span>, majorVersion: <span class="number">1</span>),</span><br><span class="line">        .<span class="type">Package</span>(url: <span class="string">"https://github.com/apple/example-package-playingcard.git"</span>, majorVersion: <span class="number">1</span>),</span><br><span class="line">    ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="針對各個平台"><a href="#針對各個平台" class="headerlink" title="針對各個平台"></a>針對各個平台</h2><figure class="highlight swift"><figcaption><span>針對各平台寫法</span><a href="http://qiita.com/dankogai/items/7886afe6746eeaf35a30" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">if</span>     os(<span class="type">OSX</span>)</span><br><span class="line"><span class="keyword">import</span> Cocoa</span><br><span class="line">#elseif os(iOS)</span><br><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line">#elseif os(<span class="type">Linux</span>)</span><br><span class="line"><span class="keyword">import</span> Glibc</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<h2 id="Using-the-LLDB-Debugger-Using-the-LLDB-Debugger"><a href="#Using-the-LLDB-Debugger-Using-the-LLDB-Debugger" class="headerlink" title="Using the LLDB Debugger Using the LLDB Debugger"></a>Using the LLDB Debugger <a href="https://swift.org/getting-started/#using-the-build-system" target="_blank" rel="external">Using the LLDB Debugger</a></h2>
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Swift/">#Swift</a> <a href="/tags/Open-Source/">#Open Source</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

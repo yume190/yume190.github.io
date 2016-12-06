@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="今天在 FB 湊巧看到有人 PO Swift Script 這篇。
+稍微玩了一下～～。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Swift Script"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Swift Script - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/07/07/IOS-2015-07-07-Swift-Script/">
+                Swift Script
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-07-07</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>今天在 FB 湊巧看到有人 PO <a href="https://realm.io/news/swift-scripting/" target="_blank" rel="external">Swift Script</a> 這篇。</p>
+<p>稍微玩了一下～～。</p>
+<a id="more"></a>
+<h1 id="使用-Swift-Script"><a href="#使用-Swift-Script" class="headerlink" title="使用 Swift Script"></a>使用 Swift Script</h1><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p><code>xcrun swift hello.swift</code></p>
+<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p><code>chmod +x hello.swift</code></p>
+<figure class="highlight swift"><figcaption><span>hello.swift</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env xcrun swift</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+<p><code>./hello.swift</code></p>
+<h1 id="搭配-Carthage"><a href="#搭配-Carthage" class="headerlink" title="搭配 Carthage"></a>搭配 <a href="https://github.com/Carthage/Carthage" target="_blank" rel="external">Carthage</a></h1><figure class="highlight plain"><figcaption><span>cartfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">github &quot;jdhealy/PrettyColors&quot;</span><br></pre></td></tr></table></figure>
+<p><code>carthage update</code></p>
+<p><code>swift hello.swift -F FRAMEWORK_LOACTION</code></p>
+<h3 id="其他-Swift-CLI-Framework"><a href="#其他-Swift-CLI-Framework" class="headerlink" title="其他 Swift CLI Framework"></a>其他 Swift CLI Framework</h3><ul>
+<li><a href="https://github.com/neonichu/Rome" target="_blank" rel="external">Cocoapod Rome</a></li>
+<li><a href="https://github.com/jdhealy/PrettyColors" target="_blank" rel="external">PrettyColors</a></li>
+<li><a href="https://github.com/thoughtbot/Argo" target="_blank" rel="external">Argo</a></li>
+<li><a href="https://github.com/kylef/CLIKit" target="_blank" rel="external">CLIKit</a></li>
+<li><a href="https://github.com/nomothetis/SemverKit" target="_blank" rel="external">SemverKit</a></li>
+<li><a href="https://github.com/BananaKit/BananaKit" target="_blank" rel="external">BananaKit</a></li>
+<li><a href="https://github.com/jatoben/CommandLine" target="_blank" rel="external">CommandLine</a></li>
+</ul>
+<h3 id="當天-Talk-Repo"><a href="#當天-Talk-Repo" class="headerlink" title="當天 Talk Repo"></a>當天 <a href="https://github.com/ayanonagon/talks" target="_blank" rel="external">Talk Repo</a></h3><hr>
+<h1 id="Swift-for-CLI-tools"><a href="#Swift-for-CLI-tools" class="headerlink" title="Swift for CLI tools"></a><a href="https://speakerdeck.com/supermarin/swift-for-cli-tools" target="_blank" rel="external">Swift for CLI tools</a></h1><p>介紹蠻仔細的簡報</p>
+<h3 id="Compile-amp-run"><a href="#Compile-amp-run" class="headerlink" title="Compile &amp; run"></a>Compile &amp; run</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">swiftc hello.swift -o hello</span><br><span class="line">chomd +x hello</span><br><span class="line">./hello</span><br></pre></td></tr></table></figure>
+<h3 id="Caveats"><a href="#Caveats" class="headerlink" title="Caveats"></a>Caveats</h3><p><img src="/image/Swift/script/p1.png" alt=""></p>
+<h3 id="arg"><a href="#arg" class="headerlink" title="arg"></a>arg</h3><p><code>Process.arguments</code></p>
+<h3 id="Status-Code"><a href="#Status-Code" class="headerlink" title="Status Code"></a>Status Code</h3><p><code>exit(0) // 0</code></p>
+<h3 id="Option-parsing"><a href="#Option-parsing" class="headerlink" title="Option parsing"></a>Option parsing</h3><ul>
+<li><a href="https://github.com/jakeheis/SwiftCLI" target="_blank" rel="external">SwiftCLI</a></li>
+<li><a href="https://github.com/nomothetis/OptionKit" target="_blank" rel="external">OptionKit</a></li>
+</ul>
+<h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><h5 id="Spawning"><a href="#Spawning" class="headerlink" title="Spawning"></a>Spawning</h5><p><code>git status | slug | say</code></p>
+<h5 id="Reading-Writing"><a href="#Reading-Writing" class="headerlink" title="Reading / Writing"></a>Reading / Writing</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import IO</span><br><span class="line"></span><br><span class="line">STDIN.eachLine &#123; line in</span><br><span class="line">    print(&quot;printing: \(line)&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">file.eachLine &#123; line in</span><br><span class="line">    print(&quot;printing: \(line)&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">readLines(stdin) &#123; line in</span><br><span class="line">    print(&quot;printing: \(line)&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">readLines(file) &#123; line in</span><br><span class="line">    print(&quot;printing: \(line)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="File"><a href="#File" class="headerlink" title="File"></a>File</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File.join(Dir.home. &quot;code&quot;) // ~/code</span><br><span class="line"></span><br><span class="line">File.expand_path(&quot;~/code/file.rb&quot;) // /Users/supermarin/code/file.rb</span><br></pre></td></tr></table></figure>
+<h5 id="File-Structure"><a href="#File-Structure" class="headerlink" title="File Structure"></a>File Structure</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">└── slug</span><br><span class="line">    ├── bin/</span><br><span class="line">    ├── lib/</span><br><span class="line">    └── test/</span><br></pre></td></tr></table></figure>
+<h5 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h5><p><code>swift test</code></p>
+<hr>
+<h3 id="Swift-Reading-and-Writing-Files-stdio-read-String-extension-split-method-strip"><a href="#Swift-Reading-and-Writing-Files-stdio-read-String-extension-split-method-strip" class="headerlink" title="Swift - Reading and Writing Files(stdio(read), String extension(split method, strip))"></a><a href="http://sitekamimura.blogspot.tw/2014/09/swift-reading-and-writing.html" target="_blank" rel="external">Swift - Reading and Writing Files(stdio(read), String extension(split method, strip))</a></h3><h3 id="Shebang-Unix-wiki"><a href="#Shebang-Unix-wiki" class="headerlink" title="Shebang (Unix) wiki"></a><a href="https://en.wikipedia.org/wiki/Shebang_(Unix)" target="_blank" rel="external">Shebang (Unix) wiki</a></h3>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

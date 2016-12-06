@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="原文 ： Design Patterns: Dependency Injection
+即使相依性注入是一個很稀少教給初心者的話題，他是個值得更多關注的設計模式。
+許多開發者避免相依性注入，因為他們並不曉得他的意義，或者因為他們認為不需要它。
+在這篇文章，我會嘗試說服你相依性注入的價值所在。
+要做到這一點，我將會以相依性注入最簡單的形式，來說明它多麼的簡單。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Design Patterns: Dependency Injection"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Design Patterns: Dependency Injection - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/04/27/Design-Pattern-2015-04-27-Design-Patterns-Dependency-Injection/">
+                Design Patterns: Dependency Injection
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-04-27</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/Design-Pattern/">Design Pattern</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>原文 ： <a href="http://code.tutsplus.com/articles/design-patterns-dependency-injection--cms-23809" target="_blank" rel="external">Design Patterns: Dependency Injection</a></p>
+<p>即使相依性注入是一個很稀少教給初心者的話題，他是個值得更多關注的<code>設計模式</code>。</p>
+<p>許多開發者避免相依性注入，因為他們並不曉得他的意義，或者因為他們認為不需要它。</p>
+<p>在這篇文章，我會嘗試說服你相依性注入的價值所在。</p>
+<p>要做到這一點，我將會以相依性注入最簡單的形式，來說明它多麼的簡單。</p>
+<a id="more"></a>
+<h3 id="1-What-Is-Dependency-Injection"><a href="#1-What-Is-Dependency-Injection" class="headerlink" title="1. What Is Dependency Injection?"></a>1. What Is Dependency Injection?</h3><p>很多人都寫了關於相依性注入，且有一堆為了簡化相依性注入的工具和 Library 。</p>
+<p>這裏有一條引言，然而，that captures the confusion many people have around dependency injection.</p>
+<blockquote>
+<p>“Dependency Injection” is a 25-dollar term for a 5-cent concept. - James Shore</p>
+</blockquote>
+<p>一旦你掌握了相依性注入背後的原理，你將會懂剛剛那段引言。</p>
+<p>我們先用範例來展示它的概念。</p>
+<p>iOS App 有許多的相依物件，且你甚至沒有察覺你的應用程式可能依賴於相依物件，就是這樣，你不認為他們是相依物件</p>
+<p>下面有一段程式片段。</p>
+<p>這段實作包含一個叫做 <code>saveList:</code> 的方法。</p>
+<p>你可以指出他的相依物件嗎？</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)saveList:(<span class="built_in">NSArray</span> *)list &#123;</span><br><span class="line">    <span class="keyword">if</span> ([list isKindOfClass:[<span class="built_in">NSArray</span> class]]) &#123;</span><br><span class="line">        <span class="built_in">NSUserDefaults</span> *userDefaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br><span class="line">        [userDefaults setObject:list forKey:<span class="string">@"list"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>最經常被忽視的相依物件，通常是我們最常依賴的。</p>
+<p>在 <code>saveList:</code> 方法中，我們儲存 array 到 userDefaults，透過 <code>NSUserDefaults</code> 物件。</p>
+<p>我們藉由使用 <code>standardUserDefaults</code> 方法存取 shared defaults object。</p>
+<p>如果你熟悉 iOS 或 OS X 開發，那你很可能是最熟悉 <code>NSUserDefaults</code> 物件。</p>
+<p>存放資料到 userDefaults 是個快速，簡單且可靠。</p>
+<p>感謝 standardUserDefaults 方法，我們能在專案的任何位置存取 userDefaults。</p>
+<p>我們可以在任何時間，任何地方使用 standardUserDefaults 回傳的 singleton。</p>
+<hr>
+<p>Singleton? 任何時間且任何位置? 你有聞到什麼嗎?</p>
+<p>我不只聞到了相依物件，我也聞到了壞習慣。</p>
+<p>在這篇文章，我不想要討論濫用 singletons，但很重要的是，我們應該保守的使用 singletons。</p>
+<p>Take a look at the following example for clarification.</p>
+<p>多數人習慣使用 userDefaults 且不認為他是個相依物件。</p>
+<p>但他當然是相依物件。</p>
+<p>我們一般使用的 <code>[NSNotificationCenter defaultCenter]</code> 也一樣是個相依物件。</p>
+<p>讓我們用下面的範例來澄清。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">NSNotificationCenter</span> *nc = [<span class="built_in">NSNotificationCenter</span> defaultCenter];</span><br><span class="line">        [nc addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(applicationWillEnterForeground:) name:<span class="built_in">UIApplicationWillEnterForegroundNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Memory Management</span></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    [[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Notification Handling</span></span><br><span class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">NSNotification</span> *)notification &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>上面是個非常常見的使用情境。</p>
+<p>我們對 view controller 添加 notifications 的 observer，並且在 dealloc 的時候移除 observer。</p>
+<p>這添加另一個相依物件給 ViewController class，相依物件通常會被忽略或無視 （overlooked or ignored）。</p>
+<font color="blue"><br>overlooked : 沒注意到而忽視。<br><br>ignored : 有注意到的忽視。<br></font>
+
+
+<p>你可能會問自己 <code>What is the problem?</code> 或者好一點的 <code>Is there a problem?</code></p>
+<p>讓我們先從第一個問題開始！</p>
+<h5 id="What-Is-the-Problem"><a href="#What-Is-the-Problem" class="headerlink" title="What Is the Problem?"></a>What Is the Problem?</h5><p>基於上面的範例，它似乎沒什麼問題。</p>
+<p>雖然這不完全對。</p>
+<p>view controller 依賴於 shared defaults object 和 the default notification center 來完成它的工作。</p>
+<p>這是個問題嗎？幾乎每個物件都依賴其他的物件來完成他的工作。</p>
+<p>問題在於相依物件過於隱性。</p>
+<p>對於新加入到你的專案的開發者，無法從 class interface 檢視，因此並不知道 view controller 依賴於哪些相依物件。</p>
+<p>Testing the ViewController class will also prove to be tricky since we don’t control the NSUserDefaults and NSNotificationCenter classes.</p>
+<p>我們來看看一些這個問題的解決方案。</p>
+<p>換句話說，讓我們看相依性注入如何幫我們解決這個問題。</p>
+<hr>
+<h3 id="2-Injecting-Dependencies"><a href="#2-Injecting-Dependencies" class="headerlink" title="2. Injecting Dependencies"></a>2. Injecting Dependencies</h3><p>如同剛剛簡介提到的，相依性注入是一個非常簡單的概念。</p>
+<p>James Shore 之前寫一篇相當棒的<a href="http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html" target="_blank" rel="external">文章</a>。</p>
+<p>這邊有另外一條 James Shore 的引言，關於相依性注入是什麼的核心概念。</p>
+<blockquote>
+<p>Dependency injection means giving an object its instance variables. Really. That’s it. - James Shore</p>
+</blockquote>
+<p>這邊有幾種完成這的方法，但很重要的是，要先理解上面那段引言的意義。</p>
+<p>讓我們來看看，如何把相依性注入應用到 ViewController class。</p>
+<p>首先，我們先取代在 init 方法中的 <code>[NSUserDefaults standardUserDefaults]</code>，用 <code>NSNotificationCenter</code> 的 property 替代。</p>
+<p>This is what the updated interface of the ViewController class looks like after this addition.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSNotificationCenter</span> *defaultCenter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>這也意味著我們在 initialize ViewController 時，要做些額外的工作。</p>
+<p>如同 James 文章提到，我們掌握了 ViewController instance 的變數。</p>
+<p>That is how simple dependency injection is.</p>
+<p>It’s a fancy name for a straightforward concept.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initialize View Controller</span></span><br><span class="line">ViewController *viewController = [[ViewController alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Configure View Controller</span></span><br><span class="line">[viewController setNotificationCenter:[<span class="built_in">NSNotificationCenter</span> defaultCenter]];</span><br></pre></td></tr></table></figure>
+<p>As a result of this change, the implementation of the ViewController class changes.</p>
+<p>下面是用了相依性注入之後 init 及 dealloc 使用 default notification center 的樣子。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        [<span class="keyword">self</span>.notificationCenter addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(applicationWillEnterForeground:) name:<span class="built_in">UIApplicationWillEnterForegroundNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Memory Management</span></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    [_notificationCenter removeObserver:<span class="keyword">self</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意到我們在 dealloc 方法中沒有用 <code>self</code>。</p>
+<p>這是考慮到壞習慣，他可能導致些非預期的結果。</p>
+<p>這邊有一個問題。你能把它指出來嗎？</p>
+<hr>
+<p>在 ViewController class 的 initializer 中，我們幫 view controller 添加 notificationCenter 的 observer。</p>
+<p>在初始化過程中，然而，notificationCenter 尚未被設定。</p>
+<p>我們可以在初始方法中，把相依物件丟進去來解決這個問題。</p>
+<p>看起來就像這樣。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)initWithNotificationCenter:(<span class="built_in">NSNotificationCenter</span> *)notificationCenter &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="comment">// Set Notification Center</span></span><br><span class="line">        [<span class="keyword">self</span> setNotificationCenter:notificationCenter];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add Observer</span></span><br><span class="line">        [<span class="keyword">self</span>.notificationCenter addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(applicationWillEnterForeground:) name:<span class="built_in">UIApplicationWillEnterForegroundNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>確保它可以運作，我們也需要更新 ViewController 的 interface。</p>
+<p>我們省略了 notificationCenter 的 property 並且加了初始方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)initWithNotificationCenter:(<span class="built_in">NSNotificationCenter</span> *)notificationCenter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>在實作檔(.m 檔)，我們建立了 class extension 且宣告了 notificationCenter 的 property。</p>
+<p>通過這樣做，我們的 ViewController 有私有的 notificationCenter property 且只能透過新的初始方法做設定。</p>
+<p>這是另一個該牢記的好習慣，只有暴露需要的 property 為 <code>public</code>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSNotificationCenter</span> *notificationCenter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>初始化 ViewController 的實例，我們依賴於剛剛建立的初始化方法。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initialize View Controller</span></span><br><span class="line">ViewController *viewController = [[ViewController alloc] initWithNotificationCenter:[<span class="built_in">NSNotificationCenter</span> defaultCenter]];</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="3-Benefits"><a href="#3-Benefits" class="headerlink" title="3. Benefits"></a>3. Benefits</h3><p>What have we accomplished by explicitly injecting the notification center object as a dependency?</p>
+<h5 id="Clarity"><a href="#Clarity" class="headerlink" title="Clarity"></a>Clarity</h5><p>ViewController 的 interface 明確展示出，它依賴於 <code>NSNotificationCenter</code></p>
+<p>如果你是 iOS 或 OS X 的新開發者，這個的複雜度看起來只有小贏一點。</p>
+<p>然而，當你的專案逐漸變大，你將會感激專案裡每一個 clarity 的小元素。</p>
+<p>明確低定義相依物件將幫助你專案清晰明瞭。</p>
+<h5 id="Modularity"><a href="#Modularity" class="headerlink" title="Modularity"></a>Modularity</h5><p>當你開始使用相依性注入，你的 code 會變得更模組化。</p>
+<p>儘管我們注入了特定的類別給 ViewController，我們也可以注入符合特定的 protocol。</p>
+<p>如果你採用這個途徑，我們可以更簡單的抽換它的 implementation。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">id</span>&lt;MyProtocol&gt; someObject;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)initWithNotificationCenter:(<span class="built_in">NSNotificationCenter</span> *)notificationCenter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>上面的 ViewController 的 interface，我們定義了另一個相依物件</p>
+<p>這個相依物件是符合 <code>MyProtocol</code> 的物件。</p>
+<p>這地方就是相依性注入強悍所在。</p>
+<p>ViewController 不用管那個物件是什麼型態，它只要求這個物件採用了 <code>MyProtocol</code>。</p>
+<p>這讓我們的 code 有更多的模組化，彈性以及可測試性。</p>
+<h5 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h5><p>儘管測試對 iOS 和 OS X 開發者必不是很普遍，測試是個主要的議題 that gains in importance and popularity。</p>
+<p>採納相依性注入，可以讓你的 code 更容易測試。</p>
+<p>你會怎麼測試下面的初始方法？That’s going to be tricky. Right?</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">NSNotificationCenter</span> *nc = [<span class="built_in">NSNotificationCenter</span> defaultCenter];</span><br><span class="line">        [nc addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(applicationWillEnterForeground:) name:<span class="built_in">UIApplicationWillEnterForegroundNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二個初始方法，然而，他讓測試變得更簡單了。</p>
+<p>看一下這個初始方法如何在測試裡運行。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Initialization</span></span><br><span class="line">- (instancetype)initWithNotificationCenter:(<span class="built_in">NSNotificationCenter</span> *)notificationCenter &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="comment">// Set Notification Center</span></span><br><span class="line">        [<span class="keyword">self</span> setNotificationCenter:notificationCenter];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add Observer</span></span><br><span class="line">        [<span class="keyword">self</span>.notificationCenter addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(applicationWillEnterForeground:) name:<span class="built_in">UIApplicationWillEnterForegroundNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark -</span></span><br><span class="line"><span class="meta">#pragma mark Tests for Initialization</span></span><br><span class="line">- (<span class="keyword">void</span>)testInitWithNotificationCenter &#123;</span><br><span class="line">    <span class="comment">// Create Mock Notification Center</span></span><br><span class="line">    <span class="keyword">id</span> mockNotificationCenter = OCMClassMock([<span class="built_in">NSNotificationCenter</span> class]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize View Controller</span></span><br><span class="line">    ViewController *viewController = [[ViewController alloc] initWithNotificationCenter:mockNotificationCenter];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">XCTAssertNotNil</span>(viewController, <span class="string">@"The view controller should not be nil."</span>);</span><br><span class="line"></span><br><span class="line">    OCMVerify([mockNotificationCenter addObserver:viewController selector:<span class="keyword">@selector</span>(applicationWillEnterForeground:) name:<span class="built_in">UIApplicationWillEnterForegroundNotification</span> object:<span class="literal">nil</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的測試用了 <a href="http://ocmock.org/" target="_blank" rel="external">OCMock Library</a>，一個相當優秀的 <code>mocking library</code>。</p>
+<p>我們傳入一個 mock 物件而不是 NSNotificationCenter，且驗證在初始方法中確實有呼叫 <code>addObserver: selector: name: object:</code> 方法。</p>
+<p>這邊有幾個測試 notification handling 的方法，this is—by far—the easiest I’ve come across.</p>
+<p>It adds a bit of overhead by injecting the notification center object as a dependency,但是在我的觀點來看，它提供的效益勝過增加的複雜度。</p>
+<h3 id="4-Third-Party-Solutions"><a href="#4-Third-Party-Solutions" class="headerlink" title="4. Third Party Solutions"></a>4. Third Party Solutions</h3><p>The two most popular libraries are Typhoon and Objection.</p>
+<p>我希望我已經說服你，相依性注入是個簡單的概念。</p>
+<p>然而，有一些流行的 frameworks and libraries 讓相依性注入更強大且更容易去管你複雜的專案。</p>
+<ul>
+<li><a href="http://typhoonframework.org/" target="_blank" rel="external">Typhoon</a></li>
+<li><a href="https://github.com/atomicobject/objection" target="_blank" rel="external">Objection</a></li>
+</ul>
+<p>如果你第一次用相依性注入，我會強烈低建議開始使用在這篇教學的 techniques outlined。</p>
+<p>首先你需要正確了解它的概念，在你依賴於第三方解決方案之前，如 Typhoon 或 Objection。</p>
+<h5 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h5><p>這篇的主旨是要讓相依性注入，對於新開發者或不熟悉相依性注入概念的開發者變得更容易理解</p>
+<p>我希望我有說服你相依性注入價值所在，and the simplicity of the underlying idea.</p>
+<p>這邊有一些很棒的資源關於相依性注入。</p>
+<p>James Shore 的相依性注入文章對每一位開發者是必讀的。</p>
+<p>Graham Lee 也寫了很棒的文章針對 iOS 和 OS X 開發者。</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Design-Pattern/">#Design Pattern</a> <a href="/tags/Dependency-Injection/">#Dependency Injection</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="這次主要打算實作一個 Custom Preference View(相當於 iOS stepper 的感覺)。
+免不了要實作 java 以及 它的 layout。">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android Custom Preference View"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Android Custom Preference View - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/11/17/Android-2015-11-17-Android-Custom-Preference-View/">
+                Android Custom Preference View
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-17</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>這次主要打算實作一個 Custom Preference View(相當於 iOS stepper 的感覺)。</p>
+<p>免不了要實作 java 以及 它的 layout。</p>
+<a id="more"></a>
+<p>最終我們可以用下面的使用方式。</p>
+<figure class="highlight xml"><figcaption><span>preference.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package.name.YumePreference</span></span><br><span class="line">    <span class="attr">android:title</span>=<span class="string">"有多少行"</span></span><br><span class="line">    <span class="attr">android:summary</span>=<span class="string">"10"</span></span><br><span class="line">    <span class="attr">android:defaultValue</span>=<span class="string">"5"</span></span><br><span class="line">    <span class="attr">android:key</span>=<span class="string">"YumeTest"</span></span><br><span class="line">    <span class="attr">android:widgetLayout</span>=<span class="string">"@layout/yume_stepper_preference"</span></span><br><span class="line">    /&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Prefernce"><a href="#Prefernce" class="headerlink" title="Prefernce"></a>Prefernce</h1><p>Preference 會以以下順序依序呼叫以及比較關鍵的幾個方法 ：</p>
+<ol>
+<li><code>onGetDefaultValue</code></li>
+<li><code>onSetInitialValue</code></li>
+<li><code>onCreateView</code></li>
+<li><code>onBindView</code></li>
+</ol>
+<h3 id="onGetDefaultValue"><a href="#onGetDefaultValue" class="headerlink" title="onGetDefaultValue"></a>onGetDefaultValue</h3><p>務必 override 這個方法</p>
+<p>不然在 <code>onSetInitialValue(boolean restorePersistedValue, Object defaultValue)</code> 的 <code>defaultValue</code> 會為 <code>null</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected Object onGetDefaultValue(TypedArray a, int index) &#123;</span><br><span class="line">    return a.getInteger(index,8);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="onSetInitialValue"><a href="#onSetInitialValue" class="headerlink" title="onSetInitialValue"></a>onSetInitialValue</h3><p>這邊取決於是要用<code>預設值</code>或是<code>儲存值</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) &#123;</span><br><span class="line">    if (restorePersistedValue) &#123;</span><br><span class="line">        // Restore existing state</span><br><span class="line">        value = this.getPersistedInt(value);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // Set default state from the XML attribute</span><br><span class="line">        value = (Integer) defaultValue;</span><br><span class="line">        persistInt(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="onCreateView"><a href="#onCreateView" class="headerlink" title="onCreateView"></a>onCreateView</h3><p>重點只在於要 inflate 哪個 layout</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected View onCreateView( ViewGroup parent ) &#123;</span><br><span class="line">    View v = super.onCreateView(parent);</span><br><span class="line">    LayoutInflater li = (LayoutInflater)getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );</span><br><span class="line">    return li.inflate( R.layout.yume_stepper_preference, parent, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="onBindView"><a href="#onBindView" class="headerlink" title="onBindView"></a>onBindView</h3><p>這邊比較有趣的地方是 <font color="red"><code>super.onBindView(view)</code> 要在最後呼叫</font></p>
+<p>不然 <code>setSummary(String.valueOf(value))</code> 會沒有作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onBindView(View view) &#123;</span><br><span class="line">    minus = (Button) view.findViewById(R.id.minus);</span><br><span class="line">    plus = (Button) view.findViewById(R.id.plus);</span><br><span class="line"></span><br><span class="line">    setSummary(String.valueOf(value));</span><br><span class="line"></span><br><span class="line">    // ...</span><br><span class="line"></span><br><span class="line">    super.onBindView(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Layout-部分"><a href="#Layout-部分" class="headerlink" title="Layout 部分"></a>Layout 部分</h1><p>這邊比較值得注意的是可以用 <code>android:id=&quot;@android:id/title&quot;</code> 以及 <code>android:id=&quot;@android:id/summary&quot;</code></p>
+<p>分別來讀取 <code>android:title=&quot;有多少行&quot;</code> 跟 <code>android:summary=&quot;10&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:id=&quot;@android:id/title&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:id=&quot;@android:id/summary&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h1><figure class="highlight java"><figcaption><span>YumePreference.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.content.res.TypedArray;</span><br><span class="line"><span class="keyword">import</span> android.preference.Preference;</span><br><span class="line"><span class="keyword">import</span> android.util.AttributeSet;</span><br><span class="line"><span class="keyword">import</span> android.view.LayoutInflater;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.view.ViewGroup;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YumePreference</span> <span class="keyword">extends</span> <span class="title">Preference</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Button minus;</span><br><span class="line">    <span class="keyword">private</span> Button plus;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">YumePreference</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">YumePreference</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">YumePreference</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyle);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">onGetDefaultValue</span><span class="params">(TypedArray a, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.getInteger(index,<span class="number">8</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> View <span class="title">onCreateView</span><span class="params">( ViewGroup parent )</span> </span>&#123;</span><br><span class="line">        View v = <span class="keyword">super</span>.onCreateView(parent);</span><br><span class="line">        LayoutInflater li = (LayoutInflater)getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE );</span><br><span class="line">        <span class="keyword">return</span> li.inflate( R.layout.yume_stepper_preference, parent, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        minus = (Button) view.findViewById(R.id.minus);</span><br><span class="line">        plus = (Button) view.findViewById(R.id.plus);</span><br><span class="line"></span><br><span class="line">        setSummary(String.valueOf(value));</span><br><span class="line"></span><br><span class="line">        minus.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">                value = --value &gt;= <span class="number">0</span> ? value : <span class="number">0</span>;</span><br><span class="line">                persistInt(value);</span><br><span class="line">                setSummary(String.valueOf(value));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        plus.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">                value = ++value &lt;= <span class="number">100</span> ? value : <span class="number">100</span>;</span><br><span class="line">                persistInt(value);</span><br><span class="line">                setSummary(String.valueOf(value));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">super</span>.onBindView(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSetInitialValue</span><span class="params">(<span class="keyword">boolean</span> restorePersistedValue, Object defaultValue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (restorePersistedValue) &#123;</span><br><span class="line">            <span class="comment">// Restore existing state</span></span><br><span class="line">            value = <span class="keyword">this</span>.getPersistedInt(value);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Set default state from the XML attribute</span></span><br><span class="line">            value = (Integer) defaultValue;</span><br><span class="line">            persistInt(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><figcaption><span>yume_stepper_preference.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@android:id/title"</span></span><br><span class="line">        <span class="attr">style</span>=<span class="string">"@android:style/TextAppearance.DeviceDefault.SearchResult.Title"</span></span><br><span class="line">        <span class="attr">android:textColor</span>=<span class="string">"#FFF"</span></span><br><span class="line">        <span class="attr">android:text</span>=<span class="string">"預設 Title"</span></span><br><span class="line">        <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">android:layout_alignParentLeft</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"8dp"</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">android:layout_alignParentRight</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:layout_marginRight</span>=<span class="string">"160dp"</span></span><br><span class="line">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@android:id/summary"</span></span><br><span class="line">        <span class="attr">style</span>=<span class="string">"@android:style/TextAppearance.DeviceDefault.SearchResult.Subtitle"</span></span><br><span class="line">        <span class="attr">android:textColor</span>=<span class="string">"#FFF"</span></span><br><span class="line">        <span class="attr">android:text</span>=<span class="string">"0"</span></span><br><span class="line">        <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:layout_alignRight</span>=<span class="string">"@+id/minus"</span></span><br><span class="line">        <span class="attr">android:layout_marginRight</span>=<span class="string">"76dp"</span></span><br><span class="line">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"44dp"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"60dp"</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/minus"</span></span><br><span class="line">        <span class="attr">android:text</span>=<span class="string">"-"</span></span><br><span class="line">        <span class="attr">android:textColor</span>=<span class="string">"#FFF"</span></span><br><span class="line">        <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:layout_alignRight</span>=<span class="string">"@+id/plus"</span></span><br><span class="line">        <span class="attr">android:layout_marginRight</span>=<span class="string">"60dp"</span></span><br><span class="line">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"44dp"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"60dp"</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/plus"</span></span><br><span class="line">        <span class="attr">android:text</span>=<span class="string">"+"</span></span><br><span class="line">        <span class="attr">android:textColor</span>=<span class="string">"#FFF"</span></span><br><span class="line">        <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">android:layout_alignParentRight</span>=<span class="string">"true"</span></span><br><span class="line">        /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://stackoverflow.com/questions/16108609/android-creating-custom-preference" target="_blank" rel="external">Android: Creating custom preference</a><br><a href="http://developer.android.com/intl/zh-tw/guide/topics/ui/settings.html" target="_blank" rel="external">設定</a><br><a href="http://www.java2s.com/Code/Android/Core-Class/AcustompreferencetypeThepreferencecountsthenumberofclicksithasreceivedandstoresretrievesitfromthestorage.htm" target="_blank" rel="external">A custom preference type. The preference counts the number of clicks it has received and stores/retrieves it from the storage. : Preference « Core Class « Android</a></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

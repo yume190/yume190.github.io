@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="lldb">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="LLDB"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>LLDB - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/03/15/IOS-2016-03-15-LLDB/">
+                LLDB
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-15</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>lldb</p>
+<a id="more"></a>
+<h2 id="顯示-p-po"><a href="#顯示-p-po" class="headerlink" title="顯示 p po"></a>顯示 p po</h2><p>p/t # 2進位<br>p/x # 16<br><a href="https://sourceware.org/gdb/onlinedocs/gdb/Output-Formats.html" target="_blank" rel="external">清單</a></p>
+<p>po x<br>po $0</p>
+<p>p (void)NSLog(@”%@”,[self.view  viewWithTag:1001])<br>p (CGRect)[self.view frame]</p>
+<h2 id="修值-expr"><a href="#修值-expr" class="headerlink" title="修值 expr"></a>修值 expr</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expr a = 10</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>宣告值</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expt $b = 10</span><br></pre></td></tr></table></figure>
+<h2 id="執行無回傳值-call"><a href="#執行無回傳值-call" class="headerlink" title="執行無回傳值 call"></a>執行無回傳值 call</h2><h2 id="bt"><a href="#bt" class="headerlink" title="bt"></a>bt</h2><p>bt # 目前 thread<br>bt all # 所有 thread</p>
+<p>image lookup –address 0x0000000100004af8<br>im loo -a</p>
+<p>frame info # 當前執行的文件行數<br>frame variable = p</p>
+<p>Thread Return NO</p>
+<p>別名<br>command alias ioa image lookup –address %1<br>ioa 0x0000000100004af8</p>
+<h2 id="斷點"><a href="#斷點" class="headerlink" title="斷點"></a>斷點</h2><p>執行到下個斷點<br>process continue = continue = c</p>
+<p>下一步 (step over)<br>thread step-over = next = n</p>
+<p>下一步 (step in)<br>thread step in = step = s</p>
+<p>breakpoint list = br li<br>breakpoint enable <breakpointid><br>breakpoint disable <breakpointid></breakpointid></breakpointid></p>
+<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><p>script # python REPL<br>command script import ~/myCommands.py<br>/.lldbinit # 或者將指令放在這</p>
+<p>lldb /Projects/Sketch/build/Debug/Sketch.app<br>$ lldb<br>(lldb) file /Projects/Sketch/build/Debug/Sketch.app</p>
+<p>ty l<br>(lldb) type lookup ErrorType<br>protocol ErrorType {<br>var _domain: Swift.String { get }  var _code: Swift.Int { get }<br>}</p>
+<p>expr @import UIKit<br>touch ~/.lldbinit<br>echo display @import UIKit &gt;&gt; ~/.lldbinit<br>echo target stop-hook add -o \”target stop-hook disable\” &gt;&gt; ~/.lldbinit</p>
+<p>斷點在 error<br>br s -E objc<br>br s -E swift</p>
+<p>斷點在 特定 error<br>br s -E swift -O EnumError</p>
+<p>fr v<br>frame variable<br>frame variable theYear<br>frame variable —-format hex theYear</p>
+<p>CustomStringConvertible : print()<br>CustomDebugStringConvertible : debugPrint()<br>CustomPlaygroundQuickLookable<br>CustomReflectable : po<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extension TemperatureData : CustomReflectable &#123;</span><br><span class="line">    func customMirror() -&gt; Mirror &#123;</span><br><span class="line">        return Mirror(self, children: [</span><br><span class="line">            &quot;Time&quot; : &quot;\(Time)&quot;, // CustomStringConvertible from previous slide</span><br><span class="line">            &quot;Temp C&quot; : Temperature,</span><br><span class="line">            &quot;Temp F&quot; : 1.8*Temperature+32</span><br><span class="line">        ])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://my.oschina.net/notting/blog/115294" target="_blank" rel="external">斷點</a><br><a href="https://github.com/facebook/chisel" target="_blank" rel="external">fb:chisel</a><br><a href="http://lldb.llvm.org/lldb-gdb.html" target="_blank" rel="external">gdb to lldb</a><br><a href="http://lldb.llvm.org/tutorial.html" target="_blank" rel="external">縮寫</a><br><a href="http://www.starfelix.com/blog/2014/03/17/lldbdiao-shi-ming-ling-chu-tan/" target="_blank" rel="external">LLDB调试命令初探</a><br><a href="http://www.cocoachina.com/ios/20150126/11021.html" target="_blank" rel="external">浅谈LLDB调试器</a></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Linux Driver Book 筆記">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Linux Driver Book 筆記"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Linux Driver Book 筆記 - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/06/14/Linux-2016-06-14-Linux-Driver-Book-筆記/">
+                Linux Driver Book 筆記
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-06-14</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Linux Driver Book 筆記</p>
+<a id="more"></a>
+<h2 id="Ch-2-Module"><a href="#Ch-2-Module" class="headerlink" title="Ch 2 Module"></a>Ch 2 Module</h2><h4 id="modprobe-只會-search-已安裝於-lib-modules"><a href="#modprobe-只會-search-已安裝於-lib-modules" class="headerlink" title="modprobe : 只會 search 已安裝於 /lib/modules"></a><code>modprobe</code> : 只會 search 已安裝於 /lib/modules</h4><h4 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h4><p><code>EXPORT_SYMBOL(name)</code> &amp; <code>EXPORT_SYMBOL_GPL(name)</code></p>
+<h4 id="當時行程"><a href="#當時行程" class="headerlink" title="當時行程"></a>當時行程</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;linux/sched.h&gt;</span></span><br><span class="line"><span class="keyword">struct</span> task_struct&#123;&#125;;</span><br><span class="line"><span class="comment">// &lt;asm/current.h&gt;</span></span><br><span class="line"><span class="keyword">struct</span> task_struct *current;</span><br><span class="line">current-&gt;comm <span class="comment">// 執行檔 Base Name (abc.o -&gt; abc)</span></span><br><span class="line">current-&gt;pid</span><br></pre></td></tr></table></figure>
+<h2 id="module-參數"><a href="#module-參數" class="headerlink" title="module 參數"></a>module 參數</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">char</span>* whom = <span class="string">"world"</span>;</span><br><span class="line">module_param(whom, charp, S_IRUGO);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;linux/stat.h&gt;</span></span><br><span class="line"><span class="comment">// S_IRUGO</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Kernel Type</th>
+<th style="text-align:center">C Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">int</td>
+</tr>
+<tr>
+<td style="text-align:center">invboll</td>
+<td style="text-align:center">相反邏輯</td>
+</tr>
+<tr>
+<td style="text-align:center">charp</td>
+<td style="text-align:center">cahr *</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">int</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">long</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">short</td>
+</tr>
+<tr>
+<td style="text-align:center">uint</td>
+<td style="text-align:center">uint</td>
+</tr>
+<tr>
+<td style="text-align:center">ulong</td>
+<td style="text-align:center">ulong</td>
+</tr>
+<tr>
+<td style="text-align:center">ushort</td>
+<td style="text-align:center">ushort</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insmod x.ko whom=&quot;mom&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="User-Space-VS-Kernel-Space-Driver"><a href="#User-Space-VS-Kernel-Space-Driver" class="headerlink" title="User-Space VS Kernel-Space Driver"></a>User-Space VS Kernel-Space Driver</h4><p>See P38</p>
+<h4 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;linux/init.h&gt;</span><br><span class="line">module_init(init_function);</span><br><span class="line">module_exit(cleanup_function);</span><br><span class="line"></span><br><span class="line">// 初始用，初始化完畢後會被回收(存放在特殊的 ELF section)</span><br><span class="line">__init</span><br><span class="line">__initdata</span><br><span class="line"></span><br><span class="line">__exit</span><br><span class="line">__exitdata</span><br><span class="line"></span><br><span class="line">// hotplug，若 kernel 設定為不支援 hotplug 的話，同 __init</span><br><span class="line">__devinit</span><br><span class="line">__devinitdata</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="CH-3-Character-Device"><a href="#CH-3-Character-Device" class="headerlink" title="CH 3 Character Device"></a>CH 3 Character Device</h2><h4 id="Major-amp-Minor-Number"><a href="#Major-amp-Minor-Number" class="headerlink" title="Major &amp; Minor Number"></a>Major &amp; Minor Number</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l /dev</span><br><span class="line">crw-rw-rw-  1 root  wheel           18,   3  6 10 18:44 cu.Yume-WirelessiAP-1</span><br><span class="line">brw-r-----  1 root  operator         1,   0  6 10 18:44 disk0</span><br></pre></td></tr></table></figure>
+<p>cu.Yume-WirelessiAP-1</p>
+<ul>
+<li>Major: 18</li>
+<li>Minor: 3</li>
+<li>Character device</li>
+</ul>
+<p>disk0</p>
+<ul>
+<li>Major: 1</li>
+<li>Minor: 0</li>
+<li>Block device</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//&lt;linux/types.h&gt;</span><br><span class="line">// 32 bit</span><br><span class="line">// 前 12 bit Major</span><br><span class="line">// 後 20 bit Minor</span><br><span class="line">dev_t</span><br><span class="line"></span><br><span class="line">int MAJOR(dev_t dev);</span><br><span class="line">int MINOR(dev_t dev);</span><br><span class="line">dev_t MKDEV(int majotr, int minor);</span><br></pre></td></tr></table></figure>
+<h4 id="裝置編號的配置與釋放"><a href="#裝置編號的配置與釋放" class="headerlink" title="裝置編號的配置與釋放"></a>裝置編號的配置與釋放</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//&lt;linux/fs.h&gt;</span><br><span class="line">int register_chrdev_region(dev_t first, unsigned int count, char *name);</span><br><span class="line">void unregister_chrdev_region(dev_t first, unsigned int count);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>可以觀看各個驅動程式的 Major</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/devices</span><br><span class="line"></span><br><span class="line">Character Devices:</span><br><span class="line">1 mem</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>rc.local</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">module=<span class="string">"scull"</span></span><br><span class="line">device=<span class="string">"scull"</span></span><br><span class="line">mode=<span class="string">"644"</span></span><br><span class="line"></span><br><span class="line">/sbin/insmod ./<span class="variable">$module</span>.ko $* || <span class="built_in">exit</span> 1</span><br><span class="line"></span><br><span class="line">rm <span class="_">-f</span> /dev/<span class="variable">$&#123;device&#125;</span>[0-3]</span><br><span class="line"></span><br><span class="line">major=$(awk <span class="string">"\$2 = = \$module\" &#123;print \$1&#125;"</span> /proc/devices)</span><br><span class="line"></span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>0 c <span class="variable">$major</span> 0</span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>1 c <span class="variable">$major</span> 1</span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>2 c <span class="variable">$major</span> 2</span><br><span class="line">mknod /dev/<span class="variable">$&#123;device&#125;</span>3 c <span class="variable">$major</span> 3</span><br><span class="line"></span><br><span class="line">group=<span class="string">"staff"</span></span><br><span class="line">grep -q <span class="string">'^staff:'</span> /etc/group || group=<span class="string">"wheel"</span></span><br><span class="line">chgrp <span class="variable">$group</span> /dev/<span class="variable">$&#123;device&#125;</span>[0-3]</span><br><span class="line">chmod <span class="variable">$mod</span> /dev/<span class="variable">$&#123;device&#125;</span>[0-3]</span><br></pre></td></tr></table></figure>
+<h4 id="重要資料結構"><a href="#重要資料結構" class="headerlink" title="重要資料結構"></a>重要資料結構</h4><p><code>&lt;linux/fs.h&gt;</code></p>
+<p><code>struct file_operations</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Kernel</th>
+<th style="text-align:center">System Call</th>
+<th style="text-align:center">When <code>NULL</code></th>
+<th style="text-align:center">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>struct module *owner;</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">通常是 <code>THIS_MODULE</code></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ssize_t (*read) (struct file *, char __user *, size_t, loff_t *);</code></td>
+<td style="text-align:center"><code>read()</code></td>
+<td style="text-align:center"><code>-EINVAL</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);</code></td>
+<td style="text-align:center"><code>write()</code></td>
+<td style="text-align:center"><code>-EINVAL</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int (*open) (struct inode *, struct file *);</code></td>
+<td style="text-align:center"><code>open()</code></td>
+<td style="text-align:center">可 NULL</td>
+<td style="text-align:center">kernel 不會發現檔案被打開</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int (*release) (struct inode *, struct file *);</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">可 NULL</td>
+<td style="text-align:center">kernel 不會發現檔案被 release</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>loff_t (*llseek) (struct file *, loff_t, int);</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int (*mmap) (struct file *, struct vm_area_struct *);</code></td>
+<td style="text-align:center"><code>mmap()</code></td>
+<td style="text-align:center"><code>-ENODEV</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>unsigned int (*poll) (struct file *, struct poll_table_struct *);</code></td>
+<td style="text-align:center"><code>poll() epoll() select()</code></td>
+<td style="text-align:center">可 NULL</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">struct file &#123;</span><br><span class="line">    // 讀寫權限</span><br><span class="line">    fmode_t         f_mode;</span><br><span class="line">    // loff_t -&gt; long long 64bit</span><br><span class="line">    // 目前讀取位置</span><br><span class="line">    loff_t          f_pos;</span><br><span class="line">    // 特性： 如 O_NONBLOCK (nonblocking operation)</span><br><span class="line">    // &lt;linux/fcntl.h&gt;</span><br><span class="line">    unsigned int        f_flags;</span><br><span class="line">    const struct file_operations    *f_op;</span><br><span class="line">    void            *private_data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">struct inode &#123;</span><br><span class="line">    // Major &amp; Minort</span><br><span class="line">    dev_t           i_rdev;</span><br><span class="line">    union &#123;</span><br><span class="line">        struct pipe_inode_info  *i_pipe;</span><br><span class="line">        struct block_device *i_bdev;</span><br><span class="line"></span><br><span class="line">        struct cdev     *i_cdev;</span><br><span class="line">        char            *i_link;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="註冊字元裝置"><a href="#註冊字元裝置" class="headerlink" title="註冊字元裝置"></a>註冊字元裝置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//&lt;linux/cdev.h&gt;</span><br><span class="line">struct cdev &#123;</span><br><span class="line">    struct kobject kobj;</span><br><span class="line">    struct module *owner;</span><br><span class="line">    const struct file_operations *ops;</span><br><span class="line">    struct list_head list;</span><br><span class="line">    dev_t dev;</span><br><span class="line">    unsigned int count;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct cdev *my_cdev = cdev_alloc();</span><br><span class="line">mycdev-&gt;ops = &amp;my_fops;</span><br><span class="line"></span><br><span class="line">// 初始化 cdev</span><br><span class="line">struct cdev *cdev_alloc(void);</span><br><span class="line">// 將 cdev 嵌入到自訂 struct</span><br><span class="line">void cdev_init(struct cdev *, const struct file_operations *);</span><br><span class="line">// cdev 加入核心</span><br><span class="line">int cdev_add(struct cdev *, dev_t, unsigned);</span><br><span class="line">// 註銷 cdev</span><br><span class="line">void cdev_del(struct cdev *);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">struct scull_dev &#123;</span><br><span class="line">    struct scull_qset *data;</span><br><span class="line">    int quantum;</span><br><span class="line">    int qset;</span><br><span class="line">    unsigned long size;</span><br><span class="line">    unsigned int access_key;</span><br><span class="line">    struct semaphore sem;</span><br><span class="line">    struct cdev cdev;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void scull_setup_cdev(struct scull_dev *dev, int index) &#123;</span><br><span class="line">    int err, devno = MKDEV(scull_major, scull_minor + index);</span><br><span class="line"></span><br><span class="line">    cdev_init(&amp;dev-&gt;cdev, &amp;scull_fops);</span><br><span class="line">    dev-&gt;cdev.owner = THIS_MODULE;</span><br><span class="line">    dev-&gt;cdev.ops = &amp;scull_fops;</span><br><span class="line">    err = cdev_add(&amp;dev-&gt;cdev, devno, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// &lt;linux/kernel.h&gt;</span><br><span class="line"></span><br><span class="line">container_of(pointer, container_type, container_field);</span><br><span class="line"></span><br><span class="line">#define container_of(ptr, type, member) (&#123;          \</span><br><span class="line">    const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr);    \</span><br><span class="line">    (type *)( (char *)__mptr - offsetof(type,member) );&#125;)</span><br><span class="line"></span><br><span class="line">int scull_open(struct inode *inode, struct file *filp) &#123;</span><br><span class="line">    struct scull_dev *dev;</span><br><span class="line"></span><br><span class="line">    dev = container_of(inode-&gt;i_cdev, struct scull_dev, cdev);</span><br><span class="line">    filp-&gt;private_data = dev; // 奇淫技巧：將找到 scull_dev 放到 file 私有資料區</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

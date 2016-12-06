@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="ubus">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="OpenWRT ubus"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>OpenWRT ubus - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">
+                OpenWRT ubus
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-11-24</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/openwrt/">openwrt</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>ubus</p>
+<hr>
+<a id="more"></a>
+<p><img src="/image/openwrt/ubus/ubus.png" alt=""></p>
+<h2 id="ubus"><a href="#ubus" class="headerlink" title="ubus"></a>ubus</h2><blockquote>
+<p><code>git clone http://git.openwrt.org/project/ubus.git</code></p>
+</blockquote>
+<p><a href="http://git.openwrt.org/project/ubus.git" target="_blank" rel="external">source</a> </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有已註冊 server</span></span><br><span class="line">ubus list</span><br><span class="line"><span class="comment"># 列出所有已註冊 server 介面</span></span><br><span class="line">ubus list -v </span><br><span class="line"><span class="comment"># 列出 uci 介面</span></span><br><span class="line">ubus list -v uci</span><br><span class="line"><span class="string">'uci'</span> @8f32228e</span><br><span class="line">	<span class="string">"get"</span>:&#123;<span class="string">"config"</span>:<span class="string">"String"</span>,<span class="string">"section"</span>:<span class="string">"String"</span>,<span class="string">"option"</span>:<span class="string">"String"</span>,<span class="string">"type"</span>:<span class="string">"String"</span>,<span class="string">"match"</span>:<span class="string">"Table"</span>,<span class="string">"ubus_rpc_session"</span>:<span class="string">"String"</span>&#125;</span><br><span class="line"><span class="comment"># ...    </span></span><br><span class="line"></span><br><span class="line">uci get network.wan.proto</span><br><span class="line">dhcp</span><br><span class="line"></span><br><span class="line">ubus call uci get <span class="string">'&#123;"config":"network","section":"wan","option":"proto"&#125;'</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">"value"</span>: <span class="string">"dhcp"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="uhttpd-mod-ubus"><a href="#uhttpd-mod-ubus" class="headerlink" title="uhttpd-mod-ubus"></a>uhttpd-mod-ubus</h4><p>預設可以透過 <code>/ubus</code> <code>post</code> 並用 <code>jsonrpc v2.0</code> 溝通。</p>
+<p>acl group : <code>/usr/share/rpcd/acl.d/*.json</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'</span><br><span class="line">&#123;</span><br><span class="line">  "jsonrpc": "2.0",</span><br><span class="line">  "id": 1,</span><br><span class="line">  "method": "call",</span><br><span class="line">  "params": [</span><br><span class="line">    "00000000000000000000000000000000",</span><br><span class="line">    "session",</span><br><span class="line">    "login",</span><br><span class="line">    &#123;</span><br><span class="line">      "username": "root",</span><br><span class="line">      "password": "80743314"</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;'</span> http://your.server.ip/ubus</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"jsonrpc"</span>: <span class="string">"2.0"</span>,</span><br><span class="line">  <span class="string">"id"</span>: 1,</span><br><span class="line">  <span class="string">"result"</span>: [</span><br><span class="line">    0,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"ubus_rpc_session"</span>: <span class="string">"4281cba1179fb1aee97f88bebe07e3f5"</span>,</span><br><span class="line">      <span class="string">"timeout"</span>: 300,</span><br><span class="line">      <span class="string">"expires"</span>: 299,</span><br><span class="line">      <span class="string">"acls"</span>: &#123;</span><br><span class="line">        <span class="string">"access-group"</span>: &#123;</span><br><span class="line">          <span class="string">"linkit"</span>: [</span><br><span class="line">            <span class="string">"read"</span>,</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"unauthenticated"</span>: [</span><br><span class="line">            <span class="string">"read"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"yume"</span>: [</span><br><span class="line">            <span class="string">"read"</span>,</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"cgi-io"</span>: &#123;</span><br><span class="line">          <span class="string">"backup"</span>: [</span><br><span class="line">            <span class="string">"read"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"upload"</span>: [</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"ubus"</span>: &#123;</span><br><span class="line">          <span class="string">"*"</span>: [</span><br><span class="line">            <span class="string">"*"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"iwinfo"</span>: [</span><br><span class="line">            <span class="string">"scan"</span>,</span><br><span class="line">            <span class="string">"info"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"network.interface"</span>: [</span><br><span class="line">            <span class="string">"status"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"rpc-sys"</span>: [</span><br><span class="line">            <span class="string">"*"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"session"</span>: [</span><br><span class="line">            <span class="string">"grant"</span>,</span><br><span class="line">            <span class="string">"destroy"</span>,</span><br><span class="line">            <span class="string">"logout"</span>,</span><br><span class="line">            <span class="string">"access"</span>,</span><br><span class="line">            <span class="string">"login"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"system"</span>: [</span><br><span class="line">            <span class="string">"board"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"uci"</span>: [</span><br><span class="line">            <span class="string">"get"</span>,</span><br><span class="line">            <span class="string">"set"</span>,</span><br><span class="line">            <span class="string">"apply"</span>,</span><br><span class="line">            <span class="string">"reload_config"</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"uci"</span>: &#123;</span><br><span class="line">          <span class="string">"*"</span>: [</span><br><span class="line">            <span class="string">"read"</span>,</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"network"</span>: [</span><br><span class="line">            <span class="string">"read"</span>,</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"system"</span>: [</span><br><span class="line">            <span class="string">"read"</span>,</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="string">"wireless"</span>: [</span><br><span class="line">            <span class="string">"read"</span>,</span><br><span class="line">            <span class="string">"write"</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"data"</span>: &#123;</span><br><span class="line">        <span class="string">"username"</span>: <span class="string">"root"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ubus list -v uci</span><br><span class="line"><span class="string">'uci'</span> @dd090f7f</span><br><span class="line">	<span class="string">"get"</span>:&#123;<span class="string">"config"</span>:<span class="string">"String"</span>,<span class="string">"section"</span>:<span class="string">"String"</span>,<span class="string">"option"</span>:<span class="string">"String"</span>,<span class="string">"type"</span>:<span class="string">"String"</span>,<span class="string">"match"</span>:<span class="string">"Table"</span>,<span class="string">"ubus_rpc_session"</span>:<span class="string">"String"</span>&#125;</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">uci get network.wan.proto</span><br><span class="line">dhcp</span><br><span class="line"></span><br><span class="line">curl <span class="_">-d</span> <span class="string">'</span><br><span class="line">&#123;</span><br><span class="line">  "jsonrpc": "2.0",</span><br><span class="line">  "id": "1",</span><br><span class="line">  "method": "call",</span><br><span class="line">  "params": [</span><br><span class="line">    "20df7c4a82e9a28a63a5908c6fd2a4af",</span><br><span class="line">    "uci",</span><br><span class="line">    "get",</span><br><span class="line">    &#123;</span><br><span class="line">      "config": "network",</span><br><span class="line">      "section": "wan",</span><br><span class="line">      "option": "proto"</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;‘ http://your.server.ip/ubus</span><br><span class="line">&#123;</span><br><span class="line">  "jsonrpc": "2.0",</span><br><span class="line">  "id": "1",</span><br><span class="line">  "result": [</span><br><span class="line">    0,</span><br><span class="line">    &#123;</span><br><span class="line">      "value": "dhcp"</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="lua-ubus"><a href="#lua-ubus" class="headerlink" title="lua ubus"></a>lua ubus</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ubus = <span class="built_in">require</span> <span class="string">'ubus'</span></span><br><span class="line">conn = ubus.connect()</span><br><span class="line">s = conn:call(<span class="string">"uci"</span>,<span class="string">'get'</span>,&#123;config=<span class="string">"network"</span>,section=<span class="string">"wan"</span>,option=<span class="string">"proto"</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="built_in">pairs</span>(s) <span class="keyword">do</span> <span class="built_in">print</span>(k..<span class="string">" "</span>..<span class="built_in">tostring</span>(v)) <span class="keyword">end</span></span><br><span class="line"><span class="comment">-- value dhcp</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

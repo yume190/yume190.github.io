@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="make">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="let&#39;s Make"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>let&#39;s Make - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/12/01/Linux-2016-12-01-let-s-Make/">
+                let's Make
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-12-01</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+                <span class="category">
+                    <a href="/categories/make/">make</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>make</p>
+<a id="more"></a>
+<h2 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets : prerequisites</span><br><span class="line">        command </span><br><span class="line"># or</span><br><span class="line">targets : prerequisites ; command</span><br><span class="line">        command</span><br></pre></td></tr></table></figure>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><figure class="highlight makefile"><figcaption><span>範例一</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">        cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">            insert.o search.o files.o utils.o</span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">        cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">        cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">        cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">        cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">        cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">        cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">        cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">        cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">        rm edit main.o kbd.o command.o display.o \</span><br><span class="line">            insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>第一次改進使用變數</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#edit : main.o kbd.o command.o display.o \</span><br><span class="line">#    insert.o search.o files.o utils.o</span><br><span class="line">#        cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">#            insert.o search.o files.o utils.o</span><br><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">edit : $(objects)</span><br><span class="line">        cc -o edit $(objects)</span><br><span class="line"># ...</span><br><span class="line">clean :</span><br><span class="line">        rm edit $(objects)</span><br></pre></td></tr></table></figure>
+<h4 id="隱藏規則-自動推導"><a href="#隱藏規則-自動推導" class="headerlink" title="隱藏規則(自動推導)"></a>隱藏規則(自動推導)</h4><p>遇到 <code>x.o</code> 會推導出 <code>x.c</code> 為相依，並自動推導出要做 <code>cc -c x.c</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># whatever.o</span><br><span class="line">whatever.o : whatever.c</span><br><span class="line">        cc -c whatever.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>使用隱藏規則</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">edit : $(objects)</span><br><span class="line">        cc -o edit $(objects)</span><br><span class="line">main.o : defs.h</span><br><span class="line">kbd.o : defs.h command.h</span><br><span class="line">command.o : defs.h command.h</span><br><span class="line">display.o : defs.h buffer.h</span><br><span class="line">insert.o : defs.h buffer.h</span><br><span class="line">search.o : defs.h buffer.h</span><br><span class="line">files.o : defs.h buffer.h command.h</span><br><span class="line">utils.o : defs.h</span><br><span class="line">.PHONY : clean # 指 clean 為假目標文件</span><br><span class="line">clean :</span><br><span class="line">        -rm edit $(objects) # -rm 代表有出錯也不管繼續做</span><br></pre></td></tr></table></figure>
+<h2 id="寫作習慣"><a href="#寫作習慣" class="headerlink" title="寫作習慣"></a>寫作習慣</h2><ul>
+<li>第一個 label 通常是最終目標 (也是默認目標)</li>
+<li>最後一個 lable 為 <code>clean</code></li>
+<li>用 <code>\#</code> 表示 <code>#</code> </li>
+<li>-rm</li>
+<li>-include</li>
+</ul>
+<h2 id="Make-尋找-makefile"><a href="#Make-尋找-makefile" class="headerlink" title="Make (尋找 makefile)"></a>Make (尋找 makefile)</h2><ul>
+<li><code>GNUmakefile</code></li>
+<li><code>makefile</code></li>
+<li><code>Makefile</code> 推薦</li>
+<li><code>make -f Make.Linux</code> or <code>make --file Make.AIX</code></li>
+</ul>
+<h2 id="引用-makefile"><a href="#引用-makefile" class="headerlink" title="引用 makefile"></a>引用 makefile</h2><figure class="highlight plain"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include foo.make a.mk b.mk c.mk e.mk f.mk</span><br></pre></td></tr></table></figure>
+<h4 id="引用-Makefile-尋找位置"><a href="#引用-Makefile-尋找位置" class="headerlink" title="引用 Makefile 尋找位置"></a>引用 Makefile 尋找位置</h4><ul>
+<li><code>-I</code> or <code>--include-dir</code></li>
+<li><prefix>/include (通常是 <code>/usr/local/bin</code> or <code>/usr/include</code>)</prefix></li>
+<li>環境變數 <code>MAKEFILES</code> <font color="red">(最好別用，但是出事情最好查一下的地方)</font></li>
+</ul>
+<h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objects = *.o  # &quot;*.o&quot;</span><br><span class="line">objects := $(wildcard *.o) # 所有 .o 檔</span><br></pre></td></tr></table></figure>
+<h4 id="文件搜尋-VPATH"><a href="#文件搜尋-VPATH" class="headerlink" title="文件搜尋 (VPATH)"></a>文件搜尋 (VPATH)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">VPATH = src:../headers</span><br><span class="line"># 當文件找不到時去 src, ..headers 尋找 </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">``` sh</span><br><span class="line"># vpath &lt;pattern&gt; &lt;directories&gt; </span><br><span class="line">vpath %.h ../headers # 符合 .h 去 ../headers 找 </span><br><span class="line"># vpath &lt;pattern&gt;</span><br><span class="line"># 清除符合模式&lt;pattern&gt;的文件的搜索目录</span><br><span class="line"># vpath</span><br><span class="line"># 清除所有已被设置好了的文件搜索目录。</span><br></pre></td></tr></table></figure>
+<h2 id="自動化變數-lt"><a href="#自動化變數-lt" class="headerlink" title="自動化變數 $@ $&lt;"></a>自動化變數 <code>$@</code> <code>$&lt;</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#&lt;targets ...&gt;: &lt;target-pattern&gt;: &lt;prereq-patterns ...&gt;</span><br><span class="line">#        &lt;commands&gt;</span><br><span class="line"># $@ : $&lt; : ??</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>$@ 範例 </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bigoutput littleoutput : text.g</span><br><span class="line">        generate text.g -$(subst output,,$@) &gt; $@</span><br><span class="line"></span><br><span class="line"># 等價於</span><br><span class="line"></span><br><span class="line">bigoutput : text.g</span><br><span class="line">        generate text.g -big &gt; bigoutput</span><br><span class="line">littleoutput : text.g</span><br><span class="line">        generate text.g -little &gt; littleoutput</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>$< 範例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">objects = foo.o bar.o</span><br><span class="line"></span><br><span class="line">all: $(objects)</span><br><span class="line"></span><br><span class="line">$(objects): %.o: %.c</span><br><span class="line">$(CC) -c $(CFLAGS) $&lt; -o $@</span><br><span class="line"></span><br><span class="line"># 等價於</span><br><span class="line"></span><br><span class="line">foo.o : foo.c</span><br><span class="line">$(CC) -c $(CFLAGS) foo.c -o foo.o</span><br><span class="line">bar.o : bar.c</span><br><span class="line">$(CC) -c $(CFLAGS) bar.c -o bar.o</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/make/">#make</a> <a href="/tags/makefile/">#makefile</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Work/">Work</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
