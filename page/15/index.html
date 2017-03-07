@@ -135,6 +135,311 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2014/07/09/IOS-2014-07-09-ios-ge-bie-mrcshe-ding-fang-shi/">
+                IOS 個別MRC設定方式
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-07-09</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>連結第10點<a href="http://www.hrchen.com/2013/07/arc-transfer-and-notice/">ARC工程转换和开发注意事项</a></p>
+        </div>
+        <a href="/2014/07/09/IOS-2014-07-09-ios-ge-bie-mrcshe-ding-fang-shi/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/07/09/IOS-2014-07-09-ios-xian-zhi-zhuang-zhi/">
+                IOS 限制裝置
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-07-09</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>IOS 裝置限制可以在<code>Info.plist</code>中<code>UIRequiredDeviceCapabilities</code>這個key去做設定。</p>
+<p>在XCode上面會以<code>Required device capabilities</code>(array)的形式表示，並且新增一些Item進去就OK了。</p>
+<p>例如：<code>bluetooth-le</code>。</p>
+<p>條件下好了之後不管是XCode還是上傳到Store上，不吻合的裝置就不行安裝這支APP摟！！</p>
+        </div>
+        <a href="/2014/07/09/IOS-2014-07-09-ios-xian-zhi-zhuang-zhi/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/07/09/IOS-KVC-2014-07-09-ios-kvc-bi-ji/">
+                IOS KVC 筆記
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-07-09</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>KVC可以存取純量(scalar，我的感覺就是基礎型別，如：(int, bool)以及結構(struct)。</p>
+<p>如同KVC存取物件一樣實現setter(<code>-set&lt;Key&gt;:</code>) &amp; getter(<code>-&lt;key&gt;</code>) 方法。</p>
+<p>但是透過KVC去存取的話，必需進行打包和解包的動作。</p>
+<p>純量 <code>VS</code> NSNumber，結構 <code>VS</code> NSValue。</p>
+        </div>
+        <a href="/2014/07/09/IOS-KVC-2014-07-09-ios-kvc-bi-ji/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/07/01/IOS-WWDC-2014-2014-07-01-notifications-in-ios8/">
+                Notifications in IOS8
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-07-01</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/WWDC/">WWDC</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>稍微看了一下Session 713(Notification)，這次主要在IOS8新增了一些功能，分別是：</p>
+<ul>
+<li><p>User Notifications</p>
+</li>
+<li><p>Notification Actions</p>
+</li>
+<li><p>Remote Notifications</p>
+</li>
+<li><p>Location Notifications</p>
+        </div>
+        <a href="/2014/07/01/IOS-WWDC-2014-2014-07-01-notifications-in-ios8/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/06/22/IOS-2014-06-22-code-with-objective-c-and-swift/">
+                Code with Objective C & Swift
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-06-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>最近一時手癢，想說 Swift 可以與 Objective-C 混合使用，立馬參照官方作法<a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_75">Swift and Objective-C in the Same Project</a>以及<a href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-XID_26">Swift Type Compatibility</a></p>
+<p>當我使用純Swift物件時，執行狀況並不如預期順利，在 Stack Overflow 的這篇提供了相當不錯的解法</p>
+<p><a href="http://stackoverflow.com/questions/24002369/how-to-call-objective-c-code-from-swift">How to call Objective C code from Swift</a></p>
+        </div>
+        <a href="/2014/06/22/IOS-2014-06-22-code-with-objective-c-and-swift/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/06/22/IOS-2014-06-22-ios-change-language-and-change-language-at-runtime/">
+                IOS change Language and change Language at runtime
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-06-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>這次主要是要實現，當ＡＰＰ在執行當中，可以靠程式碼動態的去切換語系（以下版本可以切換語言以及圖片）</p>
+<p><a href="http://stackoverflow.com/questions/1669645/how-to-force-nslocalizedstring-to-use-a-specific-language">How to force NSLocalizedString to use a specific language</a></p>
+<p>2F 解法，更換APP的小型資料庫記錄語系的欄位（目前試功能只有在重開APP才會生效）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setObject:[<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"de"</span>, <span class="string">@"en"</span>, <span class="string">@"fr"</span>, <span class="literal">nil</span>] forKey:<span class="string">@"AppleLanguages"</span>];</span><br><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] synchronize]; <span class="comment">//to make the change immediate</span></span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2014/06/22/IOS-2014-06-22-ios-change-language-and-change-language-at-runtime/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/06/22/IOS-2014-06-22-ios-chui-zhi-shi-dui-qi-uilabel/">
+                IOS 垂直式對齊 UILabel
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-06-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>這篇介紹得很詳細但是不知道為什麼做不出垂直效果@W@?</p>
+<p><a href="http://stackoverflow.com/questions/1054558/vertically-align-text-within-a-uilabel">Vertically align text within a UILabel</a></p>
+<p>這篇是抱怨文＋實作，但是沒實際測過</p>
+<p><a href="http://fstoke.me/blog/?p=2819">【iPhone App Dev】如何讓一個多行的UILabel垂直置頂(align vertical top)?</a></p>
+<p>官方論壇討論串，下面幾樓有提出不錯的解法</p>
+<p><a href="https://discussions.apple.com/thread/1759957?tstart=0">Vertical Text Alignment for UILabel?</a></p>
+        </div>
+        <a href="/2014/06/22/IOS-2014-06-22-ios-chui-zhi-shi-dui-qi-uilabel/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/06/22/IOS-2014-06-22-ios-singleton/">
+                IOS Singleton
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-06-22</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Design-Pattern/">Design Pattern</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>參考來源：</p>
+<ul>
+<li><a href="http://blog.csdn.net/ryantang03/article/details/8622415">iOS学习笔记42—利用dispatch_once创建单例</a></li>
+<li><a href="http://stackoverflow.com/questions/9119042/why-does-apple-recommend-to-use-dispatch-once-for-implementing-the-singleton-pat">Why does Apple recommend to use dispatch_once for implementing the singleton pattern under ARC?</a></li>
+<li><p><a href="http://www.galloway.me.uk/tutorials/singleton-classes/">Singletons in Objective-C</a></p>
+        </div>
+        <a href="/2014/06/22/IOS-2014-06-22-ios-singleton/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/06/21/Others-2014-06-21-others/">
+                Others
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-06-21</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>如何再Mac產生UUID</p>
+<p>在Terminal.app輸入</p>
+<p>uuidgen</p>
+        </div>
+        <a href="/2014/06/21/Others-2014-06-21-others/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2014/06/21/IOS-2014-06-21-you-peng-dao-cde-struct/">
                 又碰到C的Struct
             </a>
@@ -172,44 +477,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/06/20/Blog-2014-06-20-first-octopress/">
-                First Octopress
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-06-20</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Blog/">Blog</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Git</p>
-<pre><code>$ sudo apt-get install git
-</code></pre><p>RVM</p>
-<p>Get RVM</p>
-<pre><code>$ curl -L https://get.rvm.io | bash -s stable --ruby
-</code></pre><p>下載 Octopress</p>
-<pre><code>git clone git://github.com/imathis/octopress.git octopress
-</code></pre>
-        </div>
-        <a href="/2014/06/20/Blog-2014-06-20-first-octopress/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -222,7 +489,7 @@
                 <a class="" href="/page/14/">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
                 </a>
-                <a class="disabled" href="/">
+                <a class="" href="/page/16/">
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -252,19 +519,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -278,19 +545,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

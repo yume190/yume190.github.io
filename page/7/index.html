@@ -135,6 +135,366 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2015/06/15/IOS-WWDC-2015-2015-06-15-WWDC-2015-Session-106/">
+                WWDC 2015 Session 106
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-06-15</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/WWDC/">WWDC</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="Session-106-Swift-2-0"><a href="#Session-106-Swift-2-0" class="headerlink" title="Session 106 Swift 2.0"></a>Session 106 Swift 2.0</h2>
+        </div>
+        <a href="/2015/06/15/IOS-WWDC-2015-2015-06-15-WWDC-2015-Session-106/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/06/12/IOS-WWDC-2015-2015-06-12-WWDC-2015-Session-401/">
+                WWDC 2015 Session 401
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-06-12</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/WWDC/">WWDC</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>Swift and Objc interoperability</p>
+        </div>
+        <a href="/2015/06/12/IOS-WWDC-2015-2015-06-12-WWDC-2015-Session-401/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/06/10/IOS-WWDC-2015-2015-06-10-WWDC-2015-Session-104/">
+                WWDC 2015 Session 104
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-06-10</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/WWDC/">WWDC</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="Session-104-What’s-new-in-Xcode"><a href="#Session-104-What’s-new-in-Xcode" class="headerlink" title="Session 104 What’s new in Xcode"></a>Session 104 What’s new in Xcode</h2>
+        </div>
+        <a href="/2015/06/10/IOS-WWDC-2015-2015-06-10-WWDC-2015-Session-104/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/05/29/IOS-2015-05-29-GCD-閱讀/">
+                GCD 閱讀
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-05-29</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <a id="more"></a>
+<h3 id="Swift-Tips-GCD-延時調用"><a href="#Swift-Tips-GCD-延時調用" class="headerlink" title="Swift Tips GCD 延時調用"></a>Swift Tips <a href="http://swifter.tips/gcd-delay-call/" target="_blank" rel="external">GCD 延時調用</a></h3><figure class="highlight swift"><figcaption><span>一般使用GCD方式</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建目标队列</span></span><br><span class="line"><span class="keyword">let</span> workingQueue = dispatch_queue_create(<span class="string">"my_queue"</span>, <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 派发到刚创建的队列中，GCD 会负责进行线程调度</span></span><br><span class="line">dispatch_async(workingQueue) &#123;</span><br><span class="line">    <span class="comment">// 在 workingQueue 中异步进行</span></span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"努力工作"</span>)</span><br><span class="line">    <span class="type">NSThread</span>.sleepForTimeInterval(<span class="number">2</span>)  <span class="comment">// 模拟两秒的执行时间</span></span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_main_queue()) &#123;</span><br><span class="line">        <span class="comment">// 返回到主线程更新 UI</span></span><br><span class="line">        <span class="built_in">println</span>(<span class="string">"结束工作，更新 UI"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="keyword">typealias</span> <span class="type">Task</span> = (cancel : <span class="type">Bool</span>) -&gt; ()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">delay</span><span class="params">(time:NSTimeInterval, task:<span class="params">()</span></span></span>-&gt;()) -&gt;  <span class="type">Task</span>? &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">dispatch_later</span><span class="params">(block:<span class="params">()</span></span></span>-&gt;()) &#123;</span><br><span class="line">        dispatch_after(</span><br><span class="line">            dispatch_time(</span><br><span class="line">                <span class="type">DISPATCH_TIME_NOW</span>,</span><br><span class="line">                <span class="type">Int64</span>(time * <span class="type">Double</span>(<span class="type">NSEC_PER_SEC</span>))),</span><br><span class="line">            dispatch_get_main_queue(),</span><br><span class="line">            block)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> closure: dispatch_block_t? = task</span><br><span class="line">    <span class="keyword">var</span> result: <span class="type">Task</span>?</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> delayedClosure: <span class="type">Task</span> = &#123;</span><br><span class="line">        cancel <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> internalClosure = closure &#123;</span><br><span class="line">            <span class="keyword">if</span> (cancel == <span class="literal">false</span>) &#123;</span><br><span class="line">                dispatch_async(dispatch_get_main_queue(), internalClosure);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        closure = <span class="literal">nil</span></span><br><span class="line">        result = <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    result = delayedClosure</span><br><span class="line"></span><br><span class="line">    dispatch_later &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> delayedClosure = result &#123;</span><br><span class="line">            delayedClosure(cancel: <span class="literal">false</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cancel</span><span class="params">(task:Task?)</span></span> &#123;</span><br><span class="line">    task?(cancel: <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="調用方式"><a href="#調用方式" class="headerlink" title="調用方式"></a>調用方式</h5><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> task = delay(<span class="number">5</span>) &#123; <span class="built_in">println</span>(<span class="string">"拨打 110"</span>) &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仔细想一想..</span></span><br><span class="line"><span class="comment">// 还是取消为妙..</span></span><br><span class="line">cancel(task)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="swift-GCD使用指南"><a href="#swift-GCD使用指南" class="headerlink" title="swift GCD使用指南"></a><a href="http://www.swiftmi.com/topic/96.html" target="_blank" rel="external">swift GCD使用指南</a></h3><h4 id="Dispatch-Queue"><a href="#Dispatch-Queue" class="headerlink" title="Dispatch Queue"></a>Dispatch Queue</h4><ul>
+<li>Serial Dispatch Queue，FIFO(先進先出)，一次只能執行一個</li>
+<li>Concurrent Dispatch Queue，并发执行队列里的任务</li>
+</ul>
+<h4 id="Queue-Types-型態dispatch-queue-t"><a href="#Queue-Types-型態dispatch-queue-t" class="headerlink" title="Queue Types (型態dispatch_queue_t)"></a>Queue Types (型態<code>dispatch_queue_t</code>)</h4><ul>
+<li>Main queue(Serial Queue) <code>dispatch_get_main_queue()</code></li>
+<li>Global Dispatch Queues(Concurrent Queue)<ul>
+<li>high <code>dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)</code></li>
+<li>default <code>dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</code></li>
+<li>low <code>dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW,0)</code></li>
+<li>background <code>dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND,0)</code></li>
+</ul>
+</li>
+<li>自訂<ul>
+<li>Serial <code>dispatch_queue_create(&quot;com.xxx&quot;, DISPATCH_QUEUE_SERIAL)</code></li>
+<li>Concurrent <code>dispatch_queue_create(&quot;com.xxx&quot;, DISPATCH_QUEUE_CONCURRENT)</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> low = dispatch_queue_create(<span class="string">"low"</span>,DISPATCH_QUEUE_SERIAL);</span><br><span class="line"><span class="built_in">dispatch_queue_t</span> high = dispatch_queue_create(<span class="string">"high"</span>,DISPATCH_QUEUE_SERIAL);</span><br><span class="line">dispatch_set_target_queue(low,high);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(low,^&#123;&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_suspend(low);</span><br><span class="line"><span class="built_in">dispatch_async</span>(high,^&#123;</span><br><span class="line">    dispatch_resume(low);</span><br><span class="line">&#125;);<span class="comment">//跟retain release一樣，suspend resume次數要成對</span></span><br></pre></td></tr></table></figure>
+<p>丟入GCD的任務無法取消<br>dispatch_after 是指過一段時間之後把任務丟入GCD因此可以抽回</p>
+<h3 id="Dispatch-Group"><a href="#Dispatch-Group" class="headerlink" title="Dispatch Group"></a>Dispatch Group</h3><figure class="highlight swift"><figcaption><span>執行續1 和 執行續2 皆執行完畢後，執行彙總結果區塊</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">dispatch_group_t group = dispatch_group_create();</span><br><span class="line">dispatch_group_async(group, dispatch_get_global_queue(<span class="number">0</span>,<span class="number">0</span>), ^&#123;</span><br><span class="line">  <span class="comment">// 并行执行的线程一</span></span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_async(group, dispatch_get_global_queue(<span class="number">0</span>,<span class="number">0</span>), ^&#123;</span><br><span class="line">  <span class="comment">// 并行执行的线程二</span></span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_notify(group, dispatch_get_global_queue(<span class="number">0</span>,<span class="number">0</span>), ^&#123;</span><br><span class="line">  <span class="comment">// 汇总结果</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用dispatch_group_wait函数</span></span><br><span class="line"><span class="comment">//dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span></span><br><span class="line"><span class="comment">//這種寫法也可以等到group內的任務完成，不過是block形式</span></span><br></pre></td></tr></table></figure>
+<h3 id="WWDC-2014-QoS"><a href="#WWDC-2014-QoS" class="headerlink" title="WWDC 2014 QoS"></a>WWDC 2014 QoS</h3><ul>
+<li>It is recommended to use quality of service class values to identify the</li>
+<li>well-known global concurrent queues:</li>
+<li><ul>
+<li>QOS_CLASS_USER_INTERACTIVE</li>
+</ul>
+</li>
+<li><ul>
+<li>QOS_CLASS_USER_INITIATED</li>
+</ul>
+</li>
+<li><ul>
+<li>QOS_CLASS_DEFAULT</li>
+</ul>
+</li>
+<li><ul>
+<li>QOS_CLASS_UTILITY</li>
+</ul>
+</li>
+<li><ul>
+<li>QOS_CLASS_BACKGROUND<br>*</li>
+</ul>
+</li>
+<li>The global concurrent queues may still be identified by their priority,</li>
+<li>which map to the following QOS classes:</li>
+<li><ul>
+<li>DISPATCH_QUEUE_PRIORITY_HIGH:         QOS_CLASS_USER_INITIATED</li>
+</ul>
+</li>
+<li><ul>
+<li>DISPATCH_QUEUE_PRIORITY_DEFAULT:      QOS_CLASS_DEFAULT</li>
+</ul>
+</li>
+<li><ul>
+<li>DISPATCH_QUEUE_PRIORITY_LOW:          QOS_CLASS_UTILITY</li>
+</ul>
+</li>
+<li><ul>
+<li>DISPATCH_QUEUE_PRIORITY_BACKGROUND:   QOS_CLASS_BACKGROUND</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/04/27/Design-Pattern-2015-04-27-Design-Patterns-Dependency-Injection/">
+                Design Patterns: Dependency Injection
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-04-27</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Design-Pattern/">Design Pattern</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>原文 ： <a href="http://code.tutsplus.com/articles/design-patterns-dependency-injection--cms-23809">Design Patterns: Dependency Injection</a></p>
+<p>即使相依性注入是一個很稀少教給初心者的話題，他是個值得更多關注的<code>設計模式</code>。</p>
+<p>許多開發者避免相依性注入，因為他們並不曉得他的意義，或者因為他們認為不需要它。</p>
+<p>在這篇文章，我會嘗試說服你相依性注入的價值所在。</p>
+<p>要做到這一點，我將會以相依性注入最簡單的形式，來說明它多麼的簡單。</p>
+        </div>
+        <a href="/2015/04/27/Design-Pattern-2015-04-27-Design-Patterns-Dependency-Injection/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/04/23/Android-2015-04-23-GCM/">
+                GCM!!
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-04-23</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>最近又出現一些新的狀況，主要是因為 Android 的 Shared Preferences 不太可靠的關係。</p>
+<p>而且我們主要目標對象是公車站牌(Android 板子)，希望有遠端更新，遠端操作…。</p>
+<p>並期望放出就能自主活得好好滴。</p>
+<p>但是存放在 Shared Preferences 的站牌ID，就隨著多次操作後就跟著 Shared Preferences 一同消失了！</p>
+<p>可以參考下面這篇：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/5955799/user-settings-saved-in-sharedpreferences-removed-or-lost-between-reloads-of-app">User settings saved in SharedPreferences removed or lost between reloads of app</a></li>
+</ul>
+<p>在他們的例子，會有將近 0.2% ~ 0.3% 使用者的 Shared Preferences 會遺失掉。</p>
+<p>推薦的解決方式是使用 DB。</p>
+<p>於是我們也就緊急發佈出 DB 版本。</p>
+<p>但是已經消失的該怎麼辦哩？？</p>
+        </div>
+        <a href="/2015/04/23/Android-2015-04-23-GCM/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/02/10/IOS-2015-02-10-XCode-Environment-Variables/">
+                XCode Environment Variables
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-02-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="http://nshipster.com/launch-arguments-and-environment-variables/">Launch Arguments &amp; Environment Variables</a><br><a href="https://gist.github.com/gdavis/6670468">gdavis / gist:6670468</a><br><a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html">Xcode Build Setting Reference</a><br><a href="http://stackoverflow.com/questions/6910901/how-do-i-print-a-list-of-build-settings-in-xcode-project">How do I print a list of “Build Settings” in Xcode project?</a><br>
+        </div>
+        <a href="/2015/02/10/IOS-2015-02-10-XCode-Environment-Variables/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/02/09/CI-2015-02-09-Drone-droneyml/">
+                Drone .drone.yml
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-02-09</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/CI/">CI</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a><a href="https://github.com/drone/drone/blob/v0.2.1/README.md#Builds">Settings</a></h1><h3 id="Using-MySQL"><a href="#Using-MySQL" class="headerlink" title="Using MySQL"></a>Using MySQL</h3><p>…</p>
+        </div>
+        <a href="/2015/02/09/CI-2015-02-09-Drone-droneyml/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/02/05/CI-2015-02-05-Drone-CI/">
+                Drone CI
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-02-05</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/CI/">CI</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>前陣子花了一段時間 survey 一些 CI 的東西，從最一開始知道說有 Travis CI 以及 Drone.io。</p>
+<p>但是這兩種屬於網頁服務，所以在語言的選擇上有些限制，以及對 Private Repo 的價格都不便宜。</p>
+<p>於是將目光轉向一些可以自己架設的 CI Server，且 Server 如果是自己架設的話，可以建立一個比較接近開發時的測試環境。如：</p>
+<ul>
+<li>Jenkins</li>
+<li>Strider</li>
+<li>Drone</li>
+</ul>
+<p>首先嘗試的 Jenkins 老爹，但是有點被那眾多的 plugin 以及設定嚇到(加上老大似乎不喜歡)。</p>
+<p>第二個嘗試的是 Drone，但是兩次都因為設定沒設完，首頁只會把你導引到如何設定的<code>說明頁</code>。</p>
+<p>最後是 Strider，第一眼的觀感良好，實際在玩的時候也是一堆坑 XD。</p>
+        </div>
+        <a href="/2015/02/05/CI-2015-02-05-Drone-CI/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2015/02/02/CI-2015-02-02-strider-on-ubuntu/">
                 Strider On Ubuntu
             </a>
@@ -159,307 +519,6 @@
 <p>比較詳細的解法可以去參考他的 Github issue。</p>
         </div>
         <a href="/2015/02/02/CI-2015-02-02-strider-on-ubuntu/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/29/Docker-2015-01-29-docker-temp/">
-                docker temp
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-29</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <a id="more"></a>
-<p><a href="http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide" target="_blank" rel="external">How to Use Docker on OS X: The Missing Guide</a><br><a href="http://nathanleclaire.com/blog/2014/07/12/10-docker-tips-and-tricks-that-will-make-you-sing-a-whale-song-of-joy/" target="_blank" rel="external">10 Docker Tips and Tricks That Will Make You Sing A Whale Song of Joy</a><br><a href="http://learningdocker.com/wp-content/plugins/really-static/static/running-boot2docker-mac-os-x/" target="_blank" rel="external">Running Boot2Docker on Mac OS X</a><br><a href="https://github.com/boot2docker/boot2docker/issues/576" target="_blank" rel="external">Upgraded to 1.3.0 now I can’t run docker commands from my mac #576</a><br><a href="http://odewahn.github.io/docker-jumpstart/boot2docker.html" target="_blank" rel="external">Using boot2docker to run Docker on a Mac or Windows</a><br><a href="https://www.digitalocean.com/community/tutorials/docker-explained-using-dockerfiles-to-automate-building-of-images" target="_blank" rel="external">Docker Explained: Using Dockerfiles to Automate Building of Images</a><br><a href="http://www.hiddentao.com/archives/2013/12/26/automated-deployment-with-docker-lessons-learnt/" target="_blank" rel="external">Automated deployment with Docker – lessons learnt</a><br><a href="http://www.carlboettiger.info/2014/09/05/drone-ci-and-docker.html" target="_blank" rel="external">Drone CI: Continous integration in custom docker environments</a></p>
-<p>official</p>
-<p><a href="https://docs.docker.com/articles/dockerfile_best-practices/" target="_blank" rel="external">Best practices for writing Dockerfiles</a><br><a href="https://docs.docker.com/userguide/dockerimages/" target="_blank" rel="external">Working with Docker Images</a></p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/26/CI-2015-01-26-Strider/">
-                Strider On Docker(Ubuntu)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-26</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/CI/">CI</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>…<br>
-        </div>
-        <a href="/2015/01/26/CI-2015-01-26-Strider/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/26/IOS-2015-01-26-IOS-Testing/">
-                IOS Testing
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-26</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><ul>
-<li>Objective C<ul>
-<li><a href="https://github.com/specta/specta">specta</a></li>
-<li><a href="https://github.com/specta/expecta">Expecta</a></li>
-<li><a href="https://github.com/jonreid/OCMockito">OCMockito</a></li>
-<li><a href="https://github.com/gh-unit/gh-unit">gh-unit</a></li>
-<li><a href="https://github.com/pivotal/cedar">cedar</a></li>
-</ul>
-</li>
-<li>Swift<ul>
-<li><a href="https://github.com/Swiftest/Swiftest">Swiftest</a></li>
-<li><a href="http://blog.8thlight.com/brian-pratt/2014/07/14/diving-into-swift-with-swiftest.html">Diving Into Swift With Swiftest</a></li>
-<li><a href="https://github.com/Quick/Quick">Quick</a></li>
-<li><a href="https://github.com/Quick/Nimble">Nimble</a></li>
-</ul>
-</li>
-</ul>
-        </div>
-        <a href="/2015/01/26/IOS-2015-01-26-IOS-Testing/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/26/Robolectric-2015-01-26-Robolectric-Temp/">
-                Robolectric Temp
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-26</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Robolectric/">Robolectric</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="Providing-test-data-for-SharedPreferences-for-Robolectric"><a href="#Providing-test-data-for-SharedPreferences-for-Robolectric" class="headerlink" title="Providing test data for SharedPreferences for Robolectric"></a><a href="http://stackoverflow.com/questions/9748417/providing-test-data-for-sharedpreferences-for-robolectric">Providing test data for SharedPreferences for Robolectric</a></h2><p>Robolectric sharedpreferences 使用方式(尚未試驗過)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sharedPreferences = ShadowPreferenceManager.getDefaultSharedPreferences(Robolectric.application.getApplicationContext());</span><br><span class="line">sharedPreferences.edit().putString(<span class="string">"testId"</span>, <span class="string">"12345"</span>).commit();</span><br><span class="line"></span><br><span class="line">SharedPreferences sharedPreferences = Robolectric.application.getSharedPreferences(<span class="string">"you_custom_pref_name"</span>, Context.MODE_PRIVATE);</span><br><span class="line">sharedPreferences.edit().putString(<span class="string">"testId"</span>, <span class="string">"12345"</span>).commit();</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/2015/01/26/Robolectric-2015-01-26-Robolectric-Temp/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/19/Robolectric-2015-01-19-Robolectric-Test-HTTP/">
-                Robolectric Test HTTP
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-19</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Robolectric/">Robolectric</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>手機的使用情境，常常會跟網路息息相關。</p>
-<p>舉例來說：</p>
-<ul>
-<li>看網頁</li>
-<li>下載檔案</li>
-<li>調用API</li>
-<li>等等</li>
-</ul>
-<p>這邊在測試的時候，當然是想越貼近實際狀況越好，所以有可能拿實際網站來 Test。</p>
-<p>又或者實際網站必須常常改版等等的變因，迫使你自己架一個假網站來 Test。</p>
-<p>接下來，我們來看看使用 Robolectric 的話，可以怎樣 Test。</p>
-        </div>
-        <a href="/2015/01/19/Robolectric-2015-01-19-Robolectric-Test-HTTP/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/18/Robolectric-2015-01-18-Robolectric-Test-Handler/">
-                Robolectric Test Handler
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-18</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Robolectric/">Robolectric</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>在 Android 的開發中，難免避免不掉使用多線程，其中 Handler 是多線程中，不可或缺的角色。</p>
-<p>但這邊不是示範如何使用 Handler，而是示範透過 Robolectric 來測試 Handler。</p>
-        </div>
-        <a href="/2015/01/18/Robolectric-2015-01-18-Robolectric-Test-Handler/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/01/05/Android-2015-01-05-Android-modify-others-shared-preference/">
-                Android modify others shared preference
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-01-05</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>這次想要透過更新之後，去修改別的APP的shared preference。最後有修改成功，但是以結果來說是失敗的，懷疑目標APP是把功能做在屬性onchange的時候才會trigger，而不是依照preference讀出來再做設定。</p>
-<p>在這次收尋過程當中，有找到特定APP能處理一樣的事情<a href="https://play.google.com/store/apps/details?id=com.felixheller.sharedprefseditor&amp;hl=zh_TW">Cheat Droid ★ root only</a></p>
-        </div>
-        <a href="/2015/01/05/Android-2015-01-05-Android-modify-others-shared-preference/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/12/12/Testing-2014-12-12-Mockito-Practice/">
-                Mockito Practice
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-12-12</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Testing/">Testing</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <figure class="highlight java"><figcaption><span>Common</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Let's import Mockito statically so that the code looks clearer</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Mockito.*;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.BDDMockito.*;</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/2014/12/12/Testing-2014-12-12-Mockito-Practice/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/12/10/Android-2014-12-10-Android-Test-種類/">
-                Android Test 種類
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-12-10</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <a id="more"></a>
-<p>純JAVA TestCase</p>
-<p>Run :<br>JUnit Test -&gt; Eclipse launcher</p>
-<hr>
-<p>Android 專案 TestCase</p>
-<p>Run :<br>JUnit Test -&gt; Android launcher</p>
-<hr>
-
-        </div>
     
 
 </div>
@@ -506,19 +565,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -532,19 +591,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

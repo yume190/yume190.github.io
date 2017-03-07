@@ -135,6 +135,369 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2014/10/08/GAE-2014-10-08-GAE-Python-Practice/">
+                GAE Python Practice
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-10-08</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>cache 機制(2種)</p>
+<figure class="highlight python"><figcaption><span>cache</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test2</span><span class="params">(webapp2.RequestHandler)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.response.headers.add_header(<span class="string">'cache-control'</span>,<span class="string">'public, max-age=7200'</span>) <span class="comment"># 2hr cache</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><figcaption><span>cache</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- url:</span> /images</span><br><span class="line"><span class="attr">static_dir:</span> static/images</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2014/10/08/GAE-2014-10-08-GAE-Python-Practice/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/10/03/IOS-Tutorial-2014-10-03-IOS-Delegate/">
+                IOS Delegate
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-10-03</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="宣告"><a href="#宣告" class="headerlink" title="宣告"></a>宣告</h1><h3 id="宣告protocol"><a href="#宣告protocol" class="headerlink" title="宣告protocol"></a>宣告protocol</h3><p><code>@required</code>是指採用這個protocol的類別一定要實現這個方法<br>且預設是指<code>@required</code></p>
+<p><code>@optional</code>是指採用這個protocol的類別可以選擇性實現這個方法</p>
+<p>英文字屬於哪個修飾子</p>
+<ul>
+<li>@required: a b c d g h</li>
+<li>@optional: e f</li>
+</ul>
+<figure class="highlight objc"><figcaption><span>Template.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Template</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TemplateDelegate</span>&lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"><span class="comment">//a</span></span><br><span class="line"><span class="comment">//b</span></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">-(<span class="keyword">void</span>)TemplateView:(Template*)templateView WithValueChangeRequired:(<span class="keyword">float</span>)value;</span><br><span class="line"><span class="comment">//c</span></span><br><span class="line"><span class="comment">//d</span></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">-(<span class="keyword">void</span>)TemplateView:(Template*)templateView WithValueChangeOptional:(<span class="keyword">float</span>)value;</span><br><span class="line"><span class="comment">//e</span></span><br><span class="line"><span class="comment">//f</span></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line"><span class="comment">//g</span></span><br><span class="line"><span class="comment">//h</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2014/10/03/IOS-Tutorial-2014-10-03-IOS-Delegate/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/10/02/GAE-2014-10-02-python-GAE-django/">
+                python GAE django
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-10-02</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/GAE/">GAE</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>這邊先跳過了去developers console 申請專案的步驟!!!</strong></p>
+<p>一開始先提供兩個連結，感覺蠻重要的：</p>
+<ol>
+<li><a href="https://cloud.google.com/docs/">Documetation</a></li>
+<li><a href="https://console.developers.google.com/start/appengine?_ga=1.74142866.1075729236.1412071971">App Engine “Hello World” Starter</a></li>
+</ol>
+<p>因為還是不曉得如何配置django到GAE上，剛好上面<strong>連結2</strong>有現成的配置(Yay!)</p>
+        </div>
+        <a href="/2014/10/02/GAE-2014-10-02-python-GAE-django/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/30/Git-2014-09-30-Github-Public-Key/">
+                Github Public Key
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-30</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Trouble-Shooting/">Trouble_Shooting</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>最近狀況還挺多的</p>
+<p>沒想到連Blog上傳都有問題ＸＤ</p>
+<p>因為Blog放在Github，又懶得去搞SSH</p>
+<p>所以只好把Github.app開著，一邊上傳Blog(很懶的做法，但是很有效)</p>
+<p>但是經過昨天起肖，把keychain內的東西全部砍了</p>
+<p>結論最後Github.app就一整個死給我看（怒</p>
+<p>Github Help的這篇<a href="https://help.github.com/articles/generating-ssh-keys" target="_blank" rel="external">Generating SSH Keys</a>是相當完整的解決方案</p>
+<h1 id="Step-2-Generate-a-new-SSH-key"><a href="#Step-2-Generate-a-new-SSH-key" class="headerlink" title="Step 2: Generate a new SSH key"></a>Step 2: Generate a new SSH key</h1><pre><code>ssh-keygen -t rsa -C &quot;your_email@example.com&quot;
+# Creates a new ssh key, using the provided email as a label
+# Generating public/private rsa key pair.
+# Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+
+# start the ssh-agent in the background
+eval &quot;$(ssh-agent -s)&quot;
+# Agent pid 59566
+ssh-add ~/.ssh/id_rsa
+</code></pre><h1 id="Step-3-Add-your-SSH-key-to-GitHub"><a href="#Step-3-Add-your-SSH-key-to-GitHub" class="headerlink" title="Step 3: Add your SSH key to GitHub"></a>Step 3: Add your SSH key to GitHub</h1><pre><code>$ pbcopy &lt; ~/.ssh/id_rsa.pub
+# Copies the contents of the id_rsa.pub file to your clipboard
+</code></pre><p>做到這個步驟會把rsa複製到剪貼簿</p>
+<p>接著再去Github -&gt; Settings -&gt; SSH Keys -&gt; Add SSH Key</p>
+<h1 id="Step-4-Test-everything-out"><a href="#Step-4-Test-everything-out" class="headerlink" title="Step 4: Test everything out"></a>Step 4: Test everything out</h1><pre><code>ssh -T git@github.com
+# Attempts to ssh to github
+</code></pre>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/30/IOS-Swift-2014-09-30-Library-not-loaded-rpathlibswiftCoredylib/">
+                Library not loaded: @rpath/libswiftCore.dylib
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-30</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Trouble-Shooting/">Trouble_Shooting</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>最近聽到有人說他的Swift不能夠使用，沒想到這次我也遇到了</p>
+<p>症狀是Swift照常正常運作(語法高亮，自動完成，Build等等)</p>
+<p>唯獨就只有runtime的時候不能夠執行，且顯示一些莫名其妙的話</p>
+<blockquote>
+<p>Library not loaded: @rpath/libswiftCore.dylib</p>
+</blockquote>
+<p>解答其實就在這篇<a href="http://stackoverflow.com/questions/25774085/xcode-gm-ios-8-gm-swift-today-extension-crash-in-simulator-and-device-library-n" target="_blank" rel="external">xcode gm ios 8 gm swift today extension crash in simulator and device: Library not loaded: @rpath/libswiftCore.dylib</a></p>
+<p>我的解藥是下面這條</p>
+<p><code>Build settings -&gt; &quot;Embeded content contains Swift Code&quot; -&gt; YES</code></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/29/Android-2014-09-29-Android-apk-sign/">
+                Android apk sign
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-29</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Android/">Android</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>這次事件的原因源於想要雙人去Build同一份Android專案，然後把Apk發佈出去安裝。</p>
+<p>但是這樣會發生衝突</p>
+<p>即便是使用<code>adb install</code>，還是會發生</p>
+<blockquote>
+<p>Failure [INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES]</p>
+</blockquote>
+<p>從這一篇<a href="http://www.lombard.me/2013/09/how-to-fix-install-parse-failed.html">How to fix “Install Parse Failed - Inconsistent Certificates” when installing .APK file</a>有提到說:</p>
+<ol>
+<li>Copy the first machine’s debug.keystore file to the second machine. See: How to deal with <code>INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES</code> without uninstallation on StackOverflow.</li>
+<li>Completely uninstall the application first and then install again. You may have to do this if you don’t have the debug.keystore file for some reason. Perhaps your Jenkins CI build has a different release keystore.</li>
+</ol>
+<p>跟網路上的講法幾乎都是一樣，不外乎就是<strong>uninstall</strong>，但是發佈出去的版本是從bin拿出來用的</p>
+<p>也就是說是經由<code>debug.keystore</code>所產生的。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+        </div>
+        <a href="/2014/09/29/Android-2014-09-29-Android-apk-sign/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/26/IOS-CustomView-2014-09-26-IOS-Custom-View-Part-2/">
+                IOS Custom View 三部曲 Part 2 (Live Render)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-26</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>Repo來源：<a href="https://github.com/yume190/CustomView">CustomView</a></p>
+<p>Live Render是IOS8之後才特有的功能，它提供了將你的Code可以在Storyboard上面即時的顯示，而不用再runtime的時候才能看見</p>
+<ul>
+<li><a href="https://developer.apple.com/library/prerelease/ios/recipes/xcode_help-IB_objects_media/CreatingaLiveViewofaCustomObject.html#//apple_ref/doc/uid/TP40014224-CH41-SW1">Creating a Custom View that Renders in Interface Builder</a><ul>
+<li>By using the IBInspectable attribute to declare variables as inspectable properties, you allow Interface Builder to quickly rerender your custom view as you change the values of these properties in the Attributes inspector. You can attach the IBInspectable attribute to any property in a class declaration, class extension, or category for any type that’s supported by Interface Builder’s defined runtime attributes: <strong>boolean, integer or floating point number, string, localized string, rectangle, point, size, color, range, and nil</strong>.</li>
+<li>If you need to create code for a custom view that runs only in Interface Builder, call that code from the method prepareForInterfaceBuilder. For example, while designing an app that uses the iPhone camera, you might want to draw an image that represents what the camera might capture. Although its compiled for runtime, code called from <code>prepareForInterfaceBuilder</code> never gets called except by Interface Builder at design time.</li>
+<li>You can use the preprocessor macro <code>TARGET_INTERFACE_BUILDER</code> to specify code for inclusion with or exclusion from your custom view class.</li>
+</ul>
+</li>
+</ul>
+<p>簡而言之，Live Render能使用的資料型態就是<code>User Defined Runtime Attributes</code>所能提供的資料型態。</p>
+<p><img src="/image/CustomView/p3.png" alt="User Defined Runtime Attributes"></p>
+        </div>
+        <a href="/2014/09/26/IOS-CustomView-2014-09-26-IOS-Custom-View-Part-2/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/26/IOS-CustomView-2014-09-26-IOS-Custom-View-Part-1/">
+                IOS Custom View 三部曲 Part 1 (Custom View With xib)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-26</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/IOS/">IOS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>Repo來源：<a href="https://github.com/yume190/CustomView">CustomView</a><br>相關檔案：</p>
+<ul>
+<li><a href="https://github.com/yume190/CustomView/blob/master/CustomViewTest/TemplateView1.h">TemplateView1.h</a></li>
+<li><a href="https://github.com/yume190/CustomView/blob/master/CustomViewTest/TemplateView1.m">TemplateView1.m</a></li>
+<li><a href="https://github.com/yume190/CustomView/blob/master/CustomViewTest/TemplateView1.xib">TemplateView1.xib</a></li>
+</ul>
+<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><ul>
+<li><p>建立一個<code>CustomView</code>類別，並且繼承自<code>UIView</code><br>ex: CustomView.h &amp; CustomView.m</p>
+</li>
+<li><p>然後，接著建立同名的xib檔案<br>ex: CustomView.xib</p>
+</li>
+</ul>
+        </div>
+        <a href="/2014/09/26/IOS-CustomView-2014-09-26-IOS-Custom-View-Part-1/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/26/Tools-2014-09-26-Package-Managment/">
+                Package Managment
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-26</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Tools/">Tools</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h1><ul>
+<li><a href="http://brewformulas.org/" target="_blank" rel="external">Homebrew formulas index</a></li>
+</ul>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h3><p><a href="http://pip.readthedocs.org/en/latest/installing.html" target="_blank" rel="external">http://pip.readthedocs.org/en/latest/installing.html</a></p>
+<h5 id="Update-Package"><a href="#Update-Package" class="headerlink" title="Update Package"></a>Update Package</h5><pre><code>pip install Django --upgrade
+
+pip install Django -U
+</code></pre>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2014/09/25/Android-2014-09-25-Android-Silent-Install-Apk/">
                 Android Silent Install Apk
             </a>
@@ -162,362 +525,6 @@
 </ul>
         </div>
         <a href="/2014/09/25/Android-2014-09-25-Android-Silent-Install-Apk/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/24/GAE-2014-09-24-GAE-on-GO/">
-                GAE on GO
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-24</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/GAE/">GAE</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="1-Download-the-Google-App-Engine-SDK"><a href="#1-Download-the-Google-App-Engine-SDK" class="headerlink" title="1. Download the Google App Engine SDK"></a>1. Download the Google App Engine SDK</h1><p>Link : <a href="https://cloud.google.com/appengine/downloads?_ga=1.154225083.2047437259.1411522148">GAE SDK</a></p>
-<h3 id="目標安裝在MAC"><a href="#目標安裝在MAC" class="headerlink" title="目標安裝在MAC"></a>目標安裝在MAC</h3><blockquote>
-<p>Go requires Python 2.7.x; don’t use a higher version. (The Go SDK uses tools from the App Engine Python SDK, so Python is required.) Make sure Python 2.7 is installed on your machine using the following command:</p>
-</blockquote>
-<pre><code>/usr/bin/env python -V
-</code></pre><p>先使用<code>/usr/bin/env python -V</code>確認版本在2.7.x</p>
-<p>然後分別在<code>$HOME/.profile</code>和<code>$HOME/.bashrc</code>加入<code>export PATH=/path/to/go_appengine:$PATH</code></p>
-<p>範例：</p>
-<p>我的GO GAE放在<code>/Applications/go_appengine/</code></p>
-<p>因此要填入的是<code>export PATH=/Applications/go_appengine:$PATH</code></p>
-        </div>
-        <a href="/2014/09/24/GAE-2014-09-24-GAE-on-GO/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/22/Android-2014-09-22-Android-KIOSK-Mode/">
-                Android KIOSK Mode
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-22</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Android/">Android</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>IDEA:</p>
-<ul>
-<li>只有跑特定一隻客製的APP</li>
-<li>避免其他APP執行(除了白名單的APP)</li>
-</ul>
-<h2 id="General-requirements-for-such-applications"><a href="#General-requirements-for-such-applications" class="headerlink" title="General requirements for such applications"></a>General requirements for such applications</h2><ul>
-<li>只允許單一APP執行</li>
-<li>只能聯絡白名單的聯絡人(透過電話或SMS)。Only whitelisted contacts are allowed to be contacted (via Phone or SMS)</li>
-<li>只有白名單APP可以被使用</li>
-<li>追蹤APP安裝及反安裝</li>
-<li>Disable status bar.</li>
-</ul>
-        </div>
-        <a href="/2014/09/22/Android-2014-09-22-Android-KIOSK-Mode/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/22/IOS-2014-09-22-IOS-Autolayout/">
-                IOS Autolayout
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-22</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Source:</p>
-<ul>
-<li><a href="http://furnacedigital.blogspot.tw/2013/10/auto-layout.html" target="_blank" rel="external">Furnace Auto Layout</a></li>
-<li><a href="http://enharmonichq.com/tutorial-auto-layout-part-2/" target="_blank" rel="external">tutorial Auto Layout Part2</a></li>
-<li><a href="http://claire-chang.com/1686-autolayout%E4%BB%8B%E7%B4%B9" target="_blank" rel="external">AutoLayout介紹</a></li>
-<li><a href="http://oleb.net/blog/2013/03/things-you-need-to-know-about-cocoa-autolayout/" target="_blank" rel="external">10 Things You Need To Know About Cocoa Auto Layout</a></li>
-<li><a href="http://stablekernel.com/blog/autolayout-fun-facts-and-tips/" target="_blank" rel="external">iOS Autolayout Fun Facts and Tips</a></li>
-</ul>
-<p>Zen:</p>
-<ul>
-<li><a href="http://carpeaqua.com/autolayout/" target="_blank" rel="external">Achieving Zen With Auto Layout</a></li>
-</ul>
-<p>VFL:</p>
-<ul>
-<li><a href="http://blogs.burnsidedigital.com/2014/06/introduction-to-visual-format-language-for-auto-layout-on-ios/" target="_blank" rel="external">Introduction to Visual Format Language for Auto Layout on iOS</a></li>
-<li><a href="http://commandshift.co.uk/blog/2013/01/31/visual-format-language-for-autolayout/" target="_blank" rel="external">Visual Format Language for Autolayout</a></li>
-</ul>
-<p>Size class:</p>
-<ul>
-<li><a href="http://www.cocoachina.com/ios/20140912/9604.html" target="_blank" rel="external">iOS 8 Size Classes初探</a></li>
-<li><a href="http://www.cocoachina.com/ios/20140915/9623.html" target="_blank" rel="external">Xcode6中自动布局autolayout和sizeclass的使用</a></li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/20/IOS-Tutorial-2014-09-20-IOS-常用基本型態/">
-                IOS 常用基本型態
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-20</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="NSString"><a href="#NSString" class="headerlink" title="NSString"></a>NSString</h1><h3 id="宣告方式"><a href="#宣告方式" class="headerlink" title="宣告方式"></a>宣告方式</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str1 = <span class="string">@"Log : 123"</span>;                                    <span class="comment">// Log : 123</span></span><br><span class="line"><span class="built_in">NSString</span> *str2 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"Log : %d"</span>,<span class="number">456</span>];     <span class="comment">// Log : 456</span></span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/2014/09/20/IOS-Tutorial-2014-09-20-IOS-常用基本型態/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/19/Git-2014-09-19-Git-Submodule/">
-                Git Submodule
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-19</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Git/">Git</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Git submodule format:</p>
-<pre><code>git submodule add &lt;repository&gt; [&lt;path&gt;]
-</code></pre><p>Submodule Link:</p>
-<ul>
-<li><a href="http://www.kafeitu.me/git/2012/03/27/git-submodule.html" target="_blank" rel="external">git-submodule</a></li>
-<li><a href="http://blog.chh.tw/posts/git-submodule/" target="_blank" rel="external">Git Submodule 用法筆記</a></li>
-<li><a href="http://blog.wu-boy.com/2011/09/introduction-to-git-submodule/" target="_blank" rel="external">Git Submodule 介紹與使用</a></li>
-</ul>
-<p>Subtree Link:</p>
-<ul>
-<li><a href="http://garyngzhongbo.blogspot.tw/2013/11/git-git-subtree-git-submodule.html" target="_blank" rel="external">使用Git Subtree</a></li>
-<li><a href="http://yutin.logdown.com/posts/188306-git-subtree-total-addendum-library" target="_blank" rel="external">Git SubTree 共編 Library</a></li>
-<li><a href="http://www.lemonlatte.tw/posts/175465-git-subtree-trial" target="_blank" rel="external">Git Subtree 試用</a></li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/17/Testing-2014-09-17-CI-工具/">
-                CI 工具
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-17</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/CI/">CI</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>先看可以支援的語言</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">\</th>
-<th style="text-align:center"><a href="http://docs.drone.io/quickstart.html">Drone</a></th>
-<th style="text-align:center"><a href="http://docs.travis-ci.com/">Travis</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">相同</td>
-<td style="text-align:center">C / C++<br>Go<br>Haskell (New)<br>Groovy (New)<br>Java<br>Node.js<br>PHP (Beta)<br>Python (Beta)<br>Ruby (Beta)<br>Scala (New)<br></td>
-<td style="text-align:center">C / C++<br>Go<br>Haskell<br>Groovy<br>Java<br>JavaScript (with Node.js)<br>PHP<br>Python<br>Ruby<br>Scala<br></td>
-</tr>
-<tr>
-<td style="text-align:center">不同</td>
-<td style="text-align:center">Dart</td>
-<td style="text-align:center">Android<br>Clojure<br>Erlang<br>Objective-C<br>Perl<br></td>
-</tr>
-</tbody>
-</table>
-        </div>
-        <a href="/2014/09/17/Testing-2014-09-17-CI-工具/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/16/Git-2014-09-16-一個成功的Git分支模型-心得/">
-                一個成功的Git分支模型(心得)
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-16</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Git/">Git</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><img src="/image/git_model/git-branch-1.png" alt="成功的Git分支模型"></p>
-        </div>
-        <a href="/2014/09/16/Git-2014-09-16-一個成功的Git分支模型-心得/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/15/Testing-2014-09-15-Testing-JUnit/">
-                Testing JUnit
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-15</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Testing/">Testing</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="下面是一個簡單的計算機程式"><a href="#下面是一個簡單的計算機程式" class="headerlink" title="下面是一個簡單的計算機程式"></a>下面是一個簡單的計算機程式</h2><figure class="highlight java"><figcaption><span>Calculator.java</span><a href="http://blog.csdn.net/a672489861/article/details/10065133">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zjw.junit4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">plus</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x + y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subtraction</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x - y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">multiplication</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x * y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">division</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x / y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/2014/09/15/Testing-2014-09-15-Testing-JUnit/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/09/11/Android-2014-09-11-Android-Service-回收問題/">
-                Android Service 回收問題
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-09-11</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Android/">Android</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>最近需要寫一隻常駐的Service，但是印象中之前曾經有稍微眼尖看到，在記憶體不足的情況之下，Android會依照他特定的順序去回收資源，剛好Service又正好是Android回收清單的前幾名，既要常駐Service，那就是得要讓Service活得久一點。</p>
-<h3 id="How-to-restart-a-Service-after-getting-Killed-by-apps-like-“Advanced-Task-Killer”"><a href="#How-to-restart-a-Service-after-getting-Killed-by-apps-like-“Advanced-Task-Killer”" class="headerlink" title="How to restart a Service after getting Killed by apps like “Advanced Task Killer”?"></a><a href="http://stackoverflow.com/questions/20557036/how-to-restart-a-service-after-getting-killed-by-apps-like-advanced-task-killer">How to restart a Service after getting Killed by apps like “Advanced Task Killer”?</a></h3><p>這篇提到的方式是透過在<code>onStartCommand</code>回傳<code>START_STICKY</code>，讓Service被砍了之後，能夠自行重新開啟</p>
-<pre><code>@Override
-public int onStartCommand(Intent intent, int flags, int startId) {
-    return START_STICKY;
-}
-</code></pre>
-        </div>
-        <a href="/2014/09/11/Android-2014-09-11-Android-Service-回收問題/" class="read-more">Read More</a>
     
 
 </div>
@@ -564,19 +571,19 @@ public int onStartCommand(Intent intent, int flags, int startId) {
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -590,19 +597,19 @@ public int onStartCommand(Intent intent, int flags, int startId) {
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

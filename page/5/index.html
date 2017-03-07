@@ -135,6 +135,269 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2015/12/24/Go-2015-12-24-Go-JSON/">
+                Go JSON
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="https://golang.org/pkg/encoding/json/">Package json</a></p>
+        </div>
+        <a href="/2015/12/24/Go-2015-12-24-Go-JSON/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Pipeline/">
+                Go Concurrent Part.2 Pipeline
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="http://blog.golang.org/pipelines">Go Concurrency Patterns: Pipelines and cancellation</a></p>
+<p>首先，這篇主要以 pipeline 方式，將工作拆分成 N 個階段。</p>
+<p>在第K個階段中使用 <code>fan out pattern</code> 產生多個 worker 運作</p>
+<p>並且在接下來的階段中使用 <code>fan in pattern</code> 將資訊收集起來處理</p>
+<hr>
+<p>但是在實際狀況，stage 不會每次都把所有資料接收完。</p>
+<p>可能上個階段發生 error 提早結束，又或者下個階段不需要那麼多資料</p>
+<p>問題1：如果 <code>下游 stage</code> 沒有成功消費完所有資料的話，會導致 <code>上游 goroutine block， Resource Leak</code></p>
+<p>解法：上游 outbound channel 使用 channel buffer。</p>
+<hr>
+<p>問題2：上游 <code>channel buffer 數量</code>取決於下游狀況，所以當上個階段多送，或下個階段少接，還是會造成 block</p>
+<p>解法：使用 <code>Explicit cancellation</code>(Done channel)</p>
+<hr>
+<p>於是使用 Done Channel 告知個階段拋棄資料。(發送一次 <code>Done 訊號</code> 處理一個 <code>潛在 Block</code>)</p>
+<p>問題3：下游接收者得要知道上游的潛在 Block 數量</p>
+<p>解法：將 Done Channel defer close，用 closed channel 拿出來的 zero value 處理 N 個 <code>潛在 Block</code></p>
+        </div>
+        <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Pipeline/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Timing-out-moving-on/">
+                Go Concurrent Timing out, moving on
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>這篇我主要看中的 <code>time.After</code> 的實作想法 以及…</p>
+        </div>
+        <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Timing-out-moving-on/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Context/">
+                Go Concurrent Part.3 Context
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>讀這篇之前最好先看完 <code>Pipelines and cancellation</code> 補完一些前提知識。</p>
+<hr>
+<p><a href="http://blog.golang.org/context">Go Concurrency Patterns: Context</a></p>
+        </div>
+        <a href="/2015/12/24/Go-2015-12-24-Go-Concurrent-Context/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/11/Go-2015-12-11-Go-Concurrent/">
+                Go Concurrent Part.1 (基礎 channel & select)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-11</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>開始玩 <code>Go</code> Concurrent 部分，最好還是先 <code>channel</code> &amp; <code>select</code> 先弄清楚點。</p>
+        </div>
+        <a href="/2015/12/11/Go-2015-12-11-Go-Concurrent/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/09/IOS-2015-12-09-Open-Swift/">
+                Open Swift
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-09</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>等待許久，終於等到 <a href="https://swift.org/">Swift Open Source</a></p>
+        </div>
+        <a href="/2015/12/09/IOS-2015-12-09-Open-Swift/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/07/Swagger/">
+                Swagger
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-07</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="http://swagger.io/specification/">Swagger 規格</a></p>
+<p>一個 API Design 相關的東東，找時間補完它。</p>
+        </div>
+        <a href="/2015/12/07/Swagger/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/01/IOS-2015-12-01-Metal/">
+                Metal
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-01</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>尚未讀完～～</p>
+        </div>
+        <a href="/2015/12/01/IOS-2015-12-01-Metal/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/11/25/Haskell-2015-11-25-Category-Theory/">
+                Category Theory
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-25</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>抽空看了 <code>Category Theory</code> 有一種我到底看了什麼感覺</p>
+<p>有點蛋疼 有點懂 有點不懂 有點有趣 有點WTF</p>
+<p>反正整個五味雜成就是哩！</p>
+        </div>
+        <a href="/2015/11/25/Haskell-2015-11-25-Category-Theory/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2015/11/20/Chatwork-API/">
                 Chatwork API
             </a>
@@ -153,271 +416,6 @@
             <p><a href="http://developer.chatwork.com/ja/endpoint_rooms.html#GET-rooms-room_id-messages">API 文件</a> -&gt; 目前是 Preview 版本<a href="https://www.chatwork.com/service/packages/chatwork/subpackages/api/apply_beta.php">申請網址</a></p>
         </div>
         <a href="/2015/11/20/Chatwork-API/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/18/Android-2015-11-18-Java-8-晚晚玩/">
-                Java 8 Lambda 晚晚玩
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-18</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="Lambda語法結構"><a href="#Lambda語法結構" class="headerlink" title="Lambda語法結構"></a>Lambda語法結構</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input -&gt; body</span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/2015/11/18/Android-2015-11-18-Java-8-晚晚玩/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/17/Android-2015-11-17-Android-Custom-Preference-View/">
-                Android Custom Preference View
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-17</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>這次主要打算實作一個 Custom Preference View(相當於 iOS stepper 的感覺)。</p>
-<p>免不了要實作 java 以及 它的 layout。</p>
-        </div>
-        <a href="/2015/11/17/Android-2015-11-17-Android-Custom-Preference-View/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/10/22/IOS-2015-10-22-IOS-Search-API/">
-                IOS Search API
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-10-22</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>#Search Drives User Engagement</p>
-        </div>
-        <a href="/2015/10/22/IOS-2015-10-22-IOS-Search-API/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/10/20/IOS-2015-10-20-IOS-Lib/">
-                IOS Lib
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-10-20</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>…</p>
-        </div>
-        <a href="/2015/10/20/IOS-2015-10-20-IOS-Lib/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/10/14/Android-2015-10-14-Google-Maps-Directions/">
-                Google Maps Directions
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-10-14</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Google-API/">Google API</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><a href="https://developers.google.com/maps/documentation/directions/intro#DirectionsRequests">The Google Maps Directions API</a></p>
-        </div>
-        <a href="/2015/10/14/Android-2015-10-14-Google-Maps-Directions/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/10/14/Go-2015-10-14-遛個Go/">
-                遛個Go
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-10-14</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Go/">Go</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>基本上由 package 組成。</p>
-        </div>
-        <a href="/2015/10/14/Go-2015-10-14-遛個Go/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/07/07/IOS-2015-07-07-Swift-Script/">
-                Swift Script
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-07-07</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天在 FB 湊巧看到有人 PO <a href="https://realm.io/news/swift-scripting/">Swift Script</a> 這篇。</p>
-<p>稍微玩了一下～～。</p>
-        </div>
-        <a href="/2015/07/07/IOS-2015-07-07-Swift-Script/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/07/06/Android-2015-07-06-Android-app-sign/">
-                Android app sign
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-07-06</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>最近打算幫 apk 簽名，想說應該是該準備 keystore 給它。</p>
-<p>試了一陣子，還是沒辦法順利簽名。</p>
-        </div>
-        <a href="/2015/07/06/Android-2015-07-06-Android-app-sign/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/07/02/Bus-App-Reference/">
-                Bus App Reference
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-07-02</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <a id="more"></a>
-<p><a href="http://jp-lin.blogspot.tw/2010/12/android.html" target="_blank" rel="external">按鈕客製化</a><br><a href="http://lucasr.org/2014/05/12/custom-layouts-on-android/" target="_blank" rel="external">Custom Layout</a><br><a href="http://stackoverflow.com/questions/26780046/menuitem-tinting-on-appcompat-toolbar" target="_blank" rel="external">更改Menu Item tint color</a></p>
-<p><a href="http://code.hootsuite.com/tips-and-tricks-for-android-material-support-library-2-electric-boogaloo/" target="_blank" rel="external">Design support TIPS AND TRICKS</a><br><a href="http://inthecheesefactory.com/blog/android-design-support-library-codelab/en" target="_blank" rel="external">Design support 小 tricks</a></p>
-<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><p><a href="http://www.flaticon.com/" target="_blank" rel="external">Free Icon Source</a></p>
-<h2 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h2><p><a href="http://angrytools.com/android/button/" target="_blank" rel="external">線上客製化 Button</a><br><a href="http://romannurik.github.io/AndroidAssetStudio/icons-launcher.html" target="_blank" rel="external">Launcher Icon Generator</a></p>
-<p><a href="http://iconhandbook.co.uk/reference/chart/android/" target="_blank" rel="external"></a><br><a href="http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger" target="_blank" rel="external">Manifest Merger</a></p>
-<hr>
-<h1 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h1><h3 id="Xcode-7-beta-3-Missing-current-version-declaration"><a href="#Xcode-7-beta-3-Missing-current-version-declaration" class="headerlink" title="Xcode 7 beta 3: Missing current version declaration"></a><a href="https://forums.developer.apple.com/thread/8861" target="_blank" rel="external">Xcode 7 beta 3: Missing current version declaration</a></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">matej@RetinaBook Test.xcdatamodeld ⟩ l</span><br><span class="line">total 8</span><br><span class="line">drwxr-xr-x   4 matej  staff   136B 10 jul 11:35 .</span><br><span class="line">drwxr-xr-x  14 matej  staff   476B 10 jul 11:35 ..</span><br><span class="line">-rw-r--r--@  1 matej  staff   257B 10 jul 11:35 .xccurrentversion</span><br><span class="line">drwxr-xr-x   3 matej  staff   102B 10 jul 11:35 Test.xcdatamodel</span><br><span class="line"></span><br><span class="line">matej@RetinaBook Test.xcdatamodeld ⟩ cat .xccurrentversion</span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><figcaption><span>.xccurrentversion</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">key</span>&gt;</span>_XCCurrentVersionName<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">string</span>&gt;</span>Test.xcdatamodel<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.sina.com.cn/s/blog_8f5097be0101b91z.html" target="_blank" rel="external">CATransform3D 特效详解</a></p>
-<hr>
-<h1 id="Sketch-3"><a href="#Sketch-3" class="headerlink" title="Sketch 3"></a>Sketch 3</h1><p><a href="https://medium.com/sketch-app/harnessing-vector-awesomeness-in-sketch-3c9621408138" target="_blank" rel="external">Harnessing Vector Awesomeness in Sketch</a></p>
-
-        </div>
     
 
 </div>
@@ -464,19 +462,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -490,19 +488,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

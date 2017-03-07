@@ -135,6 +135,329 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2014/09/10/Android-2014-09-10-Android-來一片吐司/">
+                Android 來一片吐司
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-10</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Android/">Android</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>個人覺得開發Android時Debug的三大利器</p>
+<p>分別為：</p>
+<ul>
+<li>Log貓 (LogCat)</li>
+<li>Debugger</li>
+<li>吐司 (Toast)</li>
+</ul>
+<p>Log貓不太會用放棄。</p>
+<p>Debugger用來trace程式還不錯，但是日蝕的版面不太夠用(一定是我的螢幕太小 ＸＤ)</p>
+<p>最後最方便使用的就是吐司了，但是吐司必須執行在<code>UI Thread主線</code>，可是偏偏又必須使用thread</p>
+        </div>
+        <a href="/2014/09/10/Android-2014-09-10-Android-來一片吐司/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/10/Android-2014-09-10-Android-終止Thread/">
+                Android 終止Thread
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-10</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Android/">Android</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>開發Android時，不免要使用到Thread，當要使用<code>thread.stop()</code>才發現Android棄用這個方法</p>
+<p>下面是一個比較優雅關閉thread的方式。</p>
+<figure class="highlight java"><figcaption><span>StopThread.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> RUN_THREAD = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">ocrThread = <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (RUN_THREAD)&#123;</span><br><span class="line">            <span class="comment">//執行緒作業</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">ocrThread.start();</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    RUN_THREAD = <span class="keyword">false</span>;</span><br><span class="line">    ocrThread.interrupt();</span><br><span class="line">    ocrThread = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Source :</p>
+<ul>
+<li><a href="http://nkeegamedev.blogspot.tw/2013/05/android-thread.html" target="_blank" rel="external">Android程式設計 - 如何中止Thread</a></li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/09/Android-2014-09-09-Android-Reboot/">
+                Android Reboot
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-09</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Android/">Android</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>目前的使用方法為<code>su -c &quot;reboot&quot;</code>，但是必須要有<code>su</code>的權限</p>
+<figure class="highlight java"><figcaption><span>MyReboot.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String[] commands = <span class="keyword">new</span> String[] &#123;<span class="string">"su"</span>, <span class="string">"-c"</span>, <span class="string">"reboot"</span>&#125;;</span><br><span class="line">    Runtime.getRuntime().exec(commands);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Method-1-adb"><a href="#Method-1-adb" class="headerlink" title="Method 1 : adb"></a>Method 1 : adb</h2><pre><code>su -c &quot;reboot&quot;
+toolbox reboot
+reboot -d 8 -f
+busybox killall system_server
+start|stop
+</code></pre><h2 id="Method-2-PowerManager"><a href="#Method-2-PowerManager" class="headerlink" title="Method 2 : PowerManager"></a>Method 2 : PowerManager</h2><figure class="highlight java"><figcaption><span>Reboot.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TargetApi</span>(<span class="number">8</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reboot</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);</span><br><span class="line">    pm.reboot(<span class="string">"recovery"</span>);</span><br><span class="line">    pm.reboot(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// not working:</span></span><br><span class="line">    <span class="comment">// reboot(null);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Source:</p>
+<ul>
+<li><a href="http://android.stackexchange.com/questions/43706/whats-the-best-way-to-restart-android-via-command-line-remotely" target="_blank" rel="external">What’s the best way to restart Android via command line (remotely)?</a></li>
+<li><a href="https://www.codota.com/android/scenarios/52fcbd7bda0acb8d71a37e02/android.os.PowerManager?tag=dragonfly&amp;cbSnippetSaved=1" target="_blank" rel="external">Code example for PowerManager</a></li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/09/Android-2014-09-09-Android-基本終端機指令/">
+                Android 基本終端機指令
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-09</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Android/">Android</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>Source:</p>
+<ul>
+<li><a href="http://www.androidcentral.com/android-201-10-basic-terminal-commands-you-should-know" target="_blank" rel="external">Ten basic Android terminal commands you should know</a></li>
+<li><a href="http://www.droidforums.net/threads/how-to-use-adb-all-commands-and-options.6865/" target="_blank" rel="external">How To Use ADB: All Commands and Options</a></li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/04/Blog-2014-09-04-搬家到Hexo/">
+                搬家到Hexo
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-04</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Blog/">Blog</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/09/01/Android-2014-09-01-android-custom-view/">
+                Android Custom View
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-09-01</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Android/">Android</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="Creating-a-View-Class"><a href="#Creating-a-View-Class" class="headerlink" title="Creating a View Class"></a>Creating a View Class</h2><p>在Android中使用Custom View，必須尊崇以下規則</p>
+<ol>
+<li>符合Android的標準</li>
+<li>Provide custom styleable attributes that work with Android XML layouts</li>
+<li>Send accessibility events</li>
+<li>相容於其他安卓平台</li>
+</ol>
+        </div>
+        <a href="/2014/09/01/Android-2014-09-01-android-custom-view/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/08/30/Tools-2014-08-30-rake/">
+                rake
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-08-30</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Tools/">Tools</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h1><p> 更新git submodules</p>
+<pre><code>task :tast_name =&gt; :depended_task do
+    #do something
+    `git`
+    puts &quot;abc&quot;
+end
+</code></pre>
+        </div>
+        <a href="/2014/08/30/Tools-2014-08-30-rake/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/08/26/Git-2014-08-26-xian-zai-kai-shi-xue-git/">
+                現在開始學Git
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-08-26</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Git/">Git</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>從頭建立 Repository：</p>
+<pre><code>mkdir sandbox
+cd sandbox
+git init
+</code></pre>
+        </div>
+        <a href="/2014/08/26/Git-2014-08-26-xian-zai-kai-shi-xue-git/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2014/08/20/Python-2014-08-20-python-json-ge-shi-and-nei-rong-bi-dui/">
+                Python JSON 格式 & 內容比對
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2014-08-20</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="Type-Check"><a href="#Type-Check" class="headerlink" title="Type Check"></a>Type Check</h2><p>Source :</p>
+<p><a href="http://stackoverflow.com/questions/2225038/python-determine-the-type-of-an-object">Python - Determine the type of an object?</a></p>
+<p><a href="http://stackoverflow.com/questions/152580/whats-the-canonical-way-to-check-for-type-in-python">What’s the canonical way to check for type in python?</a></p>
+        </div>
+        <a href="/2014/08/20/Python-2014-08-20-python-json-ge-shi-and-nei-rong-bi-dui/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2014/08/19/Android-2014-08-19-android-zi-dong-zhong-qi/">
                 Android 自動重啟
             </a>
@@ -160,301 +483,6 @@
 <p>還真的找到一樣的方法 ＸＤ</p>
         </div>
         <a href="/2014/08/19/Android-2014-08-19-android-zi-dong-zhong-qi/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/08/19/Android-2014-08-19-android-bai-pai-zhuang-zhi-du-qu/">
-                Android 白牌裝置讀取
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-08-19</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/Android/">Android</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>一直苦惱自己的Android手機無法在MAC上當作開發機使用</p>
-<p>因緣際會下拿到小米2當作測試機，也發生相同的狀況</p>
-<p>因此找到了解決方法</p>
-        </div>
-        <a href="/2014/08/19/Android-2014-08-19-android-bai-pai-zhuang-zhi-du-qu/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/08/02/IOS-2014-08-02-xcode-code-snippet/">
-                XCode Code Snippet
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-08-02</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="Swift"><a href="#Swift" class="headerlink" title="Swift"></a>Swift</h1><h4 id="Macro-–-macro"><a href="#Macro-–-macro" class="headerlink" title="Macro – macro"></a>Macro – <strong><code>macro</code></strong></h4><pre><code>var &lt;#NAME#&gt; : &lt;#type#&gt; {
-    get{
-        return &lt;#nil#&gt;
-    }
-}
-</code></pre>
-        </div>
-        <a href="/2014/08/02/IOS-2014-08-02-xcode-code-snippet/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/28/IOS-KVC-2014-07-28-ios-kvc-custom-collection-operator/">
-                IOS KVC Custom Collection Operator
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-28</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>這篇的來源，源自於<a href="http://bou.io/KVCCustomOperators.html">bou.io</a></p>
-        </div>
-        <a href="/2014/07/28/IOS-KVC-2014-07-28-ios-kvc-custom-collection-operator/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/19/IOS-2014-07-19-ios-adopting-modern-objective-c/">
-                IOS Adopting Modern Objective-C
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-19</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Source : <a href="https://developer.apple.com/library/prerelease/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html#//apple_ref/doc/uid/TP40014150">Adopting Modern Objective-C</a></p>
-<p>Over the years, the Objective-C language has grown and evolved. Although the core concepts and practices remain the same, parts of the language have been through significant changes and improvements. These modernizations improve type safety, memory management, performance, and other aspects of Objective-C, making it easier for you to write correct code. It’s important to adopt these changes in your existing and future code to help it become more consistent, readable, and resilient.</p>
-<p>多年來，Objective-C逐漸發展及演變。雖然核心概念和做法保持一致，部分的語言已經通過顯著的變化和改進。這些現代化(modernizations)改進了類型安全，記憶體管理，性能和Objective-C的其他方面，使您更輕鬆地編寫出正確的代碼。採用這些變化到你既有或未來的程式碼是非常重要的，讓它變得更加一致，可讀性，彈性。</p>
-        </div>
-        <a href="/2014/07/19/IOS-2014-07-19-ios-adopting-modern-objective-c/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/11/IOS-KVC-2014-07-11-ios-kvcsou-xun-shun-xu/">
-                IOS KVC搜尋順序
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-11</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>直接上CODE</p>
-        </div>
-        <a href="/2014/07/11/IOS-KVC-2014-07-11-ios-kvcsou-xun-shun-xu/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/11/IOS-KVC-2014-07-11-ios-kvcjian-rong/">
-                IOS KVC兼容
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-11</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>直接先來一段CODE</p>
-<figure class="highlight objc"><figcaption><span>Yume.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Yume</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *yume;</span><br><span class="line"></span><br><span class="line">-(<span class="built_in">NSString</span> *)yume1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        </div>
-        <a href="/2014/07/11/IOS-KVC-2014-07-11-ios-kvcjian-rong/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/10/IOS-2014-07-10-ios-extension/">
-                IOS Extension
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-10</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>相關文章：</p>
-<ul>
-<li><a href="http://www.toyship.org/archives/1825">App Extension</a></li>
-<li>slideshare<a href="http://www.slideshare.net/toyship/app-extension-for-ios?ref=http://www.toyship.org/archives/1825">App extension for iOS</a></li>
-<li><a href="http://d.hatena.ne.jp/shu223/20140606/1402015233">【iOS8】App Extension の実装方法 その１：Action</a></li>
-<li><a href="http://d.hatena.ne.jp/shu223/20140708/1404758864">【iOS8】App Extension の実装方法 その２：Custom Keyboard</a></li>
-<li><p><a href="https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIInputViewController_Class/index.html#//apple_ref/occ/instp/UIInputViewController/inputView">UIInputViewController</a></p>
-        </div>
-        <a href="/2014/07/10/IOS-2014-07-10-ios-extension/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/10/IOS-2014-07-10-ios-qi-miao-de-code/">
-                IOS 奇妙的Code
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-10</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>收藏一些神奇的寫法和不錯的Code</p>
-        </div>
-        <a href="/2014/07/10/IOS-2014-07-10-ios-qi-miao-de-code/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2014/07/10/IOS-KVC-2014-07-10-ios-kvc-wen-ti-ji/">
-                IOS KVC 問題集
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2014-07-10</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/IOS/">IOS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="題目1"><a href="#題目1" class="headerlink" title="題目1"></a>題目1</h2><figure class="highlight objc"><figcaption><span>題目1</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,getter=issFf) <span class="keyword">float</span> ff;</span><br><span class="line">-(<span class="keyword">float</span>)issFf&#123;</span><br><span class="line">    <span class="keyword">return</span> _ff+<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">_ff = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><code>self.ff</code> = ? <font color = "white">103</font></li>
-<li><code>[self valueForKey:@&quot;ff&quot;]</code> = ? <font color = "white">100</font></li>
-</ol>
-        </div>
-        <a href="/2014/07/10/IOS-KVC-2014-07-10-ios-kvc-wen-ti-ji/" class="read-more">Read More</a>
     
 
 </div>
@@ -501,19 +529,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -527,19 +555,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

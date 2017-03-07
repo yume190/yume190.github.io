@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="WWDC 慢慢補">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="WWDC 2016 416"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>WWDC 2016 416 - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/03/07/WWDC-2016-416/">
+                WWDC 2016 416
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-03-07</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>WWDC 慢慢補</p>
+<a id="more"></a>
+<p>補了半個去年 WWDC 影片，提到一些有關於 swift performance，主要影響的部分分別為 <code>Allocation</code>, <code>Reference Count</code>, <code>Method Dispatch</code></p>
+<h4 id="Allocation"><a href="#Allocation" class="headerlink" title="Allocation"></a>Allocation</h4><p>應該是影響效能最重的部分，以軟體來講大概是指宣告成區域變數或全域變數</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">nothing</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">let</span> <span class="built_in">c</span> = <span class="type">Class</span>() <span class="comment">// 全域變數</span></span><br><span class="line">	<span class="keyword">let</span> s = <span class="type">Struct</span>() <span class="comment">// 區域變數</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更精確地講的話是指你的變數是存放在 <code>stack</code> 還是 <code>heap</code> 中，放在 <code>heap</code> 的話就如同 <code>c lang</code> 做 <code>memory allocation</code> 去申請一塊記憶體位置，不用的時候還得 <code>free</code> 掉，還牽扯到多執行緒共用要不要 <code>lock</code> 等等問題。</p>
+<p>所以 <code>c(變數)</code> 是個 <code>pointer</code> 而資料是在 <code>heap</code> 內，<code>s(變數)</code> 的話是位於 <code>stack</code>，應此只要移動 <code>SP</code> 就做完事了。</p>
+<hr>
+<h4 id="Reference-Count"><a href="#Reference-Count" class="headerlink" title="Reference Count"></a>Reference Count</h4><p>經歷過 <code>ARC</code> 的人應該會有感覺，但要有更深體會應該要體驗 <code>MRC</code> 才會更有感覺(開始玩已是 <code>ARC</code> 時代)，前年的 WWDC 其實也有提道要使用 <code>value type</code>，用 <code>refference type</code> 的話 <code>compiler</code> 會幫你使用前加上 <code>obj.retain(</code>) 使用後加上 <code>obj.release()</code></p>
+<figure class="highlight swift"><figcaption><span>你寫的 code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">c</span> <span class="keyword">in</span> classes &#123;</span><br><span class="line">	<span class="built_in">c</span>.do_some_thing()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> structs &#123;</span><br><span class="line">	s.do_some_thing()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>compiler 幫你補的</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">c</span> <span class="keyword">in</span> classes &#123;</span><br><span class="line">	<span class="built_in">c</span>.retain()</span><br><span class="line">	<span class="built_in">c</span>.do_some_thing()</span><br><span class="line">	<span class="built_in">c</span>.release()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> structs &#123;</span><br><span class="line">	s.class1.retain()</span><br><span class="line">	s.class2.retain()</span><br><span class="line">	s.do_some_thing()</span><br><span class="line">	s.class1.release()</span><br><span class="line">	s.class2.release()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="Method-Dispatch"><a href="#Method-Dispatch" class="headerlink" title="Method Dispatch"></a>Method Dispatch</h4><p>分成 <code>static</code> &amp; <code>dynamic</code>，基本上 <code>class func</code> 預設是 <code>dynamic</code>，影響在於 <code>compiler</code> 有沒有能力幫你做優化，影片例子是 <code>function inline</code></p>
+<p><code>class</code> 如果要變成 <code>static dispatch</code> 可以使用 <code>final class</code> or <code>final func</code></p>
+<figure class="highlight swift"><figcaption><span>優化前</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">action1</span><span class="params">()</span></span> &#123;action2()&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">action2</span><span class="params">()</span></span> &#123;action3()&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">action3</span><span class="params">()</span></span> &#123;do_some_thing()&#125;</span><br><span class="line">action1()</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>compiler 優化後</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">do_some_thing()</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="String-VS-Hashable"><a href="#String-VS-Hashable" class="headerlink" title="String VS Hashable"></a>String VS Hashable</h4><p>String 屬於比較特殊的 <code>struct</code>，他跟 <code>class</code> 一樣會被宣告在 <code>heap</code> 區，受到 <code>alloc</code> &amp; <code>free</code> 的管理。</p>
+<figure class="highlight swift"><figcaption><span>key:String</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Color</span> </span>&#123;<span class="keyword">case</span> blue,green,gray&#125;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Orientation</span> </span>&#123;<span class="keyword">case</span> <span class="keyword">left</span>,<span class="keyword">right</span>&#125;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Tail</span> </span>&#123;<span class="keyword">case</span> <span class="keyword">none</span>,tail,bubble&#125;</span><br><span class="line"><span class="keyword">var</span> cache1 = [<span class="type">String</span>:<span class="type">Int</span>]()</span><br><span class="line"><span class="comment">// key = "\(color):\(orientation):\(tail)"</span></span><br></pre></td></tr></table></figure>
+<p>透過 <code>Hashable</code> 取代掉 String</p>
+<figure class="highlight swift"><figcaption><span>key:Hashable</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Attributes</span>:<span class="title">Hashable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> color:<span class="type">Color</span></span><br><span class="line">    <span class="keyword">var</span> orientation:<span class="type">Orientation</span></span><br><span class="line">    <span class="keyword">var</span> tail:<span class="type">Tail</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cache2 = [<span class="type">Attributes</span>:<span class="type">Int</span>]()</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="減少-struct-內的-class"><a href="#減少-struct-內的-class" class="headerlink" title="減少 struct 內的 class"></a>減少 struct 內的 class</h4><p><code>struct</code> 內的 <code>class</code> 其實也會受到 <code>ARC</code> 管理，使用前後也會被隱含加入 <code>retain()</code> &amp; <code>release()</code>，去 <code>class</code> 可以減少 <code>ARC</code> 的隱含成本。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Attachment</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> fileURL:<span class="type">URL</span></span><br><span class="line">    <span class="keyword">let</span> uuid:<span class="type">String</span></span><br><span class="line">    <span class="keyword">let</span> mimeType:<span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">MimeType</span>:<span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> jpeg = <span class="string">"image/jpeg"</span></span><br><span class="line">    <span class="keyword">case</span> png = <span class="string">"image/jng"</span></span><br><span class="line">    <span class="keyword">case</span> gif = <span class="string">"image/gif"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AttachmentDeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> fileURL:<span class="type">URL</span></span><br><span class="line">    <span class="keyword">let</span> uuid:<span class="type">UUID</span></span><br><span class="line">    <span class="keyword">let</span> mimeType:<span class="type">MimeType</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="protocol-VS-class"><a href="#protocol-VS-class" class="headerlink" title="protocol VS class"></a>protocol VS class</h4><p>官方有在推薦使用 <code>protocol</code> 而非 <code>class 繼承</code>方式，已知說 <code>class allocation</code> 在 <code>heap</code> 且 <code>call function by V-Table</code>(啥？)</p>
+<p>那 <code>protocol + struct</code> 真的會比 <code>class</code> 快？</p>
+<p>以下分別是 <code>protocol + struct</code> &amp; <code>class</code> 的定義 :</p>
+<figure class="highlight swift"><figcaption><span>class</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassDrawable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassLine</span>:<span class="title">ClassDrawable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x1:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> x2:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> y1:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> y2:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> x1 + y1 + x2 + y2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>protocol + struct</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Drawable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> -&gt; <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span>:<span class="title">Drawable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x1:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> x2:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> y1:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> y2:<span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">draw</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> x1 + y1 + x2 + y2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接著要提到 protocol 的實作部分，會因為你的實作甚至比 class 還慢上許多</p>
+<h6 id="EC-Existential-Container"><a href="#EC-Existential-Container" class="headerlink" title="EC (Existential Container)"></a>EC (Existential Container)</h6><p>影響最大的部分在於 <code>EC</code>，他<font color="#ff0000">應該</font>是屬於 <code>5 Word 大小的 struct</code></p>
+<p>其中 <code>Value Buffer</code> 佔了 <code>3 Word</code>，且他專門負責存放 <code>data</code>。</p>
+<ul>
+<li>如果你的 <code>struct data &lt;= 3 Word</code>，<code>data</code> 可以完整的放到 <code>Value Buffer</code></li>
+<li><font color="#ff0000">反之你的 struct data 會被 allocate 在 heap，Value Buffer 只留下指標指過去。</font><br>(感覺比 class 還嚴重，一樣放到 <code>heap</code>，還多了 <code>EC, PWT, VWT</code>)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Existential Container</th>
+<th style="text-align:center">單位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">　<br><code>Value Buffer</code><br>　</td>
+<td style="text-align:center">　<br>3 Word<br>　</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>vwt:</code></td>
+<td style="text-align:center">1 Word</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>pwt:</code></td>
+<td style="text-align:center">1 Word</td>
+</tr>
+</tbody>
+</table>
+<h6 id="PWT-Protocol-Witness-Table"><a href="#PWT-Protocol-Witness-Table" class="headerlink" title="PWT (Protocol Witness Table)"></a>PWT (Protocol Witness Table)</h6><table>
+<thead>
+<tr>
+<th style="text-align:left">Protocol Witness Table(pwt)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>draw:</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>...:</code></td>
+</tr>
+</tbody>
+</table>
+<h6 id="VWT-Value-Witness-Table"><a href="#VWT-Value-Witness-Table" class="headerlink" title="VWT (Value Witness Table)"></a>VWT (Value Witness Table)</h6><table>
+<thead>
+<tr>
+<th style="text-align:left">Value Witness Table(vwt)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>allocate:</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>copy:</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>destruct:</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>deallocate:</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="Generic-VS-protocol"><a href="#Generic-VS-protocol" class="headerlink" title="Generic VS protocol"></a>Generic VS protocol</h4><figure class="highlight swift"><figcaption><span>protocol</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> drawable:<span class="type">Drawable</span> = <span class="type">Line</span>()</span><br><span class="line"><span class="keyword">let</span> <span class="number">_</span> = drawable.draw()</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>Generic</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">drawing</span>&lt;T:Drawable&gt;<span class="params">(drawable:T)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> drawable.draw()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> drawable = <span class="type">Line</span>()</span><br><span class="line"><span class="keyword">let</span> <span class="number">_</span> = drawing(drawable: drawable)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/lua/">lua</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

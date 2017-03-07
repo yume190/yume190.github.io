@@ -135,6 +135,275 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/05/25/Linux-2016-05-25-Raspberry-Pi-Cross-Compile/">
+                Raspberry Pi Cross Compile
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-25</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/kernel/">kernel</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h3 id="從-Linux-取出-config-file"><a href="#從-Linux-取出-config-file" class="headerlink" title="從 Linux 取出 .config file"></a>從 Linux 取出 <code>.config</code> file</h3><figure class="highlight sh"><figcaption><span>導出 rpi config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe configs</span><br><span class="line">zcat /proc/config.gz &gt; .config</span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2016/05/25/Linux-2016-05-25-Raspberry-Pi-Cross-Compile/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/05/24/Linux-2016-05-24-kbuild/">
+                kbuild
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-24</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/linux/">linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h3 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h3><p><a href="http://tetralet.luna.com.tw/?op=ViewArticle&amp;articleId=185">Makefile 語法簡介</a><br><a href="http://wandachiang.blogspot.tw/2012/12/makefile.html">Makefile 語法筆記</a></p>
+<h3 id="KBuild"><a href="#KBuild" class="headerlink" title="KBuild"></a>KBuild</h3><p><a href="https://www.kernel.org/doc/Documentation/kbuild/modules.txt">modules</a><br><a href="https://www.kernel.org/doc/Documentation/kbuild/kbuild.txt">kbuild 參數 list</a></p>
+<h3 id="Pre-require"><a href="#Pre-require" class="headerlink" title="Pre require"></a>Pre require</h3><ul>
+<li>prebuilt kernel</li>
+<li>kernel 設定可載入 module</li>
+<li>可能是 <code>CONFIG_PROC_KCORE</code> and <code>CONFIG_DEBUG_INFO</code></li>
+</ul>
+        </div>
+        <a href="/2016/05/24/Linux-2016-05-24-kbuild/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/05/13/Linux-2016-05-13-kernel/">
+                kernel
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-13</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/linux/">linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="http://www.linuxjournal.com/content/kbuild-linux-kernel-build-system">Kbuild: the Linux Kernel Build System</a></p>
+<h3 id="Build-kernel-相關套件"><a href="#Build-kernel-相關套件" class="headerlink" title="Build kernel 相關套件"></a>Build kernel 相關套件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br><span class="line">sudo apt-get install libncurses5-dev</span><br></pre></td></tr></table></figure>
+        </div>
+        <a href="/2016/05/13/Linux-2016-05-13-kernel/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/05/13/Linux-2016-05-13-Raspi-3/">
+                Raspi 3
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-13</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/raspberry/">raspberry</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h3 id="外部登入"><a href="#外部登入" class="headerlink" title="外部登入"></a>外部登入</h3><p><a href="https://www.raspberrypi.com.tw/1999/connect-to-raspberry-pi-via-serial/">從序列埠登入到 Raspberry Pi</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">screen /dev/cu.usbserial 115200</span><br><span class="line"></span><br><span class="line">ssh pi@x.x.x.x</span><br><span class="line"># raspberry</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=229&amp;pcid=41">Prolific</a></p>
+        </div>
+        <a href="/2016/05/13/Linux-2016-05-13-Raspi-3/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/05/10/IOS-2016-05-10-Swift-log/">
+                Swift log
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h3 id="Blog"><a href="#Blog" class="headerlink" title="Blog"></a>Blog</h3><p><a href="http://jasdev.me/">jasdev</a></p>
+<h3 id="Blog-Medium"><a href="#Blog-Medium" class="headerlink" title="Blog (Medium)"></a>Blog (Medium)</h3>
+        </div>
+        <a href="/2016/05/10/IOS-2016-05-10-Swift-log/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/05/04/Haskell-2016-05-04-Yesod/">
+                Yesod
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-05-04</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>haskell http lib</p>
+        </div>
+        <a href="/2016/05/04/Haskell-2016-05-04-Yesod/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/18/Haskell-2016-04-18-Haskell/">
+                Haskell
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-18</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>haskell</p>
+        </div>
+        <a href="/2016/04/18/Haskell-2016-04-18-Haskell/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/03/17/monitor-2016-03-17-telegraf/">
+                telegraf
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-17</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="https://docs.influxdata.com/telegraf/v0.10/introduction/getting-started-telegraf/">文件</a></p>
+        </div>
+        <a href="/2016/03/17/monitor-2016-03-17-telegraf/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/03/17/IOS-2016-03-17-Instruments-Core-Animation/">
+                Instruments Core Animation
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-17</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>主要可以參考 WWDC 2014 419</p>
+        </div>
+        <a href="/2016/03/17/IOS-2016-03-17-Instruments-Core-Animation/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/03/15/IOS-2016-03-15-LLDB/">
                 LLDB
             </a>
@@ -153,251 +422,6 @@
             <p>lldb</p>
         </div>
         <a href="/2016/03/15/IOS-2016-03-15-LLDB/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/03/08/IOS-2016-03-08-Core-Data-文章/">
-                Core Data 文章
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-03-08</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Core Data</p>
-        </div>
-        <a href="/2016/03/08/IOS-2016-03-08-Core-Data-文章/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/18/monitor-2016-02-18-Time-Series-Database-Requirements/">
-                Time-Series Database Requirements
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-18</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><a href="http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/">原文</a></p>
-        </div>
-        <a href="/2016/02/18/monitor-2016-02-18-Time-Series-Database-Requirements/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/17/IOS-2016-02-17-MetalKit-Part-4/">
-                MetalKit Part.4
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-17</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><a href="http://mhorga.org/2016/02/01/using-metalkit-part-4.html">原文</a></p>
-        </div>
-        <a href="/2016/02/17/IOS-2016-02-17-MetalKit-Part-4/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/16/IOS-2016-02-16-Pragmatic-Core-Data/">
-                Pragmatic Core Data
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-16</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>務實 Core Data</p>
-        </div>
-        <a href="/2016/02/16/IOS-2016-02-16-Pragmatic-Core-Data/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/04/IOS-2016-02-04-Swift-DEMYSTIFYING-THE-MYSTERIOUS/">
-                Swift DEMYSTIFYING THE MYSTERIOUS
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-04</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>原文：</p>
-<p><a href="http://krakendev.io/blog/hipster-swift">HIPSTER SWIFT: DEMYSTIFYING THE MYSTERIOUS</a></p>
-        </div>
-        <a href="/2016/02/04/IOS-2016-02-04-Swift-DEMYSTIFYING-THE-MYSTERIOUS/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/02/IOS-2016-02-02-Swift-Flag-Build/">
-                Swift Flag & Build
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-02</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>最近得弄，針對同一個 APP，有著不同的資源配置。</p>
-        </div>
-        <a href="/2016/02/02/IOS-2016-02-02-Swift-Flag-Build/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/02/IOS-2016-02-02-swift-3-0-閱讀/">
-                swift 3.0 閱讀
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-02</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Swift 3.0 閱讀準備<br><a href="https://github.com/apple/swift-evolution">swift-evolution</a></p>
-<p>2016-02-16</p>
-        </div>
-        <a href="/2016/02/02/IOS-2016-02-02-swift-3-0-閱讀/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/01/06/monitor-2016-01-06-InfluxDB/">
-                InfluxDB
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-01-06</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>時序性資料庫。拿來監看 Metric 還不錯！</p>
-        </div>
-        <a href="/2016/01/06/monitor-2016-01-06-InfluxDB/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/01/04/monitor-2016-01-04-Zipkin/">
-                Zipkin
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-01-04</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><a href="http://bigbully.github.io/Dapper-translation/">Dapper，大规模分布式系统的跟踪系统</a></p>
-        </div>
-        <a href="/2016/01/04/monitor-2016-01-04-Zipkin/" class="read-more">Read More</a>
     
 
 </div>
@@ -444,19 +468,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -470,19 +494,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

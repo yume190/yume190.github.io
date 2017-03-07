@@ -159,36 +159,88 @@
         <!-- Post Content -->
         <p>make</p>
 <a id="more"></a>
-<h2 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets : prerequisites</span><br><span class="line">        command </span><br><span class="line"># or</span><br><span class="line">targets : prerequisites ; command</span><br><span class="line">        command</span><br></pre></td></tr></table></figure>
-<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><figure class="highlight makefile"><figcaption><span>範例一</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">        cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">            insert.o search.o files.o utils.o</span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">        cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">        cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">        cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">        cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">        cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">        cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">        cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">        cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">        rm edit main.o kbd.o command.o display.o \</span><br><span class="line">            insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><figcaption><span>第一次改進使用變數</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#edit : main.o kbd.o command.o display.o \</span><br><span class="line">#    insert.o search.o files.o utils.o</span><br><span class="line">#        cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">#            insert.o search.o files.o utils.o</span><br><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">edit : $(objects)</span><br><span class="line">        cc -o edit $(objects)</span><br><span class="line"># ...</span><br><span class="line">clean :</span><br><span class="line">        rm edit $(objects)</span><br></pre></td></tr></table></figure>
-<h4 id="隱藏規則-自動推導"><a href="#隱藏規則-自動推導" class="headerlink" title="隱藏規則(自動推導)"></a>隱藏規則(自動推導)</h4><p>遇到 <code>x.o</code> 會推導出 <code>x.c</code> 為相依，並自動推導出要做 <code>cc -c x.c</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># whatever.o</span><br><span class="line">whatever.o : whatever.c</span><br><span class="line">        cc -c whatever.c</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><figcaption><span>使用隱藏規則</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">edit : $(objects)</span><br><span class="line">        cc -o edit $(objects)</span><br><span class="line">main.o : defs.h</span><br><span class="line">kbd.o : defs.h command.h</span><br><span class="line">command.o : defs.h command.h</span><br><span class="line">display.o : defs.h buffer.h</span><br><span class="line">insert.o : defs.h buffer.h</span><br><span class="line">search.o : defs.h buffer.h</span><br><span class="line">files.o : defs.h buffer.h command.h</span><br><span class="line">utils.o : defs.h</span><br><span class="line">.PHONY : clean # 指 clean 為假目標文件</span><br><span class="line">clean :</span><br><span class="line">        -rm edit $(objects) # -rm 代表有出錯也不管繼續做</span><br></pre></td></tr></table></figure>
+<h2 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">targets : prerequisites</span><br><span class="line">        command </span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">targets : prerequisites ; command</span><br><span class="line">        command</span><br></pre></td></tr></table></figure>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><h4 id="範例-1"><a href="#範例-1" class="headerlink" title="範例 1"></a>範例 1</h4><figure class="highlight makefile"><figcaption><span>範例一</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">edit : main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">        cc -o edit main.o kbd.o command.o display.o \</span><br><span class="line">            insert.o search.o files.o utils.o</span><br><span class="line">main.o : main.c defs.h</span><br><span class="line">        cc -c main.c</span><br><span class="line">kbd.o : kbd.c defs.h command.h</span><br><span class="line">        cc -c kbd.c</span><br><span class="line">command.o : command.c defs.h command.h</span><br><span class="line">        cc -c command.c</span><br><span class="line">display.o : display.c defs.h buffer.h</span><br><span class="line">        cc -c display.c</span><br><span class="line">insert.o : insert.c defs.h buffer.h</span><br><span class="line">        cc -c insert.c</span><br><span class="line">search.o : search.c defs.h buffer.h</span><br><span class="line">        cc -c search.c</span><br><span class="line">files.o : files.c defs.h buffer.h command.h</span><br><span class="line">        cc -c files.c</span><br><span class="line">utils.o : utils.c defs.h</span><br><span class="line">        cc -c utils.c</span><br><span class="line">clean :</span><br><span class="line">        rm edit main.o kbd.o command.o display.o \</span><br><span class="line">            insert.o search.o files.o utils.o</span><br></pre></td></tr></table></figure>
+<h4 id="範例-2-使用變數"><a href="#範例-2-使用變數" class="headerlink" title="範例 2 使用變數"></a>範例 2 使用變數</h4><figure class="highlight makefile"><figcaption><span>第一次改進使用變數</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#edit : main.o kbd.o command.o display.o \</span></span><br><span class="line"><span class="comment">#    insert.o search.o files.o utils.o</span></span><br><span class="line"><span class="comment">#        cc -o edit main.o kbd.o command.o display.o \</span></span><br><span class="line"><span class="comment">#            insert.o search.o files.o utils.o</span></span><br><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">edit : $(objects)</span><br><span class="line">        cc -o edit $(objects)</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">clean :</span><br><span class="line">        rm edit $(objects)</span><br></pre></td></tr></table></figure>
+<h4 id="範例-3-隱藏規則-自動推導"><a href="#範例-3-隱藏規則-自動推導" class="headerlink" title="範例 3 隱藏規則(自動推導)"></a>範例 3 隱藏規則(自動推導)</h4><p>遇到 <code>x.o</code> 會推導出 <code>x.c</code> 為相依，並自動推導出要做 <code>cc -c x.c</code></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># whatever.o</span></span><br><span class="line">whatever.o : whatever.c</span><br><span class="line">        cc -c whatever.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><figcaption><span>使用隱藏規則</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">    insert.o search.o files.o utils.o</span><br><span class="line">edit : $(objects)</span><br><span class="line">        cc -o edit $(objects)</span><br><span class="line">main.o : defs.h</span><br><span class="line">kbd.o : defs.h command.h</span><br><span class="line">command.o : defs.h command.h</span><br><span class="line">display.o : defs.h buffer.h</span><br><span class="line">insert.o : defs.h buffer.h</span><br><span class="line">search.o : defs.h buffer.h</span><br><span class="line">files.o : defs.h buffer.h command.h</span><br><span class="line">utils.o : defs.h</span><br><span class="line">.PHONY : clean <span class="comment"># 指 clean 為假目標文件</span></span><br><span class="line">clean :</span><br><span class="line">        -rm edit $(objects) <span class="comment"># -rm 代表有出錯也不管繼續做</span></span><br></pre></td></tr></table></figure>
+<hr>
 <h2 id="寫作習慣"><a href="#寫作習慣" class="headerlink" title="寫作習慣"></a>寫作習慣</h2><ul>
 <li>第一個 label 通常是最終目標 (也是默認目標)</li>
-<li>最後一個 lable 為 <code>clean</code></li>
-<li>用 <code>\#</code> 表示 <code>#</code> </li>
-<li>-rm</li>
-<li>-include</li>
+<li>最後一個 label 為 <code>clean</code></li>
+<li>用 <code>\#</code> 表示 <code>#</code><br>all<br>clean<br>install<br>print 列出已改文件<br>tar 打包<br>dist 壓縮<br>TAGS 更新所有目標，以备完整地重编译使用<br>check test 測試 make 流程</li>
 </ul>
+<hr>
 <h2 id="Make-尋找-makefile"><a href="#Make-尋找-makefile" class="headerlink" title="Make (尋找 makefile)"></a>Make (尋找 makefile)</h2><ul>
 <li><code>GNUmakefile</code></li>
 <li><code>makefile</code></li>
 <li><code>Makefile</code> 推薦</li>
 <li><code>make -f Make.Linux</code> or <code>make --file Make.AIX</code></li>
 </ul>
-<h2 id="引用-makefile"><a href="#引用-makefile" class="headerlink" title="引用 makefile"></a>引用 makefile</h2><figure class="highlight plain"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include foo.make a.mk b.mk c.mk e.mk f.mk</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="引用-makefile"><a href="#引用-makefile" class="headerlink" title="引用 makefile"></a>引用 makefile</h2><figure class="highlight makefile"><figcaption><span>Makefile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include foo.make a.mk b.mk c.mk e.mk f.mk</span><br></pre></td></tr></table></figure>
 <h4 id="引用-Makefile-尋找位置"><a href="#引用-Makefile-尋找位置" class="headerlink" title="引用 Makefile 尋找位置"></a>引用 Makefile 尋找位置</h4><ul>
 <li><code>-I</code> or <code>--include-dir</code></li>
 <li><prefix>/include (通常是 <code>/usr/local/bin</code> or <code>/usr/include</code>)</prefix></li>
 <li>環境變數 <code>MAKEFILES</code> <font color="red">(最好別用，但是出事情最好查一下的地方)</font></li>
 </ul>
+<hr>
+<h2 id="特殊變數"><a href="#特殊變數" class="headerlink" title="特殊變數"></a>特殊變數</h2><ul>
+<li><code>VPATH = src:../headers</code>, 當文件找不到時去 src, ..headers 尋找 </li>
+<li><code>MAKECMDGOALS</code></li>
+<li><code>SHELL</code>，嵌套执行 make 會自動 export</li>
+<li><code>MAKEFLAGS</code>，嵌套执行 make 會自動 export，<code>-C -f -h -o -W</code> 參數不會被帶過去</li>
+</ul>
+<figure class="highlight makefile"><figcaption><span>vpath in Makefile 延伸</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vpath &lt;pattern&gt; &lt;directories&gt; </span></span><br><span class="line">vpath %.h ../headers <span class="comment"># 符合 .h 去 ../headers 找 </span></span><br><span class="line"><span class="comment"># vpath &lt;pattern&gt;</span></span><br><span class="line"><span class="comment"># 清除符合模式&lt;pattern&gt;的文件的搜索目录</span></span><br><span class="line"><span class="comment"># vpath</span></span><br><span class="line"><span class="comment"># 清除所有已被设置好了的文件搜索目录。</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="特殊目標"><a href="#特殊目標" class="headerlink" title="特殊目標"></a>特殊目標</h2><ul>
+<li><code>.PHONY</code></li>
+<li><code>.INTERMEDIATE : mid</code> 中間目標</li>
+<li><code>.SECONDARY : sec</code> 不必刪除的中間目標</li>
+<li><code>.PRECIOUS</code></li>
+<li><code>.SUFFIXES: .hack .win</code> 後綴規則(舊規則)，<code>.SUFFIXES: # 删除默认的后缀</code></li>
+</ul>
+<h4 id="偽目標-PHONY"><a href="#偽目標-PHONY" class="headerlink" title="偽目標 .PHONY"></a>偽目標 <code>.PHONY</code></h4><p>偽目標不需要生成檔案，如 <code>clean</code>。可以當預設目標，且每次執行一定會執行(不必檢查相依後再產生)</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.PHONY : clean</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="嵌套执行-make"><a href="#嵌套执行-make" class="headerlink" title="嵌套执行 make"></a>嵌套执行 make</h2><p>變數可以透過 <code>make -e out=1</code> 傳入。</p>
+<p>或者用 <code>export out = 1</code>，<code>export</code> 表示全部變數皆傳下去，可以用 <code>unexport out</code> 取消傳入。</p>
+<p>也能用 <code>override out = 2</code> 禁止外面傳入</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">subsystem:</span></span><br><span class="line">        cd subdir &amp;&amp; $(MAKE)</span><br><span class="line"><span class="comment"># 其等价于:</span></span><br><span class="line"><span class="section">subsystem:</span></span><br><span class="line">        $(MAKE) -C subdir</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="define"><a href="#define" class="headerlink" title="define"></a>define</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define run-yacc</span><br><span class="line">yacc $(firstword $^)</span><br><span class="line">mv y.tab.c $@</span><br><span class="line">endef</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h2><ul>
+<li><code>=</code>，有變數中的變數的話，要以各變數的最終值展開</li>
+<li><code>:=</code>，宣告時展開</li>
+<li><code>+=</code>，apped</li>
+<li><code>?=</code>，當變數沒有宣告，才做賦值動作</li>
+</ul>
+<hr>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令??"></a>指令??</h2><ul>
+<li><code>@</code>：不要顯示執行的指令</li>
+<li><code>-</code>：即使執行錯誤也不會中斷</li>
+</ul>
+<hr>
+<h2 id="隱規則"><a href="#隱規則" class="headerlink" title="隱規則"></a>隱規則</h2><p>中間過程生成物會被 <code>rm -f</code> 方式移除</p>
+<p>如 <code>a -&gt; b -&gt; c</code>，b 會被自動移除</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># c</span></span><br><span class="line">%.o : %.c</span><br><span class="line">        $(CC) –c $(CPPFLAGS)    $(CFLAGS)</span><br><span class="line"><span class="comment">#       cc    -c "C 预处理器参数" "C 语言编译器参数"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="自動化變數-lt"><a href="#自動化變數-lt" class="headerlink" title="自動化變數 $@ $&lt;"></a>自動化變數 <code>$@</code> <code>$&lt;</code></h2><p>$@<br>表示规则中的目标文件集。在模式规则中，如果有多个目标，那么，”$@”就是匹配于<br>目标中模式定义的集合。<br>$%<br>仅当目标是函数库文件中，表示规则中的目标成员名。例如，如果一个目标是”foo.a<br>(bar.o)”，那么，”$%”就是”bar.o”，”$@”就是”foo.a”。如果目标不是函数库文件(Unix 下是[.a]，Windows 下是[.lib])，那么，其值为空。<br>$&lt;<br>依赖目标中的第一个目标名字。如果依赖目标是以模式(即”%”)定义的，那么”$&lt;”将<br>是符合模式的一系列的文件集。注意，其是一个一个取出来的。<br>$?<br>所有比目标新的依赖目标的集合。以空格分隔。<br>$^<br>所有的依赖目标的集合。以空格分隔。如果在依赖目标中有多个重复的，那个这个变量<br>会去除重复的依赖目标，只保留一份。<br>$+<br>这个变量很像”$^”，也是所有依赖目标的集合。只是它不去除重复的依赖目标。<br>$<em><br>这个变量表示目标模式中”%”及其之前的部分。如果目标是”dir/a.foo.b”，并且目标的<br>模式是”a.%.b”，那么，”$</em>“的值就是”dir/a.foo”。这个变量对于构造有关联的文件名是比 较有较。如果目标中没有模式的定义，那么”$<em>“也就不能被推导出，但是，如果目标文件的 后缀是 make 所识别的，那么”$</em>“就是除了后缀的那一部分。例如:如果目标是”foo.c”，因 为”.c”是 make 所能识别的后缀名，所以，”$*”的值就是”foo”。这个特性是 GNU make 的</p>
+<p>$?<br>代表已被更新的dependencies的值<br>也就是dependencies中比target還要新的值</p>
+<p>$@<br>代表target的值</p>
+<p>$&lt;<br>代表第一個dependencies的值</p>
+<p>$*<br>代表target所指定的檔案 不包含副檔名</p>
+<p>define run-yacc<br>yacc $(firstword $^)<br>mv y.tab.c $@<br>endef</p>
+<p>foo.c : foo.y<br>$(run-yacc)<br>$@:$^</p>
+<p>“$^”就是“foo.y”<br>“$@”就是“foo.c”</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&lt;targets ...&gt;: &lt;target-pattern&gt;: &lt;prereq-patterns ...&gt;</span></span><br><span class="line"><span class="comment">#        &lt;commands&gt;</span></span><br><span class="line"><span class="comment"># $@ : $&lt; : ??</span></span><br><span class="line"></span><br><span class="line">objects = foo.o bar.o</span><br><span class="line"></span><br><span class="line">all: $(objects)</span><br><span class="line"></span><br><span class="line">$(objects): %.o: %.c</span><br><span class="line">        $(CC) -c $(CFLAGS) $&lt; -o $@</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><figcaption><span>$@ 範例 </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bigoutput littleoutput : text.g</span><br><span class="line">        generate text.g -$(subst output,,$@) &gt; $@</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等價於</span></span><br><span class="line"></span><br><span class="line">bigoutput : text.g</span><br><span class="line">        generate text.g -big &gt; bigoutput</span><br><span class="line">littleoutput : text.g</span><br><span class="line">        generate text.g -little &gt; littleoutput</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><figcaption><span>$< 範例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 等價於</span></span><br><span class="line"></span><br><span class="line">foo.o : foo.c</span><br><span class="line">$(CC) -c $(CFLAGS) foo.c -o foo.o</span><br><span class="line">bar.o : bar.c</span><br><span class="line">$(CC) -c $(CFLAGS) bar.c -o bar.o</span><br></pre></td></tr></table></figure>
 <h4 id=""><a href="#" class="headerlink" title="??"></a>??</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objects = *.o  # &quot;*.o&quot;</span><br><span class="line">objects := $(wildcard *.o) # 所有 .o 檔</span><br></pre></td></tr></table></figure>
-<h4 id="文件搜尋-VPATH"><a href="#文件搜尋-VPATH" class="headerlink" title="文件搜尋 (VPATH)"></a>文件搜尋 (VPATH)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">VPATH = src:../headers</span><br><span class="line"># 當文件找不到時去 src, ..headers 尋找 </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">``` sh</span><br><span class="line"># vpath &lt;pattern&gt; &lt;directories&gt; </span><br><span class="line">vpath %.h ../headers # 符合 .h 去 ../headers 找 </span><br><span class="line"># vpath &lt;pattern&gt;</span><br><span class="line"># 清除符合模式&lt;pattern&gt;的文件的搜索目录</span><br><span class="line"># vpath</span><br><span class="line"># 清除所有已被设置好了的文件搜索目录。</span><br></pre></td></tr></table></figure>
-<h2 id="自動化變數-lt"><a href="#自動化變數-lt" class="headerlink" title="自動化變數 $@ $&lt;"></a>自動化變數 <code>$@</code> <code>$&lt;</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#&lt;targets ...&gt;: &lt;target-pattern&gt;: &lt;prereq-patterns ...&gt;</span><br><span class="line">#        &lt;commands&gt;</span><br><span class="line"># $@ : $&lt; : ??</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><figcaption><span>$@ 範例 </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bigoutput littleoutput : text.g</span><br><span class="line">        generate text.g -$(subst output,,$@) &gt; $@</span><br><span class="line"></span><br><span class="line"># 等價於</span><br><span class="line"></span><br><span class="line">bigoutput : text.g</span><br><span class="line">        generate text.g -big &gt; bigoutput</span><br><span class="line">littleoutput : text.g</span><br><span class="line">        generate text.g -little &gt; littleoutput</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><figcaption><span>$< 範例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">objects = foo.o bar.o</span><br><span class="line"></span><br><span class="line">all: $(objects)</span><br><span class="line"></span><br><span class="line">$(objects): %.o: %.c</span><br><span class="line">$(CC) -c $(CFLAGS) $&lt; -o $@</span><br><span class="line"></span><br><span class="line"># 等價於</span><br><span class="line"></span><br><span class="line">foo.o : foo.c</span><br><span class="line">$(CC) -c $(CFLAGS) foo.c -o foo.o</span><br><span class="line">bar.o : bar.c</span><br><span class="line">$(CC) -c $(CFLAGS) bar.c -o bar.o</span><br></pre></td></tr></table></figure>
+<p>p39</p>
+
     </div>
 
     
@@ -229,19 +281,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -255,19 +307,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

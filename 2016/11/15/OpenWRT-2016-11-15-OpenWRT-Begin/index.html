@@ -194,7 +194,10 @@
 <h2 id="LinkIt-Smart-7688"><a href="#LinkIt-Smart-7688" class="headerlink" title="LinkIt Smart 7688"></a>LinkIt Smart 7688</h2><p>透過 wifi 連入後，網頁進入 <code>mylinkit.local</code> 設定 root 密碼</p>
 <p>設定成 station mode 後，可透過 <code>ssh root@mylinkit.local</code> 連入</p>
 <p><a href="https://iamblue.gitbooks.io/linkit-smart-nodejs/content/zh-TW/basic/mraa.html" target="_blank" rel="external">使用 mraa 套件來操控 GPIO</a></p>
-
+<h2 id="自製-ipk"><a href="#自製-ipk" class="headerlink" title="自製 ipk"></a>自製 ipk</h2><ul>
+<li><a href="http://blog.csdn.net/jk110333/article/details/48029319" target="_blank" rel="external">openwrt SDK, 利用SDK生成自己的ipk安装包</a></li>
+</ul>
+<h2 id="Build-ipk"><a href="#Build-ipk" class="headerlink" title="Build ipk"></a>Build ipk</h2><figure class="highlight sh"><figcaption><span>build coova-chilli ipk</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://wiki.openwrt.org/doc/howtobuild/single.package</span></span><br><span class="line"><span class="comment"># https://wiki.openwrt.org/doc/howto/obtain.firmware.sdk</span></span><br><span class="line"><span class="comment"># make package/example/download - download the soures of example</span></span><br><span class="line"><span class="comment"># make package/example/prepare - extract the sources, apply patches and download if necessary</span></span><br><span class="line"><span class="comment"># make package/example/compile - compile example, prepare and download if necessary</span></span><br><span class="line"><span class="comment"># make package/example/clean - clean the sourcecode</span></span><br><span class="line"><span class="comment"># make package/index - build a repository index to make the output directory usable as local opkg source</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># install feeds(feeds.conf)</span></span><br><span class="line">./scripts/feeds update <span class="_">-a</span></span><br><span class="line">./scripts/feeds install coova-chilli</span><br><span class="line"></span><br><span class="line"><span class="comment"># make tools tools</span></span><br><span class="line">make tools/install</span><br><span class="line">make toolchain/install</span><br><span class="line"></span><br><span class="line">make package/package/feeds/packages/coova-chilli/compile</span><br><span class="line">make package/package/feeds/packages/coova-chilli/install</span><br><span class="line"><span class="comment"># bin/ramips/packages/packages/coova-chilli_1.3.0+20141128_ramips_24kec.ipk</span></span><br><span class="line">make package/index</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -235,19 +238,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -261,19 +264,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>

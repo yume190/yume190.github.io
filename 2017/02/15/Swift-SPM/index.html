@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="SPMSPM Usage">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Swift SPM"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Swift SPM - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/02/15/Swift-SPM/">
+                Swift SPM
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-02-15</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><a href="https://github.com/apple/swift-package-manager/blob/master/Documentation/Reference.md#module-format-reference" target="_blank" rel="external">SPM</a><br><a href="https://github.com/apple/swift-package-manager/blob/master/Documentation/Usage.md" target="_blank" rel="external">SPM Usage</a></p>
+<a id="more"></a>
+<p>仿照教學，建立 system lib(libgit2)，並且在另一個專案引用 <code>libgit2</code></p>
+<figure class="highlight sh"><figcaption><span>產生 swift proj</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swift package init --type executable <span class="comment"># [empty|library|executable|system-module]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>產生 XCode 專案</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">swift package \</span><br><span class="line">	-Xcc -std=c89 \</span><br><span class="line">	-Xswiftc -I/usr/<span class="built_in">local</span>/include/git2 \</span><br><span class="line">	-Xlinker -L/usr/<span class="built_in">local</span>/lib \</span><br><span class="line">	generate-xcodeproj</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>tree</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── Package.swift</span><br><span class="line">├── Sources</span><br><span class="line">│   └── Hello.swift</span><br><span class="line">└── Tests</span><br><span class="line">    ├── HelloTests</span><br><span class="line">    │   └── HelloTests.swift</span><br><span class="line">    └── LinuxMain.swift</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Require-System-Libraries-libgit2"><a href="#Require-System-Libraries-libgit2" class="headerlink" title="Require System Libraries (libgit2)"></a>Require System Libraries (libgit2)</h2><p>首先要先安裝 <code>libgit2</code>，可自行選擇手動安裝或利用 <code>brew</code></p>
+<h6 id="手動安裝"><a href="#手動安裝" class="headerlink" title="手動安裝"></a>手動安裝</h6><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://libgit2.github.com/</span></span><br><span class="line"><span class="comment"># Adding set(CMAKE_MACOSX_RPATH 1) into CMakeLists.txt</span></span><br><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line"><span class="comment"># cmake .. -DCMAKE_INSTALL_PREFIX=/install/prefix</span></span><br><span class="line">cmake .. \</span><br><span class="line">	-DCMAKE_OSX_ARCHITECTURES=<span class="string">"i386;x86_64"</span> \</span><br><span class="line">	-DLIB_INSTALL_DIR=/usr/<span class="built_in">local</span>/lib \</span><br><span class="line">	-DINCLUDE_INSTALL_DIR=/usr/<span class="built_in">local</span>/include </span><br><span class="line">cmake --build . --target install</span><br><span class="line"></span><br><span class="line"><span class="comment"># clean</span></span><br><span class="line">rm /usr/<span class="built_in">local</span>/lib/libgit2.0.25.1.dylib</span><br><span class="line">rm /usr/<span class="built_in">local</span>/lib/libgit2.25.dylib</span><br><span class="line">rm /usr/<span class="built_in">local</span>/lib/libgit2.dylib</span><br><span class="line">rm /usr/<span class="built_in">local</span>/lib/pkgconfig/libgit2.pc</span><br><span class="line">rm /usr/<span class="built_in">local</span>/include/git2.h</span><br><span class="line">rm -rf /usr/<span class="built_in">local</span>/include/git2</span><br></pre></td></tr></table></figure>
+<h6 id="套件軟體安裝"><a href="#套件軟體安裝" class="headerlink" title="套件軟體安裝"></a>套件軟體安裝</h6><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install libgit2</span><br></pre></td></tr></table></figure>
+<h4 id="建立-System-Lib-Clibgit"><a href="#建立-System-Lib-Clibgit" class="headerlink" title="建立 System Lib (Clibgit)"></a>建立 System Lib (Clibgit)</h4><blockquote>
+<p><code>swift package init --type system-module</code></p>
+</blockquote>
+<figure class="highlight swift"><figcaption><span>Package.swift</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PackageDescription</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</span><br><span class="line">    name: <span class="string">"Clibgit"</span>,</span><br><span class="line">    pkgConfig: <span class="string">"libgit2"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>module.modulemap</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module Clibgit [system] &#123;</span><br><span class="line">  header &quot;/usr/local/include/git2.h&quot;</span><br><span class="line">  link &quot;git2&quot;</span><br><span class="line">  export *</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>tag 版本(Clibgit)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"Initial Commit"</span></span><br><span class="line">git tag 1.0.0</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="開始引用-System-Lib"><a href="#開始引用-System-Lib" class="headerlink" title="開始引用 System Lib"></a>開始引用 System Lib</h2><blockquote>
+<p><code>swift package init --type executable</code></p>
+</blockquote>
+<figure class="highlight swift"><figcaption><span>Package.swift</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PackageDescription</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(</span><br><span class="line">    name: <span class="string">"example"</span>,</span><br><span class="line">    dependencies: [</span><br><span class="line">        .<span class="type">Package</span>(url: <span class="string">"../Clibgit"</span>, majorVersion: <span class="number">1</span>)</span><br><span class="line">    ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>main.swift</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Clibgit</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> options = git_repository_init_options()</span><br><span class="line"><span class="built_in">print</span>(options)</span><br></pre></td></tr></table></figure>
+<h4 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h4><blockquote>
+<p><code>swift build -Xlinker -L/usr/local/lib/ &amp;&amp; .build/debug/example</code></p>
+</blockquote>
+<h4 id="產生-XCode-專案"><a href="#產生-XCode-專案" class="headerlink" title="產生 XCode 專案"></a>產生 XCode 專案</h4><blockquote>
+<p><code>swift package -Xcc -std=c89 -Xswiftc -I/usr/local/include/git2 -Xlinker -L/usr/local/lib generate-xcodeproj</code></p>
+</blockquote>
+<hr>
+<h4 id="REPL-include-Clibgit"><a href="#REPL-include-Clibgit" class="headerlink" title="REPL include Clibgit"></a>REPL include Clibgit</h4><blockquote>
+<p><code>swift -I Clibgit</code></p>
+</blockquote>
+<hr>
+<h2 id="PackageDescription"><a href="#PackageDescription" class="headerlink" title="PackageDescription"></a>PackageDescription</h2><figure class="highlight swift"><figcaption><span>Package</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Package</span>(</span><br><span class="line">    name: <span class="type">String</span>,</span><br><span class="line">    pkgConfig: <span class="type">String</span>? = <span class="literal">nil</span>, 					<span class="comment">// pkg-config (.pc), for system modules</span></span><br><span class="line">    providers: [<span class="type">SystemPackageProvider</span>]? = <span class="literal">nil</span>,</span><br><span class="line">    targets: [<span class="type">Target</span>] = [],</span><br><span class="line">    dependencies: [<span class="type">Package</span>.<span class="type">Dependency</span>] = [],</span><br><span class="line">    exclude: [<span class="type">String</span>] = []</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>Target</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Target</span>(name: <span class="string">"Bar"</span>, dependencies: [<span class="string">"Foo"</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>Package.Dependency</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.<span class="type">Package</span>(url: <span class="string">"ssh://git@example.com/Greeter.git"</span>, versions: <span class="type">Version</span>(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>)..&lt;<span class="type">Version</span>(<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>)),</span><br><span class="line">.<span class="type">Package</span>(url: <span class="string">"../StringExtensions"</span>, <span class="string">"1.0.0"</span>),</span><br><span class="line">.<span class="type">Package</span>(url: <span class="string">"https://github.com/MyAwesomePackage"</span>, majorVersion: <span class="number">1</span>, minor: <span class="number">4</span>),</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>exclude</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exclude: [<span class="string">"Sources/Fixtures"</span>, <span class="string">"Sources/readme.md"</span>, <span class="string">"Tests/FooTests/images"</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>pkgConfig</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkgConfig: <span class="string">"gtk+-3.0"</span> <span class="comment">// gtk+-3.0.pc, 從環境變數 PKG_CONFIG_PATH 下搜尋</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>Provider</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> providers: [</span><br><span class="line">	.<span class="type">Brew</span>(<span class="string">"gtk+3"</span>),</span><br><span class="line">	.<span class="type">Apt</span>(<span class="string">"gtk3"</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="待-…"><a href="#待-…" class="headerlink" title="待 …"></a>待 …</h3><figure class="highlight swift"><figcaption><span>.Package</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">``` swift <span class="type">Version</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/lua/">lua</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

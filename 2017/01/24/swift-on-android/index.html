@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="未整理">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yume">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="swift on android"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yume 練功地"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>swift on android - Yume 練功地</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/01/24/swift-on-android/">
+                swift on android
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-01-24</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>未整理</p>
+<a id="more"></a>
+<p>swift REPL<br>:target modules list<br>:help</p>
+<h2 id="Getting-Started-with-Swift-on-Android"><a href="#Getting-Started-with-Swift-on-Android" class="headerlink" title="Getting Started with Swift on Android"></a><a href="https://github.com/apple/swift/blob/master/docs/Android.md" target="_blank" rel="external">Getting Started with Swift on Android</a></h2><ul>
+<li><code>curl</code>, <code>autoconf</code>, <code>automake</code>, <code>libtool</code>, <code>git</code> 確認以上工具</li>
+<li>下載 <code>git clone https://github.com/SwiftAndroid/libiconv-libicu-android.git</code></li>
+<li>確認 NDK 在 PATH 內， <code>which ndk-build</code></li>
+<li><code>cd libiconv-libicu-android</code>, run <code>build.sh</code></li>
+<li>確認 <code>armeabi-v7a/icu/source/i18n</code> &amp; <code>libiconv-libicu-android</code> 這兩個產生出來</li>
+</ul>
+<figure class="highlight sh"><figcaption><span>Building the Swift stdlib for Android</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/apple/swift</span><br><span class="line">LIBICU=/Users/yume/git/libiconv-libicu-android</span><br><span class="line">NDK=/Users/yume/Android_SDK/ndk-bundle</span><br><span class="line">utils/update-checkout --clone</span><br><span class="line">utils/build-script \</span><br><span class="line">	-R \</span><br><span class="line">    --android \</span><br><span class="line">    --android-ndk <span class="variable">$NDK</span> \</span><br><span class="line">    --android-api-level 21 \</span><br><span class="line">    --android-icu-uc <span class="variable">$LIBICU</span>/armeabi-v7a \</span><br><span class="line">    --android-icu-uc-include <span class="variable">$LIBICU</span>/armeabi-v7a/icu/<span class="built_in">source</span>/common \</span><br><span class="line">    --android-icu-i18n <span class="variable">$LIBICU</span>/armeabi-v7a \</span><br><span class="line">    --android-icu-i18n-include <span class="variable">$LIBICU</span>/armeabi-v7a/icu/<span class="built_in">source</span>/i18n/</span><br><span class="line"></span><br><span class="line">utils/build-script -R --android --android-ndk <span class="variable">$NDK</span> --android-api-level 21 --android-icu-uc <span class="variable">$LIBICU</span>/armeabi-v7a --android-icu-uc-include <span class="variable">$LIBICU</span>/armeabi-v7a/icu/<span class="built_in">source</span>/common --android-icu-i18n <span class="variable">$LIBICU</span>/armeabi-v7a --android-ic</span><br><span class="line">utils/build-script -R --android <span class="literal">true</span> --android-ndk <span class="variable">$NDK</span> --android-api-level 21 --android-icu-uc <span class="variable">$LIBICU</span>/armeabi-v7a --android-icu-uc-include <span class="variable">$LIBICU</span>/armeabi-v7a/icu/<span class="built_in">source</span>/common --android-icu-i18n <span class="variable">$LIBICU</span>/armeabi-v7a --android-icu-i18n-include <span class="variable">$LIBICU</span>/armeabi-v7a/icu/<span class="built_in">source</span>/i18n --skip-ios --skip-tvos --skip-watchos</span><br><span class="line"></span><br><span class="line">swift/utils/build-script -x</span><br><span class="line">build/Xcode-DebugAssert/swift-macosx-x86_64/Swfit.xproj</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$SDK</span>/usr/bin/swiftc -parse-as-library -target armv7-apple-ios9.0 -emit-ir add.swift | grep -v <span class="string">"^\!"</span> &gt; add.ll</span><br><span class="line"><span class="variable">$SDK</span>/usr/bin/swiftc -parse-as-library -target armv7-apple-ios9.0 -emit-ir add.swift -o add.ll</span><br><span class="line"><span class="comment"># 註解 add.ll</span></span><br><span class="line"><span class="comment">#; source_filename = "-"</span></span><br><span class="line">/Users/yume/Downloads/android-ndk-r13b/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-as add.ll </span><br><span class="line">/Users/yume/Downloads/android-ndk-r10e/toolchains/llvm-3.6/prebuilt/darwin-x86_64/bin/llc -mtriple=armv7-none-linux-androideabi -filetype=obj add.ll</span><br><span class="line">/Users/yume/Downloads/android-ndk-r10e/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ld add.o -shared -L/Users/yume/Downloads/android-ndk-r10e/platforms/android-21/arch-arm/usr/lib </span><br><span class="line"></span><br><span class="line">-mtriple=armv7-none-linux-androideabi -filetype=obj add.ll</span><br><span class="line">clang -target &lt;target_from_list_above&gt;</span><br><span class="line">clang -target armv7-none-linux-androideabi -o add add.bc</span><br><span class="line"><span class="variable">$NDK</span>/toolchains/llvm-3.5/prebuilt/darwin-x86_64/bin/llc</span><br><span class="line">  -mtriple=armv7-none-linux-androideabi</span><br><span class="line">  -filetype=obj</span><br><span class="line">  add.ll</span><br><span class="line"></span><br><span class="line">clang -o add add.bc</span><br></pre></td></tr></table></figure>
+<p>clang -emit-llvm -o foo.bc -c foo.c<br>clang -o foo foo.bc</p>
+<p>swiftc -parse-as-library -target x86_64-apple-macosx10.12 -emit-ir hello.swift &gt; hello.ll<br>swiftc -parse-as-library -target x86_64-apple-macosx10.12 -emit-bc hello.swift &gt; hello.bc</p>
+<p><a href="https://www.accelebrate.com/blog/thinking-swift-part-ii/" target="_blank" rel="external">https://www.accelebrate.com/blog/thinking-swift-part-ii/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = 3</span><br><span class="line">let b = 4</span><br><span class="line">let c = a + b</span><br><span class="line">println(c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>swift llvm</span><a href="http://qiita.com/S_Shimotori/items/8cdf482952385ed8472e" target="_blank" rel="external">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Swift Abstract Syntax Tree (AST)</span></span><br><span class="line">swiftc -dump-ast hello.swift</span><br><span class="line"><span class="comment"># (declref_expr type='(Int, Int) -&gt; Int'</span></span><br><span class="line"><span class="comment">#        location=onion.swift:3:11 range=[onion.swift:3:11 –</span></span><br><span class="line"><span class="comment">#        line:3:11] decl=Swift.(file).+ specialized=no)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Swift Intermediate Language (SIL)</span></span><br><span class="line">swiftc -emit-silgen hello.swift &gt; hello.sil </span><br><span class="line">swiftc -parse-sil hello.sil</span><br><span class="line">./hello</span><br><span class="line"><span class="comment"># %11 = builtin_function_ref "sadd_with_overflow_Word" : $@thin (Builtin.Word, Builtin.Word, Builtin.Int1) -&gt; (Builtin.Word, Builtin.Int1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Intermediate Representation (LLVM IR)</span></span><br><span class="line">swiftc -emit-ir hello.swift &gt; hello.ll</span><br><span class="line"><span class="comment"># %3 = call &#123; i64, i1 &#125; @llvm.sadd.with.overflow.i64(i64 %1, i64 %2)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># LLVM BC</span></span><br><span class="line">swiftc -emit-bc hello.swift &gt; hello.bc</span><br><span class="line"><span class="comment"># IR to BC</span></span><br><span class="line">llvm-as hello.ll</span><br><span class="line"><span class="comment"># 執行 BC</span></span><br><span class="line">lli hello.bc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>http://pllab.cs.nthu.edu.tw/cs340402/lectures/lectures_2013/LLVM%20Bitcode%20Introduction.pdf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LLVM tools</span><br><span class="line">• llvm-as: assemble a human-readable .ll file into bitcode</span><br><span class="line">• llvm-dis: disassemble a bitcode file into a human-readable .ll file</span><br><span class="line">• opt: run a series of LLVM-to-LLVM optimizations on a bitcode file</span><br><span class="line">• llc: generate native machine code for a bitcode file</span><br><span class="line">• lli: directly run a program compiled to bitcode using a JIT compiler or interpreter</span><br><span class="line">• llvm-link: link several bitcode files into one</span><br><span class="line">• clang: C, C++, Object C front-end for LLVM</span><br><span class="line">• llvm-gcc: GCC-based C front-end for LLVM</span><br><span class="line">• llvm-g++: GCC-based C++ front-end for LLVM</span><br></pre></td></tr></table></figure>
+<h1 id="待看"><a href="#待看" class="headerlink" title="待看"></a>待看</h1><ul>
+<li><a href="https://harlanhaskins.com/2017/01/11/building-a-compiler-with-swift-in-llvm-part-3-code-generation-to-llvm-ir.html" target="_blank" rel="external">Building a Compiler in Swift with LLVM, Part 3: Code Generation to LLVM IR</a></li>
+<li><a href="https://github.com/mitchellallison/nifty" target="_blank" rel="external">nifty</a></li>
+<li><a href="https://lowlevelbits.org/how-to-use-llvm-api-with-swift/" target="_blank" rel="external">HOW TO USE LLVM API WITH SWIFT</a></li>
+<li><a href="https://idea.popcount.org/2013-07-24-ir-is-better-than-assembly/" target="_blank" rel="external">IR is better than assembly</a></li>
+<li><a href="http://www.wilfred.me.uk/blog/2015/02/21/my-first-llvm-compiler/" target="_blank" rel="external">My First LLVM Compiler</a></li>
+<li><a href="http://pllab.cs.nthu.edu.tw/cs340402/lectures/lectures_2013/LLVM%20Bitcode%20Introduction.pdf" target="_blank" rel="external">LLVM &amp; LLVM Bitcode Introduction</a></li>
+<li><a href="http://zke1ev3n.me/2016/01/18/%E5%9F%BA%E4%BA%8ELLVM%E7%9A%84%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86/" target="_blank" rel="external">基于LLVM的代码混淆</a></li>
+<li><a href="http://brian.io/android-ndk-r10c-docs/Programmers_Guide/html/md_3__key__topics__building__s_t_a_n_d_a_l_o_n_e-_t_o_o_l_c_h_a_i_n.html" target="_blank" rel="external">NDK Programmer’s Guide</a></li>
+<li><a href="https://developer.android.com/ndk/guides/standalone_toolchain.html" target="_blank" rel="external">NDK Standalone Toolchains</a></li>
+<li><a href="http://qiita.com/S_Shimotori/items/8cdf482952385ed8472e" target="_blank" rel="external">Swiftの中間言語を出力して読む方法</a></li>
+</ul>
+<h1 id="帶看-swift-on-android"><a href="#帶看-swift-on-android" class="headerlink" title="帶看 swift on android"></a>帶看 swift on android</h1><ul>
+<li><a href="http://romain.goyet.com/articles/running_swift_code_on_android/" target="_blank" rel="external">Running Swift code on Android</a></li>
+<li><a href="https://github.com/Ecco/HelloSwift" target="_blank" rel="external">HelloSwift</a></li>
+<li><a href="https://github.com/apple/swift/blob/master/docs/Android.md" target="_blank" rel="external">swift/android.md</a></li>
+<li><a href="https://medium.com/@ephemer/how-we-put-an-app-in-the-android-play-store-using-swift-67bd99573e3c#.s6l7ycpup" target="_blank" rel="external">How we put an app in the Android Play Store using Swift</a></li>
+<li><a href="https://github.com/SwiftAndroid" target="_blank" rel="external">SwiftAndroid</a></li>
+<li><a href="https://medium.com/@ephemer/using-jni-in-swift-to-put-an-app-into-the-android-play-store-732e542a99dd#.82wtzyxtc" target="_blank" rel="external">Using JNI in Swift to put an app into the Android Play Store</a></li>
+<li><a href="https://github.com/SwiftAndroid/swift-jni" target="_blank" rel="external">swift-jni</a></li>
+</ul>
+<h1 id="compile-相關"><a href="#compile-相關" class="headerlink" title="compile 相關"></a>compile 相關</h1><ul>
+<li><a href="http://sp1.wikidot.com/gnulinker" target="_blank" rel="external">陳鍾誠:GNU 的連結工具 (ld, nm, objdump, ar)</a></li>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc/index.html" target="_blank" rel="external">GNU GCC</a></li>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc/index.html" target="_blank" rel="external">The GNU C Reference Manual</a></li>
+<li><a href="http://www.cz.freebsd.org/doc/en/books/developers-handbook/index.html" target="_blank" rel="external">Free BSD</a></li>
+<li><a href="http://www.cz.freebsd.org/doc/en/books/developers-handbook/tools-compiling.html" target="_blank" rel="external">cc</a></li>
+<li><a href="https://ftp.gnu.org/pub/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html" target="_blank" rel="external">ld</a></li>
+<li><a href="http://stackoverflow.com/questions/2980102/combine-two-gcc-compiled-o-object-files-into-a-third-o-file" target="_blank" rel="external">ld stackoverflow</a></li>
+</ul>
+<h1 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nm -D /lib/mylib.so.1</span><br><span class="line"></span><br><span class="line">readelf -s /usr/lib/lib&lt;example&gt;.so.XX.x | grep &lt;OBJECT_abc&gt;</span><br><span class="line">objdump -Dslx /lib/libcap.so.2 | more</span><br><span class="line">objdump -x /path/to/file/filename | head -50</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line">MODULE_NAME = tool</span><br><span class="line">SDK         = macosx</span><br><span class="line">ARCH        = x86_64</span><br><span class="line"></span><br><span class="line">CONFIG     ?= debug</span><br><span class="line"></span><br><span class="line">ROOT_DIR    = $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))</span><br><span class="line">OUTPUT_DIR  = $(ROOT_DIR)/bin</span><br><span class="line">TARGET_DIR  = $(OUTPUT_DIR)/$(SDK)/$(CONFIG)</span><br><span class="line">SRC_DIR     = $(ROOT_DIR)/src</span><br><span class="line"></span><br><span class="line">ifeq ($(CONFIG), debug)</span><br><span class="line">    CFLAGS=-Onone -g</span><br><span class="line">else</span><br><span class="line">    CFLAGS=-O3</span><br><span class="line">endif</span><br><span class="line">$(SWIFTC) </span><br><span class="line">	$(SWIFT_FILES) </span><br><span class="line">	-emit-executable </span><br><span class="line">	-sdk $(SDK_PATH) </span><br><span class="line">	-module-name $(MODULE_NAME) </span><br><span class="line">	-emit-module </span><br><span class="line">	-emit-module-path $(TARGET_DIR)/$(MODULE_NAME).swiftmodule </span><br><span class="line">	-o $(TARGET_DIR)/$(MODULE_NAME)</span><br><span class="line"></span><br><span class="line">-sdk macosx \</span><br><span class="line">swiftc \</span><br><span class="line">	swift_add.swift \</span><br><span class="line">	-emit-library \</span><br><span class="line">	-target x86_64-apple-macosx10.12 \</span><br><span class="line">	-module-name tool \</span><br><span class="line">	-emit-module \</span><br><span class="line">	-emit-module-path module/tool.swiftmodule \</span><br><span class="line">	-o module/tool</span><br><span class="line">swiftc -target x86_64-apple-macosx10.12 -emit-library -parse-as-library swift_add.swift -o swift_add.o</span><br><span class="line"></span><br><span class="line">CompileSwift normal x86_64 /Users/yume/Desktop/cswift/cswift/add.swift</span><br><span class="line">    cd /Users/yume/Desktop/cswift</span><br><span class="line">    /Applications/Xcode8_2_1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift </span><br><span class="line">	-frontend </span><br><span class="line">	-c </span><br><span class="line">	-primary-file /Users/yume/Desktop/cswift/cswift/add.swift </span><br><span class="line">	-target x86_64-apple-macosx10.12 </span><br><span class="line">	-enable-objc-interop </span><br><span class="line">	-sdk /Applications/Xcode8_2_1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk </span><br><span class="line">	-I /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug </span><br><span class="line">	-F /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug </span><br><span class="line">	-enable-testing </span><br><span class="line">	-g </span><br><span class="line">	-module-cache-path /Users/yume/Library/Developer/Xcode/DerivedData/ModuleCache </span><br><span class="line">	-serialize-debugging-options </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/swift-overrides.hmap </span><br><span class="line">	-Xcc -iquote </span><br><span class="line">	-Xcc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-generated-files.hmap </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-own-target-headers.hmap </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-all-target-headers.hmap </span><br><span class="line">	-Xcc -iquote </span><br><span class="line">	-Xcc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-project-headers.hmap </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/include </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources/x86_64 </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources </span><br><span class="line">	-Xcc -DDEBUG=1 </span><br><span class="line">	-Xcc -working-directory/Users/yume/Desktop/cswift </span><br><span class="line">	-emit-module-doc-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add~partial.swiftdoc </span><br><span class="line">	-Onone -parse-as-library </span><br><span class="line">	-module-name cswift </span><br><span class="line">	-emit-module-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add~partial.swiftmodule </span><br><span class="line">	-serialize-diagnostics-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add.dia </span><br><span class="line">	-emit-dependencies-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add.d </span><br><span class="line">	-emit-reference-dependencies-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add.swiftdeps </span><br><span class="line">	-o /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add.o</span><br><span class="line"></span><br><span class="line">MergeSwiftModule normal x86_64 /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftmodule</span><br><span class="line">    cd /Users/yume/Desktop/cswift</span><br><span class="line">    /Applications/Xcode8_2_1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift </span><br><span class="line">	-frontend </span><br><span class="line">	-emit-module /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/add~partial.swiftmodule </span><br><span class="line">	-parse-as-library </span><br><span class="line">	-target x86_64-apple-macosx10.12 </span><br><span class="line">	-enable-objc-interop </span><br><span class="line">	-sdk /Applications/Xcode8_2_1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk </span><br><span class="line">	-I /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug </span><br><span class="line">	-F /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug </span><br><span class="line">	-enable-testing -g -module-cache-path /Users/yume/Library/Developer/Xcode/DerivedData/ModuleCache </span><br><span class="line">	-serialize-debugging-options </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/swift-overrides.hmap </span><br><span class="line">	-Xcc -iquote </span><br><span class="line">	-Xcc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-generated-files.hmap </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-own-target-headers.hmap </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-all-target-headers.hmap </span><br><span class="line">	-Xcc -iquote </span><br><span class="line">	-Xcc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-project-headers.hmap </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/include </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources/x86_64 </span><br><span class="line">	-Xcc -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources </span><br><span class="line">	-Xcc -DDEBUG=1 </span><br><span class="line">	-Xcc -working-directory/Users/yume/Desktop/cswift </span><br><span class="line">	-emit-module-doc-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftdoc </span><br><span class="line">	-module-name cswift </span><br><span class="line">	-emit-objc-header-path /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift-Swift.h </span><br><span class="line">	-o /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftmodule</span><br><span class="line"></span><br><span class="line">Ditto /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources/cswift-Swift.h /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift-Swift.h</span><br><span class="line">    cd /Users/yume/Desktop/cswift</span><br><span class="line">    /usr/bin/ditto -rsrc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift-Swift.h /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources/cswift-Swift.h</span><br><span class="line"></span><br><span class="line">Ditto /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/cswift.swiftmodule/x86_64.swiftmodule /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftmodule</span><br><span class="line">    cd /Users/yume/Desktop/cswift</span><br><span class="line">    /usr/bin/ditto -rsrc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftmodule /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/cswift.swiftmodule/x86_64.swiftmodule</span><br><span class="line"></span><br><span class="line">Ditto /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/cswift.swiftmodule/x86_64.swiftdoc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftdoc</span><br><span class="line">    cd /Users/yume/Desktop/cswift</span><br><span class="line">    /usr/bin/ditto -rsrc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/cswift.swiftdoc /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/cswift.swiftmodule/x86_64.swiftdoc</span><br><span class="line"></span><br><span class="line">CompileC /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/main.o cswift/main.c normal x86_64 c com.apple.compilers.llvm.clang.1_0.compiler</span><br><span class="line">    cd /Users/yume/Desktop/cswift</span><br><span class="line">    export LANG=en_US.US-ASCII</span><br><span class="line">    /Applications/Xcode8_2_1.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang </span><br><span class="line">	-x c -arch x86_64 -fmessage-length=0 </span><br><span class="line">	-fdiagnostics-show-note-include-stack </span><br><span class="line">	-fmacro-backtrace-limit=0 </span><br><span class="line">	-std=gnu99 </span><br><span class="line">	-fmodules </span><br><span class="line">	-gmodules </span><br><span class="line">	-fmodules-cache-path=/Users/yume/Library/Developer/Xcode/DerivedData/ModuleCache </span><br><span class="line">	-fmodules-prune-interval=86400 </span><br><span class="line">	-fmodules-prune-after=345600 </span><br><span class="line">	-fbuild-session-file=/Users/yume/Library/Developer/Xcode/DerivedData/ModuleCache/Session.modulevalidation </span><br><span class="line">	-fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module </span><br><span class="line">	-Werror=non-modular-include-in-framework-module -Wno-trigraphs -fpascal-strings -O0 -fno-common -Wno-missing-field-initializers -Wno-missing-prototypes -Werror=return-type -Wdocumentation -Wunreachable-code -Werror=deprecated-objc-isa-usage -Werror=objc-root-class -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -DDEBUG=1 -isysroot /Applications/Xcode8_2_1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mmacosx-version-min=10.12 -g -Wno-sign-conversion -Winfinite-recursion -iquote /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-generated-files.hmap -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-own-target-headers.hmap -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-all-target-headers.hmap -iquote /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/cswift-project-headers.hmap -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug/include -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources/x86_64 -I/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/DerivedSources -F/Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Products/Debug -MMD -MT dependencies -MF /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/main.dia -c /Users/yume/Desktop/cswift/cswift/main.c -o /Users/yume/Library/Developer/Xcode/DerivedData/cswift-fjyhynvvlsnuujdxujqngcntiouz/Build/Intermediates/cswift.build/Debug/cswift.build/Objects-normal/x86_64/main.o</span><br></pre></td></tr></table></figure>
+<p>import Glibc</p>
+<p>let path = “./sample.txt”<br>let BUFSIZE = 1024</p>
+<p>let fp = fopen(path, “r”)<br>if fp != nil {<br>  var buf = <a href="count:BUFSIZE, repeatedValue:CChar(0" target="_blank" rel="external">CChar</a>)<br>  while fgets(&amp;buf, Int32(BUFSIZE), fp) != nil {<br>    print(String.fromCString(buf)!, terminator:””)<br>  }<br>}</p>
+<p>./swift/utils/build-script<br>    –build-subdir mybuild_linux </p>
+<pre><code>-R --lldb --llbuild --xctest --foundation --libdispatch 
+-- 
+--install-libdispatch
+--install-foundation
+--install-swift 
+--install-lldb 
+--install-llbuild 
+--install-xctest 
+--install-prefix=/usr &apos;--swift-install-components=autolink-driver;compiler;clang-builtin-headers;stdlib;swift-remote-mirror;sdk-overlay;dev&apos; --build-swift-static-stdlib --build-swift-static-sdk-overlay --install-destdir=${INSTALL_DIR} --installable-package=${PACKAGE} --verbose-build
+</code></pre>
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    工作時的筆記
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/lua/">lua</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/yume190">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:yume190@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

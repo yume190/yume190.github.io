@@ -164,7 +164,7 @@
 <li>透過 <code>uci</code> 設定</li>
 <li>重啟 <code>uhttpd</code></li>
 </ul>
-<figure class="highlight sh"><figcaption><span>安裝 uhttpd-mod-lua</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">opkg install uhttpd-mod-lua</span><br><span class="line">uci <span class="built_in">set</span> uhttpd.main.lua_prefix=/lua</span><br><span class="line">uci <span class="built_in">set</span> uhttpd.main.lua_handler=/root/test.lua</span><br><span class="line">uci commit uhttpd</span><br><span class="line">/etc/init.d/uhttpd restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><figcaption><span>安裝 uhttpd-mod-lua</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install uhttpd-mod-lua</span><br><span class="line">uci <span class="built_in">set</span> uhttpd.main.lua_prefix=/lua</span><br><span class="line">uci <span class="built_in">set</span> uhttpd.main.lua_handler=/root/test.lua</span><br><span class="line">uci commit uhttpd</span><br><span class="line">/etc/init.d/uhttpd restart</span><br><span class="line">wget -qO- http://127.0.0.1/lua/</span><br></pre></td></tr></table></figure>
 <p>這份 <code>lua</code> file，比較要注意的地方是 </p>
 <ul>
 <li>回呼函數名稱一定要是 <code>handle_request</code></li>
@@ -238,19 +238,19 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2016/12/05/OpenWRT-2016-12-05-uhttp-lua/">uhttp lua</a>
+                <a class="footer-post" href="/2017/03/07/WWDC-2016-416/">WWDC 2016 416</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/12/01/Linux-2016-12-01-let-s-Make/">let&#39;s Make</a>
+                <a class="footer-post" href="/2017/03/03/建立純-swift-module/">建立純 swift module</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-uci/">OpenWRT uci</a>
+                <a class="footer-post" href="/2017/03/02/Android-call-Swift-舊版/">Android call Swift 舊版</a>
             </li>
             
             <li>
-                <a class="footer-post" href="/2016/11/24/OpenWRT-2016-11-24-OpenWRT-ubus/">OpenWRT ubus</a>
+                <a class="footer-post" href="/2017/02/22/LLVM-Build/">LLVM Build</a>
             </li>
             
         </ul>
@@ -264,19 +264,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/IOS/UI/">UI</a>
+            <a class="footer-post" href="/categories/IOS/Localize/">Localize</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Work/">Work</a>
+            <a class="footer-post" href="/categories/lua/">lua</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Design-Pattern/Dependency-Injection/">Dependency Injection</a>
+            <a class="footer-post" href="/categories/Android/Auto-Restart/">Auto-Restart</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Google-API/">Google API</a>
+            <a class="footer-post" href="/categories/Android/Custom-Permission/">Custom_Permission</a>
         </li>
         
     </ul>
